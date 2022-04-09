@@ -1,0 +1,62 @@
+{
+    "sourceFile": "vite.config.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 11,
+            "patches": [
+                {
+                    "date": 1649468462673,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1649468512290,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n     },\n     // 设置 https 代理\n     proxy: {\n       '/api': {\n-        target: 'your https address',\n+        target: 'http://www.foogeoo.ltd',\n         changeOrigin: true,\n         rewrite: (path: string) => path.replace(/^\\/api/, '')\n       }\n     }\n"
+                },
+                {
+                    "date": 1649469350601,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,25 @@\n     alias: {\n       '@': path.resolve(__dirname, 'src')\n     }\n   },\n-  plugins: [vue()],\n+  plugins: [vue(), styleImport({\n+    libs: [\n+      {\n+        libraryName: 'element-plus',\n+        esModule: true,\n+        resolveStyle: (name) => {\n+          return `element-plus/lib/theme-chalk/${name}.css`;\n+        },\n+        ensureStyleFile: true // 忽略文件是否存在, 导入不存在的CSS文件时防止错误。\n+      }\n+    ]\n+  })\n+\n+作者：易师傅\n+链接：https://juejin.cn/post/7079785777692934174\n+    来源：稀土掘金\n+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。],\n   server: {\n     port: 8080, //启动端口\n     hmr: {\n       host: '127.0.0.1',\n"
+                },
+                {
+                    "date": 1649469378506,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,25 +9,9 @@\n     alias: {\n       '@': path.resolve(__dirname, 'src')\n     }\n   },\n-  plugins: [vue(), styleImport({\n-    libs: [\n-      {\n-        libraryName: 'element-plus',\n-        esModule: true,\n-        resolveStyle: (name) => {\n-          return `element-plus/lib/theme-chalk/${name}.css`;\n-        },\n-        ensureStyleFile: true // 忽略文件是否存在, 导入不存在的CSS文件时防止错误。\n-      }\n-    ]\n-  })\n-\n-作者：易师傅\n-链接：https://juejin.cn/post/7079785777692934174\n-    来源：稀土掘金\n-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。],\n+  plugins: [vue(),],\n   server: {\n     port: 8080, //启动端口\n     hmr: {\n       host: '127.0.0.1',\n"
+                },
+                {
+                    "date": 1649469407836,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,24 @@\n     alias: {\n       '@': path.resolve(__dirname, 'src')\n     }\n   },\n-  plugins: [vue(),],\n+  plugins: [vue(),\n+  styleImport({\n+    libs: [\n+      {\n+        libraryName: 'element-plus',\n+        esModule: true,\n+        resolveStyle: (name) => {\n+          return `element-plus/lib/theme-chalk/${name}.css`;\n+        },\n+        ensureStyleFile: true // 忽略文件是否存在, 导入不存在的CSS文件时防止错误。\n+      }\n+    ]\n+  })\n+\n+\n+  ],\n   server: {\n     port: 8080, //启动端口\n     hmr: {\n       host: '127.0.0.1',\n"
+                },
+                {
+                    "date": 1649469413811,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { defineConfig } from 'vite';\n import vue from '@vitejs/plugin-vue';\n import * as path from 'path';\n-\n+import styleImport from 'vite-plugin-style-import'\n // https://vitejs.dev/config/\n export default defineConfig({\n   resolve: {\n     //设置别名\n"
+                },
+                {
+                    "date": 1649469471977,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,29 +1,16 @@\n import { defineConfig } from 'vite';\n import vue from '@vitejs/plugin-vue';\n import * as path from 'path';\n-import styleImport from 'vite-plugin-style-import'\n // https://vitejs.dev/config/\n export default defineConfig({\n   resolve: {\n     //设置别名\n     alias: {\n       '@': path.resolve(__dirname, 'src')\n     }\n   },\n-  plugins: [vue(),\n-  styleImport({\n-    libs: [\n-      {\n-        libraryName: 'element-plus',\n-        esModule: true,\n-        resolveStyle: (name) => {\n-          return `element-plus/lib/theme-chalk/${name}.css`;\n-        },\n-        ensureStyleFile: true // 忽略文件是否存在, 导入不存在的CSS文件时防止错误。\n-      }\n-    ]\n-  })\n+  plugins: [vue()\n \n \n   ],\n   server: {\n"
+                },
+                {
+                    "date": 1649469610442,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n import { defineConfig } from 'vite';\n import vue from '@vitejs/plugin-vue';\n import * as path from 'path';\n+import AutoImport from 'unplugin-auto-import/vite'\n+import Components from 'unplugin-vue-components/vite'\n // https://vitejs.dev/config/\n export default defineConfig({\n   resolve: {\n     //设置别名\n"
+                },
+                {
+                    "date": 1649469692596,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,7 @@\n import { defineConfig } from 'vite';\n import vue from '@vitejs/plugin-vue';\n import * as path from 'path';\n-import AutoImport from 'unplugin-auto-import/vite'\n-import Components from 'unplugin-vue-components/vite'\n // https://vitejs.dev/config/\n export default defineConfig({\n   resolve: {\n     //设置别名\n"
+                },
+                {
+                    "date": 1649469855848,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n import { defineConfig } from 'vite';\n import vue from '@vitejs/plugin-vue';\n import * as path from 'path';\n+import AutoImport from 'unplugin-auto-import/vite'\n+import Components from 'unplugin-vue-components/vite'\n // https://vitejs.dev/config/\n export default defineConfig({\n   resolve: {\n     //设置别名\n"
+                },
+                {
+                    "date": 1649469863300,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,11 +10,16 @@\n     alias: {\n       '@': path.resolve(__dirname, 'src')\n     }\n   },\n-  plugins: [vue()\n+  plugins: [vue(),\n+  AutoImport({\n+    resolvers: [ElementPlusResolver()],\n+  }),\n+  Components({\n+    resolvers: [ElementPlusResolver()],\n+  }),\n \n-\n   ],\n   server: {\n     port: 8080, //启动端口\n     hmr: {\n"
+                },
+                {
+                    "date": 1649469876034,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n import vue from '@vitejs/plugin-vue';\n import * as path from 'path';\n import AutoImport from 'unplugin-auto-import/vite'\n import Components from 'unplugin-vue-components/vite'\n+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'\n // https://vitejs.dev/config/\n export default defineConfig({\n   resolve: {\n     //设置别名\n"
+                }
+            ],
+            "date": 1649468462673,
+            "name": "Commit-0",
+            "content": "import { defineConfig } from 'vite';\nimport vue from '@vitejs/plugin-vue';\nimport * as path from 'path';\n\n// https://vitejs.dev/config/\nexport default defineConfig({\n  resolve: {\n    //设置别名\n    alias: {\n      '@': path.resolve(__dirname, 'src')\n    }\n  },\n  plugins: [vue()],\n  server: {\n    port: 8080, //启动端口\n    hmr: {\n      host: '127.0.0.1',\n      port: 8080\n    },\n    // 设置 https 代理\n    proxy: {\n      '/api': {\n        target: 'your https address',\n        changeOrigin: true,\n        rewrite: (path: string) => path.replace(/^\\/api/, '')\n      }\n    }\n  }\n});\n\n"
+        }
+    ]
+}

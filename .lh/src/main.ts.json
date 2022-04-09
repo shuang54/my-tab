@@ -1,0 +1,30 @@
+{
+    "sourceFile": "src/main.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1649468816494,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1649468978442,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,12 @@\n import { createApp } from 'vue'\n import App from './App.vue'\n import store from './store'\n+import router from '@/router'\n+// 创建vue实例\n+const app = createApp(App)\n \n-const app = createApp(App)\n+// 挂载pinia\n app.use(store)\n \n-app.mount('#app')\n+// 挂载实例\n+app.mount('#app');\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649468984897,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { createApp } from 'vue'\n import App from './App.vue'\n import store from './store'\n-import router from '@/router'\n+import router from './router'\n // 创建vue实例\n const app = createApp(App)\n \n // 挂载pinia\n"
+                },
+                {
+                    "date": 1649469002920,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,7 +6,8 @@\n const app = createApp(App)\n \n // 挂载pinia\n app.use(store)\n-\n+//挂载router\n+app.use(router)\n // 挂载实例\n app.mount('#app');\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1649468816494,
+            "name": "Commit-0",
+            "content": "import { createApp } from 'vue'\nimport App from './App.vue'\nimport store from './store'\n\nconst app = createApp(App)\napp.use(store)\n\napp.mount('#app')\n"
+        }
+    ]
+}

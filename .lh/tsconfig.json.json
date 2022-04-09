@@ -1,0 +1,42 @@
+{
+    "sourceFile": "tsconfig.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1649468437069,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1649470106557,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n     \"strict\": true,\n     \"jsx\": \"preserve\",\n     \"sourceMap\": true,\n     \"resolveJsonModule\": true,\n-    \"isolatedModules\": true,\n+    \"isolatedModules\": false,\n     \"esModuleInterop\": true,\n     \"lib\": [\n       \"esnext\",\n       \"dom\"\n"
+                },
+                {
+                    "date": 1649470707896,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,6 +28,7 @@\n   \"references\": [\n     {\n       \"path\": \"./tsconfig.node.json\"\n     }\n-  ]\n+  ],\n+  \"suppressImplicitAnyIndexErrors\": true,\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649471033388,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n     \"sourceMap\": true,\n     \"resolveJsonModule\": true,\n     \"isolatedModules\": false,\n     \"esModuleInterop\": true,\n+    \"suppressImplicitAnyIndexErrors\": true,\n     \"lib\": [\n       \"esnext\",\n       \"dom\"\n     ]\n@@ -29,6 +30,5 @@\n     {\n       \"path\": \"./tsconfig.node.json\"\n     }\n   ],\n-  \"suppressImplicitAnyIndexErrors\": true,\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649471324928,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,8 @@\n     \"sourceMap\": true,\n     \"resolveJsonModule\": true,\n     \"isolatedModules\": false,\n     \"esModuleInterop\": true,\n-    \"suppressImplicitAnyIndexErrors\": true,\n     \"lib\": [\n       \"esnext\",\n       \"dom\"\n     ]\n"
+                },
+                {
+                    "date": 1649471840574,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n {\n   \"compilerOptions\": {\n     \"typeRoots\": [\n       \"node_modules/@types\", // 默认值\n-      \"src/types\"\n+      // \"src/types\"\n     ],\n     \"target\": \"esnext\",\n     \"useDefineForClassFields\": true,\n     \"module\": \"esnext\",\n"
+                },
+                {
+                    "date": 1649472412007,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n {\n   \"compilerOptions\": {\n+    \"skipLibCheck\": true,\n     \"typeRoots\": [\n       \"node_modules/@types\", // 默认值\n       // \"src/types\"\n     ],\n"
+                }
+            ],
+            "date": 1649468437069,
+            "name": "Commit-0",
+            "content": "{\n  \"compilerOptions\": {\n    \"typeRoots\": [\n      \"node_modules/@types\", // 默认值\n      \"src/types\"\n    ],\n    \"target\": \"esnext\",\n    \"useDefineForClassFields\": true,\n    \"module\": \"esnext\",\n    \"moduleResolution\": \"node\",\n    \"strict\": true,\n    \"jsx\": \"preserve\",\n    \"sourceMap\": true,\n    \"resolveJsonModule\": true,\n    \"isolatedModules\": true,\n    \"esModuleInterop\": true,\n    \"lib\": [\n      \"esnext\",\n      \"dom\"\n    ]\n  },\n  \"include\": [\n    \"src/**/*.ts\",\n    \"src/**/*.d.ts\",\n    \"src/**/*.tsx\",\n    \"src/**/*.vue\"\n  ],\n  \"references\": [\n    {\n      \"path\": \"./tsconfig.node.json\"\n    }\n  ]\n}"
+        }
+    ]
+}

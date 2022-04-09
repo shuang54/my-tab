@@ -1,0 +1,18 @@
+{
+    "sourceFile": "package.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1649469585748,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1649469585748,
+            "name": "Commit-0",
+            "content": "{\n  \"name\": \"a-soul-tab\",\n  \"private\": true,\n  \"version\": \"0.0.0\",\n  \"scripts\": {\n    \"dev\": \"vite\",\n    \"build\": \"vue-tsc --noEmit && vite build\",\n    \"preview\": \"vite preview\"\n  },\n  \"dependencies\": {\n    \"axios\": \"^0.26.1\",\n    \"less\": \"^4.1.2\",\n    \"pinia\": \"^2.0.13\",\n    \"vue\": \"^3.2.25\",\n    \"vue-router\": \"^4.0.14\"\n  },\n  \"devDependencies\": {\n    \"unplugin-auto-import\": \"^0.6.1\",\n    \"unplugin-vue-components\": \"^0.17.21\",\n    \"@types/node\": \"^17.0.23\",\n    \"@vitejs/plugin-vue\": \"^2.3.0\",\n    \"typescript\": \"^4.5.4\",\n    \"vite\": \"^2.9.0\",\n    \"vite-plugin-style-import\": \"^2.0.0\",\n    \"vue-tsc\": \"^0.29.8\"\n  }\n}"
+        }
+    ]
+}

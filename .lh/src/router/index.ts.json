@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/router/index.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1649468986074,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1649469988463,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,27 +1,8 @@\n import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';\r\n \r\n const routes: Array<RouteRecordRaw> = [\r\n-  {\r\n-    path: '/login',\r\n-    name: 'Login',\r\n-    meta: {\r\n-      title: '登录',\r\n-      keepAlive: true,\r\n-      requireAuth: false\r\n-    },\r\n-    component: () => import('@/pages/login.vue')\r\n-  },\r\n-  {\r\n-    path: '/',\r\n-    name: 'Index',\r\n-    meta: {\r\n-      title: '首页',\r\n-      keepAlive: true,\r\n-      requireAuth: true\r\n-    },\r\n-    component: () => import('@/pages/index.vue')\r\n-  }\r\n+\r\n ]\r\n \r\n const router = createRouter({\r\n   history: createWebHistory(),\r\n"
+                }
+            ],
+            "date": 1649468986074,
+            "name": "Commit-0",
+            "content": "import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';\r\n\r\nconst routes: Array<RouteRecordRaw> = [\r\n  {\r\n    path: '/login',\r\n    name: 'Login',\r\n    meta: {\r\n      title: '登录',\r\n      keepAlive: true,\r\n      requireAuth: false\r\n    },\r\n    component: () => import('@/pages/login.vue')\r\n  },\r\n  {\r\n    path: '/',\r\n    name: 'Index',\r\n    meta: {\r\n      title: '首页',\r\n      keepAlive: true,\r\n      requireAuth: true\r\n    },\r\n    component: () => import('@/pages/index.vue')\r\n  }\r\n]\r\n\r\nconst router = createRouter({\r\n  history: createWebHistory(),\r\n  routes\r\n});\r\nexport default router;\r\n"
+        }
+    ]
+}
