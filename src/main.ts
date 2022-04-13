@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import store from './store'
-import router from './router'
+// import router from './router'
 import { createPinia } from 'pinia'
 // 创建vue实例
 const app = createApp(App)
@@ -9,6 +9,6 @@ const app = createApp(App)
 app.use(store)
 app.use(createPinia())
 //挂载router
-app.use(router)
+// app.use(router)
 // 挂载实例
 app.mount('#app');

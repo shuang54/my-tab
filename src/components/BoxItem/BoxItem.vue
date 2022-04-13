@@ -24,7 +24,9 @@ const props = defineProps({
     default: '',
     type: String
   },
-  i: { type: Number }
+  i: { type: Number },
+  x: { default: 0, type: Number },
+  y: { default: 0, type: Number },
 })
 let ititle = computed(() => {
   if (props.title.length > 13) {
@@ -38,7 +40,9 @@ let boxStore = useBox()
 let item: any = ref(null)
 let zIndex: any = 1;
 let el
-let option = { 'top': '100px' }
+console.log(props.x);
+
+let option = { 'top': props.x + 'px', 'left': props.y + 'px' }
 // 点击的位置
 let x = 0
 let y = 0
@@ -94,8 +98,10 @@ function onMouseMove(e) {
   el.style.left = left + 'px'
   el.style.top = top + 'px'
   // 存储坐标
-  boxStore.setBoxItemX(props.i, left)
-  boxStore.setBoxItemY(props.i, top)
+
+  boxStore.setBoxItemX(props.i, top)
+  boxStore.setBoxItemY(props.i, left)
+
 }
 //释放
 function onMouseUp(e) {
@@ -111,27 +117,19 @@ const dblClickItem = () => {
   window.location.href = props.target
 }
 // fn是我们需要包装的事件回调, delay是每次推迟执行的等待时间
-function debounce(fn, delay) {
-  // 定时器
-  let timer: any = null
+const debounce = function debounce(fn, delay) {
 
-  // 将debounce处理结果当作函数返回
+  let timeoutID;
   return function () {
-    // 保留调用时的this上下文
-    let context = this
-    // 保留调用时传入的参数
-    let args = arguments
-
-    // 每次事件被触发时，都去清除之前的旧定时器
-    if (timer) {
-      clearTimeout(timer)
-    }
-    // 设立新定时器
-    timer = setTimeout(function () {
-      fn.apply(context, args)
-    }, delay)
-  }
-}
+    console.log(arguments);
+    clearTimeout(timeoutID);
+    let args = arguments;
+    let that = this;
+    timeoutID = setTimeout(function () {
+      fn.apply(that, args);
+    }, delay);
+  };
+};
 
 // fn是我们需要包装的事件回调, interval是时间间隔的阈值
 function throttle(fn, interval) {
@@ -155,8 +153,6 @@ function throttle(fn, interval) {
     }
   }
 }
-
-
 </script>
 <template>
   <div class="item" ref="item" :style="{
@@ -170,6 +166,7 @@ function throttle(fn, interval) {
 </template>
 <style lang="less" scoped>
 .item {
+  cursor: not-allowed;
   position: absolute;
   top: 0;
   left: 0;
