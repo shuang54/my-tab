@@ -3,11 +3,19 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 2,
             "patches": [
                 {
                     "date": 1649468816492,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1649682560052,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n import { createPinia } from 'pinia'\r\n-\r\n+import { useBox } from './box'\r\n const store = createPinia()\r\n \r\n export default store\r\n"
+                },
+                {
+                    "date": 1649683081906,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,4 @@\n import { createPinia } from 'pinia'\r\n-import { useBox } from './box'\r\n const store = createPinia()\r\n \r\n export default store\r\n"
                 }
             ],
             "date": 1649468816492,

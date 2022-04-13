@@ -1,0 +1,34 @@
+{
+    "sourceFile": "src/utils/drag.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1649594936852,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1649594959061,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,5 +58,11 @@\n     this.setEleStyle({ 'cursor': 'pointer' })\r\n     this.el.setCapture && this.el.setCapture() //释放全局捕获\r\n \r\n   }\r\n+}\r\n+//src/directive/drag.js\r\n+export const drag = {\r\n+  mounted(el, binding) {\r\n+    new Drap(el, binding.value || {})\r\n+  }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649594976225,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,9 +59,8 @@\n     this.el.setCapture && this.el.setCapture() //释放全局捕获\r\n \r\n   }\r\n }\r\n-//src/directive/drag.js\r\n export const drag = {\r\n   mounted(el, binding) {\r\n     new Drap(el, binding.value || {})\r\n   }\r\n"
+                },
+                {
+                    "date": 1649599893792,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n class Drap {\r\n   static zIndex = 1;\r\n   constructor(el, option = {}) {\r\n     this.el = el;\r\n-    this.x = 0;\r\n-    this.y = 0;\r\n+    this.x = 100;\r\n+    this.y = 100;\r\n     this.option = option;\r\n     this.init();\r\n   }\r\n   init() {\r\n"
+                },
+                {
+                    "date": 1649599946747,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n class Drap {\r\n   static zIndex = 1;\r\n   constructor(el, option = {}) {\r\n     this.el = el;\r\n-    this.x = 100;\r\n-    this.y = 100;\r\n+    this.x = 0;\r\n+    this.y = 0;\r\n     this.option = option;\r\n     this.init();\r\n   }\r\n   init() {\r\n"
+                }
+            ],
+            "date": 1649594936852,
+            "name": "Commit-0",
+            "content": "class Drap {\r\n  static zIndex = 1;\r\n  constructor(el, option = {}) {\r\n    this.el = el;\r\n    this.x = 0;\r\n    this.y = 0;\r\n    this.option = option;\r\n    this.init();\r\n  }\r\n  init() {\r\n    this.setEleStyle(this.option || {});\r\n    this.el.onmousedown = (e) => {\r\n      this.onMouseDown(e)\r\n      this.el.setCapture && this.el.setCapture() //全局捕获\r\n      return false\r\n    }\r\n\r\n  }\r\n  //样式设置\r\n  setEleStyle(option) {\r\n    for (const key in option) {\r\n      this.el.style[key] = option[key]\r\n    }\r\n  }\r\n\r\n  //按下ele\r\n  onMouseDown(e) {\r\n    let zIndex = getComputedStyle(this.el).getPropertyValue('z-index');\r\n    zIndex = isNaN(zIndex) ? 1 : zIndex\r\n    Drap.zIndex = Drap.zIndex > zIndex ? Number(Drap.zIndex) + 1 : Number(zIndex) + 1\r\n    this.setEleStyle({ \"zIndex\": Drap.zIndex, position: 'fixed', 'cursor': 'move' })\r\n    this.x = e.clientX - this.el.offsetLeft;\r\n    this.y = e.clientY - this.el.offsetTop;\r\n    document.onmousemove = (e) => this.onMouseMove(e);\r\n    document.onmouseup = (e) => this.onMouseUp(e)\r\n  }\r\n  //移动move\r\n  onMouseMove(e) {\r\n    let X = e.clientX - this.x\r\n    let Y = e.clientY - this.y;\r\n    if (X < 10 - this.el.offsetWidth) {\r\n      X = 10 - this.el.offsetWidth\r\n    } else if (X > document.documentElement.clientWidth - 10) {\r\n      X = document.documentElement.clientWidth - 10\r\n    }\r\n    if (Y < 10 - this.el.clientHeight) {\r\n      Y = 10 - this.el.clientHeight\r\n    } else if (Y > document.documentElement.clientHeight - 10) {\r\n      Y = document.documentElement.clientHeight - 10\r\n    }\r\n    this.el.style.left = X + 'px'\r\n    this.el.style.top = Y + 'px'\r\n  }\r\n  //释放\r\n  onMouseUp(e) {\r\n    document.onmousemove = null\r\n    document.onmouseup = null\r\n    this.setEleStyle({ 'cursor': 'pointer' })\r\n    this.el.setCapture && this.el.setCapture() //释放全局捕获\r\n\r\n  }\r\n}"
+        }
+    ]
+}

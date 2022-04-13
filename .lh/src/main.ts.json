@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 8,
             "patches": [
                 {
                     "date": 1649468816494,
@@ -20,6 +20,26 @@
                 {
                     "date": 1649469002920,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,7 +6,8 @@\n const app = createApp(App)\n \n // 挂载pinia\n app.use(store)\n-\n+//挂载router\n+app.use(router)\n // 挂载实例\n app.mount('#app');\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649577144420,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,8 @@\n import store from './store'\n import router from './router'\n // 创建vue实例\n const app = createApp(App)\n-\n // 挂载pinia\n app.use(store)\n //挂载router\n app.use(router)\n"
+                },
+                {
+                    "date": 1649595033719,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,10 @@\n import { createApp } from 'vue'\n import App from './App.vue'\n import store from './store'\n import router from './router'\n+import { drag } from \"./utils/drag.js\"\n+app.directive('drag', drag)\n // 创建vue实例\n const app = createApp(App)\n // 挂载pinia\n app.use(store)\n"
+                },
+                {
+                    "date": 1649595045537,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,11 @@\n import App from './App.vue'\n import store from './store'\n import router from './router'\n import { drag } from \"./utils/drag.js\"\n-app.directive('drag', drag)\n // 创建vue实例\n const app = createApp(App)\n+app.directive('drag', drag)\n // 挂载pinia\n app.use(store)\n //挂载router\n app.use(router)\n"
+                },
+                {
+                    "date": 1649683081973,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,11 @@\n import { createApp } from 'vue'\n import App from './App.vue'\n import store from './store'\n import router from './router'\n-import { drag } from \"./utils/drag.js\"\n+import createStore\n // 创建vue实例\n const app = createApp(App)\n-app.directive('drag', drag)\n // 挂载pinia\n app.use(store)\n //挂载router\n app.use(router)\n"
+                },
+                {
+                    "date": 1649683101944,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,14 @@\n import { createApp } from 'vue'\n import App from './App.vue'\n import store from './store'\n import router from './router'\n-import createStore\n+import { createPinia } from 'pinia'\n // 创建vue实例\n const app = createApp(App)\n // 挂载pinia\n app.use(store)\n+app.use(createPinia())\n //挂载router\n app.use(router)\n // 挂载实例\n app.mount('#app');\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1649468816494,

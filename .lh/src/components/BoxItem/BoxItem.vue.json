@@ -1,0 +1,930 @@
+{
+    "sourceFile": "src/components/BoxItem/BoxItem.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 228,
+            "patches": [
+                {
+                    "date": 1649580525360,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1649580608793,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <script lang=\"ts\" setup>\r\n-\r\n+defon\r\n </script>\r\n <template>\r\n   <div></div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1649580634598,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,8 @@\n <script lang=\"ts\" setup>\r\n-defon\r\n+const props = defineProps({\r\n+\r\n+})\r\n </script>\r\n <template>\r\n   <div></div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1649580659205,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n <script lang=\"ts\" setup>\r\n const props = defineProps({\r\n+  w: Number,\r\n \r\n })\r\n </script>\r\n <template>\r\n"
+                },
+                {
+                    "date": 1649580665399,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <script lang=\"ts\" setup>\r\n const props = defineProps({\r\n   w: Number,\r\n-\r\n+  h: Number,\r\n })\r\n </script>\r\n <template>\r\n   <div></div>\r\n"
+                },
+                {
+                    "date": 1649580706271,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,8 @@\n   h: Number,\r\n })\r\n </script>\r\n <template>\r\n-  <div></div>\r\n+  <div class=\"item\"></div>\r\n </template>\r\n <style lang=\"less\">\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649580765474,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,5 +7,9 @@\n <template>\r\n   <div class=\"item\"></div>\r\n </template>\r\n <style lang=\"less\">\r\n+.item {\r\n+  width: 100;\r\n+  height: 100;\r\n+}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649580898381,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,12 +4,12 @@\n   h: Number,\r\n })\r\n </script>\r\n <template>\r\n-  <div class=\"item\"></div>\r\n+  <div class=\"item\">  </div>\r\n </template>\r\n <style lang=\"less\">\r\n .item {\r\n-  width: 100;\r\n-  height: 100;\r\n+  width: 100px;\r\n+  height: 100px;\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649580974500,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,10 @@\n   h: Number,\r\n })\r\n </script>\r\n <template>\r\n-  <div class=\"item\">  </div>\r\n+  <div class=\"item\">\r\n+    <div class=\"item-icon\"></div>  </div>\r\n </template>\r\n <style lang=\"less\">\r\n .item {\r\n   width: 100px;\r\n"
+                },
+                {
+                    "date": 1649580986059,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,12 @@\n })\r\n </script>\r\n <template>\r\n   <div class=\"item\">\r\n-    <div class=\"item-icon\"></div>  </div>\r\n+    <div class=\"item-icon\">\r\n+      <img src=\"\" alt=\"\">\r\n+\r\n+    </div>  </div>\r\n </template>\r\n <style lang=\"less\">\r\n .item {\r\n   width: 100px;\r\n"
+                },
+                {
+                    "date": 1649580994215,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,8 @@\n <template>\r\n   <div class=\"item\">\r\n     <div class=\"item-icon\">\r\n       <img src=\"\" alt=\"\">\r\n-\r\n     </div>  </div>\r\n </template>\r\n <style lang=\"less\">\r\n .item {\r\n"
+                },
+                {
+                    "date": 1649581021477,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,10 @@\n <template>\r\n   <div class=\"item\">\r\n     <div class=\"item-icon\">\r\n       <img src=\"\" alt=\"\">\r\n-    </div>  </div>\r\n+    </div>\r\n+    <p></p>  </div>\r\n </template>\r\n <style lang=\"less\">\r\n .item {\r\n   width: 100px;\r\n"
+                },
+                {
+                    "date": 1649581030332,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   <div class=\"item\">\r\n     <div class=\"item-icon\">\r\n       <img src=\"\" alt=\"\">\r\n     </div>\r\n-    <p></p>  </div>\r\n+    <p>标签</p>  </div>\r\n </template>\r\n <style lang=\"less\">\r\n .item {\r\n   width: 100px;\r\n"
+                },
+                {
+                    "date": 1649581038847,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   <div class=\"item\">\r\n     <div class=\"item-icon\">\r\n       <img src=\"\" alt=\"\">\r\n     </div>\r\n-    <p>标签</p>  </div>\r\n+    <p>标签</p></div>\r\n </template>\r\n <style lang=\"less\">\r\n .item {\r\n   width: 100px;\r\n"
+                },
+                {
+                    "date": 1649581045611,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   <div class=\"item\">\r\n     <div class=\"item-icon\">\r\n       <img src=\"\" alt=\"\">\r\n     </div>\r\n-    <p>标签</p></div>\r\n+    <p>标签</p>  </div>\r\n </template>\r\n <style lang=\"less\">\r\n .item {\r\n   width: 100px;\r\n"
+                },
+                {
+                    "date": 1649581133880,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n </script>\r\n <template>\r\n   <div class=\"item\">\r\n     <div class=\"item-icon\">\r\n-      <img src=\"\" alt=\"\">\r\n+      <img src=\"https://files.codelife.cc/website/music163.svg\" alt=\"网易云音乐\">\r\n     </div>\r\n     <p>标签</p>  </div>\r\n </template>\r\n <style lang=\"less\">\r\n"
+                },
+                {
+                    "date": 1649581186633,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,6 +14,9 @@\n <style lang=\"less\">\r\n .item {\r\n   width: 100px;\r\n   height: 100px;\r\n+  display: flex;\r\n+\r\n+  .item-icon {}\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649581247676,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,9 @@\n .item {\r\n   width: 100px;\r\n   height: 100px;\r\n   display: flex;\r\n+  flex-direction: row;\r\n \r\n   .item-icon {}\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649581274938,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,10 @@\n   width: 100px;\r\n   height: 100px;\r\n   display: flex;\r\n   flex-direction: row;\r\n+  justify-content: center;\r\n+  align-items: center;\r\n \r\n   .item-icon {}\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649581285139,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n .item {\r\n   width: 100px;\r\n   height: 100px;\r\n   display: flex;\r\n-  flex-direction: row;\r\n+  flex-direction: row-reverse;\r\n   justify-content: center;\r\n   align-items: center;\r\n \r\n   .item-icon {}\r\n"
+                },
+                {
+                    "date": 1649581349226,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,7 +19,11 @@\n   flex-direction: row-reverse;\r\n   justify-content: center;\r\n   align-items: center;\r\n \r\n-  .item-icon {}\r\n+  .item-icon {\r\n+    width: 60px;\r\n+    height: 60px;\r\n+\r\n+  }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649581358731,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n .item {\r\n   width: 100px;\r\n   height: 100px;\r\n   display: flex;\r\n-  flex-direction: row-reverse;\r\n+  flex-direction: ;\r\n   justify-content: center;\r\n   align-items: center;\r\n \r\n   .item-icon {\r\n"
+                },
+                {
+                    "date": 1649581370725,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n .item {\r\n   width: 100px;\r\n   height: 100px;\r\n   display: flex;\r\n-  flex-direction: ;\r\n+  flex-direction: column;\r\n   justify-content: center;\r\n   align-items: center;\r\n \r\n   .item-icon {\r\n"
+                },
+                {
+                    "date": 1649581409306,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,7 +23,11 @@\n   .item-icon {\r\n     width: 60px;\r\n     height: 60px;\r\n \r\n+    img {\r\n+      width: 100%;\r\n+      height: 100%;\r\n+    }\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649581454589,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,9 @@\n \r\n     img {\r\n       width: 100%;\r\n       height: 100%;\r\n+      border-radius: calc();\r\n     }\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649581514510,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n \r\n     img {\r\n       width: 100%;\r\n       height: 100%;\r\n-      border-radius: calc();\r\n+      border-radius: 5%;\r\n     }\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649581543065,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n \r\n     img {\r\n       width: 100%;\r\n       height: 100%;\r\n-      border-radius: 5%;\r\n+      border-radius: 25%;\r\n     }\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649581649588,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n   width: 100px;\r\n   height: 100px;\r\n   display: flex;\r\n   flex-direction: column;\r\n-  justify-content: center;\r\n+  justify-content: space-evenly;\r\n   align-items: center;\r\n \r\n   .item-icon {\r\n     width: 60px;\r\n"
+                },
+                {
+                    "date": 1649581747792,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,18 +12,18 @@\n     <p>标签</p>  </div>\r\n </template>\r\n <style lang=\"less\">\r\n .item {\r\n-  width: 100px;\r\n-  height: 100px;\r\n+  width: 1000px;\r\n+  height: 1000px;\r\n   display: flex;\r\n   flex-direction: column;\r\n   justify-content: space-evenly;\r\n   align-items: center;\r\n \r\n   .item-icon {\r\n-    width: 60px;\r\n-    height: 60px;\r\n+    width: 600px;\r\n+    height: 600px;\r\n \r\n     img {\r\n       width: 100%;\r\n       height: 100%;\r\n"
+                },
+                {
+                    "date": 1649581799888,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,18 +12,18 @@\n     <p>标签</p>  </div>\r\n </template>\r\n <style lang=\"less\">\r\n .item {\r\n-  width: 1000px;\r\n-  height: 1000px;\r\n+  width: 100px;\r\n+  height: 100px;\r\n   display: flex;\r\n   flex-direction: column;\r\n   justify-content: space-evenly;\r\n   align-items: center;\r\n \r\n   .item-icon {\r\n-    width: 600px;\r\n-    height: 600px;\r\n+    width: 60%;\r\n+    height: 60%;\r\n \r\n     img {\r\n       width: 100%;\r\n       height: 100%;\r\n"
+                },
+                {
+                    "date": 1649581812055,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,10 +12,10 @@\n     <p>标签</p>  </div>\r\n </template>\r\n <style lang=\"less\">\r\n .item {\r\n-  width: 100px;\r\n-  height: 100px;\r\n+  width: 1000px;\r\n+  height: 1000px;\r\n   display: flex;\r\n   flex-direction: column;\r\n   justify-content: space-evenly;\r\n   align-items: center;\r\n"
+                },
+                {
+                    "date": 1649581980462,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,20 +2,21 @@\n const props = defineProps({\r\n   w: Number,\r\n   h: Number,\r\n })\r\n+\r\n </script>\r\n <template>\r\n-  <div class=\"item\">\r\n+  <div class=\"item\" :style=\"{}\">\r\n     <div class=\"item-icon\">\r\n       <img src=\"https://files.codelife.cc/website/music163.svg\" alt=\"网易云音乐\">\r\n     </div>\r\n     <p>标签</p>  </div>\r\n </template>\r\n <style lang=\"less\">\r\n .item {\r\n-  width: 1000px;\r\n-  height: 1000px;\r\n+  width: 100px;\r\n+  height: 100px;\r\n   display: flex;\r\n   flex-direction: column;\r\n   justify-content: space-evenly;\r\n   align-items: center;\r\n"
+                },
+                {
+                    "date": 1649582141301,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,12 +2,12 @@\n const props = defineProps({\r\n   w: Number,\r\n   h: Number,\r\n })\r\n-\r\n+let { w, h } = props\r\n </script>\r\n <template>\r\n-  <div class=\"item\" :style=\"{}\">\r\n+  <div class=\"item\" :style=\"{ 'width': w, 'height': h }\">\r\n     <div class=\"item-icon\">\r\n       <img src=\"https://files.codelife.cc/website/music163.svg\" alt=\"网易云音乐\">\r\n     </div>\r\n     <p>标签</p>  </div>\r\n"
+                },
+                {
+                    "date": 1649582187214,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n })\r\n let { w, h } = props\r\n </script>\r\n <template>\r\n-  <div class=\"item\" :style=\"{ 'width': w, 'height': h }\">\r\n+  <div class=\"item\" :style=\"{ 'width': w + 'px', 'height': h + 'px' }\">\r\n     <div class=\"item-icon\">\r\n       <img src=\"https://files.codelife.cc/website/music163.svg\" alt=\"网易云音乐\">\r\n     </div>\r\n     <p>标签</p>  </div>\r\n"
+                },
+                {
+                    "date": 1649582371211,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n   <div class=\"item\" :style=\"{ 'width': w + 'px', 'height': h + 'px' }\">\r\n     <div class=\"item-icon\">\r\n       <img src=\"https://files.codelife.cc/website/music163.svg\" alt=\"网易云音乐\">\r\n     </div>\r\n-    <p>标签</p>  </div>\r\n+    <p class=\"\">标签</p>  </div>\r\n </template>\r\n <style lang=\"less\">\r\n .item {\r\n   width: 100px;\r\n@@ -30,6 +30,7 @@\n       height: 100%;\r\n       border-radius: 25%;\r\n     }\r\n   }\r\n+\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649582409860,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n   <div class=\"item\" :style=\"{ 'width': w + 'px', 'height': h + 'px' }\">\r\n     <div class=\"item-icon\">\r\n       <img src=\"https://files.codelife.cc/website/music163.svg\" alt=\"网易云音乐\">\r\n     </div>\r\n-    <p class=\"\">标签</p>  </div>\r\n+    <p class=\"title\">标签</p>  </div>\r\n </template>\r\n <style lang=\"less\">\r\n .item {\r\n   width: 100px;\r\n@@ -31,6 +31,9 @@\n       border-radius: 25%;\r\n     }\r\n   }\r\n \r\n+  .title {\r\n+    font-size: 20%;\r\n+  }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649582446367,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,8 +32,8 @@\n     }\r\n   }\r\n \r\n   .title {\r\n-    font-size: 20%;\r\n+    font-size: 12px;\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649582506464,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,7 +33,8 @@\n   }\r\n \r\n   .title {\r\n     font-size: 12px;\r\n+    color: white;\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649582870845,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,8 @@\n <script lang=\"ts\" setup>\r\n const props = defineProps({\r\n-  w: Number,\r\n-  h: Number,\r\n+  size\r\n })\r\n-let { w, h } = props\r\n </script>\r\n <template>\r\n   <div class=\"item\" :style=\"{ 'width': w + 'px', 'height': h + 'px' }\">\r\n     <div class=\"item-icon\">\r\n"
+                },
+                {
+                    "date": 1649582927494,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,10 @@\n <script lang=\"ts\" setup>\r\n const props = defineProps({\r\n-  size\r\n+  w: Number,\r\n+  h: Number,\r\n })\r\n+let { w, h } = props\r\n </script>\r\n <template>\r\n   <div class=\"item\" :style=\"{ 'width': w + 'px', 'height': h + 'px' }\">\r\n     <div class=\"item-icon\">\r\n"
+                },
+                {
+                    "date": 1649583074416,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,19 @@\n <script lang=\"ts\" setup>\r\n const props = defineProps({\r\n-  w: Number,\r\n-  h: Number,\r\n+  w: {\r\n+    default: 100,\r\n+    type: Number,\r\n+  },\r\n+  h: {\r\n+    default: 100,\r\n+    type: Number\r\n+  }\r\n })\r\n let { w, h } = props\r\n </script>\r\n <template>\r\n-  <div class=\"item\" :style=\"{ 'width': w + 'px', 'height': h + 'px' }\">\r\n+  <div class=\"item\" :style=\"{ 'width': w * 100 + 'px', 'height': h * 10 + 'px' }\">\r\n     <div class=\"item-icon\">\r\n       <img src=\"https://files.codelife.cc/website/music163.svg\" alt=\"网易云音乐\">\r\n     </div>\r\n     <p class=\"title\">标签</p>  </div>\r\n"
+                },
+                {
+                    "date": 1649583090571,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n })\r\n let { w, h } = props\r\n </script>\r\n <template>\r\n-  <div class=\"item\" :style=\"{ 'width': w * 100 + 'px', 'height': h * 10 + 'px' }\">\r\n+  <div class=\"item\" :style=\"{ 'width': w * 100 + 'px', 'height': h * 100 + 'px' }\">\r\n     <div class=\"item-icon\">\r\n       <img src=\"https://files.codelife.cc/website/music163.svg\" alt=\"网易云音乐\">\r\n     </div>\r\n     <p class=\"title\">标签</p>  </div>\r\n"
+                },
+                {
+                    "date": 1649583544609,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,10 +27,10 @@\n   justify-content: space-evenly;\r\n   align-items: center;\r\n \r\n   .item-icon {\r\n-    width: 60%;\r\n-    height: 60%;\r\n+    width: 80%;\r\n+    height: 80%;\r\n \r\n     img {\r\n       width: 100%;\r\n       height: 100%;\r\n"
+                },
+                {
+                    "date": 1649586397838,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,9 @@\n   display: flex;\r\n   flex-direction: column;\r\n   justify-content: space-evenly;\r\n   align-items: center;\r\n+  grid-column: span;\r\n \r\n   .item-icon {\r\n     width: 80%;\r\n     height: 80%;\r\n"
+                },
+                {
+                    "date": 1649586419472,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,10 @@\n   display: flex;\r\n   flex-direction: column;\r\n   justify-content: space-evenly;\r\n   align-items: center;\r\n-  grid-column: span;\r\n+  grid-column: span 1;\r\n+  grid-row: span 1;\r\n \r\n   .item-icon {\r\n     width: 80%;\r\n     height: 80%;\r\n"
+                },
+                {
+                    "date": 1649586537452,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,8 +27,9 @@\n   justify-content: space-evenly;\r\n   align-items: center;\r\n   grid-column: span 1;\r\n   grid-row: span 1;\r\n+  position: relative;\r\n \r\n   .item-icon {\r\n     width: 80%;\r\n     height: 80%;\r\n"
+                },
+                {
+                    "date": 1649587272729,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n       <img src=\"https://files.codelife.cc/website/music163.svg\" alt=\"网易云音乐\">\r\n     </div>\r\n     <p class=\"title\">标签</p>  </div>\r\n </template>\r\n-<style lang=\"less\">\r\n+<style lang=\"less\" scoped>\r\n .item {\r\n   width: 100px;\r\n   height: 100px;\r\n   display: flex;\r\n"
+                },
+                {
+                    "date": 1649587501351,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n const props = defineProps({\r\n   w: {\r\n     default: 100,\r\n     type: Number,\r\n+\r\n   },\r\n   h: {\r\n     default: 100,\r\n     type: Number\r\n@@ -11,9 +12,12 @@\n })\r\n let { w, h } = props\r\n </script>\r\n <template>\r\n-  <div class=\"item\" :style=\"{ 'width': w * 100 + 'px', 'height': h * 100 + 'px' }\">\r\n+  <div class=\"item\" :style=\"{ 'width': w * 100 + 'px', 'height': h * 100 + 'px' }\" :style=\"{\r\n+    'grid-column': 'span' + w,\r\n+    'grid-row': 'span' + h\r\n+  }\">\r\n     <div class=\"item-icon\">\r\n       <img src=\"https://files.codelife.cc/website/music163.svg\" alt=\"网易云音乐\">\r\n     </div>\r\n     <p class=\"title\">标签</p>  </div>\r\n"
+                },
+                {
+                    "date": 1649587539721,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,16 +12,16 @@\n })\r\n let { w, h } = props\r\n </script>\r\n <template>\r\n-  <div class=\"item\" :style=\"{ 'width': w * 100 + 'px', 'height': h * 100 + 'px' }\" :style=\"{\r\n-    'grid-column': 'span' + w,\r\n+  <div class=\"item\" :style=\"{\r\n+    'width': w * 100 + 'px', 'height': h * 100 + 'px', 'grid-column': 'span' + w,\r\n     'grid-row': 'span' + h\r\n-  }\">\r\n-    <div class=\"item-icon\">\r\n-      <img src=\"https://files.codelife.cc/website/music163.svg\" alt=\"网易云音乐\">\r\n-    </div>\r\n-    <p class=\"title\">标签</p>  </div>\r\n+  }\" \">\r\n+    <div class=\" item-icon\">\r\n+    <img src=\"https://files.codelife.cc/website/music163.svg\" alt=\"网易云音乐\">\r\n+  </div>\r\n+  <p class=\"title\">标签</p>  </div>\r\n </template>\r\n <style lang=\"less\" scoped>\r\n .item {\r\n   width: 100px;\r\n"
+                },
+                {
+                    "date": 1649587694174,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,15 +13,15 @@\n let { w, h } = props\r\n </script>\r\n <template>\r\n   <div class=\"item\" :style=\"{\r\n-    'width': w * 100 + 'px', 'height': h * 100 + 'px', 'grid-column': 'span' + w,\r\n-    'grid-row': 'span' + h\r\n-  }\" \">\r\n+    'width': w * 100 + 'px', 'height': h * 100 + 'px', 'grid-column': 'span ' + w,\r\n+    'grid-row': 'span ' + h\r\n+  }\">\r\n     <div class=\" item-icon\">\r\n-    <img src=\"https://files.codelife.cc/website/music163.svg\" alt=\"网易云音乐\">\r\n-  </div>\r\n-  <p class=\"title\">标签</p>  </div>\r\n+      <img src=\"https://files.codelife.cc/website/music163.svg\" alt=\"网易云音乐\">\r\n+    </div>\r\n+    <p class=\"title\">标签</p>  </div>\r\n </template>\r\n <style lang=\"less\" scoped>\r\n .item {\r\n   width: 100px;\r\n"
+                },
+                {
+                    "date": 1649589217882,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,10 +13,9 @@\n let { w, h } = props\r\n </script>\r\n <template>\r\n   <div class=\"item\" :style=\"{\r\n-    'width': w * 100 + 'px', 'height': h * 100 + 'px', 'grid-column': 'span ' + w,\r\n-    'grid-row': 'span ' + h\r\n+    'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n   }\">\r\n     <div class=\" item-icon\">\r\n       <img src=\"https://files.codelife.cc/website/music163.svg\" alt=\"网易云音乐\">\r\n     </div>\r\n@@ -29,11 +28,8 @@\n   display: flex;\r\n   flex-direction: column;\r\n   justify-content: space-evenly;\r\n   align-items: center;\r\n-  grid-column: span 1;\r\n-  grid-row: span 1;\r\n-  position: relative;\r\n \r\n   .item-icon {\r\n     width: 80%;\r\n     height: 80%;\r\n"
+                },
+                {
+                    "date": 1649589512446,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n .item {\r\n   width: 100px;\r\n   height: 100px;\r\n   display: flex;\r\n-  flex-direction: column;\r\n+  flex-direction: row;\r\n   justify-content: space-evenly;\r\n   align-items: center;\r\n \r\n   .item-icon {\r\n"
+                },
+                {
+                    "date": 1649589519774,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n .item {\r\n   width: 100px;\r\n   height: 100px;\r\n   display: flex;\r\n-  flex-direction: row;\r\n+  flex-direction: column;\r\n   justify-content: space-evenly;\r\n   align-items: center;\r\n \r\n   .item-icon {\r\n"
+                },
+                {
+                    "date": 1649592170718,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,9 @@\n     <p class=\"title\">标签</p>  </div>\r\n </template>\r\n <style lang=\"less\" scoped>\r\n .item {\r\n+  position: absolute;\r\n   width: 100px;\r\n   height: 100px;\r\n   display: flex;\r\n   flex-direction: column;\r\n"
+                },
+                {
+                    "date": 1649592182388,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,10 @@\n </template>\r\n <style lang=\"less\" scoped>\r\n .item {\r\n   position: absolute;\r\n+  top: 0;\r\n+  right: 0;\r\n   width: 100px;\r\n   height: 100px;\r\n   display: flex;\r\n   flex-direction: column;\r\n"
+                },
+                {
+                    "date": 1649592200661,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,10 +33,10 @@\n   justify-content: space-evenly;\r\n   align-items: center;\r\n \r\n   .item-icon {\r\n-    width: 80%;\r\n-    height: 80%;\r\n+    width: 100%;\r\n+    height: 100%;\r\n \r\n     img {\r\n       width: 100%;\r\n       height: 100%;\r\n"
+                },
+                {
+                    "date": 1649592218773,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n <style lang=\"less\" scoped>\r\n .item {\r\n   position: absolute;\r\n   top: 0;\r\n-  right: 0;\r\n+  left: 0;\r\n   width: 100px;\r\n   height: 100px;\r\n   display: flex;\r\n   flex-direction: column;\r\n"
+                },
+                {
+                    "date": 1649592266938,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,8 +35,9 @@\n \r\n   .item-icon {\r\n     width: 100%;\r\n     height: 100%;\r\n+    padding: 30px;\r\n \r\n     img {\r\n       width: 100%;\r\n       height: 100%;\r\n"
+                },
+                {
+                    "date": 1649592290652,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,8 @@\n \r\n   .item-icon {\r\n     width: 100%;\r\n     height: 100%;\r\n-    padding: 30px;\r\n \r\n     img {\r\n       width: 100%;\r\n       height: 100%;\r\n"
+                },
+                {
+                    "date": 1649592303075,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,10 +33,10 @@\n   justify-content: space-evenly;\r\n   align-items: center;\r\n \r\n   .item-icon {\r\n-    width: 100%;\r\n-    height: 100%;\r\n+    width: 80%;\r\n+    height: 800%;\r\n \r\n     img {\r\n       width: 100%;\r\n       height: 100%;\r\n"
+                },
+                {
+                    "date": 1649592312125,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n   align-items: center;\r\n \r\n   .item-icon {\r\n     width: 80%;\r\n-    height: 800%;\r\n+    height: 80%;\r\n \r\n     img {\r\n       width: 100%;\r\n       height: 100%;\r\n"
+                },
+                {
+                    "date": 1649592580319,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,15 +7,24 @@\n   },\r\n   h: {\r\n     default: 100,\r\n     type: Number\r\n+  },\r\n+  x: {\r\n+    default: 0,\r\n+    type: Number\r\n+  },\r\n+  y: {\r\n+    default: 0,\r\n+    type: Number\r\n   }\r\n })\r\n let { w, h } = props\r\n </script>\r\n <template>\r\n   <div class=\"item\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n+    'top': x, 'left': y\r\n   }\">\r\n     <div class=\" item-icon\">\r\n       <img src=\"https://files.codelife.cc/website/music163.svg\" alt=\"网易云音乐\">\r\n     </div>\r\n"
+                },
+                {
+                    "date": 1649592861977,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n })\r\n let { w, h } = props\r\n </script>\r\n <template>\r\n-  <div class=\"item\" :style=\"{\r\n+  <div ref=\"item\" class=\"item\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n     'top': x, 'left': y\r\n   }\">\r\n     <div class=\" item-icon\">\r\n"
+                },
+                {
+                    "date": 1649592926710,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     default: 0,\r\n     type: Number\r\n   }\r\n })\r\n-let { w, h } = props\r\n+let { w, h, x, y } = props\r\n </script>\r\n <template>\r\n   <div ref=\"item\" class=\"item\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n"
+                },
+                {
+                    "date": 1649592936841,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     default: 0,\r\n     type: Number\r\n   }\r\n })\r\n-let { w, h, x, y } = props\r\n+// let { w, h, x, y } = props\r\n </script>\r\n <template>\r\n   <div ref=\"item\" class=\"item\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n"
+                },
+                {
+                    "date": 1649592953217,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,10 @@\n     default: 0,\r\n     type: Number\r\n   }\r\n })\r\n-// let { w, h, x, y } = props\r\n+let { w, h, x, y } = props\r\n+\r\n </script>\r\n <template>\r\n   <div ref=\"item\" class=\"item\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n"
+                },
+                {
+                    "date": 1649593003918,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,12 @@\n     type: Number\r\n   }\r\n })\r\n let { w, h, x, y } = props\r\n+const startClick = (e) => {\r\n+  console.log(e);\r\n \r\n+}\r\n </script>\r\n <template>\r\n   <div ref=\"item\" class=\"item\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n"
+                },
+                {
+                    "date": 1649593011649,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n     type: Number\r\n   }\r\n })\r\n let { w, h, x, y } = props\r\n-const startClick = (e) => {\r\n+const startClick = (e: any) => {\r\n   console.log(e);\r\n \r\n }\r\n </script>\r\n"
+                },
+                {
+                    "date": 1649593047411,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n \r\n }\r\n </script>\r\n <template>\r\n-  <div ref=\"item\" class=\"item\" :style=\"{\r\n+  <div ref=\"item\" @click=\"startClick\" class=\"item\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n     'top': x, 'left': y\r\n   }\">\r\n     <div class=\" item-icon\">\r\n"
+                },
+                {
+                    "date": 1649593120829,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n \r\n }\r\n </script>\r\n <template>\r\n-  <div ref=\"item\" @click=\"startClick\" class=\"item\" :style=\"{\r\n+  <div ref=\"item\" @mousedown=\"startClick\" class=\"item\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n     'top': x, 'left': y\r\n   }\">\r\n     <div class=\" item-icon\">\r\n"
+                },
+                {
+                    "date": 1649593734216,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,10 @@\n })\r\n let { w, h, x, y } = props\r\n const startClick = (e: any) => {\r\n   console.log(e);\r\n+}\r\n+const endClick = (e: any) => {\r\n \r\n }\r\n </script>\r\n <template>\r\n"
+                },
+                {
+                    "date": 1649593899913,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,11 +24,12 @@\n }\r\n const endClick = (e: any) => {\r\n \r\n }\r\n+const mousemove = (e: any){ }\r\n </script>\r\n <template>\r\n-  <div ref=\"item\" @mousedown=\"startClick\" class=\"item\" :style=\"{\r\n+  <div ref=\"item\" @mousedown=\"startClick\" @mouseover=\"\" class=\"item\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n     'top': x, 'left': y\r\n   }\">\r\n     <div class=\" item-icon\">\r\n"
+                },
+                {
+                    "date": 1649593968632,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,18 +18,18 @@\n     type: Number\r\n   }\r\n })\r\n let { w, h, x, y } = props\r\n-const startClick = (e: any) => {\r\n+const mouseDown = (e: any) => {\r\n   console.log(e);\r\n }\r\n-const endClick = (e: any) => {\r\n+const mouseUp = (e: any) => {\r\n \r\n }\r\n const mousemove = (e: any){ }\r\n </script>\r\n <template>\r\n-  <div ref=\"item\" @mousedown=\"startClick\" @mouseover=\"\" class=\"item\" :style=\"{\r\n+  <div ref=\"item\" @mousedown=\"mouseDown\" @mouseup=\"mouseUp\" class=\"item\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n     'top': x, 'left': y\r\n   }\">\r\n     <div class=\" item-icon\">\r\n"
+                },
+                {
+                    "date": 1649594013386,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,14 +19,18 @@\n   }\r\n })\r\n let { w, h, x, y } = props\r\n const mouseDown = (e: any) => {\r\n-  console.log(e);\r\n+  console.log('down');\r\n }\r\n const mouseUp = (e: any) => {\r\n+  console.log('up');\r\n \r\n }\r\n-const mousemove = (e: any){ }\r\n+const mousemove = (e: any) => {\r\n+  console.log('move');\r\n+\r\n+}\r\n </script>\r\n <template>\r\n   <div ref=\"item\" @mousedown=\"mouseDown\" @mouseup=\"mouseUp\" class=\"item\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n"
+                },
+                {
+                    "date": 1649594038626,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n \r\n }\r\n </script>\r\n <template>\r\n-  <div ref=\"item\" @mousedown=\"mouseDown\" @mouseup=\"mouseUp\" class=\"item\" :style=\"{\r\n+  <div ref=\"item\" @mousedown=\"mouseDown\" @mousemove=\"mousemove\" @mouseup=\"mouseUp\" class=\"item\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n     'top': x, 'left': y\r\n   }\">\r\n     <div class=\" item-icon\">\r\n"
+                },
+                {
+                    "date": 1649594109663,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n   }\r\n })\r\n let { w, h, x, y } = props\r\n const mouseDown = (e: any) => {\r\n-  console.log('down');\r\n+  mousemove(e)\r\n }\r\n const mouseUp = (e: any) => {\r\n   console.log('up');\r\n \r\n@@ -31,9 +31,9 @@\n \r\n }\r\n </script>\r\n <template>\r\n-  <div ref=\"item\" @mousedown=\"mouseDown\" @mousemove=\"mousemove\" @mouseup=\"mouseUp\" class=\"item\" :style=\"{\r\n+  <div ref=\"item\" @mousedown=\"mouseDown\" @mouseup=\"mouseUp\" class=\"item\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n     'top': x, 'left': y\r\n   }\">\r\n     <div class=\" item-icon\">\r\n"
+                },
+                {
+                    "date": 1649594312960,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,13 +31,13 @@\n \r\n }\r\n </script>\r\n <template>\r\n-  <div ref=\"item\" @mousedown=\"mouseDown\" @mouseup=\"mouseUp\" class=\"item\" :style=\"{\r\n+  <div ref=\"item\" class=\"item\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n     'top': x, 'left': y\r\n   }\">\r\n-    <div class=\" item-icon\">\r\n+    <div class=\" item-icon\" @mousedown=\"mouseDown\" @mouseup=\"mouseUp\">\r\n       <img src=\"https://files.codelife.cc/website/music163.svg\" alt=\"网易云音乐\">\r\n     </div>\r\n     <p class=\"title\">标签</p>  </div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1649594340431,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n \r\n }\r\n </script>\r\n <template>\r\n-  <div ref=\"item\" class=\"item\" :style=\"{\r\n+  <div class=\"item\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n     'top': x, 'left': y\r\n   }\">\r\n     <div class=\" item-icon\" @mousedown=\"mouseDown\" @mouseup=\"mouseUp\">\r\n"
+                },
+                {
+                    "date": 1649594451222,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,8 +19,9 @@\n   }\r\n })\r\n let { w, h, x, y } = props\r\n const mouseDown = (e: any) => {\r\n+  ev.preventDefault()\r\n   mousemove(e)\r\n }\r\n const mouseUp = (e: any) => {\r\n   console.log('up');\r\n"
+                },
+                {
+                    "date": 1649594521915,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,17 +19,17 @@\n   }\r\n })\r\n let { w, h, x, y } = props\r\n const mouseDown = (e: any) => {\r\n-  ev.preventDefault()\r\n+  e.preventDefault()\r\n   mousemove(e)\r\n }\r\n const mouseUp = (e: any) => {\r\n   console.log('up');\r\n \r\n }\r\n const mousemove = (e: any) => {\r\n-  console.log('move');\r\n+  console.log(e);\r\n \r\n }\r\n </script>\r\n <template>\r\n"
+                },
+                {
+                    "date": 1649594705235,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n \r\n }\r\n const mousemove = (e: any) => {\r\n   console.log(e);\r\n-\r\n+  debugger.\r\n }\r\n </script>\r\n <template>\r\n   <div class=\"item\" :style=\"{\r\n"
+                },
+                {
+                    "date": 1649594745937,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,10 +27,11 @@\n   console.log('up');\r\n \r\n }\r\n const mousemove = (e: any) => {\r\n-  console.log(e);\r\n-  debugger.\r\n+  // console.log(e);\r\n+  console.log(document.onmousemove);\r\n+\r\n }\r\n </script>\r\n <template>\r\n   <div class=\"item\" :style=\"{\r\n"
+                },
+                {
+                    "date": 1649594761758,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n \r\n }\r\n const mousemove = (e: any) => {\r\n   // console.log(e);\r\n-  console.log(document.onmousemove);\r\n+  console.log(document.onmousemove());\r\n \r\n }\r\n </script>\r\n <template>\r\n"
+                },
+                {
+                    "date": 1649594767350,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n \r\n }\r\n const mousemove = (e: any) => {\r\n   // console.log(e);\r\n-  console.log(document.onmousemove());\r\n+  console.log(document);\r\n \r\n }\r\n </script>\r\n <template>\r\n"
+                },
+                {
+                    "date": 1649594792151,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n \r\n }\r\n const mousemove = (e: any) => {\r\n   // console.log(e);\r\n-  console.log(document);\r\n+  console.log(document.onmousemove);\r\n \r\n }\r\n </script>\r\n <template>\r\n"
+                },
+                {
+                    "date": 1649594803949,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,10 +27,9 @@\n   console.log('up');\r\n \r\n }\r\n const mousemove = (e: any) => {\r\n-  // console.log(e);\r\n-  console.log(document.onmousemove);\r\n+  console.log(e);\r\n \r\n }\r\n </script>\r\n <template>\r\n"
+                },
+                {
+                    "date": 1649595071437,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n \r\n }\r\n </script>\r\n <template>\r\n-  <div class=\"item\" :style=\"{\r\n+  <div class=\"item\" v-drag :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n     'top': x, 'left': y\r\n   }\">\r\n     <div class=\" item-icon\" @mousedown=\"mouseDown\" @mouseup=\"mouseUp\">\r\n"
+                },
+                {
+                    "date": 1649595090598,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,20 +18,8 @@\n     type: Number\r\n   }\r\n })\r\n let { w, h, x, y } = props\r\n-const mouseDown = (e: any) => {\r\n-  e.preventDefault()\r\n-  mousemove(e)\r\n-}\r\n-const mouseUp = (e: any) => {\r\n-  console.log('up');\r\n-\r\n-}\r\n-const mousemove = (e: any) => {\r\n-  console.log(e);\r\n-\r\n-}\r\n </script>\r\n <template>\r\n   <div class=\"item\" v-drag :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n"
+                },
+                {
+                    "date": 1649598778210,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,26 +7,19 @@\n   },\r\n   h: {\r\n     default: 100,\r\n     type: Number\r\n-  },\r\n-  x: {\r\n-    default: 0,\r\n-    type: Number\r\n-  },\r\n-  y: {\r\n-    default: 0,\r\n-    type: Number\r\n   }\r\n })\r\n-let { w, h, x, y } = props\r\n+let { w, h } = props\r\n+let x, y = 0\r\n </script>\r\n <template>\r\n   <div class=\"item\" v-drag :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n     'top': x, 'left': y\r\n   }\">\r\n-    <div class=\" item-icon\" @mousedown=\"mouseDown\" @mouseup=\"mouseUp\">\r\n+    <div class=\" item-icon\">\r\n       <img src=\"https://files.codelife.cc/website/music163.svg\" alt=\"网易云音乐\">\r\n     </div>\r\n     <p class=\"title\">标签</p>  </div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1649598804419,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n   }\r\n })\r\n let { w, h } = props\r\n let x, y = 0\r\n+const obj\r\n </script>\r\n <template>\r\n   <div class=\"item\" v-drag :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n"
+                },
+                {
+                    "date": 1649598813705,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,22 @@\n   }\r\n })\r\n let { w, h } = props\r\n let x, y = 0\r\n-const obj\r\n+const obj = {\r\n+  bgColor: \"rgba(255,207,12,1)\"\r\n+bgColorImage: null\r\n+bgFont: 30\r\n+bgImage: \"https://infinitypro-img.infinitynewtab.com/custom-icon/8001dsbqela58muqk5ak6f3kamwxqe.png\"\r\n+bgText: \"npm\"\r\n+bgType: \"color\"\r\n+id: \"siteId-1fjg5riks7kwo6q5z2rvwrdblv0\"\r\n+name: \"npm仓库\"\r\n+target: \"https://www.npmjs.com/\"\r\n+type: \"web\"\r\n+updatetime: 1635851832482\r\n+uuid: \"5fcfb221d915e4341c1e069f14a1b945\"\r\n+}\r\n </script>\r\n <template>\r\n   <div class=\"item\" v-drag :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n"
+                },
+                {
+                    "date": 1649598843324,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,20 +12,20 @@\n })\r\n let { w, h } = props\r\n let x, y = 0\r\n const obj = {\r\n-  bgColor: \"rgba(255,207,12,1)\"\r\n-bgColorImage: null\r\n-bgFont: 30\r\n-bgImage: \"https://infinitypro-img.infinitynewtab.com/custom-icon/8001dsbqela58muqk5ak6f3kamwxqe.png\"\r\n-bgText: \"npm\"\r\n-bgType: \"color\"\r\n-id: \"siteId-1fjg5riks7kwo6q5z2rvwrdblv0\"\r\n-name: \"npm仓库\"\r\n-target: \"https://www.npmjs.com/\"\r\n-type: \"web\"\r\n-updatetime: 1635851832482\r\n-uuid: \"5fcfb221d915e4341c1e069f14a1b945\"\r\n+  bgColor: \"rgba(255,207,12,1)\",\r\n+  bgColorImage: null,\r\n+  bgFont: 30,\r\n+  bgImage: \"https://infinitypro-img.infinitynewtab.com/custom-icon/8001dsbqela58muqk5ak6f3kamwxqe.png\",\r\n+  bgText: \"npm\",\r\n+  bgType: \"color\",\r\n+  id: \"siteId-1fjg5riks7kwo6q5z2rvwrdblv0\",\r\n+  name: \"npm仓库\",\r\n+  target: \"https://www.npmjs.com/\",\r\n+  type: \"web\",\r\n+  updatetime: 1635851832482,\r\n+  uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n </script>\r\n <template>\r\n   <div class=\"item\" v-drag :style=\"{\r\n"
+                },
+                {
+                    "date": 1649598988531,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,8 @@\n let { w, h } = props\r\n let x, y = 0\r\n const obj = {\r\n   bgColor: \"rgba(255,207,12,1)\",\r\n-  bgColorImage: null,\r\n   bgFont: 30,\r\n   bgImage: \"https://infinitypro-img.infinitynewtab.com/custom-icon/8001dsbqela58muqk5ak6f3kamwxqe.png\",\r\n   bgText: \"npm\",\r\n   bgType: \"color\",\r\n"
+                },
+                {
+                    "date": 1649599065191,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n   bgImage: \"https://infinitypro-img.infinitynewtab.com/custom-icon/8001dsbqela58muqk5ak6f3kamwxqe.png\",\r\n   bgText: \"npm\",\r\n   bgType: \"color\",\r\n   id: \"siteId-1fjg5riks7kwo6q5z2rvwrdblv0\",\r\n-  name: \"npm仓库\",\r\n+  title: \"npm仓库\",\r\n   target: \"https://www.npmjs.com/\",\r\n   type: \"web\",\r\n   updatetime: 1635851832482,\r\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n"
+                },
+                {
+                    "date": 1649599766468,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,8 @@\n   id: \"siteId-1fjg5riks7kwo6q5z2rvwrdblv0\",\r\n   title: \"npm仓库\",\r\n   target: \"https://www.npmjs.com/\",\r\n   type: \"web\",\r\n-  updatetime: 1635851832482,\r\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n </script>\r\n <template>\r\n"
+                },
+                {
+                    "date": 1649600005919,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n </script>\r\n <template>\r\n-  <div class=\"item\" v-drag :style=\"{\r\n+  <div class=\"item\" v-drag=\"\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n     'top': x, 'left': y\r\n   }\">\r\n     <div class=\" item-icon\">\r\n"
+                },
+                {
+                    "date": 1649600021876,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n </script>\r\n <template>\r\n-  <div class=\"item\" v-drag=\"\" :style=\"{\r\n+  <div class=\"item\" v-drag=\"{ 'top': 100 }\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n     'top': x, 'left': y\r\n   }\">\r\n     <div class=\" item-icon\">\r\n"
+                },
+                {
+                    "date": 1649600074131,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n </script>\r\n <template>\r\n-  <div class=\"item\" v-drag=\"{ 'top': 100 }\" :style=\"{\r\n+  <div class=\"item\" v-drag=\"{ 'top': '100px' }\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n     'top': x, 'left': y\r\n   }\">\r\n     <div class=\" item-icon\">\r\n"
+                },
+                {
+                    "date": 1649600353816,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n-<script lang=\"ts\" setup>\r\n+<script lang=\"ts\" setup>import { watchEffect } from 'vue';\r\n+\r\n const props = defineProps({\r\n   w: {\r\n     default: 100,\r\n     type: Number,\r\n@@ -23,8 +24,12 @@\n   target: \"https://www.npmjs.com/\",\r\n   type: \"web\",\r\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n+let top = watchEffect(x, () => {\r\n+  console.log(x);\r\n+\r\n+})\r\n </script>\r\n <template>\r\n   <div class=\"item\" v-drag=\"{ 'top': '100px' }\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n"
+                },
+                {
+                    "date": 1649600383671,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n   target: \"https://www.npmjs.com/\",\r\n   type: \"web\",\r\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n-let top = watchEffect(x, () => {\r\n+let top = watchEffect(x, (x: any, nx: any) => {\r\n   console.log(x);\r\n \r\n })\r\n </script>\r\n"
+                },
+                {
+                    "date": 1649600409018,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n   target: \"https://www.npmjs.com/\",\r\n   type: \"web\",\r\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n-let top = watchEffect(x, (x: any, nx: any) => {\r\n+let top = watchEffect((x) => {\r\n   console.log(x);\r\n \r\n })\r\n </script>\r\n"
+                },
+                {
+                    "date": 1649600484013,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,12 +24,9 @@\n   target: \"https://www.npmjs.com/\",\r\n   type: \"web\",\r\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n-let top = watchEffect((x) => {\r\n-  console.log(x);\r\n-\r\n-})\r\n+let top = watch\r\n </script>\r\n <template>\r\n   <div class=\"item\" v-drag=\"{ 'top': '100px' }\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n"
+                },
+                {
+                    "date": 1649600593076,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,11 @@\n   target: \"https://www.npmjs.com/\",\r\n   type: \"web\",\r\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n-let top = watch\r\n+watch: {\r\n+  ()\r\n+}\r\n </script>\r\n <template>\r\n   <div class=\"item\" v-drag=\"{ 'top': '100px' }\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n"
+                },
+                {
+                    "date": 1649600606030,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,12 @@\n   type: \"web\",\r\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n watch: {\r\n-  ()\r\n+  x: (x) => {\r\n+    console.log(x);\r\n+\r\n+  }\r\n }\r\n </script>\r\n <template>\r\n   <div class=\"item\" v-drag=\"{ 'top': '100px' }\" :style=\"{\r\n"
+                },
+                {
+                    "date": 1649600673547,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,29 +25,25 @@\n   type: \"web\",\r\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n watch: {\r\n-  x: (x) => {\r\n+  w: (x) => {\r\n     console.log(x);\r\n \r\n   }\r\n }\r\n </script>\r\n <template>\r\n   <div class=\"item\" v-drag=\"{ 'top': '100px' }\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n-    'top': x, 'left': y\r\n   }\">\r\n     <div class=\" item-icon\">\r\n       <img src=\"https://files.codelife.cc/website/music163.svg\" alt=\"网易云音乐\">\r\n     </div>\r\n     <p class=\"title\">标签</p>  </div>\r\n </template>\r\n <style lang=\"less\" scoped>\r\n .item {\r\n-  position: absolute;\r\n-  top: 0;\r\n-  left: 0;\r\n   width: 100px;\r\n   height: 100px;\r\n   display: flex;\r\n   flex-direction: column;\r\n"
+                },
+                {
+                    "date": 1649600695712,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,8 +42,11 @@\n     <p class=\"title\">标签</p>  </div>\r\n </template>\r\n <style lang=\"less\" scoped>\r\n .item {\r\n+  position: absolute;\r\n+  top: 0;\r\n+  left: 0;\r\n   width: 100px;\r\n   height: 100px;\r\n   display: flex;\r\n   flex-direction: column;\r\n"
+                },
+                {
+                    "date": 1649600753603,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n   }\r\n }\r\n </script>\r\n <template>\r\n-  <div class=\"item\" v-drag=\"{ 'top': '100px' }\" :style=\"{\r\n+  <div class=\"item\" ref=\"item\" v-drag=\"{ 'top': '100px' }\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n   }\">\r\n     <div class=\" item-icon\">\r\n       <img src=\"https://files.codelife.cc/website/music163.svg\" alt=\"网易云音乐\">\r\n"
+                },
+                {
+                    "date": 1649600802566,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-<script lang=\"ts\" setup>import { watchEffect } from 'vue';\r\n+<script lang=\"ts\" setup>import { onMounted, watchEffect } from 'vue';\r\n \r\n const props = defineProps({\r\n   w: {\r\n     default: 100,\r\n@@ -30,8 +30,9 @@\n     console.log(x);\r\n \r\n   }\r\n }\r\n+onMounted\r\n </script>\r\n <template>\r\n   <div class=\"item\" ref=\"item\" v-drag=\"{ 'top': '100px' }\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n"
+                },
+                {
+                    "date": 1649600812791,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,11 @@\n     console.log(x);\r\n \r\n   }\r\n }\r\n-onMounted\r\n+onMounted(() => {\r\n+\r\n+})\r\n </script>\r\n <template>\r\n   <div class=\"item\" ref=\"item\" v-drag=\"{ 'top': '100px' }\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n"
+                },
+                {
+                    "date": 1649600847691,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n \r\n   }\r\n }\r\n onMounted(() => {\r\n-\r\n+  let item = \r\n })\r\n </script>\r\n <template>\r\n   <div class=\"item\" ref=\"item\" v-drag=\"{ 'top': '100px' }\" :style=\"{\r\n"
+                },
+                {
+                    "date": 1649600856113,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n \r\n   }\r\n }\r\n onMounted(() => {\r\n-  let item = \r\n+  let item = ref\r\n })\r\n </script>\r\n <template>\r\n   <div class=\"item\" ref=\"item\" v-drag=\"{ 'top': '100px' }\" :style=\"{\r\n"
+                },
+                {
+                    "date": 1649600910714,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,10 +30,10 @@\n     console.log(x);\r\n \r\n   }\r\n }\r\n+let item = ref\r\n onMounted(() => {\r\n-  let item = ref\r\n })\r\n </script>\r\n <template>\r\n   <div class=\"item\" ref=\"item\" v-drag=\"{ 'top': '100px' }\" :style=\"{\r\n"
+                },
+                {
+                    "date": 1649600929443,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-<script lang=\"ts\" setup>import { onMounted, watchEffect } from 'vue';\r\n+<script lang=\"ts\" setup>import { onMounted, watchEffect, ref } from 'vue';\r\n \r\n const props = defineProps({\r\n   w: {\r\n     default: 100,\r\n@@ -30,9 +30,9 @@\n     console.log(x);\r\n \r\n   }\r\n }\r\n-let item = ref\r\n+let item = ref(null)\r\n onMounted(() => {\r\n })\r\n </script>\r\n <template>\r\n"
+                },
+                {
+                    "date": 1649600940561,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,8 +32,10 @@\n   }\r\n }\r\n let item = ref(null)\r\n onMounted(() => {\r\n+  console.log('item', item.value);\r\n+\r\n })\r\n </script>\r\n <template>\r\n   <div class=\"item\" ref=\"item\" v-drag=\"{ 'top': '100px' }\" :style=\"{\r\n"
+                },
+                {
+                    "date": 1649600970615,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n   }\r\n }\r\n let item = ref(null)\r\n onMounted(() => {\r\n-  console.log('item', item.value);\r\n+  console.log('item', item.value.left);\r\n \r\n })\r\n </script>\r\n <template>\r\n"
+                },
+                {
+                    "date": 1649600976399,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n   }\r\n }\r\n let item = ref(null)\r\n onMounted(() => {\r\n-  console.log('item', item.value.left);\r\n+  console.log('item', item.value.style.left);\r\n \r\n })\r\n </script>\r\n <template>\r\n"
+                },
+                {
+                    "date": 1649600989497,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n   }\r\n }\r\n let item = ref(null)\r\n onMounted(() => {\r\n-  console.log('item', item.value.style.left);\r\n+  console.log('item', item.value.style);\r\n \r\n })\r\n </script>\r\n <template>\r\n"
+                },
+                {
+                    "date": 1649658597866,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,8 @@\n }\r\n watch: {\r\n   w: (x) => {\r\n     console.log(x);\r\n-\r\n   }\r\n }\r\n let item = ref(null)\r\n onMounted(() => {\r\n"
+                },
+                {
+                    "date": 1649658664387,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n   }\r\n }\r\n let item = ref(null)\r\n onMounted(() => {\r\n-  console.log('item', item.value.style);\r\n+  console.log('item', item.value.style.top);\r\n \r\n })\r\n </script>\r\n <template>\r\n"
+                },
+                {
+                    "date": 1649658748104,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,8 +30,10 @@\n     console.log(x);\r\n   }\r\n }\r\n let item = ref(null)\r\n+console.log('1');\r\n+\r\n onMounted(() => {\r\n   console.log('item', item.value.style.top);\r\n \r\n })\r\n"
+                },
+                {
+                    "date": 1649658758137,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,14 +30,14 @@\n     console.log(x);\r\n   }\r\n }\r\n let item = ref(null)\r\n-console.log('1');\r\n \r\n onMounted(() => {\r\n   console.log('item', item.value.style.top);\r\n \r\n })\r\n+console.log('1');\r\n </script>\r\n <template>\r\n   <div class=\"item\" ref=\"item\" v-drag=\"{ 'top': '100px' }\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n"
+                },
+                {
+                    "date": 1649658801265,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n   type: \"web\",\r\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n watch: {\r\n-  w: (x) => {\r\n+  item: (x) => {\r\n     console.log(x);\r\n   }\r\n }\r\n let item = ref(null)\r\n@@ -35,9 +35,8 @@\n onMounted(() => {\r\n   console.log('item', item.value.style.top);\r\n \r\n })\r\n-console.log('1');\r\n </script>\r\n <template>\r\n   <div class=\"item\" ref=\"item\" v-drag=\"{ 'top': '100px' }\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n"
+                },
+                {
+                    "date": 1649658948778,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n-<script lang=\"ts\" setup>import { onMounted, watchEffect, ref } from 'vue';\r\n+<script lang=\"ts\" setup>\r\n+import { onMounted, watchEffect, ref } from 'vue';\r\n \r\n const props = defineProps({\r\n   w: {\r\n     default: 100,\r\n"
+                },
+                {
+                    "date": 1649658969928,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <script lang=\"ts\" setup>\r\n-import { onMounted, watchEffect, ref } from 'vue';\r\n+import { onMounted, watchEffect, ref, watch } from 'vue';\r\n \r\n const props = defineProps({\r\n   w: {\r\n     default: 100,\r\n"
+                },
+                {
+                    "date": 1649659004759,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,15 +25,14 @@\n   target: \"https://www.npmjs.com/\",\r\n   type: \"web\",\r\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n-watch: {\r\n-  item: (x) => {\r\n-    console.log(x);\r\n-  }\r\n-}\r\n let item = ref(null)\r\n+watch(item, (x) => {\r\n+  console.log(x);\r\n \r\n+})\r\n+\r\n onMounted(() => {\r\n   console.log('item', item.value.style.top);\r\n \r\n })\r\n"
+                },
+                {
+                    "date": 1649659040621,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n   type: \"web\",\r\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n let item = ref(null)\r\n-watch(item, (x) => {\r\n+watch(item.value.style.top, (x) => {\r\n   console.log(x);\r\n \r\n })\r\n \r\n"
+                },
+                {
+                    "date": 1649659054253,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n   type: \"web\",\r\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n let item = ref(null)\r\n-watch(item.value.style.top, (x) => {\r\n+watch(item, (x) => {\r\n   console.log(x);\r\n \r\n })\r\n \r\n"
+                },
+                {
+                    "date": 1649659115416,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n   type: \"web\",\r\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n let item = ref(null)\r\n-watch(item, (x) => {\r\n+watch(item.value.style.top, (x) => {\r\n   console.log(x);\r\n \r\n })\r\n \r\n"
+                },
+                {
+                    "date": 1649659302439,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,16 +26,15 @@\n   type: \"web\",\r\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n let item = ref(null)\r\n-watch(item.value.style.top, (x) => {\r\n-  console.log(x);\r\n \r\n-})\r\n \r\n onMounted(() => {\r\n   console.log('item', item.value.style.top);\r\n-\r\n+  watch(item.value.style.top, (x) => {\r\n+    console.log(x);\r\n+  })\r\n })\r\n </script>\r\n <template>\r\n   <div class=\"item\" ref=\"item\" v-drag=\"{ 'top': '100px' }\" :style=\"{\r\n"
+                },
+                {
+                    "date": 1649659315823,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,15 +26,15 @@\n   type: \"web\",\r\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n let item = ref(null)\r\n+watch(item.value.style.top, (x) => {\r\n+  console.log(x);\r\n+})\r\n \r\n-\r\n onMounted(() => {\r\n   console.log('item', item.value.style.top);\r\n-  watch(item.value.style.top, (x) => {\r\n-    console.log(x);\r\n-  })\r\n+\r\n })\r\n </script>\r\n <template>\r\n   <div class=\"item\" ref=\"item\" v-drag=\"{ 'top': '100px' }\" :style=\"{\r\n"
+                },
+                {
+                    "date": 1649659336616,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,12 +26,15 @@\n   type: \"web\",\r\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n let item = ref(null)\r\n-watch(item.value.style.top, (x) => {\r\n-  console.log(x);\r\n-})\r\n+if (item.value) {\r\n \r\n+  watch(item.value.style.top, (x) => {\r\n+    console.log(x);\r\n+  })\r\n+}\r\n+\r\n onMounted(() => {\r\n   console.log('item', item.value.style.top);\r\n \r\n })\r\n"
+                },
+                {
+                    "date": 1649659367385,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,8 @@\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n let item = ref(null)\r\n if (item.value) {\r\n-\r\n   watch(item.value.style.top, (x) => {\r\n     console.log(x);\r\n   })\r\n }\r\n"
+                },
+                {
+                    "date": 1649659391317,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n let item = ref(null)\r\n if (item.value) {\r\n-  watch(item.value.style.top, (x) => {\r\n+  watch(item.value.style.top, (x, nx) => {\r\n     console.log(x);\r\n   })\r\n }\r\n \r\n"
+                },
+                {
+                    "date": 1649659535003,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,13 +31,15 @@\n   watch(item.value.style.top, (x, nx) => {\r\n     console.log(x);\r\n   })\r\n }\r\n-\r\n+let top = ref()\r\n onMounted(() => {\r\n   console.log('item', item.value.style.top);\r\n+  top = item.value.style.top\r\n+})\r\n+console.log(top);\r\n \r\n-})\r\n </script>\r\n <template>\r\n   <div class=\"item\" ref=\"item\" v-drag=\"{ 'top': '100px' }\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n"
+                },
+                {
+                    "date": 1649659552430,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,10 +35,10 @@\n let top = ref()\r\n onMounted(() => {\r\n   console.log('item', item.value.style.top);\r\n   top = item.value.style.top\r\n+  console.log(top);\r\n })\r\n-console.log(top);\r\n \r\n </script>\r\n <template>\r\n   <div class=\"item\" ref=\"item\" v-drag=\"{ 'top': '100px' }\" :style=\"{\r\n"
+                },
+                {
+                    "date": 1649659637141,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,20 +26,15 @@\n   type: \"web\",\r\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n let item = ref(null)\r\n-if (item.value) {\r\n-  watch(item.value.style.top, (x, nx) => {\r\n-    console.log(x);\r\n-  })\r\n-}\r\n+\r\n let top = ref()\r\n onMounted(() => {\r\n   console.log('item', item.value.style.top);\r\n   top = item.value.style.top\r\n-  console.log(top);\r\n })\r\n-\r\n+watch\r\n </script>\r\n <template>\r\n   <div class=\"item\" ref=\"item\" v-drag=\"{ 'top': '100px' }\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n"
+                },
+                {
+                    "date": 1649659691360,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,8 +32,13 @@\n onMounted(() => {\r\n   console.log('item', item.value.style.top);\r\n   top = item.value.style.top\r\n })\r\n+watch(top, (oldTop, newTop) => {\r\n+  console.log(newTop);\r\n+\r\n+\r\n+})\r\n watch\r\n </script>\r\n <template>\r\n   <div class=\"item\" ref=\"item\" v-drag=\"{ 'top': '100px' }\" :style=\"{\r\n"
+                },
+                {
+                    "date": 1649659720110,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,10 +34,8 @@\n   top = item.value.style.top\r\n })\r\n watch(top, (oldTop, newTop) => {\r\n   console.log(newTop);\r\n-\r\n-\r\n })\r\n watch\r\n </script>\r\n <template>\r\n"
+                },
+                {
+                    "date": 1649659772040,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,12 +27,14 @@\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n let item = ref(null)\r\n \r\n-let top = ref()\r\n+let top = ref(0)\r\n onMounted(() => {\r\n   console.log('item', item.value.style.top);\r\n   top = item.value.style.top\r\n+  console.log(top);\r\n+\r\n })\r\n watch(top, (oldTop, newTop) => {\r\n   console.log(newTop);\r\n })\r\n"
+                },
+                {
+                    "date": 1649659788988,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,8 @@\n let top = ref(0)\r\n onMounted(() => {\r\n   console.log('item', item.value.style.top);\r\n   top = item.value.style.top\r\n-  console.log(top);\r\n \r\n })\r\n watch(top, (oldTop, newTop) => {\r\n   console.log(newTop);\r\n"
+                },
+                {
+                    "date": 1649659806919,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n let item = ref(null)\r\n \r\n-let top = ref(0)\r\n+let top = ref(null)\r\n onMounted(() => {\r\n   console.log('item', item.value.style.top);\r\n   top = item.value.style.top\r\n \r\n"
+                },
+                {
+                    "date": 1649659963187,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,23 +25,12 @@\n   target: \"https://www.npmjs.com/\",\r\n   type: \"web\",\r\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n-let item = ref(null)\r\n \r\n-let top = ref(null)\r\n-onMounted(() => {\r\n-  console.log('item', item.value.style.top);\r\n-  top = item.value.style.top\r\n-\r\n-})\r\n-watch(top, (oldTop, newTop) => {\r\n-  console.log(newTop);\r\n-})\r\n-watch\r\n </script>\r\n <template>\r\n-  <div class=\"item\" ref=\"item\" v-drag=\"{ 'top': '100px' }\" :style=\"{\r\n+  <div class=\"item\" ref=\"item\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n   }\">\r\n     <div class=\" item-icon\">\r\n       <img src=\"https://files.codelife.cc/website/music163.svg\" alt=\"网易云音乐\">\r\n"
+                },
+                {
+                    "date": 1649660037909,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,67 @@\n   target: \"https://www.npmjs.com/\",\r\n   type: \"web\",\r\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n+let zIndex = 1;\r\n+let option = {}\r\n+const el = el;\r\n+const x = 0;\r\n+const y = 0;\r\n+const option = option;\r\n+const init();\r\n+init() {\r\n+  this.setEleStyle(this.option || {});\r\n+  this.el.onmousedown = (e) => {\r\n+    this.onMouseDown(e)\r\n+    this.el.setCapture && this.el.setCapture() //全局捕获\r\n+    return false\r\n+  }\r\n \r\n+}\r\n+//样式设置\r\n+setEleStyle(option) {\r\n+  for (const key in option) {\r\n+    this.el.style[key] = option[key]\r\n+  }\r\n+}\r\n+\r\n+//按下ele\r\n+onMouseDown(e) {\r\n+  let zIndex = getComputedStyle(this.el).getPropertyValue('z-index');\r\n+  zIndex = isNaN(zIndex) ? 1 : zIndex\r\n+  Drap.zIndex = Drap.zIndex > zIndex ? Number(Drap.zIndex) + 1 : Number(zIndex) + 1\r\n+  this.setEleStyle({ \"zIndex\": Drap.zIndex, position: 'fixed', 'cursor': 'move' })\r\n+  this.x = e.clientX - this.el.offsetLeft;\r\n+  this.y = e.clientY - this.el.offsetTop;\r\n+  document.onmousemove = (e) => this.onMouseMove(e);\r\n+  document.onmouseup = (e) => this.onMouseUp(e)\r\n+}\r\n+//移动move\r\n+onMouseMove(e) {\r\n+  let X = e.clientX - this.x\r\n+  let Y = e.clientY - this.y;\r\n+  if (X < 10 - this.el.offsetWidth) {\r\n+    X = 10 - this.el.offsetWidth\r\n+  } else if (X > document.documentElement.clientWidth - 10) {\r\n+    X = document.documentElement.clientWidth - 10\r\n+  }\r\n+  if (Y < 10 - this.el.clientHeight) {\r\n+    Y = 10 - this.el.clientHeight\r\n+  } else if (Y > document.documentElement.clientHeight - 10) {\r\n+    Y = document.documentElement.clientHeight - 10\r\n+  }\r\n+  this.el.style.left = X + 'px'\r\n+  this.el.style.top = Y + 'px'\r\n+}\r\n+//释放\r\n+onMouseUp(e) {\r\n+  document.onmousemove = null\r\n+  document.onmouseup = null\r\n+  this.setEleStyle({ 'cursor': 'pointer' })\r\n+  this.el.setCapture && this.el.setCapture() //释放全局捕获\r\n+\r\n+}\r\n </script>\r\n <template>\r\n   <div class=\"item\" ref=\"item\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n"
+                },
+                {
+                    "date": 1649660321500,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,8 @@\n     type: Number\r\n   }\r\n })\r\n let { w, h } = props\r\n-let x, y = 0\r\n const obj = {\r\n   bgColor: \"rgba(255,207,12,1)\",\r\n   bgFont: 30,\r\n   bgImage: \"https://infinitypro-img.infinitynewtab.com/custom-icon/8001dsbqela58muqk5ak6f3kamwxqe.png\",\r\n@@ -25,33 +24,34 @@\n   target: \"https://www.npmjs.com/\",\r\n   type: \"web\",\r\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n-let zIndex = 1;\r\n+let item = ref(null)\r\n+let zIndex: any = 1;\r\n let option = {}\r\n-const el = el;\r\n+const el = item;\r\n const x = 0;\r\n const y = 0;\r\n-const option = option;\r\n-const init();\r\n-init() {\r\n-  this.setEleStyle(this.option || {});\r\n-  this.el.onmousedown = (e) => {\r\n-    this.onMouseDown(e)\r\n-    this.el.setCapture && this.el.setCapture() //全局捕获\r\n+\r\n+init()\r\n+function init() {\r\n+  setEleStyle(option || {});\r\n+  el.onmousedown = (e) => {\r\n+    onMouseDown(e)\r\n+    el.setCapture && this.el.setCapture() //全局捕获\r\n     return false\r\n   }\r\n \r\n }\r\n //样式设置\r\n-setEleStyle(option) {\r\n+function setEleStyle(option) {\r\n   for (const key in option) {\r\n     this.el.style[key] = option[key]\r\n   }\r\n }\r\n \r\n //按下ele\r\n-onMouseDown(e) {\r\n+function onMouseDown(e) {\r\n   let zIndex = getComputedStyle(this.el).getPropertyValue('z-index');\r\n   zIndex = isNaN(zIndex) ? 1 : zIndex\r\n   Drap.zIndex = Drap.zIndex > zIndex ? Number(Drap.zIndex) + 1 : Number(zIndex) + 1\r\n   this.setEleStyle({ \"zIndex\": Drap.zIndex, position: 'fixed', 'cursor': 'move' })\r\n"
+                },
+                {
+                    "date": 1649660542202,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,19 +50,19 @@\n }\r\n \r\n //按下ele\r\n function onMouseDown(e) {\r\n-  let zIndex = getComputedStyle(this.el).getPropertyValue('z-index');\r\n-  zIndex = isNaN(zIndex) ? 1 : zIndex\r\n-  Drap.zIndex = Drap.zIndex > zIndex ? Number(Drap.zIndex) + 1 : Number(zIndex) + 1\r\n-  this.setEleStyle({ \"zIndex\": Drap.zIndex, position: 'fixed', 'cursor': 'move' })\r\n+  let zIndex2: any = getComputedStyle(this.el).getPropertyValue('z-index');\r\n+  zIndex2 = isNaN(zIndex2) ? 1 : zIndex2\r\n+  zIndex = zIndex > zIndex2 ? Number(zIndex) + 1 : Number(zIndex2) + 1\r\n+  this.setEleStyle({ \"zIndex\": zIndex, position: 'fixed', 'cursor': 'move' })\r\n   this.x = e.clientX - this.el.offsetLeft;\r\n   this.y = e.clientY - this.el.offsetTop;\r\n   document.onmousemove = (e) => this.onMouseMove(e);\r\n   document.onmouseup = (e) => this.onMouseUp(e)\r\n }\r\n //移动move\r\n-onMouseMove(e) {\r\n+function onMouseMove(e) {\r\n   let X = e.clientX - this.x\r\n   let Y = e.clientY - this.y;\r\n   if (X < 10 - this.el.offsetWidth) {\r\n     X = 10 - this.el.offsetWidth\r\n@@ -77,13 +77,13 @@\n   this.el.style.left = X + 'px'\r\n   this.el.style.top = Y + 'px'\r\n }\r\n //释放\r\n-onMouseUp(e) {\r\n+function onMouseUp(e) {\r\n   document.onmousemove = null\r\n   document.onmouseup = null\r\n-  this.setEleStyle({ 'cursor': 'pointer' })\r\n-  this.el.setCapture && this.el.setCapture() //释放全局捕获\r\n+  setEleStyle({ 'cursor': 'pointer' })\r\n+  el.setCapture && this.el.setCapture() //释放全局捕获\r\n \r\n }\r\n </script>\r\n <template>\r\n"
+                },
+                {
+                    "date": 1649660758459,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n   target: \"https://www.npmjs.com/\",\r\n   type: \"web\",\r\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n-let item = ref(null)\r\n+let item: any = ref(null)\r\n let zIndex: any = 1;\r\n let option = {}\r\n const el = item;\r\n const x = 0;\r\n"
+                },
+                {
+                    "date": 1649660790779,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,8 +28,10 @@\n let item: any = ref(null)\r\n let zIndex: any = 1;\r\n let option = {}\r\n const el = item;\r\n+console.log(item);\r\n+\r\n const x = 0;\r\n const y = 0;\r\n \r\n init()\r\n"
+                },
+                {
+                    "date": 1649660856801,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,68 +25,70 @@\n   type: \"web\",\r\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n let item: any = ref(null)\r\n-let zIndex: any = 1;\r\n-let option = {}\r\n-const el = item;\r\n-console.log(item);\r\n+function drag() {\r\n+  let zIndex: any = 1;\r\n+  let option = {}\r\n+  const el = item;\r\n \r\n-const x = 0;\r\n-const y = 0;\r\n \r\n-init()\r\n-function init() {\r\n-  setEleStyle(option || {});\r\n-  el.onmousedown = (e) => {\r\n-    onMouseDown(e)\r\n-    el.setCapture && this.el.setCapture() //全局捕获\r\n-    return false\r\n-  }\r\n+  const x = 0;\r\n+  const y = 0;\r\n \r\n-}\r\n-//样式设置\r\n-function setEleStyle(option) {\r\n-  for (const key in option) {\r\n-    this.el.style[key] = option[key]\r\n+  init()\r\n+  function init() {\r\n+    setEleStyle(option || {});\r\n+    el.onmousedown = (e) => {\r\n+      onMouseDown(e)\r\n+      el.setCapture && this.el.setCapture() //全局捕获\r\n+      return false\r\n+    }\r\n+\r\n   }\r\n-}\r\n+  //样式设置\r\n+  function setEleStyle(option) {\r\n+    for (const key in option) {\r\n+      this.el.style[key] = option[key]\r\n+    }\r\n+  }\r\n \r\n-//按下ele\r\n-function onMouseDown(e) {\r\n-  let zIndex2: any = getComputedStyle(this.el).getPropertyValue('z-index');\r\n-  zIndex2 = isNaN(zIndex2) ? 1 : zIndex2\r\n-  zIndex = zIndex > zIndex2 ? Number(zIndex) + 1 : Number(zIndex2) + 1\r\n-  this.setEleStyle({ \"zIndex\": zIndex, position: 'fixed', 'cursor': 'move' })\r\n-  this.x = e.clientX - this.el.offsetLeft;\r\n-  this.y = e.clientY - this.el.offsetTop;\r\n-  document.onmousemove = (e) => this.onMouseMove(e);\r\n-  document.onmouseup = (e) => this.onMouseUp(e)\r\n-}\r\n-//移动move\r\n-function onMouseMove(e) {\r\n-  let X = e.clientX - this.x\r\n-  let Y = e.clientY - this.y;\r\n-  if (X < 10 - this.el.offsetWidth) {\r\n-    X = 10 - this.el.offsetWidth\r\n-  } else if (X > document.documentElement.clientWidth - 10) {\r\n-    X = document.documentElement.clientWidth - 10\r\n+  //按下ele\r\n+  function onMouseDown(e) {\r\n+    let zIndex2: any = getComputedStyle(this.el).getPropertyValue('z-index');\r\n+    zIndex2 = isNaN(zIndex2) ? 1 : zIndex2\r\n+    zIndex = zIndex > zIndex2 ? Number(zIndex) + 1 : Number(zIndex2) + 1\r\n+    this.setEleStyle({ \"zIndex\": zIndex, position: 'fixed', 'cursor': 'move' })\r\n+    this.x = e.clientX - this.el.offsetLeft;\r\n+    this.y = e.clientY - this.el.offsetTop;\r\n+    document.onmousemove = (e) => this.onMouseMove(e);\r\n+    document.onmouseup = (e) => this.onMouseUp(e)\r\n   }\r\n-  if (Y < 10 - this.el.clientHeight) {\r\n-    Y = 10 - this.el.clientHeight\r\n-  } else if (Y > document.documentElement.clientHeight - 10) {\r\n-    Y = document.documentElement.clientHeight - 10\r\n+  //移动move\r\n+  function onMouseMove(e) {\r\n+    let X = e.clientX - this.x\r\n+    let Y = e.clientY - this.y;\r\n+    if (X < 10 - this.el.offsetWidth) {\r\n+      X = 10 - this.el.offsetWidth\r\n+    } else if (X > document.documentElement.clientWidth - 10) {\r\n+      X = document.documentElement.clientWidth - 10\r\n+    }\r\n+    if (Y < 10 - this.el.clientHeight) {\r\n+      Y = 10 - this.el.clientHeight\r\n+    } else if (Y > document.documentElement.clientHeight - 10) {\r\n+      Y = document.documentElement.clientHeight - 10\r\n+    }\r\n+    this.el.style.left = X + 'px'\r\n+    this.el.style.top = Y + 'px'\r\n   }\r\n-  this.el.style.left = X + 'px'\r\n-  this.el.style.top = Y + 'px'\r\n-}\r\n-//释放\r\n-function onMouseUp(e) {\r\n-  document.onmousemove = null\r\n-  document.onmouseup = null\r\n-  setEleStyle({ 'cursor': 'pointer' })\r\n-  el.setCapture && this.el.setCapture() //释放全局捕获\r\n+  //释放\r\n+  function onMouseUp(e) {\r\n+    document.onmousemove = null\r\n+    document.onmouseup = null\r\n+    setEleStyle({ 'cursor': 'pointer' })\r\n+    el.setCapture && this.el.setCapture() //释放全局捕获\r\n \r\n+  }\r\n }\r\n </script>\r\n <template>\r\n   <div class=\"item\" ref=\"item\" :style=\"{\r\n"
+                },
+                {
+                    "date": 1649660879945,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,12 @@\n   type: \"web\",\r\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n let item: any = ref(null)\r\n+onMounted(() = {\r\n+  console.log(item);\r\n+\r\n+})\r\n function drag() {\r\n   let zIndex: any = 1;\r\n   let option = {}\r\n   const el = item;\r\n"
+                },
+                {
+                    "date": 1649660894462,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n   type: \"web\",\r\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n let item: any = ref(null)\r\n-onMounted(() = {\r\n+onMounted(() => {\r\n   console.log(item);\r\n \r\n })\r\n function drag() {\r\n"
+                },
+                {
+                    "date": 1649660908419,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n let item: any = ref(null)\r\n onMounted(() => {\r\n-  console.log(item);\r\n+  console.log(item.style);\r\n \r\n })\r\n function drag() {\r\n   let zIndex: any = 1;\r\n"
+                },
+                {
+                    "date": 1649660935689,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n let item: any = ref(null)\r\n onMounted(() => {\r\n-  console.log(item.style);\r\n+  console.log(item.value.style);\r\n \r\n })\r\n function drag() {\r\n   let zIndex: any = 1;\r\n"
+                },
+                {
+                    "date": 1649660945500,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n let item: any = ref(null)\r\n onMounted(() => {\r\n-  console.log(item.value.style);\r\n+  console.log(item.value.style.top);\r\n \r\n })\r\n function drag() {\r\n   let zIndex: any = 1;\r\n"
+                },
+                {
+                    "date": 1649660984670,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n }\r\n let item: any = ref(null)\r\n onMounted(() => {\r\n   console.log(item.value.style.top);\r\n-\r\n+  drag()\r\n })\r\n function drag() {\r\n   let zIndex: any = 1;\r\n   let option = {}\r\n"
+                },
+                {
+                    "date": 1649661015565,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,8 +33,9 @@\n function drag() {\r\n   let zIndex: any = 1;\r\n   let option = {}\r\n   const el = item;\r\n+  console.log(el);\r\n \r\n \r\n   const x = 0;\r\n   const y = 0;\r\n"
+                },
+                {
+                    "date": 1649661023759,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n function drag() {\r\n   let zIndex: any = 1;\r\n   let option = {}\r\n   const el = item;\r\n-  console.log(el);\r\n+  console.log(el.value);\r\n \r\n \r\n   const x = 0;\r\n   const y = 0;\r\n"
+                },
+                {
+                    "date": 1649661109601,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,76 +25,73 @@\n   type: \"web\",\r\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n let item: any = ref(null)\r\n+let zIndex: any = 1;\r\n+let option = {}\r\n+const el = item;\r\n+console.log(el.value);\r\n+const x = 0;\r\n+const y = 0;\r\n onMounted(() => {\r\n   console.log(item.value.style.top);\r\n   drag()\r\n })\r\n-function drag() {\r\n-  let zIndex: any = 1;\r\n-  let option = {}\r\n-  const el = item;\r\n-  console.log(el.value);\r\n+function init() {\r\n+  setEleStyle(option || {});\r\n+  el.onmousedown = (e) => {\r\n+    onMouseDown(e)\r\n+    el.setCapture && this.el.setCapture() //全局捕获\r\n+    return false\r\n+  }\r\n \r\n+}\r\n \r\n-  const x = 0;\r\n-  const y = 0;\r\n \r\n-  init()\r\n-  function init() {\r\n-    setEleStyle(option || {});\r\n-    el.onmousedown = (e) => {\r\n-      onMouseDown(e)\r\n-      el.setCapture && this.el.setCapture() //全局捕获\r\n-      return false\r\n-    }\r\n-\r\n+//样式设置\r\n+function setEleStyle(option) {\r\n+  for (const key in option) {\r\n+    this.el.style[key] = option[key]\r\n   }\r\n-  //样式设置\r\n-  function setEleStyle(option) {\r\n-    for (const key in option) {\r\n-      this.el.style[key] = option[key]\r\n-    }\r\n-  }\r\n+}\r\n \r\n-  //按下ele\r\n-  function onMouseDown(e) {\r\n-    let zIndex2: any = getComputedStyle(this.el).getPropertyValue('z-index');\r\n-    zIndex2 = isNaN(zIndex2) ? 1 : zIndex2\r\n-    zIndex = zIndex > zIndex2 ? Number(zIndex) + 1 : Number(zIndex2) + 1\r\n-    this.setEleStyle({ \"zIndex\": zIndex, position: 'fixed', 'cursor': 'move' })\r\n-    this.x = e.clientX - this.el.offsetLeft;\r\n-    this.y = e.clientY - this.el.offsetTop;\r\n-    document.onmousemove = (e) => this.onMouseMove(e);\r\n-    document.onmouseup = (e) => this.onMouseUp(e)\r\n+//按下ele\r\n+function onMouseDown(e) {\r\n+  let zIndex2: any = getComputedStyle(this.el).getPropertyValue('z-index');\r\n+  zIndex2 = isNaN(zIndex2) ? 1 : zIndex2\r\n+  zIndex = zIndex > zIndex2 ? Number(zIndex) + 1 : Number(zIndex2) + 1\r\n+  this.setEleStyle({ \"zIndex\": zIndex, position: 'fixed', 'cursor': 'move' })\r\n+  this.x = e.clientX - this.el.offsetLeft;\r\n+  this.y = e.clientY - this.el.offsetTop;\r\n+  document.onmousemove = (e) => this.onMouseMove(e);\r\n+  document.onmouseup = (e) => this.onMouseUp(e)\r\n+}\r\n+//移动move\r\n+function onMouseMove(e) {\r\n+  let X = e.clientX - this.x\r\n+  let Y = e.clientY - this.y;\r\n+  if (X < 10 - this.el.offsetWidth) {\r\n+    X = 10 - this.el.offsetWidth\r\n+  } else if (X > document.documentElement.clientWidth - 10) {\r\n+    X = document.documentElement.clientWidth - 10\r\n   }\r\n-  //移动move\r\n-  function onMouseMove(e) {\r\n-    let X = e.clientX - this.x\r\n-    let Y = e.clientY - this.y;\r\n-    if (X < 10 - this.el.offsetWidth) {\r\n-      X = 10 - this.el.offsetWidth\r\n-    } else if (X > document.documentElement.clientWidth - 10) {\r\n-      X = document.documentElement.clientWidth - 10\r\n-    }\r\n-    if (Y < 10 - this.el.clientHeight) {\r\n-      Y = 10 - this.el.clientHeight\r\n-    } else if (Y > document.documentElement.clientHeight - 10) {\r\n-      Y = document.documentElement.clientHeight - 10\r\n-    }\r\n-    this.el.style.left = X + 'px'\r\n-    this.el.style.top = Y + 'px'\r\n+  if (Y < 10 - this.el.clientHeight) {\r\n+    Y = 10 - this.el.clientHeight\r\n+  } else if (Y > document.documentElement.clientHeight - 10) {\r\n+    Y = document.documentElement.clientHeight - 10\r\n   }\r\n-  //释放\r\n-  function onMouseUp(e) {\r\n-    document.onmousemove = null\r\n-    document.onmouseup = null\r\n-    setEleStyle({ 'cursor': 'pointer' })\r\n-    el.setCapture && this.el.setCapture() //释放全局捕获\r\n+  this.el.style.left = X + 'px'\r\n+  this.el.style.top = Y + 'px'\r\n+}\r\n+//释放\r\n+function onMouseUp(e) {\r\n+  document.onmousemove = null\r\n+  document.onmouseup = null\r\n+  setEleStyle({ 'cursor': 'pointer' })\r\n+  el.setCapture && this.el.setCapture() //释放全局捕获\r\n \r\n-  }\r\n }\r\n+\r\n </script>\r\n <template>\r\n   <div class=\"item\" ref=\"item\" :style=\"{\r\n     'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n"
+                },
+                {
+                    "date": 1649661146409,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,14 +33,16 @@\n const x = 0;\r\n const y = 0;\r\n onMounted(() => {\r\n   console.log(item.value.style.top);\r\n-  drag()\r\n+  init()\r\n })\r\n function init() {\r\n   setEleStyle(option || {});\r\n   el.onmousedown = (e) => {\r\n     onMouseDown(e)\r\n+    console.log(el);\r\n+\r\n     el.setCapture && this.el.setCapture() //全局捕获\r\n     return false\r\n   }\r\n \r\n"
+                },
+                {
+                    "date": 1649661177629,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,12 +37,12 @@\n   init()\r\n })\r\n function init() {\r\n   setEleStyle(option || {});\r\n+  console.log(el);\r\n+\r\n   el.onmousedown = (e) => {\r\n     onMouseDown(e)\r\n-    console.log(el);\r\n-\r\n     el.setCapture && this.el.setCapture() //全局捕获\r\n     return false\r\n   }\r\n \r\n"
+                },
+                {
+                    "date": 1649661190669,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,10 +27,9 @@\n }\r\n let item: any = ref(null)\r\n let zIndex: any = 1;\r\n let option = {}\r\n-const el = item;\r\n-console.log(el.value);\r\n+const el = item.value;\r\n const x = 0;\r\n const y = 0;\r\n onMounted(() => {\r\n   console.log(item.value.style.top);\r\n"
+                },
+                {
+                    "date": 1649661233449,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,14 +26,15 @@\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n let item: any = ref(null)\r\n let zIndex: any = 1;\r\n+let el\r\n let option = {}\r\n-const el = item.value;\r\n const x = 0;\r\n const y = 0;\r\n onMounted(() => {\r\n   console.log(item.value.style.top);\r\n+  el = item.value\r\n   init()\r\n })\r\n function init() {\r\n   setEleStyle(option || {});\r\n"
+                },
+                {
+                    "date": 1649661296614,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n   console.log(el);\r\n \r\n   el.onmousedown = (e) => {\r\n     onMouseDown(e)\r\n-    el.setCapture && this.el.setCapture() //全局捕获\r\n+    el.setCapture && el.setCapture() //全局捕获\r\n     return false\r\n   }\r\n \r\n }\r\n@@ -51,39 +51,39 @@\n \r\n //样式设置\r\n function setEleStyle(option) {\r\n   for (const key in option) {\r\n-    this.el.style[key] = option[key]\r\n+    el.style[key] = option[key]\r\n   }\r\n }\r\n \r\n //按下ele\r\n function onMouseDown(e) {\r\n-  let zIndex2: any = getComputedStyle(this.el).getPropertyValue('z-index');\r\n+  let zIndex2: any = getComputedStyle(el).getPropertyValue('z-index');\r\n   zIndex2 = isNaN(zIndex2) ? 1 : zIndex2\r\n   zIndex = zIndex > zIndex2 ? Number(zIndex) + 1 : Number(zIndex2) + 1\r\n-  this.setEleStyle({ \"zIndex\": zIndex, position: 'fixed', 'cursor': 'move' })\r\n-  this.x = e.clientX - this.el.offsetLeft;\r\n-  this.y = e.clientY - this.el.offsetTop;\r\n-  document.onmousemove = (e) => this.onMouseMove(e);\r\n-  document.onmouseup = (e) => this.onMouseUp(e)\r\n+  setEleStyle({ \"zIndex\": zIndex, position: 'fixed', 'cursor': 'move' })\r\n+  x = e.clientX - el.offsetLeft;\r\n+  y = e.clientY - el.offsetTop;\r\n+  document.onmousemove = (e) => el.onMouseMove(e);\r\n+  document.onmouseup = (e) => el.onMouseUp(e)\r\n }\r\n //移动move\r\n function onMouseMove(e) {\r\n-  let X = e.clientX - this.x\r\n-  let Y = e.clientY - this.y;\r\n-  if (X < 10 - this.el.offsetWidth) {\r\n-    X = 10 - this.el.offsetWidth\r\n+  let X = e.clientX - x\r\n+  let Y = e.clientY - y;\r\n+  if (X < 10 - el.offsetWidth) {\r\n+    X = 10 - el.offsetWidth\r\n   } else if (X > document.documentElement.clientWidth - 10) {\r\n     X = document.documentElement.clientWidth - 10\r\n   }\r\n-  if (Y < 10 - this.el.clientHeight) {\r\n-    Y = 10 - this.el.clientHeight\r\n+  if (Y < 10 - el.clientHeight) {\r\n+    Y = 10 - el.clientHeight\r\n   } else if (Y > document.documentElement.clientHeight - 10) {\r\n     Y = document.documentElement.clientHeight - 10\r\n   }\r\n-  this.el.style.left = X + 'px'\r\n-  this.el.style.top = Y + 'px'\r\n+  el.style.left = X + 'px'\r\n+  el.style.top = Y + 'px'\r\n }\r\n //释放\r\n function onMouseUp(e) {\r\n   document.onmousemove = null\r\n"
+                },
+                {
+                    "date": 1649661351379,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,10 +61,10 @@\n   let zIndex2: any = getComputedStyle(el).getPropertyValue('z-index');\r\n   zIndex2 = isNaN(zIndex2) ? 1 : zIndex2\r\n   zIndex = zIndex > zIndex2 ? Number(zIndex) + 1 : Number(zIndex2) + 1\r\n   setEleStyle({ \"zIndex\": zIndex, position: 'fixed', 'cursor': 'move' })\r\n-  x = e.clientX - el.offsetLeft;\r\n-  y = e.clientY - el.offsetTop;\r\n+  e.x = e.clientX - el.offsetLeft;\r\n+  e.y = e.clientY - el.offsetTop;\r\n   document.onmousemove = (e) => el.onMouseMove(e);\r\n   document.onmouseup = (e) => el.onMouseUp(e)\r\n }\r\n //移动move\r\n"
+                },
+                {
+                    "date": 1649661376922,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,10 +28,10 @@\n let item: any = ref(null)\r\n let zIndex: any = 1;\r\n let el\r\n let option = {}\r\n-const x = 0;\r\n-const y = 0;\r\n+let x = 0;\r\n+let y = 0;\r\n onMounted(() => {\r\n   console.log(item.value.style.top);\r\n   el = item.value\r\n   init()\r\n@@ -61,10 +61,10 @@\n   let zIndex2: any = getComputedStyle(el).getPropertyValue('z-index');\r\n   zIndex2 = isNaN(zIndex2) ? 1 : zIndex2\r\n   zIndex = zIndex > zIndex2 ? Number(zIndex) + 1 : Number(zIndex2) + 1\r\n   setEleStyle({ \"zIndex\": zIndex, position: 'fixed', 'cursor': 'move' })\r\n-  e.x = e.clientX - el.offsetLeft;\r\n-  e.y = e.clientY - el.offsetTop;\r\n+  x = e.clientX - el.offsetLeft;\r\n+  y = e.clientY - el.offsetTop;\r\n   document.onmousemove = (e) => el.onMouseMove(e);\r\n   document.onmouseup = (e) => el.onMouseUp(e)\r\n }\r\n //移动move\r\n"
+                },
+                {
+                    "date": 1649661434492,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,10 +63,10 @@\n   zIndex = zIndex > zIndex2 ? Number(zIndex) + 1 : Number(zIndex2) + 1\r\n   setEleStyle({ \"zIndex\": zIndex, position: 'fixed', 'cursor': 'move' })\r\n   x = e.clientX - el.offsetLeft;\r\n   y = e.clientY - el.offsetTop;\r\n-  document.onmousemove = (e) => el.onMouseMove(e);\r\n-  document.onmouseup = (e) => el.onMouseUp(e)\r\n+  window.onmousemove = (e) => el.onMouseMove(e);\r\n+  window.onmouseup = (e) => el.onMouseUp(e)\r\n }\r\n //移动move\r\n function onMouseMove(e) {\r\n   let X = e.clientX - x\r\n"
+                },
+                {
+                    "date": 1649661454821,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,10 +63,10 @@\n   zIndex = zIndex > zIndex2 ? Number(zIndex) + 1 : Number(zIndex2) + 1\r\n   setEleStyle({ \"zIndex\": zIndex, position: 'fixed', 'cursor': 'move' })\r\n   x = e.clientX - el.offsetLeft;\r\n   y = e.clientY - el.offsetTop;\r\n-  window.onmousemove = (e) => el.onMouseMove(e);\r\n-  window.onmouseup = (e) => el.onMouseUp(e)\r\n+  window.document.onmousemove = (e) => el.onMouseMove(e);\r\n+  window.doc.onmouseup = (e) => el.onMouseUp(e)\r\n }\r\n //移动move\r\n function onMouseMove(e) {\r\n   let X = e.clientX - x\r\n"
+                },
+                {
+                    "date": 1649661502925,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,10 +63,10 @@\n   zIndex = zIndex > zIndex2 ? Number(zIndex) + 1 : Number(zIndex2) + 1\r\n   setEleStyle({ \"zIndex\": zIndex, position: 'fixed', 'cursor': 'move' })\r\n   x = e.clientX - el.offsetLeft;\r\n   y = e.clientY - el.offsetTop;\r\n-  window.document.onmousemove = (e) => el.onMouseMove(e);\r\n-  window.doc.onmouseup = (e) => el.onMouseUp(e)\r\n+  window.document.onmousemove = (e) => onMouseMove(e);\r\n+  window.document.onmouseup = (e) => onMouseUp(e)\r\n }\r\n //移动move\r\n function onMouseMove(e) {\r\n   let X = e.clientX - x\r\n"
+                },
+                {
+                    "date": 1649661536769,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,8 @@\n let option = {}\r\n let x = 0;\r\n let y = 0;\r\n onMounted(() => {\r\n-  console.log(item.value.style.top);\r\n   el = item.value\r\n   init()\r\n })\r\n function init() {\r\n"
+                },
+                {
+                    "date": 1649661542570,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,8 @@\n   init()\r\n })\r\n function init() {\r\n   setEleStyle(option || {});\r\n-  console.log(el);\r\n \r\n   el.onmousedown = (e) => {\r\n     onMouseDown(e)\r\n     el.setCapture && el.setCapture() //全局捕获\r\n"
+                },
+                {
+                    "date": 1649661752453,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,33 +28,32 @@\n let item: any = ref(null)\r\n let zIndex: any = 1;\r\n let el\r\n let option = {}\r\n-let x = 0;\r\n-let y = 0;\r\n+let x = ref(0);\r\n+let y = ref(0);\r\n onMounted(() => {\r\n   el = item.value\r\n   init()\r\n })\r\n+watch(x, (n, o) => {\r\n+  console.log(n);\r\n+\r\n+})\r\n function init() {\r\n   setEleStyle(option || {});\r\n-\r\n   el.onmousedown = (e) => {\r\n     onMouseDown(e)\r\n     el.setCapture && el.setCapture() //全局捕获\r\n     return false\r\n   }\r\n-\r\n }\r\n-\r\n-\r\n //样式设置\r\n function setEleStyle(option) {\r\n   for (const key in option) {\r\n     el.style[key] = option[key]\r\n   }\r\n }\r\n-\r\n //按下ele\r\n function onMouseDown(e) {\r\n   let zIndex2: any = getComputedStyle(el).getPropertyValue('z-index');\r\n   zIndex2 = isNaN(zIndex2) ? 1 : zIndex2\r\n"
+                },
+                {
+                    "date": 1649661781538,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n onMounted(() => {\r\n   el = item.value\r\n   init()\r\n })\r\n-watch(x, (n, o) => {\r\n+watch(x.value, (n, o) => {\r\n   console.log(n);\r\n \r\n })\r\n function init() {\r\n"
+                },
+                {
+                    "date": 1649661806191,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n onMounted(() => {\r\n   el = item.value\r\n   init()\r\n })\r\n-watch(x.value, (n, o) => {\r\n+watch(x, (n, o) => {\r\n   console.log(n);\r\n \r\n })\r\n function init() {\r\n"
+                },
+                {
+                    "date": 1649661839668,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,12 +34,8 @@\n onMounted(() => {\r\n   el = item.value\r\n   init()\r\n })\r\n-watch(x, (n, o) => {\r\n-  console.log(n);\r\n-\r\n-})\r\n function init() {\r\n   setEleStyle(option || {});\r\n   el.onmousedown = (e) => {\r\n     onMouseDown(e)\r\n@@ -65,10 +61,10 @@\n   window.document.onmouseup = (e) => onMouseUp(e)\r\n }\r\n //移动move\r\n function onMouseMove(e) {\r\n-  let X = e.clientX - x\r\n-  let Y = e.clientY - y;\r\n+  let X = e.clientX - x.value\r\n+  let Y = e.clientY - y.value;\r\n   if (X < 10 - el.offsetWidth) {\r\n     X = 10 - el.offsetWidth\r\n   } else if (X > document.documentElement.clientWidth - 10) {\r\n     X = document.documentElement.clientWidth - 10\r\n"
+                },
+                {
+                    "date": 1649661853036,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,10 +28,10 @@\n let item: any = ref(null)\r\n let zIndex: any = 1;\r\n let el\r\n let option = {}\r\n-let x = ref(0);\r\n-let y = ref(0);\r\n+let x = 0\r\n+let y = 0\r\n onMounted(() => {\r\n   el = item.value\r\n   init()\r\n })\r\n@@ -61,10 +61,10 @@\n   window.document.onmouseup = (e) => onMouseUp(e)\r\n }\r\n //移动move\r\n function onMouseMove(e) {\r\n-  let X = e.clientX - x.value\r\n-  let Y = e.clientY - y.value;\r\n+  let X = e.clientX - x\r\n+  let Y = e.clientY - y;\r\n   if (X < 10 - el.offsetWidth) {\r\n     X = 10 - el.offsetWidth\r\n   } else if (X > document.documentElement.clientWidth - 10) {\r\n     X = document.documentElement.clientWidth - 10\r\n"
+                },
+                {
+                    "date": 1649661866689,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -75,8 +75,10 @@\n     Y = document.documentElement.clientHeight - 10\r\n   }\r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n+  console.log(x);\r\n+\r\n }\r\n //释放\r\n function onMouseUp(e) {\r\n   document.onmousemove = null\r\n"
+                },
+                {
+                    "date": 1649661890038,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -75,9 +75,9 @@\n     Y = document.documentElement.clientHeight - 10\r\n   }\r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n-  console.log(x);\r\n+  console.log(el.style.left);\r\n \r\n }\r\n //释放\r\n function onMouseUp(e) {\r\n"
+                },
+                {
+                    "date": 1649662017005,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -75,9 +75,8 @@\n     Y = document.documentElement.clientHeight - 10\r\n   }\r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n-  console.log(el.style.left);\r\n \r\n }\r\n //释放\r\n function onMouseUp(e) {\r\n"
+                },
+                {
+                    "date": 1649662146101,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n let x = 0\r\n let y = 0\r\n onMounted(() => {\r\n   el = item.value\r\n-  init()\r\n+  init({ 'top': '100px' })\r\n })\r\n function init() {\r\n   setEleStyle(option || {});\r\n   el.onmousedown = (e) => {\r\n"
+                },
+                {
+                    "date": 1649662159072,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,14 +27,14 @@\n }\r\n let item: any = ref(null)\r\n let zIndex: any = 1;\r\n let el\r\n-let option = {}\r\n+let option = { 'top': '100px' }\r\n let x = 0\r\n let y = 0\r\n onMounted(() => {\r\n   el = item.value\r\n-  init({ 'top': '100px' })\r\n+  init()\r\n })\r\n function init() {\r\n   setEleStyle(option || {});\r\n   el.onmousedown = (e) => {\r\n"
+                },
+                {
+                    "date": 1649662226931,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,10 @@\n   target: \"https://www.npmjs.com/\",\r\n   type: \"web\",\r\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n }\r\n+\r\n+\r\n let item: any = ref(null)\r\n let zIndex: any = 1;\r\n let el\r\n let option = { 'top': '100px' }\r\n"
+                },
+                {
+                    "date": 1649662234748,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <script lang=\"ts\" setup>\r\n-import { onMounted, watchEffect, ref, watch } from 'vue';\r\n+import { onMounted, ref, watch } from 'vue';\r\n \r\n const props = defineProps({\r\n   w: {\r\n     default: 100,\r\n"
+                },
+                {
+                    "date": 1649662315227,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,8 +36,12 @@\n onMounted(() => {\r\n   el = item.value\r\n   init()\r\n })\r\n+watch(el.style.left, (n, o) => {\r\n+  console.log(n, o);\r\n+\r\n+})\r\n function init() {\r\n   setEleStyle(option || {});\r\n   el.onmousedown = (e) => {\r\n     onMouseDown(e)\r\n"
+                },
+                {
+                    "date": 1649662371831,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,134 @@\n+<script lang=\"ts\" setup>\r\n+import { onMounted, ref, watch } from 'vue';\r\n+\r\n+const props = defineProps({\r\n+  w: {\r\n+    default: 100,\r\n+    type: Number,\r\n+\r\n+  },\r\n+  h: {\r\n+    default: 100,\r\n+    type: Number\r\n+  }\r\n+})\r\n+let { w, h } = props\r\n+const obj = {\r\n+  bgColor: \"rgba(255,207,12,1)\",\r\n+  bgFont: 30,\r\n+  bgImage: \"https://infinitypro-img.infinitynewtab.com/custom-icon/8001dsbqela58muqk5ak6f3kamwxqe.png\",\r\n+  bgText: \"npm\",\r\n+  bgType: \"color\",\r\n+  id: \"siteId-1fjg5riks7kwo6q5z2rvwrdblv0\",\r\n+  title: \"npm仓库\",\r\n+  target: \"https://www.npmjs.com/\",\r\n+  type: \"web\",\r\n+  uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n+}\r\n+\r\n+\r\n+let item: any = ref(null)\r\n+let zIndex: any = 1;\r\n+let el\r\n+let option = { 'top': '100px' }\r\n+let x = 0\r\n+let y = 0\r\n+onMounted(() => {\r\n+  el = item.value\r\n+  init()\r\n+  watch(el.style.left, (n, o) => {\r\n+    console.log(n, o);\r\n+  })\r\n+})\r\n+\r\n+function init() {\r\n+  setEleStyle(option || {});\r\n+  el.onmousedown = (e) => {\r\n+    onMouseDown(e)\r\n+    el.setCapture && el.setCapture() //全局捕获\r\n+    return false\r\n+  }\r\n+}\r\n+//样式设置\r\n+function setEleStyle(option) {\r\n+  for (const key in option) {\r\n+    el.style[key] = option[key]\r\n+  }\r\n+}\r\n+//按下ele\r\n+function onMouseDown(e) {\r\n+  let zIndex2: any = getComputedStyle(el).getPropertyValue('z-index');\r\n+  zIndex2 = isNaN(zIndex2) ? 1 : zIndex2\r\n+  zIndex = zIndex > zIndex2 ? Number(zIndex) + 1 : Number(zIndex2) + 1\r\n+  setEleStyle({ \"zIndex\": zIndex, position: 'fixed', 'cursor': 'move' })\r\n+  x = e.clientX - el.offsetLeft;\r\n+  y = e.clientY - el.offsetTop;\r\n+  window.document.onmousemove = (e) => onMouseMove(e);\r\n+  window.document.onmouseup = (e) => onMouseUp(e)\r\n+}\r\n+//移动move\r\n+function onMouseMove(e) {\r\n+  let X = e.clientX - x\r\n+  let Y = e.clientY - y;\r\n+  if (X < 10 - el.offsetWidth) {\r\n+    X = 10 - el.offsetWidth\r\n+  } else if (X > document.documentElement.clientWidth - 10) {\r\n+    X = document.documentElement.clientWidth - 10\r\n+  }\r\n+  if (Y < 10 - el.clientHeight) {\r\n+    Y = 10 - el.clientHeight\r\n+  } else if (Y > document.documentElement.clientHeight - 10) {\r\n+    Y = document.documentElement.clientHeight - 10\r\n+  }\r\n+  el.style.left = X + 'px'\r\n+  el.style.top = Y + 'px'\r\n+\r\n+}\r\n+//释放\r\n+function onMouseUp(e) {\r\n+  document.onmousemove = null\r\n+  document.onmouseup = null\r\n+  setEleStyle({ 'cursor': 'pointer' })\r\n+  el.setCapture && this.el.setCapture() //释放全局捕获\r\n+\r\n+}\r\n+\r\n+</script>\r\n+<template>\r\n+  <div class=\"item\" ref=\"item\" :style=\"{\r\n+    'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n+  }\">\r\n+    <div class=\" item-icon\">\r\n+      <img src=\"https://files.codelife.cc/website/music163.svg\" alt=\"网易云音乐\">\r\n+    </div>\r\n+    <p class=\"title\">标签</p>  </div>\r\n+</template>\r\n+<style lang=\"less\" scoped>\r\n+.item {\r\n+  position: absolute;\r\n+  top: 0;\r\n+  left: 0;\r\n+  width: 100px;\r\n+  height: 100px;\r\n+  display: flex;\r\n+  flex-direction: column;\r\n+  justify-content: space-evenly;\r\n+  align-items: center;\r\n+\r\n+  .item-icon {\r\n+    width: 80%;\r\n+    height: 80%;\r\n+\r\n+    img {\r\n+      width: 100%;\r\n+      height: 100%;\r\n+      border-radius: 25%;\r\n+    }\r\n+  }\r\n+\r\n+  .title {\r\n+    font-size: 12px;\r\n+    color: white;\r\n+  }\r\n+}\r\n+</style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649662433574,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,10 @@\n   title: \"npm仓库\",\r\n   target: \"https://www.npmjs.com/\",\r\n   type: \"web\",\r\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n+  x: 0,\r\n+  y: 0\r\n }\r\n \r\n \r\n let item: any = ref(null)\r\n@@ -35,11 +37,8 @@\n let y = 0\r\n onMounted(() => {\r\n   el = item.value\r\n   init()\r\n-  watch(el.style.left, (n, o) => {\r\n-    console.log(n, o);\r\n-  })\r\n })\r\n \r\n function init() {\r\n   setEleStyle(option || {});\r\n@@ -130,139 +129,5 @@\n     font-size: 12px;\r\n     color: white;\r\n   }\r\n }\r\n-</style>\n-<script lang=\"ts\" setup>\r\n-import { onMounted, ref, watch } from 'vue';\r\n-\r\n-const props = defineProps({\r\n-  w: {\r\n-    default: 100,\r\n-    type: Number,\r\n-\r\n-  },\r\n-  h: {\r\n-    default: 100,\r\n-    type: Number\r\n-  }\r\n-})\r\n-let { w, h } = props\r\n-const obj = {\r\n-  bgColor: \"rgba(255,207,12,1)\",\r\n-  bgFont: 30,\r\n-  bgImage: \"https://infinitypro-img.infinitynewtab.com/custom-icon/8001dsbqela58muqk5ak6f3kamwxqe.png\",\r\n-  bgText: \"npm\",\r\n-  bgType: \"color\",\r\n-  id: \"siteId-1fjg5riks7kwo6q5z2rvwrdblv0\",\r\n-  title: \"npm仓库\",\r\n-  target: \"https://www.npmjs.com/\",\r\n-  type: \"web\",\r\n-  uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n-}\r\n-\r\n-\r\n-let item: any = ref(null)\r\n-let zIndex: any = 1;\r\n-let el\r\n-let option = { 'top': '100px' }\r\n-let x = 0\r\n-let y = 0\r\n-onMounted(() => {\r\n-  el = item.value\r\n-  init()\r\n-})\r\n-watch(el.style.left, (n, o) => {\r\n-  console.log(n, o);\r\n-\r\n-})\r\n-function init() {\r\n-  setEleStyle(option || {});\r\n-  el.onmousedown = (e) => {\r\n-    onMouseDown(e)\r\n-    el.setCapture && el.setCapture() //全局捕获\r\n-    return false\r\n-  }\r\n-}\r\n-//样式设置\r\n-function setEleStyle(option) {\r\n-  for (const key in option) {\r\n-    el.style[key] = option[key]\r\n-  }\r\n-}\r\n-//按下ele\r\n-function onMouseDown(e) {\r\n-  let zIndex2: any = getComputedStyle(el).getPropertyValue('z-index');\r\n-  zIndex2 = isNaN(zIndex2) ? 1 : zIndex2\r\n-  zIndex = zIndex > zIndex2 ? Number(zIndex) + 1 : Number(zIndex2) + 1\r\n-  setEleStyle({ \"zIndex\": zIndex, position: 'fixed', 'cursor': 'move' })\r\n-  x = e.clientX - el.offsetLeft;\r\n-  y = e.clientY - el.offsetTop;\r\n-  window.document.onmousemove = (e) => onMouseMove(e);\r\n-  window.document.onmouseup = (e) => onMouseUp(e)\r\n-}\r\n-//移动move\r\n-function onMouseMove(e) {\r\n-  let X = e.clientX - x\r\n-  let Y = e.clientY - y;\r\n-  if (X < 10 - el.offsetWidth) {\r\n-    X = 10 - el.offsetWidth\r\n-  } else if (X > document.documentElement.clientWidth - 10) {\r\n-    X = document.documentElement.clientWidth - 10\r\n-  }\r\n-  if (Y < 10 - el.clientHeight) {\r\n-    Y = 10 - el.clientHeight\r\n-  } else if (Y > document.documentElement.clientHeight - 10) {\r\n-    Y = document.documentElement.clientHeight - 10\r\n-  }\r\n-  el.style.left = X + 'px'\r\n-  el.style.top = Y + 'px'\r\n-\r\n-}\r\n-//释放\r\n-function onMouseUp(e) {\r\n-  document.onmousemove = null\r\n-  document.onmouseup = null\r\n-  setEleStyle({ 'cursor': 'pointer' })\r\n-  el.setCapture && this.el.setCapture() //释放全局捕获\r\n-\r\n-}\r\n-\r\n-</script>\r\n-<template>\r\n-  <div class=\"item\" ref=\"item\" :style=\"{\r\n-    'width': w * 100 + 'px', 'height': h * 100 + 'px',\r\n-  }\">\r\n-    <div class=\" item-icon\">\r\n-      <img src=\"https://files.codelife.cc/website/music163.svg\" alt=\"网易云音乐\">\r\n-    </div>\r\n-    <p class=\"title\">标签</p>  </div>\r\n-</template>\r\n-<style lang=\"less\" scoped>\r\n-.item {\r\n-  position: absolute;\r\n-  top: 0;\r\n-  left: 0;\r\n-  width: 100px;\r\n-  height: 100px;\r\n-  display: flex;\r\n-  flex-direction: column;\r\n-  justify-content: space-evenly;\r\n-  align-items: center;\r\n-\r\n-  .item-icon {\r\n-    width: 80%;\r\n-    height: 80%;\r\n-\r\n-    img {\r\n-      width: 100%;\r\n-      height: 100%;\r\n-      border-radius: 25%;\r\n-    }\r\n-  }\r\n-\r\n-  .title {\r\n-    font-size: 12px;\r\n-    color: white;\r\n-  }\r\n-}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649662477600,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,9 +80,11 @@\n     Y = document.documentElement.clientHeight - 10\r\n   }\r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n-\r\n+  // 存储坐标\r\n+  obj.x = el.style.left\r\n+  obj.y = el.style.top\r\n }\r\n //释放\r\n function onMouseUp(e) {\r\n   document.onmousemove = null\r\n"
+                },
+                {
+                    "date": 1649662490481,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -81,10 +81,10 @@\n   }\r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n   // 存储坐标\r\n-  obj.x = el.style.left\r\n-  obj.y = el.style.top\r\n+  obj.x = X\r\n+  obj.y = Y\r\n }\r\n //释放\r\n function onMouseUp(e) {\r\n   document.onmousemove = null\r\n"
+                },
+                {
+                    "date": 1649662986712,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -83,8 +83,10 @@\n   el.style.top = Y + 'px'\r\n   // 存储坐标\r\n   obj.x = X\r\n   obj.y = Y\r\n+  console.log(obj);\r\n+\r\n }\r\n //释放\r\n function onMouseUp(e) {\r\n   document.onmousemove = null\r\n"
+                },
+                {
+                    "date": 1649663054796,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -83,9 +83,8 @@\n   el.style.top = Y + 'px'\r\n   // 存储坐标\r\n   obj.x = X\r\n   obj.y = Y\r\n-  console.log(obj);\r\n \r\n }\r\n //释放\r\n function onMouseUp(e) {\r\n"
+                },
+                {
+                    "date": 1649682073998,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,8 +56,10 @@\n }\r\n //按下ele\r\n function onMouseDown(e) {\r\n   let zIndex2: any = getComputedStyle(el).getPropertyValue('z-index');\r\n+  console.log(zIndex2);\r\n+\r\n   zIndex2 = isNaN(zIndex2) ? 1 : zIndex2\r\n   zIndex = zIndex > zIndex2 ? Number(zIndex) + 1 : Number(zIndex2) + 1\r\n   setEleStyle({ \"zIndex\": zIndex, position: 'fixed', 'cursor': 'move' })\r\n   x = e.clientX - el.offsetLeft;\r\n"
+                },
+                {
+                    "date": 1649682560261,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <script lang=\"ts\" setup>\r\n import { onMounted, ref, watch } from 'vue';\r\n-\r\n+import { }\r\n const props = defineProps({\r\n   w: {\r\n     default: 100,\r\n     type: Number,\r\n"
+                },
+                {
+                    "date": 1649682749547,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <script lang=\"ts\" setup>\r\n import { onMounted, ref, watch } from 'vue';\r\n-import { }\r\n+import \r\n const props = defineProps({\r\n   w: {\r\n     default: 100,\r\n     type: Number,\r\n"
+                },
+                {
+                    "date": 1649682821994,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <script lang=\"ts\" setup>\r\n import { onMounted, ref, watch } from 'vue';\r\n-import \r\n+\r\n const props = defineProps({\r\n   w: {\r\n     default: 100,\r\n     type: Number,\r\n"
+                },
+                {
+                    "date": 1649682947708,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,6 @@\n <script lang=\"ts\" setup>\r\n import { onMounted, ref, watch } from 'vue';\r\n-\r\n const props = defineProps({\r\n   w: {\r\n     default: 100,\r\n     type: Number,\r\n"
+                },
+                {
+                    "date": 1649683132445,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n <script lang=\"ts\" setup>\r\n import { onMounted, ref, watch } from 'vue';\r\n+import { useBox } from '../../store/box';\r\n const props = defineProps({\r\n   w: {\r\n     default: 100,\r\n     type: Number,\r\n"
+                },
+                {
+                    "date": 1649683166015,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,10 @@\n   uuid: \"5fcfb221d915e4341c1e069f14a1b945\",\r\n   x: 0,\r\n   y: 0\r\n }\r\n+let boxStore = useBox()\r\n+console.log(boxStore.zIndex);\r\n \r\n \r\n let item: any = ref(null)\r\n let zIndex: any = 1;\r\n"
+                },
+                {
+                    "date": 1649683204301,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,8 @@\n   x: 0,\r\n   y: 0\r\n }\r\n let boxStore = useBox()\r\n-console.log(boxStore.zIndex);\r\n \r\n \r\n let item: any = ref(null)\r\n let zIndex: any = 1;\r\n@@ -57,13 +56,14 @@\n   }\r\n }\r\n //按下ele\r\n function onMouseDown(e) {\r\n-  let zIndex2: any = getComputedStyle(el).getPropertyValue('z-index');\r\n-  console.log(zIndex2);\r\n+  // let zIndex2: any = getComputedStyle(el).getPropertyValue('z-index');\r\n+  // console.log(zIndex2);\r\n \r\n-  zIndex2 = isNaN(zIndex2) ? 1 : zIndex2\r\n-  zIndex = zIndex > zIndex2 ? Number(zIndex) + 1 : Number(zIndex2) + 1\r\n+  // zIndex2 = isNaN(zIndex2) ? 1 : zIndex2\r\n+  // zIndex = zIndex > zIndex2 ? Number(zIndex) + 1 : Number(zIndex2) + 1\r\n+  zIndex = boxStore.getzIndex()\r\n   setEleStyle({ \"zIndex\": zIndex, position: 'fixed', 'cursor': 'move' })\r\n   x = e.clientX - el.offsetLeft;\r\n   y = e.clientY - el.offsetTop;\r\n   window.document.onmousemove = (e) => onMouseMove(e);\r\n"
+                },
+                {
+                    "date": 1649684554603,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,8 +82,10 @@\n     Y = 10 - el.clientHeight\r\n   } else if (Y > document.documentElement.clientHeight - 10) {\r\n     Y = document.documentElement.clientHeight - 10\r\n   }\r\n+  console.log(document.documentElement.clientHeight);\r\n+\r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n   // 存储坐标\r\n   obj.x = X\r\n"
+                },
+                {
+                    "date": 1649684569925,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,8 @@\n     Y = 10 - el.clientHeight\r\n   } else if (Y > document.documentElement.clientHeight - 10) {\r\n     Y = document.documentElement.clientHeight - 10\r\n   }\r\n-  console.log(document.documentElement.clientHeight);\r\n \r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n   // 存储坐标\r\n"
+                },
+                {
+                    "date": 1649684588645,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,8 +82,9 @@\n     Y = 10 - el.clientHeight\r\n   } else if (Y > document.documentElement.clientHeight - 10) {\r\n     Y = document.documentElement.clientHeight - 10\r\n   }\r\n+  console.log(document.documentElement.clientWidth);\r\n \r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n   // 存储坐标\r\n"
+                },
+                {
+                    "date": 1649684626054,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,8 @@\n     Y = 10 - el.clientHeight\r\n   } else if (Y > document.documentElement.clientHeight - 10) {\r\n     Y = document.documentElement.clientHeight - 10\r\n   }\r\n-  console.log(document.documentElement.clientWidth);\r\n \r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n   // 存储坐标\r\n"
+                },
+                {
+                    "date": 1649684637503,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -76,8 +76,10 @@\n   if (X < 10 - el.offsetWidth) {\r\n     X = 10 - el.offsetWidth\r\n   } else if (X > document.documentElement.clientWidth - 10) {\r\n     X = document.documentElement.clientWidth - 10\r\n+    console.log('x');\r\n+\r\n   }\r\n   if (Y < 10 - el.clientHeight) {\r\n     Y = 10 - el.clientHeight\r\n   } else if (Y > document.documentElement.clientHeight - 10) {\r\n"
+                },
+                {
+                    "date": 1649684816707,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,20 +72,20 @@\n //移动move\r\n function onMouseMove(e) {\r\n   let X = e.clientX - x\r\n   let Y = e.clientY - y;\r\n-  if (X < 10 - el.offsetWidth) {\r\n-    X = 10 - el.offsetWidth\r\n-  } else if (X > document.documentElement.clientWidth - 10) {\r\n-    X = document.documentElement.clientWidth - 10\r\n-    console.log('x');\r\n+  // if (X < 10 - el.offsetWidth) {\r\n+  //   X = 10 - el.offsetWidth\r\n+  // } else if (X > document.documentElement.clientWidth - 10) {\r\n+  //   X = document.documentElement.clientWidth - 10\r\n+  //   console.log('x');\r\n \r\n-  }\r\n-  if (Y < 10 - el.clientHeight) {\r\n-    Y = 10 - el.clientHeight\r\n-  } else if (Y > document.documentElement.clientHeight - 10) {\r\n-    Y = document.documentElement.clientHeight - 10\r\n-  }\r\n+  // }\r\n+  // if (Y < 10 - el.clientHeight) {\r\n+  //   Y = 10 - el.clientHeight\r\n+  // } else if (Y > document.documentElement.clientHeight - 10) {\r\n+  //   Y = document.documentElement.clientHeight - 10\r\n+  // }\r\n \r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n   // 存储坐标\r\n"
+                },
+                {
+                    "date": 1649684934257,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,8 +84,9 @@\n   //   Y = 10 - el.clientHeight\r\n   // } else if (Y > document.documentElement.clientHeight - 10) {\r\n   //   Y = document.documentElement.clientHeight - 10\r\n   // }\r\n+  console.log(X);\r\n \r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n   // 存储坐标\r\n"
+                },
+                {
+                    "date": 1649684970125,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n   //   Y = 10 - el.clientHeight\r\n   // } else if (Y > document.documentElement.clientHeight - 10) {\r\n   //   Y = document.documentElement.clientHeight - 10\r\n   // }\r\n-  console.log(X);\r\n+  console.log(X, Y);\r\n \r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n   // 存储坐标\r\n"
+                },
+                {
+                    "date": 1649685048008,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n   //   Y = 10 - el.clientHeight\r\n   // } else if (Y > document.documentElement.clientHeight - 10) {\r\n   //   Y = document.documentElement.clientHeight - 10\r\n   // }\r\n-  console.log(X, Y);\r\n+  if (X == 0) { return; }\r\n \r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n   // 存储坐标\r\n"
+                },
+                {
+                    "date": 1649685061215,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n   //   Y = 10 - el.clientHeight\r\n   // } else if (Y > document.documentElement.clientHeight - 10) {\r\n   //   Y = document.documentElement.clientHeight - 10\r\n   // }\r\n-  if (X == 0) { return; }\r\n+  if (X == 0 || Y == 0) { return; }\r\n \r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n   // 存储坐标\r\n"
+                },
+                {
+                    "date": 1649685071864,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -85,8 +85,9 @@\n   // } else if (Y > document.documentElement.clientHeight - 10) {\r\n   //   Y = document.documentElement.clientHeight - 10\r\n   // }\r\n   if (X == 0 || Y == 0) { return; }\r\n+  console.log(X);\r\n \r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n   // 存储坐标\r\n"
+                },
+                {
+                    "date": 1649685189154,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,10 +84,10 @@\n   //   Y = 10 - el.clientHeight\r\n   // } else if (Y > document.documentElement.clientHeight - 10) {\r\n   //   Y = document.documentElement.clientHeight - 10\r\n   // }\r\n-  if (X == 0 || Y == 0) { return; }\r\n-  console.log(X);\r\n+  if (X < 0 || Y < 0) return;\r\n+  console.log(X, Y);\r\n \r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n   // 存储坐标\r\n"
+                },
+                {
+                    "date": 1649685218412,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n   //   Y = 10 - el.clientHeight\r\n   // } else if (Y > document.documentElement.clientHeight - 10) {\r\n   //   Y = document.documentElement.clientHeight - 10\r\n   // }\r\n-  if (X < 0 || Y < 0) return;\r\n+  if (X < 0 && Y < 0) return;\r\n   console.log(X, Y);\r\n \r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n"
+                },
+                {
+                    "date": 1649685233364,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n   //   Y = 10 - el.clientHeight\r\n   // } else if (Y > document.documentElement.clientHeight - 10) {\r\n   //   Y = document.documentElement.clientHeight - 10\r\n   // }\r\n-  if (X < 0 && Y < 0) return;\r\n+  if (X < 0 || Y < 0) return;\r\n   console.log(X, Y);\r\n \r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n"
+                },
+                {
+                    "date": 1649685247526,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n   //   Y = 10 - el.clientHeight\r\n   // } else if (Y > document.documentElement.clientHeight - 10) {\r\n   //   Y = document.documentElement.clientHeight - 10\r\n   // }\r\n-  if (X < 0 || Y < 0) return;\r\n+  if (X <= 0 || Y <= 0) return;\r\n   console.log(X, Y);\r\n \r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n"
+                },
+                {
+                    "date": 1649685259346,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n   //   Y = 10 - el.clientHeight\r\n   // } else if (Y > document.documentElement.clientHeight - 10) {\r\n   //   Y = document.documentElement.clientHeight - 10\r\n   // }\r\n-  if (X <= 0 || Y <= 0) return;\r\n+  if (X < 0 || Y < 0) return;\r\n   console.log(X, Y);\r\n \r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n"
+                },
+                {
+                    "date": 1649685363405,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,8 +84,10 @@\n   //   Y = 10 - el.clientHeight\r\n   // } else if (Y > document.documentElement.clientHeight - 10) {\r\n   //   Y = document.documentElement.clientHeight - 10\r\n   // }\r\n+  console.log(document.documentElement.clientHeight);\r\n+\r\n   if (X < 0 || Y < 0) return;\r\n   console.log(X, Y);\r\n \r\n   el.style.left = X + 'px'\r\n"
+                },
+                {
+                    "date": 1649685427340,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -86,9 +86,9 @@\n   //   Y = document.documentElement.clientHeight - 10\r\n   // }\r\n   console.log(document.documentElement.clientHeight);\r\n \r\n-  if (X < 0 || Y < 0) return;\r\n+  if (X < 0 || Y < 0 || X > document.documentElement.clientWidth) return;\r\n   console.log(X, Y);\r\n \r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n"
+                },
+                {
+                    "date": 1649685446193,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n   //   Y = 10 - el.clientHeight\r\n   // } else if (Y > document.documentElement.clientHeight - 10) {\r\n   //   Y = document.documentElement.clientHeight - 10\r\n   // }\r\n-  console.log(document.documentElement.clientHeight);\r\n+  console.log(document.documentElement.clientWidth);\r\n \r\n   if (X < 0 || Y < 0 || X > document.documentElement.clientWidth) return;\r\n   console.log(X, Y);\r\n \r\n"
+                },
+                {
+                    "date": 1649685509298,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,10 @@\n   //   Y = 10 - el.clientHeight\r\n   // } else if (Y > document.documentElement.clientHeight - 10) {\r\n   //   Y = document.documentElement.clientHeight - 10\r\n   // }\r\n-  console.log(document.documentElement.clientWidth);\r\n+  // console.log(document.documentElement.clientWidth);\r\n+  console.log(el.clientHeight);\r\n \r\n   if (X < 0 || Y < 0 || X > document.documentElement.clientWidth) return;\r\n   console.log(X, Y);\r\n \r\n"
+                },
+                {
+                    "date": 1649685541743,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,12 +84,10 @@\n   //   Y = 10 - el.clientHeight\r\n   // } else if (Y > document.documentElement.clientHeight - 10) {\r\n   //   Y = document.documentElement.clientHeight - 10\r\n   // }\r\n-  // console.log(document.documentElement.clientWidth);\r\n-  console.log(el.clientHeight);\r\n \r\n-  if (X < 0 || Y < 0 || X > document.documentElement.clientWidth) return;\r\n+  if (X < 0 || Y < 0 || el.clientHeight > document.documentElement.clientWidth) return;\r\n   console.log(X, Y);\r\n \r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n"
+                },
+                {
+                    "date": 1649685564374,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -85,9 +85,9 @@\n   // } else if (Y > document.documentElement.clientHeight - 10) {\r\n   //   Y = document.documentElement.clientHeight - 10\r\n   // }\r\n \r\n-  if (X < 0 || Y < 0 || el.clientHeight > document.documentElement.clientWidth) return;\r\n+  if (X < 0 || Y < 0 || X > document.documentElement.clientWidth + el.clientWidth) return;\r\n   console.log(X, Y);\r\n \r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n"
+                },
+                {
+                    "date": 1649685579087,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -85,9 +85,9 @@\n   // } else if (Y > document.documentElement.clientHeight - 10) {\r\n   //   Y = document.documentElement.clientHeight - 10\r\n   // }\r\n \r\n-  if (X < 0 || Y < 0 || X > document.documentElement.clientWidth + el.clientWidth) return;\r\n+  if (X < 0 || Y < 0 || X > document.documentElement.clientWidth - el.clientWidth) return;\r\n   console.log(X, Y);\r\n \r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n"
+                },
+                {
+                    "date": 1649685617681,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -85,9 +85,11 @@\n   // } else if (Y > document.documentElement.clientHeight - 10) {\r\n   //   Y = document.documentElement.clientHeight - 10\r\n   // }\r\n \r\n-  if (X < 0 || Y < 0 || X > document.documentElement.clientWidth - el.clientWidth) return;\r\n+  if (X < 0 || Y < 0 ||\r\n+    X > document.documentElement.clientWidth - el.clientWidth\r\n+    || Y > document.documentElement.clientHeight - el.clientHeight) return;\r\n   console.log(X, Y);\r\n \r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n"
+                },
+                {
+                    "date": 1649685664275,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -85,11 +85,11 @@\n   // } else if (Y > document.documentElement.clientHeight - 10) {\r\n   //   Y = document.documentElement.clientHeight - 10\r\n   // }\r\n \r\n-  if (X < 0 || Y < 0 ||\r\n-    X > document.documentElement.clientWidth - el.clientWidth\r\n-    || Y > document.documentElement.clientHeight - el.clientHeight) return;\r\n+  if (X < 0 || Y < 0\r\n+    || X > document.documentElement.clientWidth - el.clientWidth\r\n+    || Y > document.documentElement.clientHeight - el.clientHeight + 60) return;\r\n   console.log(X, Y);\r\n \r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n"
+                },
+                {
+                    "date": 1649685675225,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -87,9 +87,9 @@\n   // }\r\n \r\n   if (X < 0 || Y < 0\r\n     || X > document.documentElement.clientWidth - el.clientWidth\r\n-    || Y > document.documentElement.clientHeight - el.clientHeight + 60) return;\r\n+    || Y > document.documentElement.clientHeight - el.clientHeight - 60) return;\r\n   console.log(X, Y);\r\n \r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n"
+                },
+                {
+                    "date": 1649685757866,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -87,9 +87,12 @@\n   // }\r\n \r\n   if (X < 0 || Y < 0\r\n     || X > document.documentElement.clientWidth - el.clientWidth\r\n-    || Y > document.documentElement.clientHeight - el.clientHeight - 60) return;\r\n+    || Y > document.documentElement.clientHeight - el.clientHeight - 60) {\r\n+    el.style.left = el.style.left + 'px'\r\n+    el.style.top = el.style.top + 'px'\r\n+  }\r\n   console.log(X, Y);\r\n \r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n"
+                },
+                {
+                    "date": 1649685779830,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -90,8 +90,10 @@\n     || X > document.documentElement.clientWidth - el.clientWidth\r\n     || Y > document.documentElement.clientHeight - el.clientHeight - 60) {\r\n     el.style.left = el.style.left + 'px'\r\n     el.style.top = el.style.top + 'px'\r\n+    console.log(el.style.top);\r\n+\r\n   }\r\n   console.log(X, Y);\r\n \r\n   el.style.left = X + 'px'\r\n"
+                },
+                {
+                    "date": 1649685791092,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -93,9 +93,8 @@\n     el.style.top = el.style.top + 'px'\r\n     console.log(el.style.top);\r\n \r\n   }\r\n-  console.log(X, Y);\r\n \r\n   el.style.left = X + 'px'\r\n   el.style.top = Y + 'px'\r\n   // 存储坐标\r\n"
+                },
+                {
+                    "date": 1649685798788,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -88,10 +88,10 @@\n \r\n   if (X < 0 || Y < 0\r\n     || X > document.documentElement.clientWidth - el.clientWidth\r\n     || Y > document.documentElement.clientHeight - el.clientHeight - 60) {\r\n-    el.style.left = el.style.left + 'px'\r\n-    el.style.top = el.style.top + 'px'\r\n+    el.style.left = el.style.left\r\n+    el.style.top = el.style.top\r\n     console.log(el.style.top);\r\n \r\n   }\r\n \r\n"
+                },
+                {
+                    "date": 1649685836849,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -85,10 +85,12 @@\n   // } else if (Y > document.documentElement.clientHeight - 10) {\r\n   //   Y = document.documentElement.clientHeight - 10\r\n   // }\r\n \r\n-  if (X < 0 || Y < 0\r\n-    || X > document.documentElement.clientWidth - el.clientWidth\r\n+  if (X < 0 || Y < 0) {\r\n+\r\n+  }\r\n+  if (X > document.documentElement.clientWidth - el.clientWidth\r\n     || Y > document.documentElement.clientHeight - el.clientHeight - 60) {\r\n     el.style.left = el.style.left\r\n     el.style.top = el.style.top\r\n     console.log(el.style.top);\r\n"
+                },
+                {
+                    "date": 1649685878509,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -93,9 +93,8 @@\n   if (X > document.documentElement.clientWidth - el.clientWidth\r\n     || Y > document.documentElement.clientHeight - el.clientHeight - 60) {\r\n     el.style.left = document.documentElement.clientWidth - el.clientWidth + 'px'\r\n     el.style.top = document.documentElement.clientHeight - el.clientHeight - 60 + 'px'\r\n-    console.log(el.style.top);\r\n \r\n   }\r\n \r\n   el.style.left = X + 'px'\r\n"
+                },
+                {
+                    "date": 1649761358132,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     type: String\r\n   }\r\n })\r\n const data = reactive(props)\r\n-data.title = data.title.split(16)\r\n+data.title = data.title.split\r\n let { w, h } = props\r\n let boxStore = useBox()\r\n \r\n \r\n"
+                }
+            ],
+            "date": 1649580525360,
+            "name": "Commit-0",
+            "content": "<script lang=\"ts\" setup>\r\n\r\n</script>\r\n<template>\r\n  <div></div>\r\n</template>\r\n<style lang=\"less\">\r\n</style>"
+        }
+    ]
+}

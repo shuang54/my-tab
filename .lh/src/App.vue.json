@@ -1,0 +1,122 @@
+{
+    "sourceFile": "src/App.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 26,
+            "patches": [
+                {
+                    "date": 1649480240900,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1649480341359,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,21 +1,9 @@\n <script setup lang=\"ts\">\n // This starter template is using Vue 3 <script setup> SFCs\n // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup\n-import HelloWorld from './components/HelloWorld.vue'\n </script>\n \n-<template>\n-  <img alt=\"Vue logo\" src=\"./assets/logo.png\" />\n-  <HelloWorld msg=\"Hello Vue 3 + TypeScript + Vite\" />\n-</template>\n+<template></template>\n \n <style>\n-#app {\n-  font-family: Avenir, Helvetica, Arial, sans-serif;\n-  -webkit-font-smoothing: antialiased;\n-  -moz-osx-font-smoothing: grayscale;\n-  text-align: center;\n-  color: #2c3e50;\n-  margin-top: 60px;\n-}\n </style>\n"
+                },
+                {
+                    "date": 1649487116516,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,5 @@\n <script setup lang=\"ts\">\n-// This starter template is using Vue 3 <script setup> SFCs\n-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup\n </script>\n \n <template></template>\n \n"
+                },
+                {
+                    "date": 1649487659428,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,14 @@\n <script setup lang=\"ts\">\n </script>\n \n-<template></template>\n+<template>\n+  <div class=\"common-layout\">\n+    <el-container>\n+      <el-header>Header</el-header>\n+      <el-main>Main</el-main>\n+    </el-container>\n+  </div>\n+</template>\n \n <style>\n </style>\n"
+                },
+                {
+                    "date": 1649487751056,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,6 +9,14 @@\n     </el-container>\n   </div>\n </template>\n \n-<style>\n+<style lang=\"less\">\n+.common-layout {\n+  background-color: antiquewhite;\n+  .header {\n+  }\n+  .main {\n+    background-color: pink;\n+  }\n+}\n </style>\n"
+                },
+                {
+                    "date": 1649487767888,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,11 +12,11 @@\n \n <style lang=\"less\">\n .common-layout {\n   background-color: antiquewhite;\n-  .header {\n+  .el-header {\n   }\n-  .main {\n+  .el-main {\n     background-color: pink;\n   }\n }\n </style>\n"
+                },
+                {
+                    "date": 1649488009571,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n </template>\n \n <style lang=\"less\">\n .common-layout {\n+  height: 100%;\n   background-color: antiquewhite;\n   .el-header {\n   }\n   .el-main {\n"
+                },
+                {
+                    "date": 1649488400110,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,11 @@\n   </div>\n </template>\n \n <style lang=\"less\">\n+#app {\n+  height: 100%;\n+}\n .common-layout {\n   height: 100%;\n   background-color: antiquewhite;\n   .el-header {\n"
+                },
+                {
+                    "date": 1649488491669,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,10 +3,10 @@\n \n <template>\n   <div class=\"common-layout\">\n     <el-container>\n-      <el-header>Header</el-header>\n       <el-main>Main</el-main>\n+      <el-footer>footer</el-footer>\n     </el-container>\n   </div>\n </template>\n \n"
+                },
+                {
+                    "date": 1649488501975,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n }\n .common-layout {\n   height: 100%;\n   background-color: antiquewhite;\n-  .el-header {\n+  .el-footer {\n   }\n   .el-main {\n     background-color: pink;\n   }\n"
+                },
+                {
+                    "date": 1649488514753,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,10 +17,11 @@\n .common-layout {\n   height: 100%;\n   background-color: antiquewhite;\n   .el-footer {\n+    background-color: pink;\n+    width: 1600px;\n   }\n   .el-main {\n-    background-color: pink;\n   }\n }\n </style>\n"
+                },
+                {
+                    "date": 1649488544230,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,8 @@\n   height: 100%;\n   background-color: antiquewhite;\n   .el-footer {\n     background-color: pink;\n-    width: 1600px;\n   }\n   .el-main {\n   }\n }\n"
+                },
+                {
+                    "date": 1649488557135,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,11 +16,12 @@\n }\n .common-layout {\n   height: 100%;\n   background-color: antiquewhite;\n+\n+  .el-main {\n+  }\n   .el-footer {\n     background-color: pink;\n   }\n-  .el-main {\n-  }\n }\n </style>\n"
+                },
+                {
+                    "date": 1649488609613,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n <template>\n   <div class=\"common-layout\">\n     <el-container>\n       <el-main>Main</el-main>\n-      <el-footer>footer</el-footer>\n+      <el-footer>Footer</el-footer>\n     </el-container>\n   </div>\n </template>\n \n"
+                },
+                {
+                    "date": 1649488838756,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,10 +18,12 @@\n   height: 100%;\n   background-color: antiquewhite;\n \n   .el-main {\n+    flex: 1;\n   }\n   .el-footer {\n     background-color: pink;\n+    height: 100px;\n   }\n }\n </style>\n"
+                },
+                {
+                    "date": 1649488845671,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n   height: 100%;\n   background-color: antiquewhite;\n \n   .el-main {\n-    flex: 1;\n+    flex-grow: 1;\n   }\n   .el-footer {\n     background-color: pink;\n     height: 100px;\n"
+                },
+                {
+                    "date": 1649488906367,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,8 @@\n   height: 100%;\n   background-color: antiquewhite;\n \n   .el-main {\n-    flex-grow: 1;\n   }\n   .el-footer {\n     background-color: pink;\n     height: 100px;\n"
+                },
+                {
+                    "date": 1649488920644,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,16 +13,18 @@\n <style lang=\"less\">\n #app {\n   height: 100%;\n }\n-.common-layout {\n-  height: 100%;\n-  background-color: antiquewhite;\n+.el-container {\n+  .common-layout {\n+    height: 100%;\n+    background-color: antiquewhite;\n \n-  .el-main {\n+    .el-main {\n+    }\n+    .el-footer {\n+      background-color: pink;\n+      height: 100px;\n+    }\n   }\n-  .el-footer {\n-    background-color: pink;\n-    height: 100px;\n-  }\n }\n </style>\n"
+                },
+                {
+                    "date": 1649488942718,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,10 +13,10 @@\n <style lang=\"less\">\n #app {\n   height: 100%;\n }\n-.el-container {\n-  .common-layout {\n+.common-layout {\n+  .el-container {\n     height: 100%;\n     background-color: antiquewhite;\n \n     .el-main {\n"
+                },
+                {
+                    "date": 1649488982291,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,12 +14,11 @@\n #app {\n   height: 100%;\n }\n .common-layout {\n+  height: 100%;\n+  background-color: antiquewhite;\n   .el-container {\n-    height: 100%;\n-    background-color: antiquewhite;\n-\n     .el-main {\n     }\n     .el-footer {\n       background-color: pink;\n"
+                },
+                {
+                    "date": 1649488997414,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,9 @@\n .common-layout {\n   height: 100%;\n   background-color: antiquewhite;\n   .el-container {\n+    width: 100%;\n     .el-main {\n     }\n     .el-footer {\n       background-color: pink;\n"
+                },
+                {
+                    "date": 1649489065761,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n .common-layout {\n   height: 100%;\n   background-color: antiquewhite;\n   .el-container {\n-    width: 100%;\n+    height: 100%;\n     .el-main {\n     }\n     .el-footer {\n       background-color: pink;\n"
+                },
+                {
+                    "date": 1649489088869,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     .el-main {\n     }\n     .el-footer {\n       background-color: pink;\n-      height: 100px;\n+      height: 60px;\n     }\n   }\n }\n </style>\n"
+                },
+                {
+                    "date": 1649489257244,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,12 +15,12 @@\n   height: 100%;\n }\n .common-layout {\n   height: 100%;\n-  background-color: antiquewhite;\n   .el-container {\n     height: 100%;\n     .el-main {\n+      background-color: antiquewhite;\n     }\n     .el-footer {\n       background-color: pink;\n       height: 60px;\n"
+                },
+                {
+                    "date": 1649489712781,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,9 @@\n   height: 100%;\n }\n .common-layout {\n   height: 100%;\n+  background-color: aqua;\n   .el-container {\n     height: 100%;\n     .el-main {\n       background-color: antiquewhite;\n"
+                },
+                {
+                    "date": 1649489752166,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n   height: 100%;\n }\n .common-layout {\n   height: 100%;\n-  // 设置背景图片\n+  // 设置quan'j背景图片\n   background-color: aqua;\n   .el-container {\n     height: 100%;\n     .el-main {\n"
+                },
+                {
+                    "date": 1649491120581,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,8 @@\n         }\n       }\n     }\n     .el-footer {\n-      background-color: pink;\n       height: 60px;\n       line-height: 60px;\n       align-items: center;\n       .mission-board {\n"
+                }
+            ],
+            "date": 1649480240900,
+            "name": "Commit-0",
+            "content": "<script setup lang=\"ts\">\n// This starter template is using Vue 3 <script setup> SFCs\n// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup\nimport HelloWorld from './components/HelloWorld.vue'\n</script>\n\n<template>\n  <img alt=\"Vue logo\" src=\"./assets/logo.png\" />\n  <HelloWorld msg=\"Hello Vue 3 + TypeScript + Vite\" />\n</template>\n\n<style>\n#app {\n  font-family: Avenir, Helvetica, Arial, sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  text-align: center;\n  color: #2c3e50;\n  margin-top: 60px;\n}\n</style>\n"
+        }
+    ]
+}

@@ -3,11 +3,19 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 2,
             "patches": [
                 {
                     "date": 1649469585748,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1649577297793,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,19 +8,22 @@\n     \"preview\": \"vite preview\"\n   },\n   \"dependencies\": {\n     \"axios\": \"^0.26.1\",\n+    \"element-plus\": \"^2.1.8\",\n     \"less\": \"^4.1.2\",\n     \"pinia\": \"^2.0.13\",\n     \"vue\": \"^3.2.25\",\n     \"vue-router\": \"^4.0.14\"\n   },\n   \"devDependencies\": {\n-    \"unplugin-auto-import\": \"^0.6.1\",\n-    \"unplugin-vue-components\": \"^0.17.21\",\n+    \"@types/lodash\": \"^4.14.181\",\n+    \"@types/lodash-es\": \"^4.17.6\",\n     \"@types/node\": \"^17.0.23\",\n     \"@vitejs/plugin-vue\": \"^2.3.0\",\n     \"typescript\": \"^4.5.4\",\n+    \"unplugin-auto-import\": \"^0.6.9\",\n+    \"unplugin-vue-components\": \"^0.18.5\",\n     \"vite\": \"^2.9.0\",\n     \"vite-plugin-style-import\": \"^2.0.0\",\n     \"vue-tsc\": \"^0.29.8\"\n   }\n"
+                },
+                {
+                    "date": 1649848825887,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,31 @@\n+{\n+  \"name\": \"my-tab\",\n+  \"private\": true,\n+  \"version\": \"0.0.0\",\n+  \"scripts\": {\n+    \"dev\": \"vite\",\n+    \"build\": \"vue-tsc --noEmit && vite build\",\n+    \"preview\": \"vite preview\"\n+  },\n+  \"dependencies\": {\n+    \"axios\": \"^0.26.1\",\n+    \"element-plus\": \"^2.1.8\",\n+    \"less\": \"^4.1.2\",\n+    \"lodash\": \"^4.17.21\",\n+    \"pinia\": \"^2.0.13\",\n+    \"vue\": \"^3.2.25\",\n+    \"vue-router\": \"^4.0.14\"\n+  },\n+  \"devDependencies\": {\n+    \"@types/lodash\": \"^4.14.181\",\n+    \"@types/lodash-es\": \"^4.17.6\",\n+    \"@types/node\": \"^17.0.23\",\n+    \"@vitejs/plugin-vue\": \"^2.3.0\",\n+    \"typescript\": \"^4.5.4\",\n+    \"unplugin-auto-import\": \"^0.6.9\",\n+    \"unplugin-vue-components\": \"^0.18.5\",\n+    \"vite\": \"^2.9.0\",\n+    \"vite-plugin-style-import\": \"^2.0.0\",\n+    \"vue-tsc\": \"^0.29.8\"\n+  }\n+}\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1649469585748,

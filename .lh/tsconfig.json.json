@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 6,
+            "activePatchIndex": 15,
             "patches": [
                 {
                     "date": 1649468437069,
@@ -32,6 +32,42 @@
                 {
                     "date": 1649472412007,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n {\n   \"compilerOptions\": {\n+    \"skipLibCheck\": true,\n     \"typeRoots\": [\n       \"node_modules/@types\", // 默认值\n       // \"src/types\"\n     ],\n"
+                },
+                {
+                    "date": 1649578680495,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,9 @@\n     \"sourceMap\": true,\n     \"resolveJsonModule\": true,\n     \"isolatedModules\": false,\n     \"esModuleInterop\": true,\n+    \"noEmit\": false,\n     \"lib\": [\n       \"esnext\",\n       \"dom\"\n     ]\n"
+                },
+                {
+                    "date": 1649578704977,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     \"sourceMap\": true,\n     \"resolveJsonModule\": true,\n     \"isolatedModules\": false,\n     \"esModuleInterop\": true,\n-    \"noEmit\": false,\n+    \"noImplicitAny\": true,\n     \"lib\": [\n       \"esnext\",\n       \"dom\"\n     ]\n"
+                },
+                {
+                    "date": 1649578714537,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,9 @@\n     \"resolveJsonModule\": true,\n     \"isolatedModules\": false,\n     \"esModuleInterop\": true,\n     \"noImplicitAny\": true,\n+    \"suppressImplicitAnyIndexErrors\": true,\n     \"lib\": [\n       \"esnext\",\n       \"dom\"\n     ]\n"
+                },
+                {
+                    "date": 1649578734010,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,8 @@\n     \"resolveJsonModule\": true,\n     \"isolatedModules\": false,\n     \"esModuleInterop\": true,\n     \"noImplicitAny\": true,\n-    \"suppressImplicitAnyIndexErrors\": true,\n     \"lib\": [\n       \"esnext\",\n       \"dom\"\n     ]\n"
+                },
+                {
+                    "date": 1649578760511,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,9 @@\n     \"resolveJsonModule\": true,\n     \"isolatedModules\": false,\n     \"esModuleInterop\": true,\n     \"noImplicitAny\": true,\n+    \"suppressImplicitAnyIndexErrors\": true,\n     \"lib\": [\n       \"esnext\",\n       \"dom\"\n     ]\n"
+                },
+                {
+                    "date": 1649579659104,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,9 @@\n     \"resolveJsonModule\": true,\n     \"isolatedModules\": false,\n     \"esModuleInterop\": true,\n     \"noImplicitAny\": true,\n+    \"noImplicitThis\": false\n     \"suppressImplicitAnyIndexErrors\": true,\n     \"lib\": [\n       \"esnext\",\n       \"dom\"\n"
+                },
+                {
+                    "date": 1649579774599,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     \"resolveJsonModule\": true,\n     \"isolatedModules\": false,\n     \"esModuleInterop\": true,\n     \"noImplicitAny\": true,\n-    \"noImplicitThis\": false\n+    \"noImplicitThis\": false,\n     \"suppressImplicitAnyIndexErrors\": true,\n     \"lib\": [\n       \"esnext\",\n       \"dom\"\n@@ -26,9 +26,9 @@\n   \"include\": [\n     \"src/**/*.ts\",\n     \"src/**/*.d.ts\",\n     \"src/**/*.tsx\",\n-    \"src/**/*.vue\"\n+    \"src/**/*.vue\",\n   ],\n   \"references\": [\n     {\n       \"path\": \"./tsconfig.node.json\"\n"
+                },
+                {
+                    "date": 1649579801106,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,8 +27,9 @@\n     \"src/**/*.ts\",\n     \"src/**/*.d.ts\",\n     \"src/**/*.tsx\",\n     \"src/**/*.vue\",\n+    \"src/env.d.ts\"\n   ],\n   \"references\": [\n     {\n       \"path\": \"./tsconfig.node.json\"\n"
+                },
+                {
+                    "date": 1649595199737,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     \"sourceMap\": true,\n     \"resolveJsonModule\": true,\n     \"isolatedModules\": false,\n     \"esModuleInterop\": true,\n-    \"noImplicitAny\": true,\n+    \"noImplicitAny\": false,\n     \"noImplicitThis\": false,\n     \"suppressImplicitAnyIndexErrors\": true,\n     \"lib\": [\n       \"esnext\",\n"
                 }
             ],
             "date": 1649468437069,

@@ -1,5 +1,5 @@
 {
-  "name": "a-soul-tab",
+  "name": "my-tab",
   "private": true,
   "version": "0.0.0",
   "scripts": {
@@ -11,6 +11,7 @@
     "axios": "^0.26.1",
     "element-plus": "^2.1.8",
     "less": "^4.1.2",
+    "lodash": "^4.17.21",
     "pinia": "^2.0.13",
     "vue": "^3.2.25",
     "vue-router": "^4.0.14"

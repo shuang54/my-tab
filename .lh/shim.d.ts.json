@@ -1,0 +1,18 @@
+{
+    "sourceFile": "shim.d.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1649578501151,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1649578501151,
+            "name": "Commit-0",
+            "content": "declare module '*.vue' {\r\n  import { ComponentOptions } from 'vue'\r\n  const componentOptions: ComponentOptions\r\n  export default componentOptions\r\n}\r\n"
+        }
+    ]
+}

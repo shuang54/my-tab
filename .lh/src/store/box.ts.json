@@ -1,0 +1,62 @@
+{
+    "sourceFile": "src/store/box.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 11,
+            "patches": [
+                {
+                    "date": 1649682507536,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1649760019299,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,10 @@\n export const useBox = defineStore({\r\n   id: 'box',\r\n   state: () => {\r\n     return {\r\n-      zIndex: 1\r\n+      zIndex: 1,\r\n+\r\n     }\r\n   },\r\n   actions: {\r\n     getzIndex() {\r\n"
+                },
+                {
+                    "date": 1649760045535,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n   id: 'box',\r\n   state: () => {\r\n     return {\r\n       zIndex: 1,\r\n-\r\n+      boxItem: Array[14]\r\n     }\r\n   },\r\n   actions: {\r\n     getzIndex() {\r\n"
+                },
+                {
+                    "date": 1649760114567,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,54 @@\n   id: 'box',\r\n   state: () => {\r\n     return {\r\n       zIndex: 1,\r\n-      boxItem: Array[14]\r\n+      boxItem: [\r\n+        {\r\n+          \"title\": \"npm仓库\",\r\n+          \"uuid\": \"5fcfb221d915e4341c1e069f14a1b945\",\r\n+          \"bgType\": \"image\",\r\n+          \"bgImage\": \"https://infinitypro-img.infinitynewtab.com/custom-icon/8001dsbqela58muqk5ak6f3kamwxqe.png\",\r\n+          \"updatetime\": 1649599020505,\r\n+          \"id\": \"siteId-1fjg5riks7kwo6q5z2rvwrdblv0\",\r\n+          \"target\": \"https://www.npmjs.com/\",\r\n+          \"type\": \"web\",\r\n+          \"bgColor\": \"rgba(255,207,12,1)\",\r\n+          \"bgFont\": 30,\r\n+          \"bgText\": \"npm\",\r\n+          \"bgColorImage\": null\r\n+        },\r\n+        {\r\n+          \"title\": \"GitHub\",\r\n+          \"uuid\": \"3290568f329ecd28a1601b98351d2040\",\r\n+          \"bgType\": \"image\",\r\n+          \"bgImage\": \"https://infinitypro-img.infinitynewtab.com/custom-icon/8001d6cdj6onpg3jt270bpgx0hd029.png\",\r\n+          \"updatetime\": 1635851916974,\r\n+          \"id\": \"siteId-1fjg5ullepy4cfzy6za4wf0h1kf\",\r\n+          \"target\": \"https://github.com/\",\r\n+          \"type\": \"web\"\r\n+        },\r\n+        {\r\n+          \"name\": \"Vue.js\",\r\n+          \"uuid\": \"61bee01d513b4e844394b85b38b01a3e\",\r\n+          \"bgType\": \"image\",\r\n+          \"bgImage\": \"https://infinitypro-img.infinitynewtab.com/custom-icon/8001cvf0f1jgiy3d82acwiqxwb9wdi.png\",\r\n+          \"updatetime\": 1636034500242,\r\n+          \"id\": \"siteId-1fjlk2lki7nu2o2x1i5ytii9o6z\",\r\n+          \"target\": \"https://cn.vuejs.org/\",\r\n+          \"type\": \"web\"\r\n+        },\r\n+        {\r\n+          \"name\": \"Stack Overflow - Where Developers Learn, Share, & Build Careers\",\r\n+          \"uuid\": \"43e54a82b30dbf7d3e2ee8cfe537c849\",\r\n+          \"bgType\": \"image\",\r\n+          \"bgImage\": \"https://infinityicon.infinitynewtab.com/user-share-icon/43e54a82b30dbf7d3e2ee8cfe537c849.png\",\r\n+          \"updatetime\": 1636183457101,\r\n+          \"id\": \"siteId-1fjq24faedg649wxgk0qtg1wfvo\",\r\n+          \"target\": \"https://stackoverflow.com/\",\r\n+          \"type\": \"web\"\r\n+        },\r\n+      ]\r\n     }\r\n   },\r\n   actions: {\r\n     getzIndex() {\r\n"
+                },
+                {
+                    "date": 1649760462037,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,12 +9,10 @@\n           \"title\": \"npm仓库\",\r\n           \"uuid\": \"5fcfb221d915e4341c1e069f14a1b945\",\r\n           \"bgType\": \"image\",\r\n           \"bgImage\": \"https://infinitypro-img.infinitynewtab.com/custom-icon/8001dsbqela58muqk5ak6f3kamwxqe.png\",\r\n-          \"updatetime\": 1649599020505,\r\n           \"id\": \"siteId-1fjg5riks7kwo6q5z2rvwrdblv0\",\r\n           \"target\": \"https://www.npmjs.com/\",\r\n-          \"type\": \"web\",\r\n           \"bgColor\": \"rgba(255,207,12,1)\",\r\n           \"bgFont\": 30,\r\n           \"bgText\": \"npm\",\r\n           \"bgColorImage\": null\r\n@@ -29,9 +27,9 @@\n           \"target\": \"https://github.com/\",\r\n           \"type\": \"web\"\r\n         },\r\n         {\r\n-          \"name\": \"Vue.js\",\r\n+          \"title\": \"Vue.js\",\r\n           \"uuid\": \"61bee01d513b4e844394b85b38b01a3e\",\r\n           \"bgType\": \"image\",\r\n           \"bgImage\": \"https://infinitypro-img.infinitynewtab.com/custom-icon/8001cvf0f1jgiy3d82acwiqxwb9wdi.png\",\r\n           \"updatetime\": 1636034500242,\r\n@@ -39,9 +37,9 @@\n           \"target\": \"https://cn.vuejs.org/\",\r\n           \"type\": \"web\"\r\n         },\r\n         {\r\n-          \"name\": \"Stack Overflow - Where Developers Learn, Share, & Build Careers\",\r\n+          \"title\": \"Stack Overflow - Where Developers Learn, Share, & Build Careers\",\r\n           \"uuid\": \"43e54a82b30dbf7d3e2ee8cfe537c849\",\r\n           \"bgType\": \"image\",\r\n           \"bgImage\": \"https://infinityicon.infinitynewtab.com/user-share-icon/43e54a82b30dbf7d3e2ee8cfe537c849.png\",\r\n           \"updatetime\": 1636183457101,\r\n"
+                },
+                {
+                    "date": 1649760493312,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,11 @@\n           \"target\": \"https://www.npmjs.com/\",\r\n           \"bgColor\": \"rgba(255,207,12,1)\",\r\n           \"bgFont\": 30,\r\n           \"bgText\": \"npm\",\r\n-          \"bgColorImage\": null\r\n+          \"bgColorImage\": null,\r\n+          \"w\": 1,\r\n+          \"h\": 1,\r\n         },\r\n         {\r\n           \"title\": \"GitHub\",\r\n           \"uuid\": \"3290568f329ecd28a1601b98351d2040\",\r\n"
+                },
+                {
+                    "date": 1649760505728,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n           \"bgFont\": 30,\r\n           \"bgText\": \"npm\",\r\n           \"bgColorImage\": null,\r\n           \"w\": 1,\r\n-          \"h\": 1,\r\n+          \"h\": 1\r\n         },\r\n         {\r\n           \"title\": \"GitHub\",\r\n           \"uuid\": \"3290568f329ecd28a1601b98351d2040\",\r\n@@ -26,9 +26,11 @@\n           \"bgImage\": \"https://infinitypro-img.infinitynewtab.com/custom-icon/8001d6cdj6onpg3jt270bpgx0hd029.png\",\r\n           \"updatetime\": 1635851916974,\r\n           \"id\": \"siteId-1fjg5ullepy4cfzy6za4wf0h1kf\",\r\n           \"target\": \"https://github.com/\",\r\n-          \"type\": \"web\"\r\n+          \"type\": \"web\",\r\n+          \"w\": 1,\r\n+          \"h\": 1\r\n         },\r\n         {\r\n           \"title\": \"Vue.js\",\r\n           \"uuid\": \"61bee01d513b4e844394b85b38b01a3e\",\r\n@@ -37,8 +39,10 @@\n           \"updatetime\": 1636034500242,\r\n           \"id\": \"siteId-1fjlk2lki7nu2o2x1i5ytii9o6z\",\r\n           \"target\": \"https://cn.vuejs.org/\",\r\n           \"type\": \"web\"\r\n+          , \"w\": 1,\r\n+          \"h\": 1\r\n         },\r\n         {\r\n           \"title\": \"Stack Overflow - Where Developers Learn, Share, & Build Careers\",\r\n           \"uuid\": \"43e54a82b30dbf7d3e2ee8cfe537c849\",\r\n"
+                },
+                {
+                    "date": 1649760527032,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,11 @@\n           \"bgImage\": \"https://infinityicon.infinitynewtab.com/user-share-icon/43e54a82b30dbf7d3e2ee8cfe537c849.png\",\r\n           \"updatetime\": 1636183457101,\r\n           \"id\": \"siteId-1fjq24faedg649wxgk0qtg1wfvo\",\r\n           \"target\": \"https://stackoverflow.com/\",\r\n-          \"type\": \"web\"\r\n+          \"type\": \"web\",\r\n+          \"w\": 1,\r\n+          \"h\": 1\r\n         },\r\n       ]\r\n     }\r\n   },\r\n"
+                },
+                {
+                    "date": 1649764106536,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,8 +61,9 @@\n   actions: {\r\n     getzIndex() {\r\n       this.zIndex += 1\r\n       return this.zIndex\r\n-    }\r\n+    },\r\n+    setBoxItem() { }\r\n   }\r\n \r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649764390311,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,8 +62,9 @@\n     getzIndex() {\r\n       this.zIndex += 1\r\n       return this.zIndex\r\n     },\r\n-    setBoxItem() { }\r\n+    setBoxItemX(X) { this.boxItem.},\r\n+    setBoxItemY() { }\r\n   }\r\n \r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649764488193,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,9 +62,9 @@\n     getzIndex() {\r\n       this.zIndex += 1\r\n       return this.zIndex\r\n     },\r\n-    setBoxItemX(X) { this.boxItem.},\r\n-    setBoxItemY() { }\r\n+    setBoxItemX(i, X) { this.boxItem[i].X = X },\r\n+    setBoxItemY(i, Y) { this.boxItem[i].Y = Y }\r\n   }\r\n \r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649852286765,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n         {\r\n           \"title\": \"GitHub\",\r\n           \"uuid\": \"3290568f329ecd28a1601b98351d2040\",\r\n           \"bgType\": \"image\",\r\n-          \"bgImage\": \"https://infinitypro-img.infinitynewtab.com/custom-icon/8001d6cdj6onpg3jt270bpgx0hd029.png\",\r\n+          \"bgImage\": \"https://files.codelife.cc/website/codepen.svg\",\r\n           \"updatetime\": 1635851916974,\r\n           \"id\": \"siteId-1fjg5ullepy4cfzy6za4wf0h1kf\",\r\n           \"target\": \"https://github.com/\",\r\n           \"type\": \"web\",\r\n"
+                }
+            ],
+            "date": 1649682507536,
+            "name": "Commit-0",
+            "content": "import { defineStore } from \"pinia\";\r\nexport const useBox = defineStore({\r\n  id: 'box',\r\n  state: () => {\r\n    return {\r\n      zIndex: 1\r\n    }\r\n  },\r\n  actions: {\r\n    getzIndex() {\r\n      this.zIndex += 1\r\n      return this.zIndex\r\n    }\r\n  }\r\n\r\n})"
+        }
+    ]
+}

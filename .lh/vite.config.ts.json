@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 11,
+            "activePatchIndex": 13,
             "patches": [
                 {
                     "date": 1649468462673,
@@ -52,6 +52,14 @@
                 {
                     "date": 1649469876034,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n import vue from '@vitejs/plugin-vue';\n import * as path from 'path';\n import AutoImport from 'unplugin-auto-import/vite'\n import Components from 'unplugin-vue-components/vite'\n+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'\n // https://vitejs.dev/config/\n export default defineConfig({\n   resolve: {\n     //设置别名\n"
+                },
+                {
+                    "date": 1649577276563,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,20 @@\n import { defineConfig } from 'vite';\n import vue from '@vitejs/plugin-vue';\n-import * as path from 'path';\n+import { resolve } from 'path';\n import AutoImport from 'unplugin-auto-import/vite'\n import Components from 'unplugin-vue-components/vite'\n import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'\n // https://vitejs.dev/config/\n export default defineConfig({\n   resolve: {\n     //设置别名\n-    alias: {\n-      '@': path.resolve(__dirname, 'src')\n-    }\n+    alias: [\n+      {\n+        find: '@',\n+        replacement: resolve(__dirname, 'src')\n+      }\n+    ]\n   },\n   plugins: [vue(),\n   AutoImport({\n     resolvers: [ElementPlusResolver()],\n"
+                },
+                {
+                    "date": 1649577291059,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { defineConfig } from 'vite';\n import vue from '@vitejs/plugin-vue';\n-import { resolve } from 'path';\n+const { resolve } = require('path')\n import AutoImport from 'unplugin-auto-import/vite'\n import Components from 'unplugin-vue-components/vite'\n import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'\n // https://vitejs.dev/config/\n"
                 }
             ],
             "date": 1649468462673,
