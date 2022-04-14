@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/utils/func.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1649935804527,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1649935869985,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,4 +4,26 @@\n     if (timeoutID != null) clearTimeout(timeoutID)\r\n     timeoutID = setTimeout(fn, wait)\r\n   }\r\n }\r\n+// fn是我们需要包装的事件回调, interval是时间间隔的阈值\r\n+export function throttle(fn, interval) {\r\n+  // last为上一次触发回调的时间\r\n+  let last = 0\r\n+\r\n+  // 将throttle处理结果当作函数返回\r\n+  return function () {\r\n+    // 保留调用时的this上下文\r\n+    let context = this\r\n+    // 保留调用时传入的参数\r\n+    let args = arguments\r\n+    // 记录本次触发回调的时间\r\n+    let now = +new Date()\r\n+\r\n+    // 判断上次触发的时间和本次触发的时间差是否小于时间间隔的阈值\r\n+    if (now - last >= interval) {\r\n+      // 如果时间间隔大于我们设定的时间间隔阈值，则执行回调\r\n+      last = now;\r\n+      fn.apply(context, args);\r\n+    }\r\n+  }\r\n+}\r\n"
+                }
+            ],
+            "date": 1649935804527,
+            "name": "Commit-0",
+            "content": "export function debounce(fn, wait) {\r\n  let timeoutID\r\n  return function () {\r\n    if (timeoutID != null) clearTimeout(timeoutID)\r\n    timeoutID = setTimeout(fn, wait)\r\n  }\r\n}\r\n"
+        }
+    ]
+}

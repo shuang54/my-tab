@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 88,
+            "activePatchIndex": 90,
             "patches": [
                 {
                     "date": 1649582189419,
@@ -360,6 +360,14 @@
                 {
                     "date": 1649857975833,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -66,9 +66,9 @@\n \r\n <template>\r\n   <div class=\"box-grid\">\r\n     <BoxItem v-for=\"item, i in boxItem\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :title=\"item.title\"\r\n-      :bgImage=\"item.bgImage\" :target=\"item.target\" :i=\"i\" :x=\"item.x\" :y=\"item.y\">\r\n+      :bgImage=\"item.bgImage\" :target=\"item.target\" :i=\"i\" :x=\"item.X\" :y=\"item.Y\">\r\n     </BoxItem>\r\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n"
+                },
+                {
+                    "date": 1649932640487,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,8 @@\n \r\n   localStorage.setItem('boxItemData', JSON.stringify(boxItem))\r\n \r\n })\r\n-console.log(boxItem);\r\n \r\n //如果没有从本地获取数据，那么从发送请求获取数据\r\n if (boxItem == '') {\r\n }\r\n"
+                },
+                {
+                    "date": 1649941732481,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,9 +65,9 @@\n \r\n <template>\r\n   <div class=\"box-grid\">\r\n     <BoxItem v-for=\"item, i in boxItem\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :title=\"item.title\"\r\n-      :bgImage=\"item.bgImage\" :target=\"item.target\" :i=\"i\" :x=\"item.X\" :y=\"item.Y\">\r\n+      :bgImage=\"item.bgImage\" :target=\"item.target\" :i=\"i\" :x=\"item.X\" :y=\"item.Y\" :id=\"item.id\">\r\n     </BoxItem>\r\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n"
                 }
             ],
             "date": 1649582189419,

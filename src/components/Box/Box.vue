@@ -11,7 +11,6 @@ watch(boxItem, (nVal, oVal) => {
   localStorage.setItem('boxItemData', JSON.stringify(boxItem))
 
 })
-console.log(boxItem);
 
 //如果没有从本地获取数据，那么从发送请求获取数据
 if (boxItem == '') {
@@ -67,7 +66,7 @@ function throttle(fn, interval) {
 <template>
   <div class="box-grid">
     <BoxItem v-for="item, i in boxItem" :key="item.id" :w="item.w" :h="item.h" :title="item.title"
-      :bgImage="item.bgImage" :target="item.target" :i="i" :x="item.X" :y="item.Y">
+      :bgImage="item.bgImage" :target="item.target" :i="i" :x="item.X" :y="item.Y" :id="item.id">
     </BoxItem>
   </div>
 </template>
