@@ -30,6 +30,7 @@ const props = defineProps({
   y: { default: 0, type: Number },
   id: { default: '', type: String }
 })
+// 对于标题超过13个字符的进行过滤
 let ititle = computed(() => {
   if (props.title.length > 13) {
     return props.title.slice(0, 16) + '...'
@@ -42,21 +43,26 @@ let boxItemData = boxStore.boxItem
 
 let item: any = ref(null)
 let zIndex: any = 1;
+// 存储item document对象
 let el
 
-let option = { 'top': props.x + 'px', 'left': props.y + 'px' }
+let option = { 'top': props.y + 'px', 'left': props.x + 'px' }
 // 点击的位置
 let x = 0
 let y = 0
 //定时器
 let timerOurEvent: any = 0
 onMounted(() => {
+  // 通过ref获取document对象
   el = item.value
   init()
 })
 //初始化
 function init() {
+  // 设置样式
   setEleStyle(option || {});
+
+  // 给元素添加 鼠标按下 事件
   el.onmousedown = (e) => {
     onMouseDown(e)
     el.setCapture && el.setCapture() //全局捕获
@@ -71,8 +77,11 @@ function setEleStyle(option) {
 }
 //按下item
 function onMouseDown(e) {
+  // 给当前按下的item设置zIndex
   zIndex = boxStore.getzIndex()
   setEleStyle({ "zIndex": zIndex, position: 'fixed', 'cursor': 'move' })
+  // 通过点击的坐标  减去  item与界面的坐标
+  // 获取鼠标点击位置与item的距离
   x = e.clientX - el.offsetLeft;
   y = e.clientY - el.offsetTop;
   window.document.onmousemove = (e) => { onMouseMove(e); }
@@ -80,10 +89,10 @@ function onMouseDown(e) {
 }
 let left, top
 //移动item
-let moveItem = throttle(() => {
-  el.style.left = left + 'px'
-  el.style.top = top + 'px'
-}, 16)
+// let moveItem = throttle(() => {
+//   el.style.left = left + 'px'
+//   el.style.top = top + 'px'
+// }, 16)
 //移动move
 function onMouseMove(e) {
   let X = e.clientX - x
@@ -104,8 +113,9 @@ function onMouseMove(e) {
     top = document.documentElement.clientHeight - el.clientHeight - 60
   }
   //移动item
-  moveItem()
-
+  // moveItem()
+  el.style.left = left + 'px'
+  el.style.top = top + 'px'
 }
 //释放
 function onMouseUp(e) {
@@ -126,29 +136,35 @@ function onMouseUp(e) {
 function doNotStask() {
   let flag = true
   for (let i = 0; i < boxItemData.length; i++) {
+
     if (boxItemData[i].id == props.id) {
       continue
     }
-    if (boxItemData[i].X == top && boxItemData[i].Y == left) {
+
+
+    if (boxItemData[i].X == left && boxItemData[i].Y == top) {
       flag = false
       break;
     } else {
       flag = true
     }
   }
+  console.log(props.i);
 
+  // 当flag为true表示可以在当前位置存放坐标
   if (flag) {
     el.style.left = left + 'px'
     el.style.top = top + 'px'
     // 存储坐标
-    boxStore.setBoxItemX(props.i, top)
-    boxStore.setBoxItemY(props.i, left)
+    boxStore.setBoxItemXY(props.i, left, top)
   } else {
-    el.style.left = boxItemData[props.i].Y + 'px'
-    el.style.top = boxItemData[props.i].X + 'px'
-  }
+    // 回到原来存储的位置
+    el.style.left = boxItemData[props.i].X + 'px'
+    el.style.top = boxItemData[props.i].Y + 'px'
 
+  }
 }
+
 // 双击item跳转到对应网站
 const dblClickItem = () => {
   window.location.href = props.target
@@ -166,7 +182,6 @@ const dblClickItem = () => {
 </template>
 <style lang="less" scoped>
 .item {
-  cursor: not-allowed;
   position: absolute;
   top: 0;
   left: 0;

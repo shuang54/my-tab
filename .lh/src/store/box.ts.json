@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 15,
+            "activePatchIndex": 16,
             "patches": [
                 {
                     "date": 1649682507536,
@@ -68,6 +68,10 @@
                 {
                     "date": 1649857561777,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n   id: 'box',\r\n   state: () => {\r\n     return {\r\n       zIndex: 1,\r\n-      boxItem: JSON.parse(window.localStorage.getItem('boxItemData') || '')\r\n+      boxItem: JSON.parse(window.localStorage.getItem('boxItemData') || ''),\r\n       // boxItem: [\r\n       //   {\r\n       //     \"title\": \"npm仓库\",\r\n       //     \"uuid\": \"5fcfb221d915e4341c1e069f14a1b945\",\r\n"
+                },
+                {
+                    "date": 1650015530112,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,9 +63,10 @@\n     getzIndex() {\r\n       this.zIndex += 1\r\n       return this.zIndex\r\n     },\r\n-    setBoxItemX(i, X) { this.boxItem[i].X = X },\r\n-    setBoxItemY(i, Y) { this.boxItem[i].Y = Y }\r\n+    setBoxItemXY(i, X, Y) {\r\n+      this.boxItem[i].X = X, this.boxItem[i].Y = Y\r\n+    },\r\n   }\r\n \r\n })\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1649682507536,

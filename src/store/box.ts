@@ -64,8 +64,9 @@ export const useBox = defineStore({
       this.zIndex += 1
       return this.zIndex
     },
-    setBoxItemX(i, X) { this.boxItem[i].X = X },
-    setBoxItemY(i, Y) { this.boxItem[i].Y = Y }
+    setBoxItemXY(i, X, Y) {
+      this.boxItem[i].X = X, this.boxItem[i].Y = Y
+    },
   }
 
 })

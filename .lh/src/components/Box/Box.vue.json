@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 90,
+            "activePatchIndex": 129,
             "patches": [
                 {
                     "date": 1649582189419,
@@ -368,6 +368,162 @@
                 {
                     "date": 1649941732481,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,9 +65,9 @@\n \r\n <template>\r\n   <div class=\"box-grid\">\r\n     <BoxItem v-for=\"item, i in boxItem\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :title=\"item.title\"\r\n-      :bgImage=\"item.bgImage\" :target=\"item.target\" :i=\"i\" :x=\"item.X\" :y=\"item.Y\">\r\n+      :bgImage=\"item.bgImage\" :target=\"item.target\" :i=\"i\" :x=\"item.X\" :y=\"item.Y\" :id=\"item.id\">\r\n     </BoxItem>\r\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n"
+                },
+                {
+                    "date": 1650015923218,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,33 @@\n+<script lang=\"ts\" setup>\r\n+import { reactive, watch } from 'vue'\r\n+import BoxItem from '../BoxItem/BoxItem.vue';\r\n+import { useBox } from '../../store/box';\r\n+\r\n+const boxStore = useBox()\r\n+let boxItem = reactive(boxStore.boxItem)\r\n+\r\n+watch(boxItem, (nVal, oVal) => {\r\n+\r\n+  localStorage.setItem('boxItemData', JSON.stringify(boxItem))\r\n+\r\n+})\r\n+\r\n+//如果没有从本地获取数据，那么从发送请求获取数据\r\n+if (boxItem == '') {\r\n+}\r\n+\r\n+</script>\r\n+\r\n+<template>\r\n+  <div class=\"box-grid\">\r\n+    <BoxItem v-for=\"item, i in boxItem\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :title=\"item.title\"\r\n+      :bgImage=\"item.bgImage\" :target=\"item.target\" :i=\"i\" :x=\"item.X\" :y=\"item.Y\" :id=\"item.id\">\r\n+    </BoxItem>\r\n+  </div>\r\n+</template>\r\n+<style lang=\"less\">\r\n+.box-grid {\r\n+  height: 100%;\r\n+  position: relative;\r\n+}\r\n+</style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650016229801,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,103 +3,37 @@\n import BoxItem from '../BoxItem/BoxItem.vue';\r\n import { useBox } from '../../store/box';\r\n \r\n const boxStore = useBox()\r\n-let boxItem = reactive(boxStore.boxItem)\r\n+let boxItemData = reactive(boxStore.boxItem)\r\n \r\n-watch(boxItem, (nVal, oVal) => {\r\n+watch(boxItemData, (nVal, oVal) => {\r\n \r\n-  localStorage.setItem('boxItemData', JSON.stringify(boxItem))\r\n+  localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n \r\n })\r\n \r\n-//如果没有从本地获取数据，那么从发送请求获取数据\r\n-if (boxItem == '') {\r\n-}\r\n \r\n-</script>\r\n-\r\n-<template>\r\n-  <div class=\"box-grid\">\r\n-    <BoxItem v-for=\"item, i in boxItem\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :title=\"item.title\"\r\n-      :bgImage=\"item.bgImage\" :target=\"item.target\" :i=\"i\" :x=\"item.X\" :y=\"item.Y\" :id=\"item.id\">\r\n-    </BoxItem>\r\n-  </div>\r\n-</template>\r\n-<style lang=\"less\">\r\n-.box-grid {\r\n-  height: 100%;\r\n-  position: relative;\r\n-}\r\n-</style>\n-<script lang=\"ts\" setup>\r\n-import { reactive, watch } from 'vue'\r\n-import BoxItem from '../BoxItem/BoxItem.vue';\r\n-import { useBox } from '../../store/box';\r\n-\r\n-const boxStore = useBox()\r\n-let boxItem = reactive(boxStore.boxItem)\r\n-\r\n-watch(boxItem, (nVal, oVal) => {\r\n-\r\n-  localStorage.setItem('boxItemData', JSON.stringify(boxItem))\r\n-\r\n-})\r\n-\r\n //如果没有从本地获取数据，那么从发送请求获取数据\r\n-if (boxItem == '') {\r\n+if (boxItemData == '') {\r\n }\r\n \r\n-// fn是我们需要包装的事件回调, delay是每次推迟执行的等待时间\r\n-const debounce = (fn, delay) => {\r\n-  // 定时器\r\n-  let timer: any = null\r\n+// 对item进行排序\r\n+function defaultSorting() {\r\n+  const interval = 100\r\n+  boxItemData.forEach((element, i) => {\r\n+    console.log(i);\r\n \r\n-  // 将debounce处理结果当作函数返回\r\n-  return function () {\r\n-    // 保留调用时的this上下文\r\n-    let context = this\r\n-    // 保留调用时传入的参数\r\n-    let args = arguments\r\n+  });\r\n \r\n-    // 每次事件被触发时，都去清除之前的旧定时器\r\n-    if (timer) {\r\n-      clearTimeout(timer)\r\n-    }\r\n-    // 设立新定时器\r\n-    timer = setTimeout(function () {\r\n-      fn.apply(context, args)\r\n-    }, delay)\r\n-  }\r\n }\r\n-\r\n-// fn是我们需要包装的事件回调, interval是时间间隔的阈值\r\n-function throttle(fn, interval) {\r\n-  // last为上一次触发回调的时间\r\n-  let last = 0\r\n-\r\n-  // 将throttle处理结果当作函数返回\r\n-  return function () {\r\n-    // 保留调用时的this上下文\r\n-    let context = this\r\n-    // 保留调用时传入的参数\r\n-    let args = arguments\r\n-    // 记录本次触发回调的时间\r\n-    let now = +new Date()\r\n-\r\n-    // 判断上次触发的时间和本次触发的时间差是否小于时间间隔的阈值\r\n-    if (now - last >= interval) {\r\n-      // 如果时间间隔大于我们设定的时间间隔阈值，则执行回调\r\n-      last = now;\r\n-      fn.apply(context, args);\r\n-    }\r\n-  }\r\n-}\r\n+// 调用默认排序方法\r\n+defaultSorting()\r\n </script>\r\n \r\n <template>\r\n   <div class=\"box-grid\">\r\n-    <BoxItem v-for=\"item, i in boxItem\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :title=\"item.title\"\r\n+    <BoxItem v-for=\"item, i in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :title=\"item.title\"\r\n       :bgImage=\"item.bgImage\" :target=\"item.target\" :i=\"i\" :x=\"item.X\" :y=\"item.Y\" :id=\"item.id\">\r\n     </BoxItem>\r\n   </div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1650016243315,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,19 +16,8 @@\n //如果没有从本地获取数据，那么从发送请求获取数据\r\n if (boxItemData == '') {\r\n }\r\n \r\n-// 对item进行排序\r\n-function defaultSorting() {\r\n-  const interval = 100\r\n-  boxItemData.forEach((element, i) => {\r\n-    console.log(i);\r\n-\r\n-  });\r\n-\r\n-}\r\n-// 调用默认排序方法\r\n-defaultSorting()\r\n </script>\r\n \r\n <template>\r\n   <div class=\"box-grid\">\r\n"
+                },
+                {
+                    "date": 1650016263320,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,19 @@\n //如果没有从本地获取数据，那么从发送请求获取数据\r\n if (boxItemData == '') {\r\n }\r\n \r\n+// 对item进行排序\r\n+function defaultSorting() {\r\n+  const interval = 100\r\n+  boxItemData.forEach((element, i) => {\r\n+    console.log(i);\r\n+\r\n+  });\r\n+\r\n+}\r\n+// 调用默认排序方法\r\n+defaultSorting()\r\n </script>\r\n \r\n <template>\r\n   <div class=\"box-grid\">\r\n"
+                },
+                {
+                    "date": 1650016430825,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,8 @@\n // 对item进行排序\r\n function defaultSorting() {\r\n   const interval = 100\r\n   boxItemData.forEach((element, i) => {\r\n-    console.log(i);\r\n \r\n   });\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1650016472424,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,9 @@\n if (boxItemData == '') {\r\n }\r\n \r\n // 对item进行排序\r\n+// 获取box的\r\n function defaultSorting() {\r\n   const interval = 100\r\n   boxItemData.forEach((element, i) => {\r\n \r\n@@ -29,9 +30,9 @@\n defaultSorting()\r\n </script>\r\n \r\n <template>\r\n-  <div class=\"box-grid\">\r\n+  <div ref=\"box\" class=\"box-grid\">\r\n     <BoxItem v-for=\"item, i in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :title=\"item.title\"\r\n       :bgImage=\"item.bgImage\" :target=\"item.target\" :i=\"i\" :x=\"item.X\" :y=\"item.Y\" :id=\"item.id\">\r\n     </BoxItem>\r\n   </div>\r\n"
+                },
+                {
+                    "date": 1650016555620,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <script lang=\"ts\" setup>\r\n-import { reactive, watch } from 'vue'\r\n+import { reactive, watch, ref, onMounted } from 'vue'\r\n import BoxItem from '../BoxItem/BoxItem.vue';\r\n import { useBox } from '../../store/box';\r\n \r\n const boxStore = useBox()\r\n@@ -17,9 +17,13 @@\n if (boxItemData == '') {\r\n }\r\n \r\n // 对item进行排序\r\n-// 获取box的\r\n+// 获取box元素\r\n+const box = ref(null)\r\n+onMounted(() = {\r\n+\r\n+})\r\n function defaultSorting() {\r\n   const interval = 100\r\n   boxItemData.forEach((element, i) => {\r\n \r\n"
+                },
+                {
+                    "date": 1650016585676,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n \r\n // 对item进行排序\r\n // 获取box元素\r\n const box = ref(null)\r\n-onMounted(() = {\r\n+onMounted(() => {\r\n \r\n })\r\n function defaultSorting() {\r\n   const interval = 100\r\n"
+                },
+                {
+                    "date": 1650016590911,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,9 @@\n // 对item进行排序\r\n // 获取box元素\r\n const box = ref(null)\r\n onMounted(() => {\r\n+  console.log(box.value);\r\n \r\n })\r\n function defaultSorting() {\r\n   const interval = 100\r\n"
+                },
+                {
+                    "date": 1650016618077,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n // 对item进行排序\r\n // 获取box元素\r\n const box = ref(null)\r\n onMounted(() => {\r\n-  console.log(box.value);\r\n+  console.log(box.value.style.top);\r\n \r\n })\r\n function defaultSorting() {\r\n   const interval = 100\r\n"
+                },
+                {
+                    "date": 1650016623976,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n }\r\n \r\n // 对item进行排序\r\n // 获取box元素\r\n-const box = ref(null)\r\n+const box: any = ref(null)\r\n onMounted(() => {\r\n   console.log(box.value.style.top);\r\n \r\n })\r\n"
+                },
+                {
+                    "date": 1650016631032,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n // 对item进行排序\r\n // 获取box元素\r\n const box: any = ref(null)\r\n onMounted(() => {\r\n-  console.log(box.value.style.top);\r\n+  console.log(box.value.style);\r\n \r\n })\r\n function defaultSorting() {\r\n   const interval = 100\r\n"
+                },
+                {
+                    "date": 1650016813396,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n // 对item进行排序\r\n // 获取box元素\r\n const box: any = ref(null)\r\n onMounted(() => {\r\n-  console.log(box.value.style);\r\n+  console.log(box.value.style.offsetWith);\r\n \r\n })\r\n function defaultSorting() {\r\n   const interval = 100\r\n"
+                },
+                {
+                    "date": 1650016835831,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n // 对item进行排序\r\n // 获取box元素\r\n const box: any = ref(null)\r\n onMounted(() => {\r\n-  console.log(box.value.style.offsetWith);\r\n+  console.log(box.value.offsetWidth);\r\n \r\n })\r\n function defaultSorting() {\r\n   const interval = 100\r\n"
+                },
+                {
+                    "date": 1650016874509,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n // 对item进行排序\r\n // 获取box元素\r\n const box: any = ref(null)\r\n onMounted(() => {\r\n-  console.log(box.value.offsetWidth);\r\n+  console.log(box.value.offsetHeight);\r\n \r\n })\r\n function defaultSorting() {\r\n   const interval = 100\r\n"
+                },
+                {
+                    "date": 1650016959022,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,12 @@\n // 对item进行排序\r\n // 获取box元素\r\n const box: any = ref(null)\r\n onMounted(() => {\r\n-  console.log(box.value.offsetHeight);\r\n+  // 获取box的宽高\r\n+  let offsetHeight = box.value.offsetHeight\r\n+  let offsetWidth = box.value.offsetWidth\r\n+  console.log(offsetHeight, offsetWidth);\r\n \r\n })\r\n function defaultSorting() {\r\n   const interval = 100\r\n"
+                },
+                {
+                    "date": 1650016995115,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,14 +19,15 @@\n \r\n // 对item进行排序\r\n // 获取box元素\r\n const box: any = ref(null)\r\n+// 定义box的宽高\r\n+let offsetHeight\r\n+let offsetWidth\r\n onMounted(() => {\r\n   // 获取box的宽高\r\n-  let offsetHeight = box.value.offsetHeight\r\n-  let offsetWidth = box.value.offsetWidth\r\n-  console.log(offsetHeight, offsetWidth);\r\n-\r\n+  offsetHeight = box.value.offsetHeight\r\n+  offsetWidth = box.value.offsetWidth\r\n })\r\n function defaultSorting() {\r\n   const interval = 100\r\n   boxItemData.forEach((element, i) => {\r\n"
+                },
+                {
+                    "date": 1650017015412,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,10 +22,10 @@\n const box: any = ref(null)\r\n // 定义box的宽高\r\n let offsetHeight\r\n let offsetWidth\r\n+// 获取box的宽高\r\n onMounted(() => {\r\n-  // 获取box的宽高\r\n   offsetHeight = box.value.offsetHeight\r\n   offsetWidth = box.value.offsetWidth\r\n })\r\n function defaultSorting() {\r\n"
+                },
+                {
+                    "date": 1650017163742,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,12 @@\n })\r\n function defaultSorting() {\r\n   const interval = 100\r\n   boxItemData.forEach((element, i) => {\r\n-\r\n+    let X = 0\r\n+    let Y = i * 100\r\n+    element.X = X\r\n+    element.Y = Y\r\n   });\r\n \r\n }\r\n // 调用默认排序方法\r\n"
+                },
+                {
+                    "date": 1650017296342,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,12 +29,14 @@\n   offsetWidth = box.value.offsetWidth\r\n })\r\n function defaultSorting() {\r\n   const interval = 100\r\n+  let page = 0\r\n   boxItemData.forEach((element, i) => {\r\n     let X = 0\r\n     let Y = i * 100\r\n-    element.X = X\r\n+    if (Y >)\r\n+      element.X = X\r\n     element.Y = Y\r\n   });\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1650017357932,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,23 +20,25 @@\n // 对item进行排序\r\n // 获取box元素\r\n const box: any = ref(null)\r\n // 定义box的宽高\r\n-let offsetHeight\r\n-let offsetWidth\r\n+let BoxOffsetHeight\r\n+let BoxOffsetWidth\r\n // 获取box的宽高\r\n onMounted(() => {\r\n   offsetHeight = box.value.offsetHeight\r\n   offsetWidth = box.value.offsetWidth\r\n })\r\n function defaultSorting() {\r\n   const interval = 100\r\n-  let page = 0\r\n+  let page = 1\r\n   boxItemData.forEach((element, i) => {\r\n     let X = 0\r\n-    let Y = i * 100\r\n-    if (Y >)\r\n-      element.X = X\r\n+    let Y = i * 100 * page\r\n+    if (Y > BoxOffsetHeight) {\r\n+      page++\r\n+    }\r\n+    element.X = X\r\n     element.Y = Y\r\n   });\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1650017387647,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,10 +24,10 @@\n let BoxOffsetHeight\r\n let BoxOffsetWidth\r\n // 获取box的宽高\r\n onMounted(() => {\r\n-  offsetHeight = box.value.offsetHeight\r\n-  offsetWidth = box.value.offsetWidth\r\n+  BoxOffsetHeight = box.value.offsetHeight\r\n+  BoxOffsetWidth = box.value.offsetWidth\r\n })\r\n function defaultSorting() {\r\n   const interval = 100\r\n   let page = 1\r\n"
+                },
+                {
+                    "date": 1650017448062,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,12 +29,12 @@\n   BoxOffsetWidth = box.value.offsetWidth\r\n })\r\n function defaultSorting() {\r\n   const interval = 100\r\n-  let page = 1\r\n+  let page = 0\r\n   boxItemData.forEach((element, i) => {\r\n-    let X = 0\r\n-    let Y = i * 100 * page\r\n+    let X = 100 * page\r\n+    let Y = i * 100\r\n     if (Y > BoxOffsetHeight) {\r\n       page++\r\n     }\r\n     element.X = X\r\n"
+                },
+                {
+                    "date": 1650017590627,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,11 +30,12 @@\n })\r\n function defaultSorting() {\r\n   const interval = 100\r\n   let page = 0\r\n-  boxItemData.forEach((element, i) => {\r\n+  let num = 0\r\n+  boxItemData.forEach(element => {\r\n     let X = 100 * page\r\n-    let Y = i * 100\r\n+    let Y = num * 100\r\n     if (Y > BoxOffsetHeight) {\r\n       page++\r\n     }\r\n     element.X = X\r\n"
+                },
+                {
+                    "date": 1650017604059,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,8 +39,9 @@\n       page++\r\n     }\r\n     element.X = X\r\n     element.Y = Y\r\n+    num++\r\n   });\r\n \r\n }\r\n // 调用默认排序方法\r\n"
+                },
+                {
+                    "date": 1650017613581,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,8 +36,9 @@\n     let X = 100 * page\r\n     let Y = num * 100\r\n     if (Y > BoxOffsetHeight) {\r\n       page++\r\n+      num = 0\r\n     }\r\n     element.X = X\r\n     element.Y = Y\r\n     num++\r\n"
+                },
+                {
+                    "date": 1650017700700,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,14 +32,15 @@\n   const interval = 100\r\n   let page = 0\r\n   let num = 0\r\n   boxItemData.forEach(element => {\r\n-    let X = 100 * page\r\n     let Y = num * 100\r\n     if (Y > BoxOffsetHeight) {\r\n       page++\r\n       num = 0\r\n+      let Y = num * 100\r\n     }\r\n+    let X = 100 * page\r\n     element.X = X\r\n     element.Y = Y\r\n     num++\r\n   });\r\n"
+                },
+                {
+                    "date": 1650017820428,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,8 +34,10 @@\n   let num = 0\r\n   boxItemData.forEach(element => {\r\n     let Y = num * 100\r\n     if (Y > BoxOffsetHeight) {\r\n+      console.log('a');\r\n+\r\n       page++\r\n       num = 0\r\n       let Y = num * 100\r\n     }\r\n"
+                },
+                {
+                    "date": 1650017836622,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,10 +33,10 @@\n   let page = 0\r\n   let num = 0\r\n   boxItemData.forEach(element => {\r\n     let Y = num * 100\r\n+    console.log(Y, BoxOffsetHeight);\r\n     if (Y > BoxOffsetHeight) {\r\n-      console.log('a');\r\n \r\n       page++\r\n       num = 0\r\n       let Y = num * 100\r\n"
+                },
+                {
+                    "date": 1650017880674,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,10 @@\n let BoxOffsetHeight\r\n let BoxOffsetWidth\r\n // 获取box的宽高\r\n onMounted(() => {\r\n+  console.log(box.value.offsetWidth);\r\n+\r\n   BoxOffsetHeight = box.value.offsetHeight\r\n   BoxOffsetWidth = box.value.offsetWidth\r\n })\r\n function defaultSorting() {\r\n"
+                },
+                {
+                    "date": 1650017910207,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,8 +28,10 @@\n   console.log(box.value.offsetWidth);\r\n \r\n   BoxOffsetHeight = box.value.offsetHeight\r\n   BoxOffsetWidth = box.value.offsetWidth\r\n+  // 调用默认排序方法\r\n+  defaultSorting()\r\n })\r\n function defaultSorting() {\r\n   const interval = 100\r\n   let page = 0\r\n@@ -49,10 +51,9 @@\n     num++\r\n   });\r\n \r\n }\r\n-// 调用默认排序方法\r\n-defaultSorting()\r\n+\r\n </script>\r\n \r\n <template>\r\n   <div ref=\"box\" class=\"box-grid\">\r\n"
+                },
+                {
+                    "date": 1650017967854,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,9 @@\n   let num = 0\r\n   boxItemData.forEach(element => {\r\n     let Y = num * 100\r\n     console.log(Y, BoxOffsetHeight);\r\n-    if (Y > BoxOffsetHeight) {\r\n+    if (Y > BoxOffsetHeight - 100) {\r\n \r\n       page++\r\n       num = 0\r\n       let Y = num * 100\r\n"
+                },
+                {
+                    "date": 1650018005754,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n     if (Y > BoxOffsetHeight - 100) {\r\n \r\n       page++\r\n       num = 0\r\n-      let Y = num * 100\r\n+      Y = num * 100\r\n     }\r\n     let X = 100 * page\r\n     element.X = X\r\n     element.Y = Y\r\n"
+                },
+                {
+                    "date": 1650018024072,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,8 @@\n   let page = 0\r\n   let num = 0\r\n   boxItemData.forEach(element => {\r\n     let Y = num * 100\r\n-    console.log(Y, BoxOffsetHeight);\r\n     if (Y > BoxOffsetHeight - 100) {\r\n \r\n       page++\r\n       num = 0\r\n"
+                },
+                {
+                    "date": 1650018079258,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,8 @@\n   let num = 0\r\n   boxItemData.forEach(element => {\r\n     let Y = num * 100\r\n     if (Y > BoxOffsetHeight - 100) {\r\n-\r\n       page++\r\n       num = 0\r\n       Y = num * 100\r\n     }\r\n"
+                },
+                {
+                    "date": 1650023515822,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n \r\n <template>\r\n   <div ref=\"box\" class=\"box-grid\">\r\n     <BoxItem v-for=\"item, i in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :title=\"item.title\"\r\n-      :bgImage=\"item.bgImage\" :target=\"item.target\" :i=\"i\" :x=\"item.X\" :y=\"item.Y\" :id=\"item.id\">\r\n+      :bgImage=\"item.bgImage\" :target=\"item.target\" :i=\"i\" :x=\"item.X\" :y=\"item.Y\" :id=\"item.id\" :i=\"i\">\r\n     </BoxItem>\r\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n"
+                },
+                {
+                    "date": 1650023527397,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n \r\n <template>\r\n   <div ref=\"box\" class=\"box-grid\">\r\n     <BoxItem v-for=\"item, i in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :title=\"item.title\"\r\n-      :bgImage=\"item.bgImage\" :target=\"item.target\" :i=\"i\" :x=\"item.X\" :y=\"item.Y\" :id=\"item.id\" :i=\"i\">\r\n+      :bgImage=\"item.bgImage\" :target=\"item.target\" :x=\"item.X\" :y=\"item.Y\" :id=\"item.id\" :i=\"i\">\r\n     </BoxItem>\r\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n"
+                },
+                {
+                    "date": 1650029218840,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n   BoxOffsetWidth = box.value.offsetWidth\r\n   // 调用默认排序方法\r\n   defaultSorting()\r\n })\r\n-function defaultSorting() {\r\n+function  () {\r\n   const interval = 100\r\n   let page = 0\r\n   let num = 0\r\n   boxItemData.forEach(element => {\r\n"
+                },
+                {
+                    "date": 1650029231447,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n   BoxOffsetWidth = box.value.offsetWidth\r\n   // 调用默认排序方法\r\n   defaultSorting()\r\n })\r\n-function  () {\r\n+function defaultSorting() {\r\n   const interval = 100\r\n   let page = 0\r\n   let num = 0\r\n   boxItemData.forEach(element => {\r\n"
                 }
             ],
             "date": 1649582189419,
