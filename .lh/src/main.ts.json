@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 9,
+            "activePatchIndex": 10,
             "patches": [
                 {
                     "date": 1649468816494,
@@ -44,6 +44,10 @@
                 {
                     "date": 1649853351382,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,14 @@\n import { createApp } from 'vue'\n import App from './App.vue'\n import store from './store'\n-import router from './router'\n+// import router from './router'\n import { createPinia } from 'pinia'\n // 创建vue实例\n const app = createApp(App)\n // 挂载pinia\n app.use(store)\n app.use(createPinia())\n //挂载router\n-app.use(router)\n+// app.use(router)\n // 挂载实例\n app.mount('#app');\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650158344975,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import { createApp } from 'vue'\n import App from './App.vue'\n import store from './store'\n+import 'animate.css';\n // import router from './router'\n import { createPinia } from 'pinia'\n // 创建vue实例\n const app = createApp(App)\n"
                 }
             ],
             "date": 1649468816494,

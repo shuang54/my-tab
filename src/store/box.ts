@@ -1,10 +1,13 @@
 import { defineStore } from "pinia";
+import { get } from "../utils/axios"
+import { ElMessage as $message, ElStep } from 'element-plus'
 export const useBox = defineStore({
   id: 'box',
   state: () => {
     return {
       zIndex: 1,
       boxItem: JSON.parse(window.localStorage.getItem('boxItemData') || ''),
+      globalPicture: '',
       // boxItem: [
       //   {
       //     "title": "npm仓库",
@@ -67,6 +70,22 @@ export const useBox = defineStore({
     setBoxItemXY(i, X, Y) {
       this.boxItem[i].X = X, this.boxItem[i].Y = Y
     },
+    // async updatedGlobalPicture() {
+    //   let result: any = await get("/api.php?category={dongman,fengjing,biying,meinv}&type=json")
+    //   if (result.result == 200) {
+    //     this.globalPicture = result.img
+    //   } else {
+    //     $message.error('更新背景失败！')
+    //   }
+    // },
+    async updatedGlobalPicture() {
+      let result: any = await get("https://api.codelife.cc/wallpaper/random")
+      if (result.code == 200) {
+        this.globalPicture = result.data
+      } else {
+        $message.error('更新背景失败！')
+      }
+    }
   }
 
 })

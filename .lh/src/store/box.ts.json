@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 16,
+            "activePatchIndex": 42,
             "patches": [
                 {
                     "date": 1649682507536,
@@ -72,6 +72,110 @@
                 {
                     "date": 1650015530112,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,9 +63,10 @@\n     getzIndex() {\r\n       this.zIndex += 1\r\n       return this.zIndex\r\n     },\r\n-    setBoxItemX(i, X) { this.boxItem[i].X = X },\r\n-    setBoxItemY(i, Y) { this.boxItem[i].Y = Y }\r\n+    setBoxItemXY(i, X, Y) {\r\n+      this.boxItem[i].X = X, this.boxItem[i].Y = Y\r\n+    },\r\n   }\r\n \r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650154860137,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -66,7 +66,8 @@\n     },\r\n     setBoxItemXY(i, X, Y) {\r\n       this.boxItem[i].X = X, this.boxItem[i].Y = Y\r\n     },\r\n+\r\n   }\r\n \r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650191065722,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n   state: () => {\r\n     return {\r\n       zIndex: 1,\r\n       boxItem: JSON.parse(window.localStorage.getItem('boxItemData') || ''),\r\n+\r\n       // boxItem: [\r\n       //   {\r\n       //     \"title\": \"npm仓库\",\r\n       //     \"uuid\": \"5fcfb221d915e4341c1e069f14a1b945\",\r\n"
+                },
+                {
+                    "date": 1650191137678,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n   state: () => {\r\n     return {\r\n       zIndex: 1,\r\n       boxItem: JSON.parse(window.localStorage.getItem('boxItemData') || ''),\r\n-\r\n+      globalPicture: '',\r\n       // boxItem: [\r\n       //   {\r\n       //     \"title\": \"npm仓库\",\r\n       //     \"uuid\": \"5fcfb221d915e4341c1e069f14a1b945\",\r\n"
+                },
+                {
+                    "date": 1650191219098,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import { defineStore } from \"pinia\";\r\n+import { get } from \"../utils/axios\"\r\n export const useBox = defineStore({\r\n   id: 'box',\r\n   state: () => {\r\n     return {\r\n@@ -67,8 +68,10 @@\n     },\r\n     setBoxItemXY(i, X, Y) {\r\n       this.boxItem[i].X = X, this.boxItem[i].Y = Y\r\n     },\r\n+    updatedGlobalPicture() {\r\n \r\n+    }\r\n   }\r\n \r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650191255287,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,10 +68,10 @@\n     },\r\n     setBoxItemXY(i, X, Y) {\r\n       this.boxItem[i].X = X, this.boxItem[i].Y = Y\r\n     },\r\n-    updatedGlobalPicture() {\r\n-\r\n+    async updatedGlobalPicture() {\r\n+      let result = await get()\r\n     }\r\n   }\r\n \r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650191290243,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,9 +69,11 @@\n     setBoxItemXY(i, X, Y) {\r\n       this.boxItem[i].X = X, this.boxItem[i].Y = Y\r\n     },\r\n     async updatedGlobalPicture() {\r\n-      let result = await get()\r\n+      let result = await get(\"https://tuapi.eees.cc/api.php?category=dongman&type=json\")\r\n+      console.log(result);\r\n+\r\n     }\r\n   }\r\n \r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650192243203,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,9 +69,9 @@\n     setBoxItemXY(i, X, Y) {\r\n       this.boxItem[i].X = X, this.boxItem[i].Y = Y\r\n     },\r\n     async updatedGlobalPicture() {\r\n-      let result = await get(\"https://tuapi.eees.cc/api.php?category=dongman&type=json\")\r\n+      let result = await get(\"/api/api.php?category=dongman&type=json\")\r\n       console.log(result);\r\n \r\n     }\r\n   }\r\n"
+                },
+                {
+                    "date": 1650192306177,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,9 +69,9 @@\n     setBoxItemXY(i, X, Y) {\r\n       this.boxItem[i].X = X, this.boxItem[i].Y = Y\r\n     },\r\n     async updatedGlobalPicture() {\r\n-      let result = await get(\"/api/api.php?category=dongman&type=json\")\r\n+      let result = await get(\"/api.php?category=dongman&type=json\")\r\n       console.log(result);\r\n \r\n     }\r\n   }\r\n"
+                },
+                {
+                    "date": 1650192685809,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,9 +70,9 @@\n       this.boxItem[i].X = X, this.boxItem[i].Y = Y\r\n     },\r\n     async updatedGlobalPicture() {\r\n       let result = await get(\"/api.php?category=dongman&type=json\")\r\n-      console.log(result);\r\n+      if (result.code)\r\n \r\n     }\r\n   }\r\n \r\n"
+                },
+                {
+                    "date": 1650192692416,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,9 +70,9 @@\n       this.boxItem[i].X = X, this.boxItem[i].Y = Y\r\n     },\r\n     async updatedGlobalPicture() {\r\n       let result = await get(\"/api.php?category=dongman&type=json\")\r\n-      if (result.code)\r\n+      if (result.result)\r\n \r\n     }\r\n   }\r\n \r\n"
+                },
+                {
+                    "date": 1650192725566,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,10 +69,12 @@\n     setBoxItemXY(i, X, Y) {\r\n       this.boxItem[i].X = X, this.boxItem[i].Y = Y\r\n     },\r\n     async updatedGlobalPicture() {\r\n-      let result = await get(\"/api.php?category=dongman&type=json\")\r\n-      if (result.result)\r\n+      let result: any = await get(\"/api.php?category=dongman&type=json\")\r\n+      if (result.result == 200) {\r\n+        this.globalPicture = result.img\r\n+      }\r\n \r\n     }\r\n   }\r\n \r\n"
+                },
+                {
+                    "date": 1650192772323,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n import { defineStore } from \"pinia\";\r\n import { get } from \"../utils/axios\"\r\n+import { ElMessage as $message } from 'element-plus'\r\n export const useBox = defineStore({\r\n   id: 'box',\r\n   state: () => {\r\n     return {\r\n@@ -73,9 +74,9 @@\n       let result: any = await get(\"/api.php?category=dongman&type=json\")\r\n       if (result.result == 200) {\r\n         this.globalPicture = result.img\r\n       }\r\n-\r\n+      $message.error('更新背景失败！')\r\n     }\r\n   }\r\n \r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650193053065,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { defineStore } from \"pinia\";\r\n import { get } from \"../utils/axios\"\r\n-import { ElMessage as $message } from 'element-plus'\r\n+import { ElMessage as $message, ElStep } from 'element-plus'\r\n export const useBox = defineStore({\r\n   id: 'box',\r\n   state: () => {\r\n     return {\r\n@@ -73,10 +73,12 @@\n     async updatedGlobalPicture() {\r\n       let result: any = await get(\"/api.php?category=dongman&type=json\")\r\n       if (result.result == 200) {\r\n         this.globalPicture = result.img\r\n+      } else {\r\n+\r\n+        $message.error('更新背景失败！')\r\n       }\r\n-      $message.error('更新背景失败！')\r\n     }\r\n   }\r\n \r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650195030757,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -74,9 +74,8 @@\n       let result: any = await get(\"/api.php?category=dongman&type=json\")\r\n       if (result.result == 200) {\r\n         this.globalPicture = result.img\r\n       } else {\r\n-\r\n         $message.error('更新背景失败！')\r\n       }\r\n     }\r\n   }\r\n"
+                },
+                {
+                    "date": 1650196240590,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,9 +70,9 @@\n     setBoxItemXY(i, X, Y) {\r\n       this.boxItem[i].X = X, this.boxItem[i].Y = Y\r\n     },\r\n     async updatedGlobalPicture() {\r\n-      let result: any = await get(\"/api.php?category=dongman&type=json\")\r\n+      let result: any = await get(\"/api.php?category={dongman}&type=json\")\r\n       if (result.result == 200) {\r\n         this.globalPicture = result.img\r\n       } else {\r\n         $message.error('更新背景失败！')\r\n"
+                },
+                {
+                    "date": 1650196258492,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,9 +70,9 @@\n     setBoxItemXY(i, X, Y) {\r\n       this.boxItem[i].X = X, this.boxItem[i].Y = Y\r\n     },\r\n     async updatedGlobalPicture() {\r\n-      let result: any = await get(\"/api.php?category={dongman}&type=json\")\r\n+      let result: any = await get(\"/api.php?category={dongman,fengjing,}&type=json\")\r\n       if (result.result == 200) {\r\n         this.globalPicture = result.img\r\n       } else {\r\n         $message.error('更新背景失败！')\r\n"
+                },
+                {
+                    "date": 1650196275722,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,9 +70,9 @@\n     setBoxItemXY(i, X, Y) {\r\n       this.boxItem[i].X = X, this.boxItem[i].Y = Y\r\n     },\r\n     async updatedGlobalPicture() {\r\n-      let result: any = await get(\"/api.php?category={dongman,fengjing,}&type=json\")\r\n+      let result: any = await get(\"/api.php?category={dongman,fengjing,biying,}&type=json\")\r\n       if (result.result == 200) {\r\n         this.globalPicture = result.img\r\n       } else {\r\n         $message.error('更新背景失败！')\r\n"
+                },
+                {
+                    "date": 1650196354439,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,9 +70,9 @@\n     setBoxItemXY(i, X, Y) {\r\n       this.boxItem[i].X = X, this.boxItem[i].Y = Y\r\n     },\r\n     async updatedGlobalPicture() {\r\n-      let result: any = await get(\"/api.php?category={dongman,fengjing,biying,}&type=json\")\r\n+      let result: any = await get(\"/api.php?category={dongman,fengjing,biying,meinv}&type=json\")\r\n       if (result.result == 200) {\r\n         this.globalPicture = result.img\r\n       } else {\r\n         $message.error('更新背景失败！')\r\n"
+                },
+                {
+                    "date": 1650198084820,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -76,8 +76,11 @@\n         this.globalPicture = result.img\r\n       } else {\r\n         $message.error('更新背景失败！')\r\n       }\r\n+    },\r\n+    async updatedGlobalPicture() {\r\n+      https://api.codelife.cc/wallpaper/random\r\n     }\r\n   }\r\n \r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650198107525,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,9 +78,15 @@\n         $message.error('更新背景失败！')\r\n       }\r\n     },\r\n     async updatedGlobalPicture() {\r\n-      https://api.codelife.cc/wallpaper/random\r\n+\r\n+      let result: any = await get(\"https://api.codelife.cc/wallpaper/random\")\r\n+      if (result.result == 200) {\r\n+        this.globalPicture = result.img\r\n+      } else {\r\n+        $message.error('更新背景失败！')\r\n+      }\r\n     }\r\n   }\r\n \r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650198112906,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,17 +69,17 @@\n     },\r\n     setBoxItemXY(i, X, Y) {\r\n       this.boxItem[i].X = X, this.boxItem[i].Y = Y\r\n     },\r\n+    // async updatedGlobalPicture() {\r\n+    //   let result: any = await get(\"/api.php?category={dongman,fengjing,biying,meinv}&type=json\")\r\n+    //   if (result.result == 200) {\r\n+    //     this.globalPicture = result.img\r\n+    //   } else {\r\n+    //     $message.error('更新背景失败！')\r\n+    //   }\r\n+    // },\r\n     async updatedGlobalPicture() {\r\n-      let result: any = await get(\"/api.php?category={dongman,fengjing,biying,meinv}&type=json\")\r\n-      if (result.result == 200) {\r\n-        this.globalPicture = result.img\r\n-      } else {\r\n-        $message.error('更新背景失败！')\r\n-      }\r\n-    },\r\n-    async updatedGlobalPicture() {\r\n \r\n       let result: any = await get(\"https://api.codelife.cc/wallpaper/random\")\r\n       if (result.result == 200) {\r\n         this.globalPicture = result.img\r\n"
+                },
+                {
+                    "date": 1650198119086,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,9 +78,8 @@\n     //     $message.error('更新背景失败！')\r\n     //   }\r\n     // },\r\n     async updatedGlobalPicture() {\r\n-\r\n       let result: any = await get(\"https://api.codelife.cc/wallpaper/random\")\r\n       if (result.result == 200) {\r\n         this.globalPicture = result.img\r\n       } else {\r\n"
+                },
+                {
+                    "date": 1650198174817,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,9 +80,9 @@\n     // },\r\n     async updatedGlobalPicture() {\r\n       let result: any = await get(\"https://api.codelife.cc/wallpaper/random\")\r\n       if (result.result == 200) {\r\n-        this.globalPicture = result.img\r\n+        this.globalPicture = result.data\r\n       } else {\r\n         $message.error('更新背景失败！')\r\n       }\r\n     }\r\n"
+                },
+                {
+                    "date": 1650198193624,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -79,8 +79,10 @@\n     //   }\r\n     // },\r\n     async updatedGlobalPicture() {\r\n       let result: any = await get(\"https://api.codelife.cc/wallpaper/random\")\r\n+      console.log(result);\r\n+\r\n       if (result.result == 200) {\r\n         this.globalPicture = result.data\r\n       } else {\r\n         $message.error('更新背景失败！')\r\n"
+                },
+                {
+                    "date": 1650198220007,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -81,9 +81,9 @@\n     async updatedGlobalPicture() {\r\n       let result: any = await get(\"https://api.codelife.cc/wallpaper/random\")\r\n       console.log(result);\r\n \r\n-      if (result.result == 200) {\r\n+      if (result.code == 200) {\r\n         this.globalPicture = result.data\r\n       } else {\r\n         $message.error('更新背景失败！')\r\n       }\r\n"
+                },
+                {
+                    "date": 1650199915662,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -79,10 +79,8 @@\n     //   }\r\n     // },\r\n     async updatedGlobalPicture() {\r\n       let result: any = await get(\"https://api.codelife.cc/wallpaper/random\")\r\n-      console.log(result);\r\n-\r\n       if (result.code == 200) {\r\n         this.globalPicture = result.data\r\n       } else {\r\n         $message.error('更新背景失败！')\r\n"
                 }
             ],
             "date": 1649682507536,

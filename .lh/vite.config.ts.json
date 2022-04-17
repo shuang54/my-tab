@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 13,
+            "activePatchIndex": 29,
             "patches": [
                 {
                     "date": 1649468462673,
@@ -60,6 +60,70 @@
                 {
                     "date": 1649577291059,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { defineConfig } from 'vite';\n import vue from '@vitejs/plugin-vue';\n-import { resolve } from 'path';\n+const { resolve } = require('path')\n import AutoImport from 'unplugin-auto-import/vite'\n import Components from 'unplugin-vue-components/vite'\n import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'\n // https://vitejs.dev/config/\n"
+                },
+                {
+                    "date": 1650191576900,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n     },\n     // 设置 https 代理\n     proxy: {\n       '/api': {\n-        target: 'http://www.foogeoo.ltd',\n+        target: 'https://tuapi.eees.cc',\n         changeOrigin: true,\n         rewrite: (path: string) => path.replace(/^\\/api/, '')\n       }\n     }\n"
+                },
+                {
+                    "date": 1650191776256,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n       port: 8080\n     },\n     // 设置 https 代理\n     proxy: {\n-      '/api': {\n+      '/api.php': {\n         target: 'https://tuapi.eees.cc',\n         changeOrigin: true,\n         rewrite: (path: string) => path.replace(/^\\/api/, '')\n       }\n"
+                },
+                {
+                    "date": 1650191828006,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,12 +31,12 @@\n       port: 8080\n     },\n     // 设置 https 代理\n     proxy: {\n-      '/api.php': {\n+      '*': {\n         target: 'https://tuapi.eees.cc',\n         changeOrigin: true,\n-        rewrite: (path: string) => path.replace(/^\\/api/, '')\n+        // rewrite: (path: string) => path.replace(/^\\/api/, '')\n       }\n     }\n   }\n });\n"
+                },
+                {
+                    "date": 1650191835733,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n       port: 8080\n     },\n     // 设置 https 代理\n     proxy: {\n-      '*': {\n+      '/api.php': {\n         target: 'https://tuapi.eees.cc',\n         changeOrigin: true,\n         // rewrite: (path: string) => path.replace(/^\\/api/, '')\n       }\n"
+                },
+                {
+                    "date": 1650191845050,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n       port: 8080\n     },\n     // 设置 https 代理\n     proxy: {\n-      '/api.php': {\n+      '/': {\n         target: 'https://tuapi.eees.cc',\n         changeOrigin: true,\n         // rewrite: (path: string) => path.replace(/^\\/api/, '')\n       }\n"
+                },
+                {
+                    "date": 1650191890392,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n       port: 8080\n     },\n     // 设置 https 代理\n     proxy: {\n-      '/': {\n+      '/api.php': {\n         target: 'https://tuapi.eees.cc',\n         changeOrigin: true,\n         // rewrite: (path: string) => path.replace(/^\\/api/, '')\n       }\n"
+                },
+                {
+                    "date": 1650192287669,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n     proxy: {\n       '/api.php': {\n         target: 'https://tuapi.eees.cc',\n         changeOrigin: true,\n-        // rewrite: (path: string) => path.replace(/^\\/api/, '')\n+        rewrite: (path: string) => path.replace(/^\\/api/, '')\n       }\n     }\n   }\n });\n"
+                },
+                {
+                    "date": 1650192436317,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,10 +31,10 @@\n       port: 8080\n     },\n     // 设置 https 代理\n     proxy: {\n-      '/api.php': {\n-        target: 'https://tuapi.eees.cc',\n+      '/api': {\n+        target: 'https://tuapi.eees.cc/api.php',\n         changeOrigin: true,\n         rewrite: (path: string) => path.replace(/^\\/api/, '')\n       }\n     }\n"
+                },
+                {
+                    "date": 1650192464259,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n     },\n     // 设置 https 代理\n     proxy: {\n       '/api': {\n-        target: 'https://tuapi.eees.cc/api.php',\n+        target: 'https://tuapi.eees.cc',\n         changeOrigin: true,\n         rewrite: (path: string) => path.replace(/^\\/api/, '')\n       }\n     }\n"
+                },
+                {
+                    "date": 1650192524114,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,8 +34,9 @@\n     proxy: {\n       '/api': {\n         target: 'https://tuapi.eees.cc',\n         changeOrigin: true,\n+        secure: true,\n         rewrite: (path: string) => path.replace(/^\\/api/, '')\n       }\n     }\n   }\n"
+                },
+                {
+                    "date": 1650192536903,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,8 +37,12 @@\n         changeOrigin: true,\n         secure: true,\n         rewrite: (path: string) => path.replace(/^\\/api/, '')\n       }\n+    },\n+    overlay: {\n+      warning: false,\n+      errors: true\n     }\n   }\n });\n \n"
+                },
+                {
+                    "date": 1650192558508,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,11 +38,8 @@\n         secure: true,\n         rewrite: (path: string) => path.replace(/^\\/api/, '')\n       }\n     },\n-    overlay: {\n-      warning: false,\n-      errors: true\n-    }\n+\n   }\n });\n \n"
+                },
+                {
+                    "date": 1650192572865,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,7 +39,8 @@\n         rewrite: (path: string) => path.replace(/^\\/api/, '')\n       }\n     },\n \n+\n   }\n });\n \n"
+                },
+                {
+                    "date": 1650192601505,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,9 @@\n     resolvers: [ElementPlusResolver()],\n   }),\n \n   ],\n+\n   server: {\n     port: 8080, //启动端口\n     hmr: {\n       host: '127.0.0.1',\n@@ -40,7 +41,10 @@\n       }\n     },\n \n \n-  }\n-});\n+  },\n \n+}\n+\n+);\n+\n"
+                },
+                {
+                    "date": 1650192617179,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n       '/api': {\n         target: 'https://tuapi.eees.cc',\n         changeOrigin: true,\n         secure: true,\n-        rewrite: (path: string) => path.replace(/^\\/api/, '')\n+        // rewrite: (path: string) => path.replace(/^\\/api/, '')\n       }\n     },\n \n \n"
+                },
+                {
+                    "date": 1650192640751,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n       '/api': {\n         target: 'https://tuapi.eees.cc',\n         changeOrigin: true,\n         secure: true,\n-        // rewrite: (path: string) => path.replace(/^\\/api/, '')\n+        rewrite: (path: string) => path.replace(/^\\/api/, '')\n       }\n     },\n \n \n"
                 }
             ],
             "date": 1649468462673,

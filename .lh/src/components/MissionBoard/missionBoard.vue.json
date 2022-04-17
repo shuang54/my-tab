@@ -1,0 +1,78 @@
+{
+    "sourceFile": "src/components/MissionBoard/missionBoard.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 15,
+            "patches": [
+                {
+                    "date": 1650158033800,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1650158101794,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,21 @@\n <script setup lang=\"ts\">\r\n-\r\n </script>\r\n <template>\r\n+  <div class=\"mission-board\">aaa</div>\r\n+\r\n </template>\r\n <style lang=\"less\">\r\n+.mission-board {\r\n+  width: 50%;\r\n+  min-height: 10%;\r\n+  max-width: 100%;\r\n+  height: 100%;\r\n+  background: hsla(0, 0%, 0%, 0.05) border-box;\r\n+  border-radius: 5px 5px 0 0;\r\n+  box-shadow: 0 0 0 1px hsl(0deg 0% 100% / 30%) inset,\r\n+    0 0.5em 1em rgb(0 0 0 / 60%);\r\n+  text-shadow: 0 1px 1px hsla(0, 0%, 100%, 0.3);\r\n+  transform-origin: bottom;\r\n+  transform: rotateX(30deg);\r\n+}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650158227714,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,6 +16,8 @@\n     0 0.5em 1em rgb(0 0 0 / 60%);\r\n   text-shadow: 0 1px 1px hsla(0, 0%, 100%, 0.3);\r\n   transform-origin: bottom;\r\n   transform: rotateX(30deg);\r\n+\r\n+  &:hover {}\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650158367762,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,7 +17,9 @@\n   text-shadow: 0 1px 1px hsla(0, 0%, 100%, 0.3);\r\n   transform-origin: bottom;\r\n   transform: rotateX(30deg);\r\n \r\n-  &:hover {}\r\n+  &:hover {\r\n+    an\r\n+  }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650158376586,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,8 @@\n   transform-origin: bottom;\r\n   transform: rotateX(30deg);\r\n \r\n   &:hover {\r\n-    an\r\n+    animp\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650158447390,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,14 @@\n   transform-origin: bottom;\r\n   transform: rotateX(30deg);\r\n \r\n   &:hover {\r\n-    animp\r\n+    display: inline-block;\r\n+    margin: 0 0.5rem;\r\n+\r\n+    animation: bounce;\r\n+    /* referring directly to the animation's @keyframe declaration */\r\n+    animation-duration: 2s;\r\n+    /* don't forget to set a duration! */\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650158486810,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,10 +14,10 @@\n   border-radius: 5px 5px 0 0;\r\n   box-shadow: 0 0 0 1px hsl(0deg 0% 100% / 30%) inset,\r\n     0 0.5em 1em rgb(0 0 0 / 60%);\r\n   text-shadow: 0 1px 1px hsla(0, 0%, 100%, 0.3);\r\n-  transform-origin: bottom;\r\n-  transform: rotateX(30deg);\r\n+  // transform-origin: bottom;\r\n+  // transform: rotateX(30deg);\r\n \r\n   &:hover {\r\n     display: inline-block;\r\n     margin: 0 0.5rem;\r\n"
+                },
+                {
+                    "date": 1650158506474,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n   &:hover {\r\n     display: inline-block;\r\n     margin: 0 0.5rem;\r\n \r\n-    animation: bounce;\r\n+    animation: animate__pulse;\r\n     /* referring directly to the animation's @keyframe declaration */\r\n     animation-duration: 2s;\r\n     /* don't forget to set a duration! */\r\n   }\r\n"
+                },
+                {
+                    "date": 1650158518908,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n   &:hover {\r\n     display: inline-block;\r\n     margin: 0 0.5rem;\r\n \r\n-    animation: animate__pulse;\r\n+    animation: pulse;\r\n     /* referring directly to the animation's @keyframe declaration */\r\n     animation-duration: 2s;\r\n     /* don't forget to set a duration! */\r\n   }\r\n"
+                },
+                {
+                    "date": 1650158605555,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,12 +20,10 @@\n \r\n   &:hover {\r\n     display: inline-block;\r\n     margin: 0 0.5rem;\r\n-\r\n     animation: pulse;\r\n-    /* referring directly to the animation's @keyframe declaration */\r\n     animation-duration: 2s;\r\n-    /* don't forget to set a duration! */\r\n+\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650158743862,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,10 +18,8 @@\n   // transform-origin: bottom;\r\n   // transform: rotateX(30deg);\r\n \r\n   &:hover {\r\n-    display: inline-block;\r\n-    margin: 0 0.5rem;\r\n     animation: pulse;\r\n     animation-duration: 2s;\r\n \r\n   }\r\n"
+                },
+                {
+                    "date": 1650158838775,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,7 @@\n \r\n   &:hover {\r\n     animation: pulse;\r\n     animation-duration: 2s;\r\n-\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650159249225,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,10 +17,6 @@\n   text-shadow: 0 1px 1px hsla(0, 0%, 100%, 0.3);\r\n   // transform-origin: bottom;\r\n   // transform: rotateX(30deg);\r\n \r\n-  &:hover {\r\n-    animation: pulse;\r\n-    animation-duration: 2s;\r\n-  }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650159460763,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,13 @@\n <script setup lang=\"ts\">\r\n+import BoxItem from '../BoxItem/BoxItem.vue';\r\n </script>\r\n <template>\r\n-  <div class=\"mission-board\">aaa</div>\r\n+  <div class=\"mission-board\">\r\n+    <BoxItem></BoxItem>\r\n \r\n+  </div>\r\n+\r\n </template>\r\n <style lang=\"less\">\r\n .mission-board {\r\n   width: 50%;\r\n"
+                },
+                {
+                    "date": 1650159591567,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,11 +3,9 @@\n </script>\r\n <template>\r\n   <div class=\"mission-board\">\r\n     <BoxItem></BoxItem>\r\n-\r\n   </div>\r\n-\r\n </template>\r\n <style lang=\"less\">\r\n .mission-board {\r\n   width: 50%;\r\n"
+                },
+                {
+                    "date": 1650160097117,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n .mission-board {\r\n+  position: relative;\r\n   width: 50%;\r\n   min-height: 10%;\r\n   max-width: 100%;\r\n   height: 100%;\r\n"
+                }
+            ],
+            "date": 1650158033800,
+            "name": "Commit-0",
+            "content": "<script setup lang=\"ts\">\r\n\r\n</script>\r\n<template>\r\n</template>\r\n<style lang=\"less\">\r\n</style>"
+        }
+    ]
+}

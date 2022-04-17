@@ -1,9 +1,8 @@
 import Axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from 'axios'
 import { ElMessage as $message } from 'element-plus'
 // import * as nProgress from 'nprogress'
-const BASE_URL = 'http://www.foogeoo.ltd:9999/blog'
-const TIME_OUT = 5000
-
+const BASE_URL = '/api'
+const TIME_OUT = 10000
 // 通过Axios.create()方法创建一个自定义配置的axios实例
 const instance: any = Axios.create({
   baseURL: BASE_URL,

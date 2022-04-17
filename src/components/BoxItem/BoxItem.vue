@@ -1,57 +1,29 @@
 <script lang="ts" setup>
-import { computed, onMounted, ref, toRaw } from 'vue';
-import { processExpression } from '_@vue_compiler-core@3.2.31@@vue/compiler-core';
+import { storeToRefs } from 'pinia';
+import { computed, onMounted, ref, toRaw, reactive, watch } from 'vue';
 import { useBox } from '../../store/box';
-import { debounce, throttle } from '../../utils/func.js'
 const props = defineProps({
-  w: {
-    default: 1,
-    type: Number,
-
-  },
-  h: {
-    default: 1,
-    type: Number
-  },
-  title: {
-    default: '',
-    type: String
-  },
-  bgImage: {
-    default: '',
-    type: String
-  },
-  target: {
-    default: '',
-    type: String
-  },
-  i: { default: 0, type: Number },
-  x: { default: 0, type: Number },
-  y: { default: 0, type: Number },
-  id: { default: '', type: String }
-})
-// 对于标题超过13个字符的进行过滤
-let ititle = computed(() => {
-  if (props.title.length > 13) {
-    return props.title.slice(0, 16) + '...'
-  }
-  return props.title
+  i: { default: 0, type: Number }
 })
 
 let boxStore = useBox()
-let boxItemData = boxStore.boxItem
+const boxItemData = boxStore.boxItem
 
+const boxItemDataByIndex = boxItemData[props.i]
+let { w, h, title, bgImage, target, X, Y, id } = boxItemDataByIndex
 let item: any = ref(null)
 let zIndex: any = 1;
 // 存储item document对象
 let el
 
-let option = { 'top': props.y + 'px', 'left': props.x + 'px' }
-// 点击的位置
+let option = { 'top': Y + 'px', 'left': X + 'px' }
+
 let x = 0
 let y = 0
-//定时器
-let timerOurEvent: any = 0
+
+// 声明拖动的默认状态是：false
+let isDrag = false
+let timmerHandle: any = null
 onMounted(() => {
   // 通过ref获取document对象
   el = item.value
@@ -61,11 +33,10 @@ onMounted(() => {
 function init() {
   // 设置样式
   setEleStyle(option || {});
-
   // 给元素添加 鼠标按下 事件
   el.onmousedown = (e) => {
     onMouseDown(e)
-    el.setCapture && el.setCapture() //全局捕获
+    // el.setCapture && el.setCapture() //全局捕获
     return false
   }
 }
@@ -77,6 +48,10 @@ function setEleStyle(option) {
 }
 //按下item
 function onMouseDown(e) {
+  // 如果是右键按下直接返回
+  if (e.buttons == 2) return;
+
+  // if (rightClick) return;
   // 给当前按下的item设置zIndex
   zIndex = boxStore.getzIndex()
   setEleStyle({ "zIndex": zIndex, position: 'fixed', 'cursor': 'move' })
@@ -86,15 +61,12 @@ function onMouseDown(e) {
   y = e.clientY - el.offsetTop;
   window.document.onmousemove = (e) => { onMouseMove(e); }
   window.document.onmouseup = (e) => onMouseUp(e)
+
 }
 let left, top
-//移动item
-// let moveItem = throttle(() => {
-//   el.style.left = left + 'px'
-//   el.style.top = top + 'px'
-// }, 16)
 //移动move
 function onMouseMove(e) {
+  isDrag = true
   let X = e.clientX - x
   let Y = e.clientY - y;
 
@@ -109,11 +81,12 @@ function onMouseMove(e) {
   if (X > document.documentElement.clientWidth - el.clientWidth) {
     left = document.documentElement.clientWidth - el.clientWidth
   }
-  if (Y > document.documentElement.clientHeight - el.clientHeight - 60) {
-    top = document.documentElement.clientHeight - el.clientHeight - 60
+  if (Y > document.documentElement.clientHeight - el.clientHeight) {
+    top = document.documentElement.clientHeight - el.clientHeight
   }
   //移动item
   // moveItem()
+
   el.style.left = left + 'px'
   el.style.top = top + 'px'
 }
@@ -123,25 +96,30 @@ function onMouseUp(e) {
   // 网格化界面
   left = Math.round(left / 100) * 100
   top = Math.round(top / 100) * 100
-
+  if (top > document.documentElement.clientHeight - el.clientHeight) top -= 100
+  if (left > document.documentElement.clientWidth - el.clientWidth) left -= 100
   // 让item不叠加在一起
   doNotStask()
-
-  document.onmousemove = null
-  document.onmouseup = null
+  window.document.onmousemove = null
+  window.document.onmouseup = null
   setEleStyle({ 'cursor': 'pointer' })
-  el.setCapture && el.setCapture() //释放全局捕获
+  // el.setCapture && el.setCapture() //释放全局捕获
+
+  if (!isDrag) {
+    window.location.href = target
+  }
+  isDrag = false
+
+
 }
 // 让item不叠加在一起
 function doNotStask() {
   let flag = true
   for (let i = 0; i < boxItemData.length; i++) {
 
-    if (boxItemData[i].id == props.id) {
+    if (boxItemData[i].id == id) {
       continue
     }
-
-
     if (boxItemData[i].X == left && boxItemData[i].Y == top) {
       flag = false
       break;
@@ -149,10 +127,10 @@ function doNotStask() {
       flag = true
     }
   }
-  console.log(props.i);
 
   // 当flag为true表示可以在当前位置存放坐标
-  if (flag) {
+  if (flag && isDrag) {
+
     el.style.left = left + 'px'
     el.style.top = top + 'px'
     // 存储坐标
@@ -164,25 +142,33 @@ function doNotStask() {
 
   }
 }
+//默认排序
+watch(boxItemDataByIndex, (nVal, oVal) => {
+  el.style.left = nVal.X + 'px'
+  el.style.top = nVal.Y + 'px'
+})
+// 禁用鼠标右键
+let rightClick = ref(false)
+function handlePaste(event) {
 
-// 双击item跳转到对应网站
-const dblClickItem = () => {
-  window.location.href = props.target
+  rightClick.value = true
+  event.preventDefault()
+  return false
 }
 </script>
 <template>
-  <div class="item" ref="item" :style="{
+  <div @contextmenu.native="handlePaste($event)" class="item" ref="item" :style="{
     'width': w * 100 + 'px', 'height': h * 100 + 'px',
   }">
     <div class=" item-icon">
-      <a @dblclick="dblClickItem()"><img :src="bgImage" :alt="title"></a>
+      <a><img :src="bgImage" :alt="title"></a>
     </div>
-    <p class="title">{{ ititle }}</p>
+    <p class="title">{{ title }}</p>
   </div>
 </template>
 <style lang="less" scoped>
 .item {
-  position: absolute;
+  position: absolute !important;
   top: 0;
   left: 0;
   width: 100px;
@@ -191,6 +177,13 @@ const dblClickItem = () => {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+
+  &:hover {
+    // margin: 0 0.5rem;
+    animation: pulse;
+    animation-duration: .5s;
+
+  }
 
   .item-icon {
     width: 80%;
@@ -204,8 +197,13 @@ const dblClickItem = () => {
   }
 
   .title {
-    font-size: 12px;
+    width: 100%;
+    font-size: 18px;
     color: white;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 </style>

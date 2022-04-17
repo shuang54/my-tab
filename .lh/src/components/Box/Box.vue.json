@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 129,
+            "activePatchIndex": 331,
             "patches": [
                 {
                     "date": 1649582189419,
@@ -524,6 +524,814 @@
                 {
                     "date": 1650029231447,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n   BoxOffsetWidth = box.value.offsetWidth\r\n   // 调用默认排序方法\r\n   defaultSorting()\r\n })\r\n-function  () {\r\n+function defaultSorting() {\r\n   const interval = 100\r\n   let page = 0\r\n   let num = 0\r\n   boxItemData.forEach(element => {\r\n"
+                },
+                {
+                    "date": 1650066026428,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,10 @@\n import { useBox } from '../../store/box';\r\n \r\n const boxStore = useBox()\r\n let boxItemData = reactive(boxStore.boxItem)\r\n-\r\n+// 调用默认排序方法\r\n+defaultSorting()\r\n watch(boxItemData, (nVal, oVal) => {\r\n \r\n   localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n \r\n@@ -28,10 +29,9 @@\n   console.log(box.value.offsetWidth);\r\n \r\n   BoxOffsetHeight = box.value.offsetHeight\r\n   BoxOffsetWidth = box.value.offsetWidth\r\n-  // 调用默认排序方法\r\n-  defaultSorting()\r\n+\r\n })\r\n function defaultSorting() {\r\n   const interval = 100\r\n   let page = 0\r\n"
+                },
+                {
+                    "date": 1650066036412,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n const boxStore = useBox()\r\n let boxItemData = reactive(boxStore.boxItem)\r\n // 调用默认排序方法\r\n defaultSorting()\r\n+// 监听boxItemData\r\n watch(boxItemData, (nVal, oVal) => {\r\n \r\n   localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n \r\n"
+                },
+                {
+                    "date": 1650066076702,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,15 +4,12 @@\n import { useBox } from '../../store/box';\r\n \r\n const boxStore = useBox()\r\n let boxItemData = reactive(boxStore.boxItem)\r\n-// 调用默认排序方法\r\n-defaultSorting()\r\n+\r\n // 监听boxItemData\r\n watch(boxItemData, (nVal, oVal) => {\r\n-\r\n   localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n-\r\n })\r\n \r\n \r\n //如果没有从本地获取数据，那么从发送请求获取数据\r\n@@ -21,8 +18,10 @@\n \r\n // 对item进行排序\r\n // 获取box元素\r\n const box: any = ref(null)\r\n+console.log(box.value);\r\n+\r\n // 定义box的宽高\r\n let BoxOffsetHeight\r\n let BoxOffsetWidth\r\n // 获取box的宽高\r\n"
+                },
+                {
+                    "date": 1650066116222,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n \r\n // 对item进行排序\r\n // 获取box元素\r\n const box: any = ref(null)\r\n-console.log(box.value);\r\n+console.log(box);\r\n \r\n // 定义box的宽高\r\n let BoxOffsetHeight\r\n let BoxOffsetWidth\r\n"
+                },
+                {
+                    "date": 1650066135980,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,8 @@\n let BoxOffsetHeight\r\n let BoxOffsetWidth\r\n // 获取box的宽高\r\n onMounted(() => {\r\n-  console.log(box.value.offsetWidth);\r\n \r\n   BoxOffsetHeight = box.value.offsetHeight\r\n   BoxOffsetWidth = box.value.offsetWidth\r\n \r\n"
+                },
+                {
+                    "date": 1650066151994,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,8 +30,10 @@\n   BoxOffsetHeight = box.value.offsetHeight\r\n   BoxOffsetWidth = box.value.offsetWidth\r\n \r\n })\r\n+// 调用默认排序方法\r\n+defaultSorting()\r\n function defaultSorting() {\r\n   const interval = 100\r\n   let page = 0\r\n   let num = 0\r\n"
+                },
+                {
+                    "date": 1650066236714,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,12 +28,12 @@\n onMounted(() => {\r\n \r\n   BoxOffsetHeight = box.value.offsetHeight\r\n   BoxOffsetWidth = box.value.offsetWidth\r\n+  // 调用默认排序方法\r\n+  defaultSorting()\r\n+})\r\n \r\n-})\r\n-// 调用默认排序方法\r\n-defaultSorting()\r\n function defaultSorting() {\r\n   const interval = 100\r\n   let page = 0\r\n   let num = 0\r\n"
+                },
+                {
+                    "date": 1650066390454,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n watch(boxItemData, (nVal, oVal) => {\r\n   localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n })\r\n \r\n+console.log(window.document.querySelector('.box-grid')?.clientHeight);\r\n \r\n //如果没有从本地获取数据，那么从发送请求获取数据\r\n if (boxItemData == '') {\r\n }\r\n"
+                },
+                {
+                    "date": 1650066396402,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n watch(boxItemData, (nVal, oVal) => {\r\n   localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n })\r\n \r\n-console.log(window.document.querySelector('.box-grid')?.clientHeight);\r\n+console.log(window.document.querySelector('.box-grid'));\r\n \r\n //如果没有从本地获取数据，那么从发送请求获取数据\r\n if (boxItemData == '') {\r\n }\r\n"
+                },
+                {
+                    "date": 1650066408563,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n watch(boxItemData, (nVal, oVal) => {\r\n   localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n })\r\n \r\n-console.log(window.document.querySelector('.box-grid'));\r\n+console.log(window.document.getElementsByClassName('box-grid'));\r\n \r\n //如果没有从本地获取数据，那么从发送请求获取数据\r\n if (boxItemData == '') {\r\n }\r\n"
+                },
+                {
+                    "date": 1650066429600,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n watch(boxItemData, (nVal, oVal) => {\r\n   localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n })\r\n \r\n-console.log(window.document.getElementsByClassName('box-grid'));\r\n+console.log(window.document.getElementsByClassName('box-grid').offsetHeight);\r\n \r\n //如果没有从本地获取数据，那么从发送请求获取数据\r\n if (boxItemData == '') {\r\n }\r\n"
+                },
+                {
+                    "date": 1650066450960,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n watch(boxItemData, (nVal, oVal) => {\r\n   localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n })\r\n \r\n-console.log(window.document.getElementsByClassName('box-grid').offsetHeight);\r\n+console.log(window.document.getElementsByClassName('box-grid'));\r\n \r\n //如果没有从本地获取数据，那么从发送请求获取数据\r\n if (boxItemData == '') {\r\n }\r\n"
+                },
+                {
+                    "date": 1650066502229,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n watch(boxItemData, (nVal, oVal) => {\r\n   localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n })\r\n \r\n-console.log(window.document.getElementsByClassName('box-grid'));\r\n+console.log(document.getElementsByClassName('box-grid'));\r\n \r\n //如果没有从本地获取数据，那么从发送请求获取数据\r\n if (boxItemData == '') {\r\n }\r\n"
+                },
+                {
+                    "date": 1650066529560,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n watch(boxItemData, (nVal, oVal) => {\r\n   localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n })\r\n \r\n-console.log(document.getElementsByClassName('box-grid'));\r\n+console.log(document.getElementByClassName('box-grid'));\r\n \r\n //如果没有从本地获取数据，那么从发送请求获取数据\r\n if (boxItemData == '') {\r\n }\r\n"
+                },
+                {
+                    "date": 1650066552860,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n watch(boxItemData, (nVal, oVal) => {\r\n   localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n })\r\n \r\n-console.log(document.getElementByClassName('box-grid'));\r\n+console.log(document.querySelector('.box-grid'));\r\n \r\n //如果没有从本地获取数据，那么从发送请求获取数据\r\n if (boxItemData == '') {\r\n }\r\n"
+                },
+                {
+                    "date": 1650066635405,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n watch(boxItemData, (nVal, oVal) => {\r\n   localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n })\r\n \r\n-console.log(document.querySelector('.box-grid'));\r\n+console.log(document.querySelector(\"box-grid\"));\r\n \r\n //如果没有从本地获取数据，那么从发送请求获取数据\r\n if (boxItemData == '') {\r\n }\r\n"
+                },
+                {
+                    "date": 1650066647082,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n watch(boxItemData, (nVal, oVal) => {\r\n   localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n })\r\n \r\n-console.log(document.querySelector(\"box-grid\"));\r\n+console.log(window.document.querySelector(\".box-grid\"));\r\n \r\n //如果没有从本地获取数据，那么从发送请求获取数据\r\n if (boxItemData == '') {\r\n }\r\n"
+                },
+                {
+                    "date": 1650066734777,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,8 +31,9 @@\n   BoxOffsetHeight = box.value.offsetHeight\r\n   BoxOffsetWidth = box.value.offsetWidth\r\n   // 调用默认排序方法\r\n   defaultSorting()\r\n+  boxItemData = reactive(boxStore.boxItem)\r\n })\r\n \r\n function defaultSorting() {\r\n   const interval = 100\r\n"
+                },
+                {
+                    "date": 1650066741690,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,8 @@\n watch(boxItemData, (nVal, oVal) => {\r\n   localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n })\r\n \r\n-console.log(window.document.querySelector(\".box-grid\"));\r\n \r\n //如果没有从本地获取数据，那么从发送请求获取数据\r\n if (boxItemData == '') {\r\n }\r\n"
+                },
+                {
+                    "date": 1650066815405,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,8 @@\n   BoxOffsetHeight = box.value.offsetHeight\r\n   BoxOffsetWidth = box.value.offsetWidth\r\n   // 调用默认排序方法\r\n   defaultSorting()\r\n-  boxItemData = reactive(boxStore.boxItem)\r\n })\r\n \r\n function defaultSorting() {\r\n   const interval = 100\r\n@@ -56,9 +55,9 @@\n </script>\r\n \r\n <template>\r\n   <div ref=\"box\" class=\"box-grid\">\r\n-    <BoxItem v-for=\"item, i in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :title=\"item.title\"\r\n+    <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :title=\"item.title\"\r\n       :bgImage=\"item.bgImage\" :target=\"item.target\" :x=\"item.X\" :y=\"item.Y\" :id=\"item.id\" :i=\"i\">\r\n     </BoxItem>\r\n   </div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1650067198107,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,8 @@\n \r\n // 对item进行排序\r\n // 获取box元素\r\n const box: any = ref(null)\r\n-console.log(box);\r\n \r\n // 定义box的宽高\r\n let BoxOffsetHeight\r\n let BoxOffsetWidth\r\n"
+                },
+                {
+                    "date": 1650067807802,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,10 +54,9 @@\n </script>\r\n \r\n <template>\r\n   <div ref=\"box\" class=\"box-grid\">\r\n-    <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :title=\"item.title\"\r\n-      :bgImage=\"item.bgImage\" :target=\"item.target\" :x=\"item.X\" :y=\"item.Y\" :id=\"item.id\" :i=\"i\">\r\n+    <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n"
+                },
+                {
+                    "date": 1650067833456,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,8 +47,9 @@\n     element.X = X\r\n     element.Y = Y\r\n     num++\r\n   });\r\n+  console.log(boItemData);\r\n \r\n }\r\n \r\n </script>\r\n"
+                },
+                {
+                    "date": 1650067839632,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n     element.X = X\r\n     element.Y = Y\r\n     num++\r\n   });\r\n-  console.log(boItemData);\r\n+  console.log(boxItemData);\r\n \r\n }\r\n \r\n </script>\r\n"
+                },
+                {
+                    "date": 1650068267217,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,8 @@\n     element.X = X\r\n     element.Y = Y\r\n     num++\r\n   });\r\n-  console.log(boxItemData);\r\n \r\n }\r\n \r\n </script>\r\n"
+                },
+                {
+                    "date": 1650069037853,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n import { useBox } from '../../store/box';\r\n \r\n const boxStore = useBox()\r\n let boxItemData = reactive(boxStore.boxItem)\r\n+console.log(boxItemData);\r\n \r\n // 监听boxItemData\r\n watch(boxItemData, (nVal, oVal) => {\r\n   localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n"
+                },
+                {
+                    "date": 1650069110726,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,8 @@\n import { useBox } from '../../store/box';\r\n \r\n const boxStore = useBox()\r\n let boxItemData = reactive(boxStore.boxItem)\r\n-console.log(boxItemData);\r\n \r\n // 监听boxItemData\r\n watch(boxItemData, (nVal, oVal) => {\r\n   localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n"
+                },
+                {
+                    "date": 1650069278605,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n \r\n   BoxOffsetHeight = box.value.offsetHeight\r\n   BoxOffsetWidth = box.value.offsetWidth\r\n   // 调用默认排序方法\r\n-  defaultSorting()\r\n+  // defaultSorting()\r\n })\r\n \r\n function defaultSorting() {\r\n   const interval = 100\r\n@@ -56,8 +56,9 @@\n <template>\r\n   <div ref=\"box\" class=\"box-grid\">\r\n     <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n+    <el-button @click=\"defaultSorting()\" type=\"success\">排序</el-button>\r\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n .box-grid {\r\n"
+                },
+                {
+                    "date": 1650069340327,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,8 +47,9 @@\n     element.X = X\r\n     element.Y = Y\r\n     num++\r\n   });\r\n+  console.log(boxItemData);\r\n \r\n }\r\n \r\n </script>\r\n"
+                },
+                {
+                    "date": 1650070343554,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,8 @@\n     element.X = X\r\n     element.Y = Y\r\n     num++\r\n   });\r\n-  console.log(boxItemData);\r\n \r\n }\r\n \r\n </script>\r\n"
+                },
+                {
+                    "date": 1650070499326,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n \r\n // 对item进行排序\r\n // 获取box元素\r\n const box: any = ref(null)\r\n-\r\n+const boxItemRef: any = ref(null)\r\n // 定义box的宽高\r\n let BoxOffsetHeight\r\n let BoxOffsetWidth\r\n // 获取box的宽高\r\n@@ -47,16 +47,16 @@\n     element.X = X\r\n     element.Y = Y\r\n     num++\r\n   });\r\n-\r\n+  boxItemRef.value.defaultSorting()\r\n }\r\n \r\n </script>\r\n \r\n <template>\r\n   <div ref=\"box\" class=\"box-grid\">\r\n-    <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n+    <BoxItem ref=\"boxItemRef\" v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n     <el-button @click=\"defaultSorting()\" type=\"success\">排序</el-button>\r\n   </div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1650153140489,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,11 @@\n     element.X = X\r\n     element.Y = Y\r\n     num++\r\n   });\r\n-  boxItemRef.value.defaultSorting()\r\n+  // boxItemRef.value.defaultSorting()\r\n+  console.log(boxItemRef.value);\r\n+\r\n }\r\n \r\n </script>\r\n \r\n"
+                },
+                {
+                    "date": 1650153438944,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,9 +56,9 @@\n </script>\r\n \r\n <template>\r\n   <div ref=\"box\" class=\"box-grid\">\r\n-    <BoxItem ref=\"boxItemRef\" v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n+    <BoxItem :ref=\"boxItemRef\" v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n     <el-button @click=\"defaultSorting()\" type=\"success\">排序</el-button>\r\n   </div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1650153450226,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,9 @@\n     element.Y = Y\r\n     num++\r\n   });\r\n   // boxItemRef.value.defaultSorting()\r\n-  console.log(boxItemRef.value);\r\n+  console.log(boxItemRef);\r\n \r\n }\r\n \r\n </script>\r\n"
+                },
+                {
+                    "date": 1650153732091,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,9 @@\n     element.Y = Y\r\n     num++\r\n   });\r\n   // boxItemRef.value.defaultSorting()\r\n-  console.log(boxItemRef);\r\n+  console.log(boxItemRef.value);\r\n \r\n }\r\n \r\n </script>\r\n"
+                },
+                {
+                    "date": 1650153752413,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,9 @@\n     element.Y = Y\r\n     num++\r\n   });\r\n   // boxItemRef.value.defaultSorting()\r\n-  console.log(boxItemRef.value);\r\n+  console.log(boxItemRef);\r\n \r\n }\r\n \r\n </script>\r\n"
+                },
+                {
+                    "date": 1650153787907,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,9 +56,9 @@\n </script>\r\n \r\n <template>\r\n   <div ref=\"box\" class=\"box-grid\">\r\n-    <BoxItem :ref=\"boxItemRef\" v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n+    <BoxItem :ref=\"boxItemRef + i\" v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n     <el-button @click=\"defaultSorting()\" type=\"success\">排序</el-button>\r\n   </div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1650153820247,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,9 @@\n     element.Y = Y\r\n     num++\r\n   });\r\n   // boxItemRef.value.defaultSorting()\r\n-  console.log(boxItemRef);\r\n+  console.log(boxItemRef + 1);\r\n \r\n }\r\n \r\n </script>\r\n"
+                },
+                {
+                    "date": 1650153847210,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n \r\n // 对item进行排序\r\n // 获取box元素\r\n const box: any = ref(null)\r\n-const boxItemRef: any = ref(null)\r\n+const boxItemRef1: any = ref(null)\r\n // 定义box的宽高\r\n let BoxOffsetHeight\r\n let BoxOffsetWidth\r\n // 获取box的宽高\r\n@@ -48,9 +48,9 @@\n     element.Y = Y\r\n     num++\r\n   });\r\n   // boxItemRef.value.defaultSorting()\r\n-  console.log(boxItemRef + 1);\r\n+  console.log(boxItemRef1);\r\n \r\n }\r\n \r\n </script>\r\n"
+                },
+                {
+                    "date": 1650153868280,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,9 @@\n     element.Y = Y\r\n     num++\r\n   });\r\n   // boxItemRef.value.defaultSorting()\r\n-  console.log(boxItemRef1);\r\n+  console.log(boxItemRef1.value);\r\n \r\n }\r\n \r\n </script>\r\n"
+                },
+                {
+                    "date": 1650153921149,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,8 @@\n     element.Y = Y\r\n     num++\r\n   });\r\n   // boxItemRef.value.defaultSorting()\r\n-  console.log(boxItemRef1.value);\r\n \r\n }\r\n \r\n </script>\r\n"
+                },
+                {
+                    "date": 1650154078051,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,15 +18,13 @@\n \r\n // 对item进行排序\r\n // 获取box元素\r\n const box: any = ref(null)\r\n-const boxItemRef1: any = ref(null)\r\n // 定义box的宽高\r\n let BoxOffsetHeight\r\n let BoxOffsetWidth\r\n // 获取box的宽高\r\n onMounted(() => {\r\n-\r\n   BoxOffsetHeight = box.value.offsetHeight\r\n   BoxOffsetWidth = box.value.offsetWidth\r\n   // 调用默认排序方法\r\n   // defaultSorting()\r\n@@ -47,17 +45,16 @@\n     element.X = X\r\n     element.Y = Y\r\n     num++\r\n   });\r\n-  // boxItemRef.value.defaultSorting()\r\n \r\n }\r\n \r\n </script>\r\n \r\n <template>\r\n   <div ref=\"box\" class=\"box-grid\">\r\n-    <BoxItem :ref=\"boxItemRef + i\" v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n+    <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n     <el-button @click=\"defaultSorting()\" type=\"success\">排序</el-button>\r\n   </div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1650161069155,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,8 +59,10 @@\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n .box-grid {\r\n+  overflow-x: hidden;\r\n+  overflow-y: hidden;\r\n   height: 100%;\r\n   position: relative;\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650162536275,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,8 +59,10 @@\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n .box-grid {\r\n+  background: url(\"./assets/image/a.jpg\") 0 0;\r\n+\r\n   overflow-x: hidden;\r\n   overflow-y: hidden;\r\n   height: 100%;\r\n   position: relative;\r\n"
+                },
+                {
+                    "date": 1650162545969,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,9 +59,9 @@\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n .box-grid {\r\n-  background: url(\"./assets/image/a.jpg\") 0 0;\r\n+  background: url(\"./assets/image/a.jpg\");\r\n \r\n   overflow-x: hidden;\r\n   overflow-y: hidden;\r\n   height: 100%;\r\n"
+                },
+                {
+                    "date": 1650162562079,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,10 +59,9 @@\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n .box-grid {\r\n-  background: url(\"./assets/image/a.jpg\");\r\n-\r\n+  background-image: url(\"./assets/image/a.jpg\");\r\n   overflow-x: hidden;\r\n   overflow-y: hidden;\r\n   height: 100%;\r\n   position: relative;\r\n"
+                },
+                {
+                    "date": 1650162600404,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,8 +60,9 @@\n </template>\r\n <style lang=\"less\">\r\n .box-grid {\r\n   background-image: url(\"./assets/image/a.jpg\");\r\n+  background-size: ;\r\n   overflow-x: hidden;\r\n   overflow-y: hidden;\r\n   height: 100%;\r\n   position: relative;\r\n"
+                },
+                {
+                    "date": 1650162613519,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,9 +60,9 @@\n </template>\r\n <style lang=\"less\">\r\n .box-grid {\r\n   background-image: url(\"./assets/image/a.jpg\");\r\n-  background-size: ;\r\n+  background-size: auto;\r\n   overflow-x: hidden;\r\n   overflow-y: hidden;\r\n   height: 100%;\r\n   position: relative;\r\n"
+                },
+                {
+                    "date": 1650162671896,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,10 +59,8 @@\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n .box-grid {\r\n-  background-image: url(\"./assets/image/a.jpg\");\r\n-  background-size: auto;\r\n   overflow-x: hidden;\r\n   overflow-y: hidden;\r\n   height: 100%;\r\n   position: relative;\r\n"
+                },
+                {
+                    "date": 1650178747283,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,71 @@\n+<script lang=\"ts\" setup>\r\n+import { reactive, watch, ref, onMounted } from 'vue'\r\n+import BoxItem from '../BoxItem/BoxItem.vue';\r\n+import { useBox } from '../../store/box';\r\n+\r\n+const boxStore = useBox()\r\n+let boxItemData = reactive(boxStore.boxItem)\r\n+\r\n+// 监听boxItemData\r\n+watch(boxItemData, (nVal, oVal) => {\r\n+  localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n+})\r\n+\r\n+\r\n+//如果没有从本地获取数据，那么从发送请求获取数据\r\n+if (boxItemData == '') {\r\n+}\r\n+\r\n+// 对item进行排序\r\n+// 获取box元素\r\n+const box: any = ref(null)\r\n+// 定义box的宽高\r\n+let BoxOffsetHeight\r\n+let BoxOffsetWidth\r\n+// 获取box的宽高\r\n+onMounted(() => {\r\n+  BoxOffsetHeight = box.value.offsetHeight\r\n+  BoxOffsetWidth = box.value.offsetWidth\r\n+  // 调用默认排序方法\r\n+  // defaultSorting()\r\n+})\r\n+\r\n+function defaultSorting() {\r\n+  const interval = 100\r\n+  let page = 0\r\n+  let num = 0\r\n+  boxItemData.forEach(element => {\r\n+    let Y = num * 100\r\n+    if (Y > BoxOffsetHeight - 100) {\r\n+      page++\r\n+      num = 0\r\n+      Y = num * 100\r\n+    }\r\n+    let X = 100 * page\r\n+    element.X = X\r\n+    element.Y = Y\r\n+    num++\r\n+  });\r\n+\r\n+}\r\n+\r\n+</script>\r\n+\r\n+<template>\r\n+  <div ref=\"box\" class=\"box-grid\">\r\n+    <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n+    </BoxItem>\r\n+    <el-button @click=\"defaultSorting()\" type=\"success\">排序</el-button>\r\n+  </div>\r\n+  <el-card class=\"box-card contextmenu\" v-show=\"visible\" :style=\"{ left: left + 'px', top: top + 'px' }\">\r\n+    <div v-for=\"o in 4\" :key=\"o\" class=\"text item\">{{ 'List item ' + o }}</div>\r\n+  </el-card>\r\n+</template>\r\n+<style lang=\"less\">\r\n+.box-grid {\r\n+  overflow-x: hidden;\r\n+  overflow-y: hidden;\r\n+  height: 100%;\r\n+  position: relative;\r\n+}\r\n+</style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650178784293,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,13 +47,32 @@\n     num++\r\n   });\r\n \r\n }\r\n-\r\n+let visible = ref(false)\r\n+let top = ref(0)\r\n+let left = ref(0)\r\n+watch(visible, (value) => {\r\n+  if (value) {\r\n+    document.body.addEventListener('click', closeMenu)\r\n+  } else {\r\n+    document.body.removeEventListener('click', closeMenu)\r\n+  }\r\n+})\r\n+function openMenu(e) {\r\n+  let x = e.pageX;\r\n+  let y = e.pageY;\r\n+  top.value = y;\r\n+  left.value = x;\r\n+  visible.value = true;\r\n+}\r\n+function closeMenu() {\r\n+  visible.value = false;\r\n+}\r\n </script>\r\n \r\n <template>\r\n-  <div ref=\"box\" class=\"box-grid\">\r\n+  <div ref=\"box\" class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\">\r\n     <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n     <el-button @click=\"defaultSorting()\" type=\"success\">排序</el-button>\r\n   </div>\r\n@@ -67,73 +86,19 @@\n   overflow-y: hidden;\r\n   height: 100%;\r\n   position: relative;\r\n }\r\n-</style>\n-<script lang=\"ts\" setup>\r\n-import { reactive, watch, ref, onMounted } from 'vue'\r\n-import BoxItem from '../BoxItem/BoxItem.vue';\r\n-import { useBox } from '../../store/box';\r\n \r\n-const boxStore = useBox()\r\n-let boxItemData = reactive(boxStore.boxItem)\r\n-\r\n-// 监听boxItemData\r\n-watch(boxItemData, (nVal, oVal) => {\r\n-  localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n-})\r\n-\r\n-\r\n-//如果没有从本地获取数据，那么从发送请求获取数据\r\n-if (boxItemData == '') {\r\n+.contextmenu {\r\n+  margin: 0;\r\n+  background: #fff;\r\n+  z-index: 3000;\r\n+  position: absolute;\r\n+  list-style-type: none;\r\n+  padding: 5px 0;\r\n+  border-radius: 4px;\r\n+  font-size: 12px;\r\n+  font-weight: 400;\r\n+  color: #333;\r\n+  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.3);\r\n }\r\n-\r\n-// 对item进行排序\r\n-// 获取box元素\r\n-const box: any = ref(null)\r\n-// 定义box的宽高\r\n-let BoxOffsetHeight\r\n-let BoxOffsetWidth\r\n-// 获取box的宽高\r\n-onMounted(() => {\r\n-  BoxOffsetHeight = box.value.offsetHeight\r\n-  BoxOffsetWidth = box.value.offsetWidth\r\n-  // 调用默认排序方法\r\n-  // defaultSorting()\r\n-})\r\n-\r\n-function defaultSorting() {\r\n-  const interval = 100\r\n-  let page = 0\r\n-  let num = 0\r\n-  boxItemData.forEach(element => {\r\n-    let Y = num * 100\r\n-    if (Y > BoxOffsetHeight - 100) {\r\n-      page++\r\n-      num = 0\r\n-      Y = num * 100\r\n-    }\r\n-    let X = 100 * page\r\n-    element.X = X\r\n-    element.Y = Y\r\n-    num++\r\n-  });\r\n-\r\n-}\r\n-\r\n-</script>\r\n-\r\n-<template>\r\n-  <div ref=\"box\" class=\"box-grid\">\r\n-    <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n-    </BoxItem>\r\n-    <el-button @click=\"defaultSorting()\" type=\"success\">排序</el-button>\r\n-  </div>\r\n-</template>\r\n-<style lang=\"less\">\r\n-.box-grid {\r\n-  overflow-x: hidden;\r\n-  overflow-y: hidden;\r\n-  height: 100%;\r\n-  position: relative;\r\n-}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650178846958,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -73,12 +73,15 @@\n <template>\r\n   <div ref=\"box\" class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\">\r\n     <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n-    <el-button @click=\"defaultSorting()\" type=\"success\">排序</el-button>\r\n   </div>\r\n   <el-card class=\"box-card contextmenu\" v-show=\"visible\" :style=\"{ left: left + 'px', top: top + 'px' }\">\r\n-    <div v-for=\"o in 4\" :key=\"o\" class=\"text item\">{{ 'List item ' + o }}</div>\r\n+    <ul>\r\n+      <li @click=\"defaultSorting（）\">排序</li>\r\n+      <li>排序</li>\r\n+      <li>排序</li>\r\n+    </ul>\r\n   </el-card>\r\n </template>\r\n <style lang=\"less\">\r\n .box-grid {\r\n"
+                },
+                {
+                    "date": 1650178889868,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -76,9 +76,9 @@\n     </BoxItem>\r\n   </div>\r\n   <el-card class=\"box-card contextmenu\" v-show=\"visible\" :style=\"{ left: left + 'px', top: top + 'px' }\">\r\n     <ul>\r\n-      <li @click=\"defaultSorting（）\">排序</li>\r\n+      <li @click=\"defaultSorting()\">排序</li>\r\n       <li>排序</li>\r\n       <li>排序</li>\r\n     </ul>\r\n   </el-card>\r\n@@ -91,8 +91,9 @@\n   position: relative;\r\n }\r\n \r\n .contextmenu {\r\n+  width: 100px;\r\n   margin: 0;\r\n   background: #fff;\r\n   z-index: 3000;\r\n   position: absolute;\r\n"
+                },
+                {
+                    "date": 1650178896435,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -92,8 +92,9 @@\n }\r\n \r\n .contextmenu {\r\n   width: 100px;\r\n+  height: 200px;\r\n   margin: 0;\r\n   background: #fff;\r\n   z-index: 3000;\r\n   position: absolute;\r\n"
+                },
+                {
+                    "date": 1650178977359,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -91,9 +91,9 @@\n   position: relative;\r\n }\r\n \r\n .contextmenu {\r\n-  width: 100px;\r\n+  width: 150px;\r\n   height: 200px;\r\n   margin: 0;\r\n   background: #fff;\r\n   z-index: 3000;\r\n@@ -104,6 +104,10 @@\n   font-size: 12px;\r\n   font-weight: 400;\r\n   color: #333;\r\n   box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.3);\r\n+\r\n+  .el-card__body {\r\n+    padding: 10px;\r\n+  }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650179002481,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -107,7 +107,9 @@\n   box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.3);\r\n \r\n   .el-card__body {\r\n     padding: 10px;\r\n+\r\n+    ul>li {}\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650179021320,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -108,8 +108,12 @@\n \r\n   .el-card__body {\r\n     padding: 10px;\r\n \r\n-    ul>li {}\r\n+    ul>li {\r\n+      width: 100%;\r\n+      height: 30px;\r\n+      background-color: pink;\r\n+    }\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650179038429,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -106,9 +106,9 @@\n   color: #333;\r\n   box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.3);\r\n \r\n   .el-card__body {\r\n-    padding: 10px;\r\n+    padding: 0;\r\n \r\n     ul>li {\r\n       width: 100%;\r\n       height: 30px;\r\n"
+                },
+                {
+                    "date": 1650179045068,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -106,9 +106,9 @@\n   color: #333;\r\n   box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.3);\r\n \r\n   .el-card__body {\r\n-    padding: 0;\r\n+    padding: 0px;\r\n \r\n     ul>li {\r\n       width: 100%;\r\n       height: 30px;\r\n"
+                },
+                {
+                    "date": 1650179061678,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -111,9 +111,9 @@\n \r\n     ul>li {\r\n       width: 100%;\r\n       height: 30px;\r\n-      background-color: pink;\r\n+\r\n     }\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650179070768,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -111,9 +111,9 @@\n \r\n     ul>li {\r\n       width: 100%;\r\n       height: 30px;\r\n-\r\n+      padding: ;\r\n     }\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650179085789,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -107,13 +107,14 @@\n   box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.3);\r\n \r\n   .el-card__body {\r\n     padding: 0px;\r\n+    text-align: center;\r\n \r\n     ul>li {\r\n       width: 100%;\r\n       height: 30px;\r\n-      padding: ;\r\n+      padding: 0 10px 0 10px;\r\n     }\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650179091163,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -107,9 +107,8 @@\n   box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.3);\r\n \r\n   .el-card__body {\r\n     padding: 0px;\r\n-    text-align: center;\r\n \r\n     ul>li {\r\n       width: 100%;\r\n       height: 30px;\r\n"
+                },
+                {
+                    "date": 1650179101771,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -107,8 +107,9 @@\n   box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.3);\r\n \r\n   .el-card__body {\r\n     padding: 0px;\r\n+    line-height: 30px;\r\n \r\n     ul>li {\r\n       width: 100%;\r\n       height: 30px;\r\n"
+                },
+                {
+                    "date": 1650179115322,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -113,8 +113,12 @@\n     ul>li {\r\n       width: 100%;\r\n       height: 30px;\r\n       padding: 0 10px 0 10px;\r\n+\r\n+      &:hover {\r\n+        background-color: pink;\r\n+      }\r\n     }\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650179135216,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -116,8 +116,9 @@\n       padding: 0 10px 0 10px;\r\n \r\n       &:hover {\r\n         background-color: pink;\r\n+        cursor: pointer;\r\n       }\r\n     }\r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1650180397330,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,10 +77,10 @@\n   </div>\r\n   <el-card class=\"box-card contextmenu\" v-show=\"visible\" :style=\"{ left: left + 'px', top: top + 'px' }\">\r\n     <ul>\r\n       <li @click=\"defaultSorting()\">排序</li>\r\n-      <li>排序</li>\r\n-      <li>排序</li>\r\n+      <li>设置</li>\r\n+      <li>更新壁纸</li>\r\n     </ul>\r\n   </el-card>\r\n </template>\r\n <style lang=\"less\">\r\n"
+                },
+                {
+                    "date": 1650182183167,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -74,9 +74,10 @@\n   <div ref=\"box\" class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\">\r\n     <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n   </div>\r\n-  <el-card class=\"box-card contextmenu\" v-show=\"visible\" :style=\"{ left: left + 'px', top: top + 'px' }\">\r\n+  <el-card @contextmenu.native=\"handlePaste($event)\" class=\"box-card contextmenu\" v-show=\"visible\"\r\n+    :style=\"{ left: left + 'px', top: top + 'px' }\">\r\n     <ul>\r\n       <li @click=\"defaultSorting()\">排序</li>\r\n       <li>设置</li>\r\n       <li>更新壁纸</li>\r\n"
+                },
+                {
+                    "date": 1650182200225,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -67,8 +67,13 @@\n }\r\n function closeMenu() {\r\n   visible.value = false;\r\n }\r\n+function handlePaste(event) {\r\n+  // 禁用鼠标右键\r\n+  event.preventDefault()\r\n+  return false\r\n+}\r\n </script>\r\n \r\n <template>\r\n   <div ref=\"box\" class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\">\r\n"
+                },
+                {
+                    "date": 1650182826033,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -79,9 +79,9 @@\n   <div ref=\"box\" class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\">\r\n     <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n   </div>\r\n-  <el-card @contextmenu.native=\"handlePaste($event)\" class=\"box-card contextmenu\" v-show=\"visible\"\r\n+  <el-card @contextmenu.native=\"\" class=\"box-card contextmenu\" v-show=\"visible\"\r\n     :style=\"{ left: left + 'px', top: top + 'px' }\">\r\n     <ul>\r\n       <li @click=\"defaultSorting()\">排序</li>\r\n       <li>设置</li>\r\n"
+                },
+                {
+                    "date": 1650182831452,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -79,9 +79,9 @@\n   <div ref=\"box\" class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\">\r\n     <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n   </div>\r\n-  <el-card @contextmenu.native=\"\" class=\"box-card contextmenu\" v-show=\"visible\"\r\n+  <el-card @contextmenu.native=\"handlePaste($event)\" class=\"box-card contextmenu\" v-show=\"visible\"\r\n     :style=\"{ left: left + 'px', top: top + 'px' }\">\r\n     <ul>\r\n       <li @click=\"defaultSorting()\">排序</li>\r\n       <li>设置</li>\r\n"
+                },
+                {
+                    "date": 1650183314352,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -83,9 +83,9 @@\n   <el-card @contextmenu.native=\"handlePaste($event)\" class=\"box-card contextmenu\" v-show=\"visible\"\r\n     :style=\"{ left: left + 'px', top: top + 'px' }\">\r\n     <ul>\r\n       <li @click=\"defaultSorting()\">排序</li>\r\n-      <li>设置</li>\r\n+      <li @click=\"drawer = true\">设置</li>\r\n       <li>更新壁纸</li>\r\n     </ul>\r\n   </el-card>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1650183346211,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -79,16 +79,21 @@\n   <div ref=\"box\" class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\">\r\n     <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n   </div>\r\n+  <!-- 右击菜单 -->\r\n   <el-card @contextmenu.native=\"handlePaste($event)\" class=\"box-card contextmenu\" v-show=\"visible\"\r\n     :style=\"{ left: left + 'px', top: top + 'px' }\">\r\n     <ul>\r\n       <li @click=\"defaultSorting()\">排序</li>\r\n       <li @click=\"drawer = true\">设置</li>\r\n       <li>更新壁纸</li>\r\n     </ul>\r\n   </el-card>\r\n+  <!-- 设置 -->\r\n+  <el-drawer v-model=\"drawer\" title=\"I am the title\" :with-header=\"false\">\r\n+    <span>Hi there!</span>\r\n+  </el-drawer>\r\n </template>\r\n <style lang=\"less\">\r\n .box-grid {\r\n   overflow-x: hidden;\r\n"
+                },
+                {
+                    "date": 1650183352089,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -89,8 +89,9 @@\n       <li>更新壁纸</li>\r\n     </ul>\r\n   </el-card>\r\n   <!-- 设置 -->\r\n+  const drawer = ref(false)\r\n   <el-drawer v-model=\"drawer\" title=\"I am the title\" :with-header=\"false\">\r\n     <span>Hi there!</span>\r\n   </el-drawer>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1650183382722,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,8 +47,9 @@\n     num++\r\n   });\r\n \r\n }\r\n+// 右击菜单\r\n let visible = ref(false)\r\n let top = ref(0)\r\n let left = ref(0)\r\n watch(visible, (value) => {\r\n@@ -72,8 +73,11 @@\n   // 禁用鼠标右键\r\n   event.preventDefault()\r\n   return false\r\n }\r\n+// 设置\r\n+const drawer = ref(false)\r\n+\r\n </script>\r\n \r\n <template>\r\n   <div ref=\"box\" class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\">\r\n@@ -89,9 +93,8 @@\n       <li>更新壁纸</li>\r\n     </ul>\r\n   </el-card>\r\n   <!-- 设置 -->\r\n-  const drawer = ref(false)\r\n   <el-drawer v-model=\"drawer\" title=\"I am the title\" :with-header=\"false\">\r\n     <span>Hi there!</span>\r\n   </el-drawer>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1650183513195,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -75,9 +75,8 @@\n   return false\r\n }\r\n // 设置\r\n const drawer = ref(false)\r\n-\r\n </script>\r\n \r\n <template>\r\n   <div ref=\"box\" class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\">\r\n"
+                },
+                {
+                    "date": 1650183557193,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -86,9 +86,9 @@\n   <!-- 右击菜单 -->\r\n   <el-card @contextmenu.native=\"handlePaste($event)\" class=\"box-card contextmenu\" v-show=\"visible\"\r\n     :style=\"{ left: left + 'px', top: top + 'px' }\">\r\n     <ul>\r\n-      <li @click=\"defaultSorting()\">排序</li>\r\n+      <li @click=\"defaultSorting()\">默认排序</li>\r\n       <li @click=\"drawer = true\">设置</li>\r\n       <li>更新壁纸</li>\r\n     </ul>\r\n   </el-card>\r\n"
+                },
+                {
+                    "date": 1650183704104,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -88,9 +88,9 @@\n     :style=\"{ left: left + 'px', top: top + 'px' }\">\r\n     <ul>\r\n       <li @click=\"defaultSorting()\">默认排序</li>\r\n       <li @click=\"drawer = true\">设置</li>\r\n-      <li>更新壁纸</li>\r\n+      <li @click=\"\">更新壁纸</li>\r\n     </ul>\r\n   </el-card>\r\n   <!-- 设置 -->\r\n   <el-drawer v-model=\"drawer\" title=\"I am the title\" :with-header=\"false\">\r\n"
+                },
+                {
+                    "date": 1650183738732,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -75,8 +75,13 @@\n   return false\r\n }\r\n // 设置\r\n const drawer = ref(false)\r\n+// 更新壁纸\r\n+const updateWallpaper = () => {\r\n+  console.log('a');\r\n+\r\n+}\r\n </script>\r\n \r\n <template>\r\n   <div ref=\"box\" class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\">\r\n"
+                },
+                {
+                    "date": 1650183752253,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -93,9 +93,9 @@\n     :style=\"{ left: left + 'px', top: top + 'px' }\">\r\n     <ul>\r\n       <li @click=\"defaultSorting()\">默认排序</li>\r\n       <li @click=\"drawer = true\">设置</li>\r\n-      <li @click=\"\">更新壁纸</li>\r\n+      <li @click=\"updateWallpaper\">更新壁纸</li>\r\n     </ul>\r\n   </el-card>\r\n   <!-- 设置 -->\r\n   <el-drawer v-model=\"drawer\" title=\"I am the title\" :with-header=\"false\">\r\n"
+                },
+                {
+                    "date": 1650183777287,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -93,9 +93,9 @@\n     :style=\"{ left: left + 'px', top: top + 'px' }\">\r\n     <ul>\r\n       <li @click=\"defaultSorting()\">默认排序</li>\r\n       <li @click=\"drawer = true\">设置</li>\r\n-      <li @click=\"updateWallpaper\">更新壁纸</li>\r\n+      <li @click=\"updateWallpaper()\">更新壁纸</li>\r\n     </ul>\r\n   </el-card>\r\n   <!-- 设置 -->\r\n   <el-drawer v-model=\"drawer\" title=\"I am the title\" :with-header=\"false\">\r\n"
+                },
+                {
+                    "date": 1650183782792,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -107,8 +107,10 @@\n   overflow-x: hidden;\r\n   overflow-y: hidden;\r\n   height: 100%;\r\n   position: relative;\r\n+  background-color: violet;\r\n+\r\n }\r\n \r\n .contextmenu {\r\n   width: 150px;\r\n"
+                },
+                {
+                    "date": 1650183854533,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -76,16 +76,18 @@\n }\r\n // 设置\r\n const drawer = ref(false)\r\n // 更新壁纸\r\n+let\r\n const updateWallpaper = () => {\r\n   console.log('a');\r\n \r\n }\r\n </script>\r\n \r\n <template>\r\n-  <div ref=\"box\" class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\">\r\n+\r\n+  <div ref=\"box\" class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\" :style=\"{ 'background-color': color }\">\r\n     <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n   </div>\r\n   <!-- 右击菜单 -->\r\n@@ -107,9 +109,8 @@\n   overflow-x: hidden;\r\n   overflow-y: hidden;\r\n   height: 100%;\r\n   position: relative;\r\n-  background-color: violet;\r\n \r\n }\r\n \r\n .contextmenu {\r\n"
+                },
+                {
+                    "date": 1650183889618,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -76,9 +76,9 @@\n }\r\n // 设置\r\n const drawer = ref(false)\r\n // 更新壁纸\r\n-let\r\n+let bgColor = ref('pink')\r\n const updateWallpaper = () => {\r\n   console.log('a');\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1650183915652,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,16 +78,16 @@\n const drawer = ref(false)\r\n // 更新壁纸\r\n let bgColor = ref('pink')\r\n const updateWallpaper = () => {\r\n-  console.log('a');\r\n+  bgColor.value = while\r\n \r\n }\r\n </script>\r\n \r\n <template>\r\n \r\n-  <div ref=\"box\" class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\" :style=\"{ 'background-color': color }\">\r\n+  <div ref=\"box\" class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\" :style=\"{ 'background-color': bgColor }\">\r\n     <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n   </div>\r\n   <!-- 右击菜单 -->\r\n"
+                },
+                {
+                    "date": 1650183927220,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,9 +78,9 @@\n const drawer = ref(false)\r\n // 更新壁纸\r\n let bgColor = ref('pink')\r\n const updateWallpaper = () => {\r\n-  bgColor.value = while\r\n+  bgColor.value = white\r\n \r\n }\r\n </script>\r\n \r\n"
+                },
+                {
+                    "date": 1650183948428,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,9 +78,9 @@\n const drawer = ref(false)\r\n // 更新壁纸\r\n let bgColor = ref('pink')\r\n const updateWallpaper = () => {\r\n-  bgColor.value = white\r\n+  bgColor.value = 'red'\r\n \r\n }\r\n </script>\r\n \r\n"
+                },
+                {
+                    "date": 1650183959812,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,9 +78,9 @@\n const drawer = ref(false)\r\n // 更新壁纸\r\n let bgColor = ref('pink')\r\n const updateWallpaper = () => {\r\n-  bgColor.value = 'red'\r\n+  bgColor.value = 'build'\r\n \r\n }\r\n </script>\r\n \r\n"
+                },
+                {
+                    "date": 1650183965566,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,9 +78,9 @@\n const drawer = ref(false)\r\n // 更新壁纸\r\n let bgColor = ref('pink')\r\n const updateWallpaper = () => {\r\n-  bgColor.value = 'build'\r\n+  bgColor.value = 'bule'\r\n \r\n }\r\n </script>\r\n \r\n"
+                },
+                {
+                    "date": 1650183987660,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,9 +78,9 @@\n const drawer = ref(false)\r\n // 更新壁纸\r\n let bgColor = ref('pink')\r\n const updateWallpaper = () => {\r\n-  bgColor.value = 'bule'\r\n+  bgColor.value = 'white'\r\n \r\n }\r\n </script>\r\n \r\n"
+                },
+                {
+                    "date": 1650183998232,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,9 +78,9 @@\n const drawer = ref(false)\r\n // 更新壁纸\r\n let bgColor = ref('pink')\r\n const updateWallpaper = () => {\r\n-  bgColor.value = 'white'\r\n+  bgColor.value = 'bule'\r\n \r\n }\r\n </script>\r\n \r\n"
+                },
+                {
+                    "date": 1650184005793,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,9 +78,9 @@\n const drawer = ref(false)\r\n // 更新壁纸\r\n let bgColor = ref('pink')\r\n const updateWallpaper = () => {\r\n-  bgColor.value = 'bule'\r\n+  bgColor.value = 'white'\r\n \r\n }\r\n </script>\r\n \r\n"
+                },
+                {
+                    "date": 1650184034175,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -79,9 +79,8 @@\n // 更新壁纸\r\n let bgColor = ref('pink')\r\n const updateWallpaper = () => {\r\n   bgColor.value = 'white'\r\n-\r\n }\r\n </script>\r\n \r\n <template>\r\n"
+                },
+                {
+                    "date": 1650187670659,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,146 @@\n+<script lang=\"ts\" setup>\r\n+import { reactive, watch, ref, onMounted } from 'vue'\r\n+import BoxItem from '../BoxItem/BoxItem.vue';\r\n+import { useBox } from '../../store/box';\r\n+\r\n+const boxStore = useBox()\r\n+let boxItemData = reactive(boxStore.boxItem)\r\n+\r\n+// 监听boxItemData\r\n+watch(boxItemData, (nVal, oVal) => {\r\n+  localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n+})\r\n+\r\n+\r\n+//如果没有从本地获取数据，那么从发送请求获取数据\r\n+if (boxItemData == '') {\r\n+}\r\n+\r\n+// 对item进行排序\r\n+// 获取box元素\r\n+const box: any = ref(null)\r\n+// 定义box的宽高\r\n+let BoxOffsetHeight\r\n+let BoxOffsetWidth\r\n+// 获取box的宽高\r\n+onMounted(() => {\r\n+  BoxOffsetHeight = box.value.offsetHeight\r\n+  BoxOffsetWidth = box.value.offsetWidth\r\n+  // 调用默认排序方法\r\n+  // defaultSorting()\r\n+})\r\n+\r\n+function defaultSorting() {\r\n+  const interval = 100\r\n+  let page = 0\r\n+  let num = 0\r\n+  boxItemData.forEach(element => {\r\n+    let Y = num * 100\r\n+    if (Y > BoxOffsetHeight - 100) {\r\n+      page++\r\n+      num = 0\r\n+      Y = num * 100\r\n+    }\r\n+    let X = 100 * page\r\n+    element.X = X\r\n+    element.Y = Y\r\n+    num++\r\n+  });\r\n+\r\n+}\r\n+// 右击菜单\r\n+let visible = ref(false)\r\n+let top = ref(0)\r\n+let left = ref(0)\r\n+watch(visible, (value) => {\r\n+  if (value) {\r\n+    document.body.addEventListener('click', closeMenu)\r\n+  } else {\r\n+    document.body.removeEventListener('click', closeMenu)\r\n+  }\r\n+})\r\n+function openMenu(e) {\r\n+  let x = e.pageX;\r\n+  let y = e.pageY;\r\n+  top.value = y;\r\n+  left.value = x;\r\n+  visible.value = true;\r\n+}\r\n+function closeMenu() {\r\n+  visible.value = false;\r\n+}\r\n+function handlePaste(event) {\r\n+  // 禁用鼠标右键\r\n+  event.preventDefault()\r\n+  return false\r\n+}\r\n+// 设置\r\n+const drawer = ref(false)\r\n+// 更新壁纸\r\n+let bgColor = ref('pink')\r\n+const updateWallpaper = () => {\r\n+  bgColor.value = 'white'\r\n+}\r\n+</script>\r\n+\r\n+<template>\r\n+\r\n+  <div ref=\"box\" class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\" :style=\"{ 'background-color': bgColor }\">\r\n+    <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n+    </BoxItem>\r\n+  </div>\r\n+  <!-- 右击菜单 -->\r\n+  <el-card @contextmenu.native=\"handlePaste($event)\" class=\"box-card contextmenu\" v-show=\"visible\"\r\n+    :style=\"{ left: left + 'px', top: top + 'px' }\">\r\n+    <ul>\r\n+      <li @click=\"defaultSorting()\">默认排序</li>\r\n+      <li @click=\"drawer = true\">设置</li>\r\n+      <li @click=\"updateWallpaper()\">更新壁纸</li>\r\n+    </ul>\r\n+  </el-card>\r\n+  <!-- 设置 -->\r\n+  <el-drawer v-model=\"drawer\" title=\"I am the title\" :with-header=\"false\">\r\n+    <span>Hi there!</span>\r\n+  </el-drawer>\r\n+</template>\r\n+<style lang=\"less\">\r\n+.box-grid {\r\n+  overflow-x: hidden;\r\n+  overflow-y: hidden;\r\n+  height: 100%;\r\n+  position: relative;\r\n+\r\n+}\r\n+\r\n+.contextmenu {\r\n+  width: 150px;\r\n+  height: 200px;\r\n+  margin: 0;\r\n+  background: #fff;\r\n+  z-index: 3000;\r\n+  position: absolute;\r\n+  list-style-type: none;\r\n+  padding: 5px 0;\r\n+  border-radius: 4px;\r\n+  font-size: 12px;\r\n+  font-weight: 400;\r\n+  color: #333;\r\n+  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.3);\r\n+\r\n+  .el-card__body {\r\n+    padding: 0px;\r\n+    line-height: 30px;\r\n+\r\n+    ul>li {\r\n+      width: 100%;\r\n+      height: 30px;\r\n+      padding: 0 10px 0 10px;\r\n+\r\n+      &:hover {\r\n+        background-color: pink;\r\n+        cursor: pointer;\r\n+      }\r\n+    }\r\n+  }\r\n+}\r\n+</style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650191323607,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,9 +78,9 @@\n const drawer = ref(false)\r\n // 更新壁纸\r\n let bgColor = ref('pink')\r\n const updateWallpaper = () => {\r\n-  bgColor.value = 'white'\r\n+  boxStore.updatedGlobalPicture()\r\n }\r\n </script>\r\n \r\n <template>\r\n@@ -142,151 +142,5 @@\n       }\r\n     }\r\n   }\r\n }\r\n-</style>\n-<script lang=\"ts\" setup>\r\n-import { reactive, watch, ref, onMounted } from 'vue'\r\n-import BoxItem from '../BoxItem/BoxItem.vue';\r\n-import { useBox } from '../../store/box';\r\n-\r\n-const boxStore = useBox()\r\n-let boxItemData = reactive(boxStore.boxItem)\r\n-\r\n-// 监听boxItemData\r\n-watch(boxItemData, (nVal, oVal) => {\r\n-  localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n-})\r\n-\r\n-\r\n-//如果没有从本地获取数据，那么从发送请求获取数据\r\n-if (boxItemData == '') {\r\n-}\r\n-\r\n-// 对item进行排序\r\n-// 获取box元素\r\n-const box: any = ref(null)\r\n-// 定义box的宽高\r\n-let BoxOffsetHeight\r\n-let BoxOffsetWidth\r\n-// 获取box的宽高\r\n-onMounted(() => {\r\n-  BoxOffsetHeight = box.value.offsetHeight\r\n-  BoxOffsetWidth = box.value.offsetWidth\r\n-  // 调用默认排序方法\r\n-  // defaultSorting()\r\n-})\r\n-\r\n-function defaultSorting() {\r\n-  const interval = 100\r\n-  let page = 0\r\n-  let num = 0\r\n-  boxItemData.forEach(element => {\r\n-    let Y = num * 100\r\n-    if (Y > BoxOffsetHeight - 100) {\r\n-      page++\r\n-      num = 0\r\n-      Y = num * 100\r\n-    }\r\n-    let X = 100 * page\r\n-    element.X = X\r\n-    element.Y = Y\r\n-    num++\r\n-  });\r\n-\r\n-}\r\n-// 右击菜单\r\n-let visible = ref(false)\r\n-let top = ref(0)\r\n-let left = ref(0)\r\n-watch(visible, (value) => {\r\n-  if (value) {\r\n-    document.body.addEventListener('click', closeMenu)\r\n-  } else {\r\n-    document.body.removeEventListener('click', closeMenu)\r\n-  }\r\n-})\r\n-function openMenu(e) {\r\n-  let x = e.pageX;\r\n-  let y = e.pageY;\r\n-  top.value = y;\r\n-  left.value = x;\r\n-  visible.value = true;\r\n-}\r\n-function closeMenu() {\r\n-  visible.value = false;\r\n-}\r\n-function handlePaste(event) {\r\n-  // 禁用鼠标右键\r\n-  event.preventDefault()\r\n-  return false\r\n-}\r\n-// 设置\r\n-const drawer = ref(false)\r\n-// 更新壁纸\r\n-let bgColor = ref('pink')\r\n-const updateWallpaper = () => {\r\n-  bgColor.value = 'white'\r\n-}\r\n-</script>\r\n-\r\n-<template>\r\n-\r\n-  <div ref=\"box\" class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\" :style=\"{ 'background-color': bgColor }\">\r\n-    <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n-    </BoxItem>\r\n-  </div>\r\n-  <!-- 右击菜单 -->\r\n-  <el-card @contextmenu.native=\"handlePaste($event)\" class=\"box-card contextmenu\" v-show=\"visible\"\r\n-    :style=\"{ left: left + 'px', top: top + 'px' }\">\r\n-    <ul>\r\n-      <li @click=\"defaultSorting()\">默认排序</li>\r\n-      <li @click=\"drawer = true\">设置</li>\r\n-      <li @click=\"updateWallpaper()\">更新壁纸</li>\r\n-    </ul>\r\n-  </el-card>\r\n-  <!-- 设置 -->\r\n-  <el-drawer v-model=\"drawer\" title=\"I am the title\" :with-header=\"false\">\r\n-    <span>Hi there!</span>\r\n-  </el-drawer>\r\n-</template>\r\n-<style lang=\"less\">\r\n-.box-grid {\r\n-  overflow-x: hidden;\r\n-  overflow-y: hidden;\r\n-  height: 100%;\r\n-  position: relative;\r\n-\r\n-}\r\n-\r\n-.contextmenu {\r\n-  width: 150px;\r\n-  height: 200px;\r\n-  margin: 0;\r\n-  background: #fff;\r\n-  z-index: 3000;\r\n-  position: absolute;\r\n-  list-style-type: none;\r\n-  padding: 5px 0;\r\n-  border-radius: 4px;\r\n-  font-size: 12px;\r\n-  font-weight: 400;\r\n-  color: #333;\r\n-  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.3);\r\n-\r\n-  .el-card__body {\r\n-    padding: 0px;\r\n-    line-height: 30px;\r\n-\r\n-    ul>li {\r\n-      width: 100%;\r\n-      height: 30px;\r\n-      padding: 0 10px 0 10px;\r\n-\r\n-      &:hover {\r\n-        background-color: pink;\r\n-        cursor: pointer;\r\n-      }\r\n-    }\r\n-  }\r\n-}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650191934771,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -108,8 +108,12 @@\n   overflow-x: hidden;\r\n   overflow-y: hidden;\r\n   height: 100%;\r\n   position: relative;\r\n+  background-image: url(https://tuapi.eees.cc/api.php?category=dongman&type=302); //图片类型更换请修改参数  \r\n+  background-repeat: repeat;\r\n+  background-attachment: fixed;\r\n+  background-position: 50% 50%;\r\n \r\n }\r\n \r\n .contextmenu {\r\n"
+                },
+                {
+                    "date": 1650192049963,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,10 @@\n </script>\r\n \r\n <template>\r\n \r\n-  <div ref=\"box\" class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\" :style=\"{ 'background-color': bgColor }\">\r\n+  <div ref=\"box\" data-src class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\"\r\n+    :style=\"{ 'background-color': bgColor }\">\r\n     <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n   </div>\r\n   <!-- 右击菜单 -->\r\n"
+                },
+                {
+                    "date": 1650192153658,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,10 +84,9 @@\n </script>\r\n \r\n <template>\r\n \r\n-  <div ref=\"box\" data-src class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\"\r\n-    :style=\"{ 'background-color': bgColor }\">\r\n+  <div ref=\"box\" data-src class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\">\r\n     <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n   </div>\r\n   <!-- 右击菜单 -->\r\n"
+                },
+                {
+                    "date": 1650192916567,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -76,9 +76,13 @@\n }\r\n // 设置\r\n const drawer = ref(false)\r\n // 更新壁纸\r\n-let bgColor = ref('pink')\r\n+onMounted(() => {\r\n+  boxStore.updatedGlobalPicture()\r\n+})\r\n+\r\n+let globalPicture = \r\n const updateWallpaper = () => {\r\n   boxStore.updatedGlobalPicture()\r\n }\r\n </script>\r\n"
+                },
+                {
+                    "date": 1650192982457,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n <script lang=\"ts\" setup>\r\n import { reactive, watch, ref, onMounted } from 'vue'\r\n import BoxItem from '../BoxItem/BoxItem.vue';\r\n import { useBox } from '../../store/box';\r\n+import { storeToRefs } from 'pinia';\r\n \r\n const boxStore = useBox()\r\n let boxItemData = reactive(boxStore.boxItem)\r\n \r\n@@ -80,9 +81,9 @@\n onMounted(() => {\r\n   boxStore.updatedGlobalPicture()\r\n })\r\n \r\n-let globalPicture = \r\n+let { globalPicture } = storeToRefs(boxStore)\r\n const updateWallpaper = () => {\r\n   boxStore.updatedGlobalPicture()\r\n }\r\n </script>\r\n"
+                },
+                {
+                    "date": 1650192999247,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,10 +82,13 @@\n   boxStore.updatedGlobalPicture()\r\n })\r\n \r\n let { globalPicture } = storeToRefs(boxStore)\r\n+console.log(globalPicture);\r\n const updateWallpaper = () => {\r\n   boxStore.updatedGlobalPicture()\r\n+  console.log(globalPicture);\r\n+\r\n }\r\n </script>\r\n \r\n <template>\r\n"
+                },
+                {
+                    "date": 1650193939159,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -92,9 +92,10 @@\n </script>\r\n \r\n <template>\r\n \r\n-  <div ref=\"box\" data-src class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\">\r\n+  <div ref=\"box\" data-src class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\"\r\n+    :style=\"{ 'background-image': globalPicture }\">\r\n     <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n   </div>\r\n   <!-- 右击菜单 -->\r\n"
+                },
+                {
+                    "date": 1650193997163,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -86,16 +86,15 @@\n console.log(globalPicture);\r\n const updateWallpaper = () => {\r\n   boxStore.updatedGlobalPicture()\r\n   console.log(globalPicture);\r\n+  console.log(box.value);\r\n \r\n }\r\n </script>\r\n \r\n <template>\r\n-\r\n-  <div ref=\"box\" data-src class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\"\r\n-    :style=\"{ 'background-image': globalPicture }\">\r\n+  <div ref=\"box\" data-src class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\">\r\n     <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n   </div>\r\n   <!-- 右击菜单 -->\r\n"
+                },
+                {
+                    "date": 1650194025312,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -86,9 +86,9 @@\n console.log(globalPicture);\r\n const updateWallpaper = () => {\r\n   boxStore.updatedGlobalPicture()\r\n   console.log(globalPicture);\r\n-  console.log(box.value);\r\n+  console.log(box.value.backgroundImage);\r\n \r\n }\r\n </script>\r\n \r\n"
+                },
+                {
+                    "date": 1650194034845,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -86,9 +86,9 @@\n console.log(globalPicture);\r\n const updateWallpaper = () => {\r\n   boxStore.updatedGlobalPicture()\r\n   console.log(globalPicture);\r\n-  console.log(box.value.backgroundImage);\r\n+  console.log(box.value);\r\n \r\n }\r\n </script>\r\n \r\n"
+                },
+                {
+                    "date": 1650194061257,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -86,9 +86,9 @@\n console.log(globalPicture);\r\n const updateWallpaper = () => {\r\n   boxStore.updatedGlobalPicture()\r\n   console.log(globalPicture);\r\n-  console.log(box.value);\r\n+  console.log(box.value.style.backgroundImage);\r\n \r\n }\r\n </script>\r\n \r\n"
+                },
+                {
+                    "date": 1650194071123,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -86,9 +86,9 @@\n console.log(globalPicture);\r\n const updateWallpaper = () => {\r\n   boxStore.updatedGlobalPicture()\r\n   console.log(globalPicture);\r\n-  console.log(box.value.style.backgroundImage);\r\n+  console.log(box.value.style);\r\n \r\n }\r\n </script>\r\n \r\n"
+                },
+                {
+                    "date": 1650194101629,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -85,10 +85,10 @@\n let { globalPicture } = storeToRefs(boxStore)\r\n console.log(globalPicture);\r\n const updateWallpaper = () => {\r\n   boxStore.updatedGlobalPicture()\r\n-  console.log(globalPicture);\r\n-  console.log(box.value.style);\r\n+  box.value.style.backgroundImage = globalPicture\r\n+  console.log(box.value.style.backgroundImage);\r\n \r\n }\r\n </script>\r\n \r\n"
+                },
+                {
+                    "date": 1650194127619,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -85,9 +85,9 @@\n let { globalPicture } = storeToRefs(boxStore)\r\n console.log(globalPicture);\r\n const updateWallpaper = () => {\r\n   boxStore.updatedGlobalPicture()\r\n-  box.value.style.backgroundImage = globalPicture\r\n+  box.value.style.backgroundImage = globalPicture.value\r\n   console.log(box.value.style.backgroundImage);\r\n \r\n }\r\n </script>\r\n"
+                },
+                {
+                    "date": 1650194147694,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -86,8 +86,10 @@\n console.log(globalPicture);\r\n const updateWallpaper = () => {\r\n   boxStore.updatedGlobalPicture()\r\n   box.value.style.backgroundImage = globalPicture.value\r\n+  console.log(globalPicture.value);\r\n+\r\n   console.log(box.value.style.backgroundImage);\r\n \r\n }\r\n </script>\r\n"
+                },
+                {
+                    "date": 1650194155379,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -86,9 +86,9 @@\n console.log(globalPicture);\r\n const updateWallpaper = () => {\r\n   boxStore.updatedGlobalPicture()\r\n   box.value.style.backgroundImage = globalPicture.value\r\n-  console.log(globalPicture.value);\r\n+  console.log(globalPicture);\r\n \r\n   console.log(box.value.style.backgroundImage);\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1650194163674,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -86,9 +86,9 @@\n console.log(globalPicture);\r\n const updateWallpaper = () => {\r\n   boxStore.updatedGlobalPicture()\r\n   box.value.style.backgroundImage = globalPicture.value\r\n-  console.log(globalPicture);\r\n+  console.log(globalPicture.value);\r\n \r\n   console.log(box.value.style.backgroundImage);\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1650194258899,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,10 +84,12 @@\n \r\n let { globalPicture } = storeToRefs(boxStore)\r\n console.log(globalPicture);\r\n const updateWallpaper = () => {\r\n-  boxStore.updatedGlobalPicture()\r\n-  box.value.style.backgroundImage = globalPicture.value\r\n+  boxStore.updatedGlobalPicture().then(() => {\r\n+\r\n+    box.value.style.backgroundImage = globalPicture.value\r\n+  })\r\n   console.log(globalPicture.value);\r\n \r\n   console.log(box.value.style.backgroundImage);\r\n \r\n"
+                },
+                {
+                    "date": 1650194355720,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -86,13 +86,13 @@\n console.log(globalPicture);\r\n const updateWallpaper = () => {\r\n   boxStore.updatedGlobalPicture().then(() => {\r\n \r\n-    box.value.style.backgroundImage = globalPicture.value\r\n+    box.value.style.backgroundImage = `url(globalPicture.value)`\r\n+    console.log(box.value.style.backgroundImage);\r\n   })\r\n   console.log(globalPicture.value);\r\n \r\n-  console.log(box.value.style.backgroundImage);\r\n \r\n }\r\n </script>\r\n \r\n"
+                },
+                {
+                    "date": 1650194393279,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -86,9 +86,9 @@\n console.log(globalPicture);\r\n const updateWallpaper = () => {\r\n   boxStore.updatedGlobalPicture().then(() => {\r\n \r\n-    box.value.style.backgroundImage = `url(globalPicture.value)`\r\n+    box.value.style.backgroundImage = `url(${globalPicture.value})`\r\n     console.log(box.value.style.backgroundImage);\r\n   })\r\n   console.log(globalPicture.value);\r\n \r\n"
+                },
+                {
+                    "date": 1650194465076,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -85,13 +85,10 @@\n let { globalPicture } = storeToRefs(boxStore)\r\n console.log(globalPicture);\r\n const updateWallpaper = () => {\r\n   boxStore.updatedGlobalPicture().then(() => {\r\n-\r\n     box.value.style.backgroundImage = `url(${globalPicture.value})`\r\n-    console.log(box.value.style.backgroundImage);\r\n   })\r\n-  console.log(globalPicture.value);\r\n \r\n \r\n }\r\n </script>\r\n"
+                },
+                {
+                    "date": 1650194573770,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -87,10 +87,8 @@\n const updateWallpaper = () => {\r\n   boxStore.updatedGlobalPicture().then(() => {\r\n     box.value.style.backgroundImage = `url(${globalPicture.value})`\r\n   })\r\n-\r\n-\r\n }\r\n </script>\r\n \r\n <template>\r\n"
+                },
+                {
+                    "date": 1650194792623,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -119,9 +119,9 @@\n   background-image: url(https://tuapi.eees.cc/api.php?category=dongman&type=302); //图片类型更换请修改参数  \r\n   background-repeat: repeat;\r\n   background-attachment: fixed;\r\n   background-position: 50% 50%;\r\n-\r\n+  transition: all 1s;\r\n }\r\n \r\n .contextmenu {\r\n   width: 150px;\r\n"
+                },
+                {
+                    "date": 1650194803466,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -120,8 +120,9 @@\n   background-repeat: repeat;\r\n   background-attachment: fixed;\r\n   background-position: 50% 50%;\r\n   transition: all 1s;\r\n+  opcaity: 0;\r\n }\r\n \r\n .contextmenu {\r\n   width: 150px;\r\n"
+                },
+                {
+                    "date": 1650194870394,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -120,9 +120,9 @@\n   background-repeat: repeat;\r\n   background-attachment: fixed;\r\n   background-position: 50% 50%;\r\n   transition: all 1s;\r\n-  opcaity: 0;\r\n+  opacity: .5;\r\n }\r\n \r\n .contextmenu {\r\n   width: 150px;\r\n"
+                },
+                {
+                    "date": 1650194884975,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -120,9 +120,9 @@\n   background-repeat: repeat;\r\n   background-attachment: fixed;\r\n   background-position: 50% 50%;\r\n   transition: all 1s;\r\n-  opacity: .5;\r\n+  opacity: 0;\r\n }\r\n \r\n .contextmenu {\r\n   width: 150px;\r\n"
+                },
+                {
+                    "date": 1650194938408,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,11 +82,12 @@\n   boxStore.updatedGlobalPicture()\r\n })\r\n \r\n let { globalPicture } = storeToRefs(boxStore)\r\n-console.log(globalPicture);\r\n const updateWallpaper = () => {\r\n+  box.value.style.opacity = 0\r\n   boxStore.updatedGlobalPicture().then(() => {\r\n+    box.value.style.opacity = 1\r\n     box.value.style.backgroundImage = `url(${globalPicture.value})`\r\n   })\r\n }\r\n </script>\r\n@@ -120,9 +121,9 @@\n   background-repeat: repeat;\r\n   background-attachment: fixed;\r\n   background-position: 50% 50%;\r\n   transition: all 1s;\r\n-  opacity: 0;\r\n+  opacity: 1;\r\n }\r\n \r\n .contextmenu {\r\n   width: 150px;\r\n"
+                },
+                {
+                    "date": 1650194951127,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -92,9 +92,9 @@\n }\r\n </script>\r\n \r\n <template>\r\n-  <div ref=\"box\" data-src class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\">\r\n+  <div ref=\"box\" class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\">\r\n     <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n   </div>\r\n   <!-- 右击菜单 -->\r\n"
+                },
+                {
+                    "date": 1650194972518,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -85,10 +85,10 @@\n let { globalPicture } = storeToRefs(boxStore)\r\n const updateWallpaper = () => {\r\n   box.value.style.opacity = 0\r\n   boxStore.updatedGlobalPicture().then(() => {\r\n+    box.value.style.backgroundImage = `url(${globalPicture.value})`\r\n     box.value.style.opacity = 1\r\n-    box.value.style.backgroundImage = `url(${globalPicture.value})`\r\n   })\r\n }\r\n </script>\r\n \r\n"
+                },
+                {
+                    "date": 1650195003235,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -86,9 +86,9 @@\n const updateWallpaper = () => {\r\n   box.value.style.opacity = 0\r\n   boxStore.updatedGlobalPicture().then(() => {\r\n     box.value.style.backgroundImage = `url(${globalPicture.value})`\r\n-    box.value.style.opacity = 1\r\n+    // box.value.style.opacity = 1\r\n   })\r\n }\r\n </script>\r\n \r\n"
+                },
+                {
+                    "date": 1650195009556,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -86,9 +86,9 @@\n const updateWallpaper = () => {\r\n   box.value.style.opacity = 0\r\n   boxStore.updatedGlobalPicture().then(() => {\r\n     box.value.style.backgroundImage = `url(${globalPicture.value})`\r\n-    // box.value.style.opacity = 1\r\n+    box.value.style.opacity = 1\r\n   })\r\n }\r\n </script>\r\n \r\n"
+                },
+                {
+                    "date": 1650195125678,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -120,9 +120,9 @@\n   background-image: url(https://tuapi.eees.cc/api.php?category=dongman&type=302); //图片类型更换请修改参数  \r\n   background-repeat: repeat;\r\n   background-attachment: fixed;\r\n   background-position: 50% 50%;\r\n-  transition: all 1s;\r\n+  transition: all 2s;\r\n   opacity: 1;\r\n }\r\n \r\n .contextmenu {\r\n"
+                },
+                {
+                    "date": 1650195136503,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -120,10 +120,9 @@\n   background-image: url(https://tuapi.eees.cc/api.php?category=dongman&type=302); //图片类型更换请修改参数  \r\n   background-repeat: repeat;\r\n   background-attachment: fixed;\r\n   background-position: 50% 50%;\r\n-  transition: all 2s;\r\n-  opacity: 1;\r\n+  transition: all 1s;\r\n }\r\n \r\n .contextmenu {\r\n   width: 150px;\r\n"
+                },
+                {
+                    "date": 1650195154116,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -83,12 +83,10 @@\n })\r\n \r\n let { globalPicture } = storeToRefs(boxStore)\r\n const updateWallpaper = () => {\r\n-  box.value.style.opacity = 0\r\n   boxStore.updatedGlobalPicture().then(() => {\r\n     box.value.style.backgroundImage = `url(${globalPicture.value})`\r\n-    box.value.style.opacity = 1\r\n   })\r\n }\r\n </script>\r\n \r\n"
+                },
+                {
+                    "date": 1650195164291,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -118,9 +118,9 @@\n   background-image: url(https://tuapi.eees.cc/api.php?category=dongman&type=302); //图片类型更换请修改参数  \r\n   background-repeat: repeat;\r\n   background-attachment: fixed;\r\n   background-position: 50% 50%;\r\n-  transition: all 1s;\r\n+  // transition: all 1s;\r\n }\r\n \r\n .contextmenu {\r\n   width: 150px;\r\n"
+                },
+                {
+                    "date": 1650195183188,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -90,9 +90,9 @@\n }\r\n </script>\r\n \r\n <template>\r\n-  <div ref=\"box\" class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\">\r\n+  <div ref=\"box\" data-src class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\">\r\n     <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n   </div>\r\n   <!-- 右击菜单 -->\r\n"
+                },
+                {
+                    "date": 1650196713030,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -118,9 +118,10 @@\n   background-image: url(https://tuapi.eees.cc/api.php?category=dongman&type=302); //图片类型更换请修改参数  \r\n   background-repeat: repeat;\r\n   background-attachment: fixed;\r\n   background-position: 50% 50%;\r\n-  // transition: all 1s;\r\n+  transition: all 1s;\r\n+  opacity: 1;\r\n }\r\n \r\n .contextmenu {\r\n   width: 150px;\r\n"
+                },
+                {
+                    "date": 1650196847468,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -119,9 +119,8 @@\n   background-repeat: repeat;\r\n   background-attachment: fixed;\r\n   background-position: 50% 50%;\r\n   transition: all 1s;\r\n-  opacity: 1;\r\n }\r\n \r\n .contextmenu {\r\n   width: 150px;\r\n"
+                },
+                {
+                    "date": 1650197094230,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -90,9 +90,9 @@\n }\r\n </script>\r\n \r\n <template>\r\n-  <div ref=\"box\" data-src class=\"box-grid\" @contextmenu.prevent=\"openMenu($event)\">\r\n+  <div ref=\"box\" data-src class=\"box-grid animate__fadeInDown\" @contextmenu.prevent=\"openMenu($event)\">\r\n     <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n   </div>\r\n   <!-- 右击菜单 -->\r\n"
+                },
+                {
+                    "date": 1650197120260,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -90,9 +90,9 @@\n }\r\n </script>\r\n \r\n <template>\r\n-  <div ref=\"box\" data-src class=\"box-grid animate__fadeInDown\" @contextmenu.prevent=\"openMenu($event)\">\r\n+  <div ref=\"box\" data-src class=\"box-grid \" @contextmenu.prevent=\"openMenu($event)\">\r\n     <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n   </div>\r\n   <!-- 右击菜单 -->\r\n"
+                },
+                {
+                    "date": 1650198482232,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -114,9 +114,10 @@\n   overflow-x: hidden;\r\n   overflow-y: hidden;\r\n   height: 100%;\r\n   position: relative;\r\n-  background-image: url(https://tuapi.eees.cc/api.php?category=dongman&type=302); //图片类型更换请修改参数  \r\n+  // background-image: url(https://tuapi.eees.cc/api.php?category=dongman&type=302); //图片类型更换请修改参数\r\n+  background-image: url(https://api.codelife.cc/wallpaper/random);\r\n   background-repeat: repeat;\r\n   background-attachment: fixed;\r\n   background-position: 50% 50%;\r\n   transition: all 1s;\r\n"
+                },
+                {
+                    "date": 1650198499697,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -79,8 +79,9 @@\n const drawer = ref(false)\r\n // 更新壁纸\r\n onMounted(() => {\r\n   boxStore.updatedGlobalPicture()\r\n+  box.value.style.backgroundImage = `url(${globalPicture.value})`\r\n })\r\n \r\n let { globalPicture } = storeToRefs(boxStore)\r\n const updateWallpaper = () => {\r\n"
+                },
+                {
+                    "date": 1650198507553,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -116,9 +116,9 @@\n   overflow-y: hidden;\r\n   height: 100%;\r\n   position: relative;\r\n   // background-image: url(https://tuapi.eees.cc/api.php?category=dongman&type=302); //图片类型更换请修改参数\r\n-  background-image: url(https://api.codelife.cc/wallpaper/random);\r\n+  // background-image: url(https://api.codelife.cc/wallpaper/random);\r\n   background-repeat: repeat;\r\n   background-attachment: fixed;\r\n   background-position: 50% 50%;\r\n   transition: all 1s;\r\n"
+                },
+                {
+                    "date": 1650198533066,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,10 +78,12 @@\n // 设置\r\n const drawer = ref(false)\r\n // 更新壁纸\r\n onMounted(() => {\r\n-  boxStore.updatedGlobalPicture()\r\n-  box.value.style.backgroundImage = `url(${globalPicture.value})`\r\n+  boxStore.updatedGlobalPicture().then(() => {\r\n+\r\n+    box.value.style.backgroundImage = `url(${globalPicture.value})`\r\n+  })\r\n })\r\n \r\n let { globalPicture } = storeToRefs(boxStore)\r\n const updateWallpaper = () => {\r\n"
+                },
+                {
+                    "date": 1650198597687,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -90,8 +90,15 @@\n   boxStore.updatedGlobalPicture().then(() => {\r\n     box.value.style.backgroundImage = `url(${globalPicture.value})`\r\n   })\r\n }\r\n+window.addEventListener(\"load\", function (e) {\r\n+  var obj = document.createElement(\"div\");\r\n+  obj.style = \"width:100%; height:100%; position:fixed; z-index:-1;\";\r\n+  obj.innerHTML = '<iframe src=\"https://tuapi.eees.cc/acgPicPPTShow/\" width=\"100%\" height=\"100%\" style=\"border: 0;\"></iframe>';\r\n+  var first = document.body.firstChild; // 得到页面的第一个元素\r\n+  document.body.insertBefore(obj, first); // 在得到的第一个元素之前插入\r\n+});\r\n </script>\r\n \r\n <template>\r\n   <div ref=\"box\" data-src class=\"box-grid \" @contextmenu.prevent=\"openMenu($event)\">\r\n"
+                },
+                {
+                    "date": 1650198815368,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -129,9 +129,9 @@\n   // background-image: url(https://api.codelife.cc/wallpaper/random);\r\n   background-repeat: repeat;\r\n   background-attachment: fixed;\r\n   background-position: 50% 50%;\r\n-  transition: all 1s;\r\n+  transition: .4s ease\r\n }\r\n \r\n .contextmenu {\r\n   width: 150px;\r\n"
+                },
+                {
+                    "date": 1650198848112,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -91,9 +91,9 @@\n     box.value.style.backgroundImage = `url(${globalPicture.value})`\r\n   })\r\n }\r\n window.addEventListener(\"load\", function (e) {\r\n-  var obj = document.createElement(\"div\");\r\n+  var obj: any = document.createElement(\"div\");\r\n   obj.style = \"width:100%; height:100%; position:fixed; z-index:-1;\";\r\n   obj.innerHTML = '<iframe src=\"https://tuapi.eees.cc/acgPicPPTShow/\" width=\"100%\" height=\"100%\" style=\"border: 0;\"></iframe>';\r\n   var first = document.body.firstChild; // 得到页面的第一个元素\r\n   document.body.insertBefore(obj, first); // 在得到的第一个元素之前插入\r\n"
+                },
+                {
+                    "date": 1650198912772,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -90,15 +90,8 @@\n   boxStore.updatedGlobalPicture().then(() => {\r\n     box.value.style.backgroundImage = `url(${globalPicture.value})`\r\n   })\r\n }\r\n-window.addEventListener(\"load\", function (e) {\r\n-  var obj: any = document.createElement(\"div\");\r\n-  obj.style = \"width:100%; height:100%; position:fixed; z-index:-1;\";\r\n-  obj.innerHTML = '<iframe src=\"https://tuapi.eees.cc/acgPicPPTShow/\" width=\"100%\" height=\"100%\" style=\"border: 0;\"></iframe>';\r\n-  var first = document.body.firstChild; // 得到页面的第一个元素\r\n-  document.body.insertBefore(obj, first); // 在得到的第一个元素之前插入\r\n-});\r\n </script>\r\n \r\n <template>\r\n   <div ref=\"box\" data-src class=\"box-grid \" @contextmenu.prevent=\"openMenu($event)\">\r\n"
+                },
+                {
+                    "date": 1650199022832,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -93,8 +93,9 @@\n }\r\n </script>\r\n \r\n <template>\r\n+\r\n   <div ref=\"box\" data-src class=\"box-grid \" @contextmenu.prevent=\"openMenu($event)\">\r\n     <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n   </div>\r\n"
+                },
+                {
+                    "date": 1650199139146,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -93,9 +93,11 @@\n }\r\n </script>\r\n \r\n <template>\r\n-\r\n+  <div>\r\n+    <img src=\"\" alt=\"\">\r\n+  </div>\r\n   <div ref=\"box\" data-src class=\"box-grid \" @contextmenu.prevent=\"openMenu($event)\">\r\n     <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n   </div>\r\n"
+                },
+                {
+                    "date": 1650199154578,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -94,9 +94,9 @@\n </script>\r\n \r\n <template>\r\n   <div>\r\n-    <img src=\"\" alt=\"\">\r\n+    <img :src=\"globalPicture\" alt=\"\">\r\n   </div>\r\n   <div ref=\"box\" data-src class=\"box-grid \" @contextmenu.prevent=\"openMenu($event)\">\r\n     <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n"
+                },
+                {
+                    "date": 1650199162574,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -94,9 +94,9 @@\n </script>\r\n \r\n <template>\r\n   <div>\r\n-    <img :src=\"globalPicture\" alt=\"\">\r\n+    <img :src=\"globalPicture\">\r\n   </div>\r\n   <div ref=\"box\" data-src class=\"box-grid \" @contextmenu.prevent=\"openMenu($event)\">\r\n     <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n"
+                },
+                {
+                    "date": 1650199173963,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -94,9 +94,9 @@\n </script>\r\n \r\n <template>\r\n   <div>\r\n-    <img :src=\"globalPicture\">\r\n+    <img :src=\"globalPicture\" alt=\"背景图片\">\r\n   </div>\r\n   <div ref=\"box\" data-src class=\"box-grid \" @contextmenu.prevent=\"openMenu($event)\">\r\n     <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n"
+                },
+                {
+                    "date": 1650199181190,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -94,9 +94,9 @@\n </script>\r\n \r\n <template>\r\n   <div>\r\n-    <img :src=\"globalPicture\" alt=\"背景图片\">\r\n+    <img :src=\"globalPicture\" alt=\"背景图片\" class=\"\">\r\n   </div>\r\n   <div ref=\"box\" data-src class=\"box-grid \" @contextmenu.prevent=\"openMenu($event)\">\r\n     <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n"
+                },
+                {
+                    "date": 1650199190214,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -94,9 +94,9 @@\n </script>\r\n \r\n <template>\r\n   <div>\r\n-    <img :src=\"globalPicture\" alt=\"背景图片\" class=\"\">\r\n+    <img :src=\"globalPicture\" alt=\"背景图片\" class=\"bgImage\">\r\n   </div>\r\n   <div ref=\"box\" data-src class=\"box-grid \" @contextmenu.prevent=\"openMenu($event)\">\r\n     <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n"
+                },
+                {
+                    "date": 1650199208994,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -93,9 +93,9 @@\n }\r\n </script>\r\n \r\n <template>\r\n-  <div>\r\n+  <div class=\"\">\r\n     <img :src=\"globalPicture\" alt=\"背景图片\" class=\"bgImage\">\r\n   </div>\r\n   <div ref=\"box\" data-src class=\"box-grid \" @contextmenu.prevent=\"openMenu($event)\">\r\n     <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n"
+                },
+                {
+                    "date": 1650199243066,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -93,9 +93,9 @@\n }\r\n </script>\r\n \r\n <template>\r\n-  <div class=\"\">\r\n+  <div class=\"bg\">\r\n     <img :src=\"globalPicture\" alt=\"背景图片\" class=\"bgImage\">\r\n   </div>\r\n   <div ref=\"box\" data-src class=\"box-grid \" @contextmenu.prevent=\"openMenu($event)\">\r\n     <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n"
+                },
+                {
+                    "date": 1650199260634,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -94,11 +94,11 @@\n </script>\r\n \r\n <template>\r\n   <div class=\"bg\">\r\n-    <img :src=\"globalPicture\" alt=\"背景图片\" class=\"bgImage\">\r\n+    <img data-src :src=\"globalPicture\" alt=\"背景图片\" class=\"bgImage\">\r\n   </div>\r\n-  <div ref=\"box\" data-src class=\"box-grid \" @contextmenu.prevent=\"openMenu($event)\">\r\n+  <div ref=\"box\" class=\"box-grid \" @contextmenu.prevent=\"openMenu($event)\">\r\n     <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n   </div>\r\n   <!-- 右击菜单 -->\r\n"
+                },
+                {
+                    "date": 1650199270277,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -94,9 +94,9 @@\n </script>\r\n \r\n <template>\r\n   <div class=\"bg\">\r\n-    <img data-src :src=\"globalPicture\" alt=\"背景图片\" class=\"bgImage\">\r\n+    <img :src=\"globalPicture\" alt=\"背景图片\" class=\"bgImage\">\r\n   </div>\r\n   <div ref=\"box\" class=\"box-grid \" @contextmenu.prevent=\"openMenu($event)\">\r\n     <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n"
+                },
+                {
+                    "date": 1650199344734,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -128,8 +128,12 @@\n   background-position: 50% 50%;\r\n   transition: .4s ease\r\n }\r\n \r\n+.bg {\r\n+  position: absolute;\r\n+}\r\n+\r\n .contextmenu {\r\n   width: 150px;\r\n   height: 200px;\r\n   margin: 0;\r\n"
+                },
+                {
+                    "date": 1650199350740,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -130,8 +130,10 @@\n }\r\n \r\n .bg {\r\n   position: absolute;\r\n+  top: 0;\r\n+  left: 0;\r\n }\r\n \r\n .contextmenu {\r\n   width: 150px;\r\n"
+                },
+                {
+                    "date": 1650199399578,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -132,8 +132,9 @@\n .bg {\r\n   position: absolute;\r\n   top: 0;\r\n   left: 0;\r\n+\r\n }\r\n \r\n .contextmenu {\r\n   width: 150px;\r\n"
+                },
+                {
+                    "date": 1650199408566,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -132,9 +132,10 @@\n .bg {\r\n   position: absolute;\r\n   top: 0;\r\n   left: 0;\r\n-\r\n+  right: 0;\r\n+  bottom: 0;\r\n }\r\n \r\n .contextmenu {\r\n   width: 150px;\r\n"
+                },
+                {
+                    "date": 1650199469080,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -134,8 +134,9 @@\n   top: 0;\r\n   left: 0;\r\n   right: 0;\r\n   bottom: 0;\r\n+  transition: .4s ease\r\n }\r\n \r\n .contextmenu {\r\n   width: 150px;\r\n"
+                },
+                {
+                    "date": 1650199510655,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -134,9 +134,15 @@\n   top: 0;\r\n   left: 0;\r\n   right: 0;\r\n   bottom: 0;\r\n-  transition: .4s ease\r\n+  transition: .4s ease;\r\n+\r\n+  .bgImage {\r\n+    position: relative;\r\n+    top: 0;\r\n+    left: 0;\r\n+  }\r\n }\r\n \r\n .contextmenu {\r\n   width: 150px;\r\n"
+                },
+                {
+                    "date": 1650199534499,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -138,10 +138,17 @@\n   transition: .4s ease;\r\n \r\n   .bgImage {\r\n     position: relative;\r\n-    top: 0;\r\n-    left: 0;\r\n+    transition: .2s;\r\n+    opacity: 1;\r\n+    height: 100%;\r\n+    width: 100%;\r\n+    object-fit: cover;\r\n+    transition: .3s;\r\n+    background-size: cover;\r\n+    background-repeat: no-repeat;\r\n+    background-position: center;\r\n   }\r\n }\r\n \r\n .contextmenu {\r\n"
+                },
+                {
+                    "date": 1650199579023,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -120,10 +120,8 @@\n   overflow-x: hidden;\r\n   overflow-y: hidden;\r\n   height: 100%;\r\n   position: relative;\r\n-  // background-image: url(https://tuapi.eees.cc/api.php?category=dongman&type=302); //图片类型更换请修改参数\r\n-  // background-image: url(https://api.codelife.cc/wallpaper/random);\r\n   background-repeat: repeat;\r\n   background-attachment: fixed;\r\n   background-position: 50% 50%;\r\n   transition: .4s ease\r\n@@ -134,9 +132,13 @@\n   top: 0;\r\n   left: 0;\r\n   right: 0;\r\n   bottom: 0;\r\n-  transition: .4s ease;\r\n+  position: relative;\r\n+  background-repeat: repeat;\r\n+  background-attachment: fixed;\r\n+  background-position: 50% 50%;\r\n+  transition: .4s ease transition: .4s ease;\r\n \r\n   .bgImage {\r\n     position: relative;\r\n     transition: .2s;\r\n"
+                },
+                {
+                    "date": 1650199594223,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -132,14 +132,11 @@\n   top: 0;\r\n   left: 0;\r\n   right: 0;\r\n   bottom: 0;\r\n-  position: relative;\r\n-  background-repeat: repeat;\r\n-  background-attachment: fixed;\r\n-  background-position: 50% 50%;\r\n-  transition: .4s ease transition: .4s ease;\r\n \r\n+  transition: .4s ease;\r\n+\r\n   .bgImage {\r\n     position: relative;\r\n     transition: .2s;\r\n     opacity: 1;\r\n"
+                },
+                {
+                    "date": 1650199663116,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -87,9 +87,9 @@\n \r\n let { globalPicture } = storeToRefs(boxStore)\r\n const updateWallpaper = () => {\r\n   boxStore.updatedGlobalPicture().then(() => {\r\n-    box.value.style.backgroundImage = `url(${globalPicture.value})`\r\n+    // box.value.style.backgroundImage = `url(${globalPicture.value})`\r\n   })\r\n }\r\n </script>\r\n \r\n"
+                },
+                {
+                    "date": 1650199677350,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,9 +80,9 @@\n // 更新壁纸\r\n onMounted(() => {\r\n   boxStore.updatedGlobalPicture().then(() => {\r\n \r\n-    box.value.style.backgroundImage = `url(${globalPicture.value})`\r\n+    // box.value.style.backgroundImage = `url(${globalPicture.value})`\r\n   })\r\n })\r\n \r\n let { globalPicture } = storeToRefs(boxStore)\r\n"
+                },
+                {
+                    "date": 1650199739926,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -122,9 +122,9 @@\n   height: 100%;\r\n   position: relative;\r\n   background-repeat: repeat;\r\n   background-attachment: fixed;\r\n-  background-position: 50% 50%;\r\n+  background-position: center;\r\n   transition: .4s ease\r\n }\r\n \r\n .bg {\r\n"
+                },
+                {
+                    "date": 1650199804060,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -132,9 +132,11 @@\n   top: 0;\r\n   left: 0;\r\n   right: 0;\r\n   bottom: 0;\r\n-\r\n+  background-repeat: repeat;\r\n+  background-attachment: fixed;\r\n+  background-position: center;\r\n   transition: .4s ease;\r\n \r\n   .bgImage {\r\n     position: relative;\r\n"
+                },
+                {
+                    "date": 1650199829656,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -135,9 +135,9 @@\n   bottom: 0;\r\n   background-repeat: repeat;\r\n   background-attachment: fixed;\r\n   background-position: center;\r\n-  transition: .4s ease;\r\n+  // transition: .4s ease;\r\n \r\n   .bgImage {\r\n     position: relative;\r\n     transition: .2s;\r\n"
+                },
+                {
+                    "date": 1650199844567,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -136,8 +136,9 @@\n   background-repeat: repeat;\r\n   background-attachment: fixed;\r\n   background-position: center;\r\n   // transition: .4s ease;\r\n+  transform: 1s;\r\n \r\n   .bgImage {\r\n     position: relative;\r\n     transition: .2s;\r\n"
+                },
+                {
+                    "date": 1650199875306,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -136,9 +136,9 @@\n   background-repeat: repeat;\r\n   background-attachment: fixed;\r\n   background-position: center;\r\n   // transition: .4s ease;\r\n-  transform: 1s;\r\n+  opacity: 1;\r\n \r\n   .bgImage {\r\n     position: relative;\r\n     transition: .2s;\r\n"
+                },
+                {
+                    "date": 1650200329907,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -177,9 +177,9 @@\n       height: 30px;\r\n       padding: 0 10px 0 10px;\r\n \r\n       &:hover {\r\n-        background-color: pink;\r\n+        background-color: #ccc;\r\n         cursor: pointer;\r\n       }\r\n     }\r\n   }\r\n"
+                },
+                {
+                    "date": 1650200341636,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -178,8 +178,9 @@\n       padding: 0 10px 0 10px;\r\n \r\n       &:hover {\r\n         background-color: #ccc;\r\n+        color: whire;\r\n         cursor: pointer;\r\n       }\r\n     }\r\n   }\r\n"
+                },
+                {
+                    "date": 1650200608556,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -105,10 +105,10 @@\n   <el-card @contextmenu.native=\"handlePaste($event)\" class=\"box-card contextmenu\" v-show=\"visible\"\r\n     :style=\"{ left: left + 'px', top: top + 'px' }\">\r\n     <ul>\r\n       <li @click=\"defaultSorting()\">默认排序</li>\r\n+      <li @click=\"updateWallpaper()\">更新壁纸</li>\r\n       <li @click=\"drawer = true\">设置</li>\r\n-      <li @click=\"updateWallpaper()\">更新壁纸</li>\r\n     </ul>\r\n   </el-card>\r\n   <!-- 设置 -->\r\n   <el-drawer v-model=\"drawer\" title=\"I am the title\" :with-header=\"false\">\r\n@@ -178,9 +178,9 @@\n       padding: 0 10px 0 10px;\r\n \r\n       &:hover {\r\n         background-color: #ccc;\r\n-        color: whire;\r\n+        color: white;\r\n         cursor: pointer;\r\n       }\r\n     }\r\n   }\r\n"
+                },
+                {
+                    "date": 1650201098880,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -111,9 +111,12 @@\n     </ul>\r\n   </el-card>\r\n   <!-- 设置 -->\r\n   <el-drawer v-model=\"drawer\" title=\"I am the title\" :with-header=\"false\">\r\n-    <span>Hi there!</span>\r\n+    <el-container>\r\n+      <el-aside width=\"200px\">Aside</el-aside>\r\n+      <el-main>Main</el-main>\r\n+    </el-container>\r\n   </el-drawer>\r\n </template>\r\n <style lang=\"less\">\r\n .box-grid {\r\n"
+                },
+                {
+                    "date": 1650201144829,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -112,9 +112,9 @@\n   </el-card>\r\n   <!-- 设置 -->\r\n   <el-drawer v-model=\"drawer\" title=\"I am the title\" :with-header=\"false\">\r\n     <el-container>\r\n-      <el-aside width=\"200px\">Aside</el-aside>\r\n+      <el-aside width=\"120px\">Aside</el-aside>\r\n       <el-main>Main</el-main>\r\n     </el-container>\r\n   </el-drawer>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1650201456761,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -112,9 +112,54 @@\n   </el-card>\r\n   <!-- 设置 -->\r\n   <el-drawer v-model=\"drawer\" title=\"I am the title\" :with-header=\"false\">\r\n     <el-container>\r\n-      <el-aside width=\"120px\">Aside</el-aside>\r\n+      <el-aside width=\"120px\">\r\n+        <el-row class=\"tac\">\r\n+          <el-col :span=\"12\">\r\n+            <h5 class=\"mb-2\">Default colors</h5>\r\n+            <el-menu default-active=\"2\" class=\"el-menu-vertical-demo\" @open=\"handleOpen\" @close=\"handleClose\">\r\n+              <el-sub-menu index=\"1\">\r\n+                <template #title>\r\n+                  <el-icon>\r\n+                    <location />\r\n+                  </el-icon>\r\n+                  <span>Navigator One</span>\r\n+                </template>\r\n+                <el-menu-item-group title=\"Group One\">\r\n+                  <el-menu-item index=\"1-1\">item one</el-menu-item>\r\n+                  <el-menu-item index=\"1-2\">item one</el-menu-item>\r\n+                </el-menu-item-group>\r\n+                <el-menu-item-group title=\"Group Two\">\r\n+                  <el-menu-item index=\"1-3\">item three</el-menu-item>\r\n+                </el-menu-item-group>\r\n+                <el-sub-menu index=\"1-4\">\r\n+                  <template #title>item four</template>\r\n+                  <el-menu-item index=\"1-4-1\">item one</el-menu-item>\r\n+                </el-sub-menu>\r\n+              </el-sub-menu>\r\n+              <el-menu-item index=\"2\">\r\n+                <el-icon>\r\n+                  <icon-menu />\r\n+                </el-icon>\r\n+                <span>Navigator Two</span>\r\n+              </el-menu-item>\r\n+              <el-menu-item index=\"3\" disabled>\r\n+                <el-icon>\r\n+                  <document />\r\n+                </el-icon>\r\n+                <span>Navigator Three</span>\r\n+              </el-menu-item>\r\n+              <el-menu-item index=\"4\">\r\n+                <el-icon>\r\n+                  <setting />\r\n+                </el-icon>\r\n+                <span>Navigator Four</span>\r\n+              </el-menu-item>\r\n+            </el-menu>\r\n+          </el-col>\r\n+        </el-row>\r\n+      </el-aside>\r\n       <el-main>Main</el-main>\r\n     </el-container>\r\n   </el-drawer>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1650201632382,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -122,9 +122,9 @@\n                 <template #title>\r\n                   <el-icon>\r\n                     <location />\r\n                   </el-icon>\r\n-                  <span>Navigator One</span>\r\n+                  <span>设置</span>\r\n                 </template>\r\n                 <el-menu-item-group title=\"Group One\">\r\n                   <el-menu-item index=\"1-1\">item one</el-menu-item>\r\n                   <el-menu-item index=\"1-2\">item one</el-menu-item>\r\n"
+                },
+                {
+                    "date": 1650201662741,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -124,12 +124,8 @@\n                     <location />\r\n                   </el-icon>\r\n                   <span>设置</span>\r\n                 </template>\r\n-                <el-menu-item-group title=\"Group One\">\r\n-                  <el-menu-item index=\"1-1\">item one</el-menu-item>\r\n-                  <el-menu-item index=\"1-2\">item one</el-menu-item>\r\n-                </el-menu-item-group>\r\n                 <el-menu-item-group title=\"Group Two\">\r\n                   <el-menu-item index=\"1-3\">item three</el-menu-item>\r\n                 </el-menu-item-group>\r\n                 <el-sub-menu index=\"1-4\">\r\n"
+                },
+                {
+                    "date": 1650201681258,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -76,8 +76,20 @@\n   return false\r\n }\r\n // 设置\r\n const drawer = ref(false)\r\n+import {\r\n+  Document,\r\n+  Menu as IconMenu,\r\n+  Location,\r\n+  Setting,\r\n+} from '@element-plus/icons-vue'\r\n+const handleOpen = (key: string, keyPath: string[]) => {\r\n+  console.log(key, keyPath)\r\n+}\r\n+const handleClose = (key: string, keyPath: string[]) => {\r\n+  console.log(key, keyPath)\r\n+}\r\n // 更新壁纸\r\n onMounted(() => {\r\n   boxStore.updatedGlobalPicture().then(() => {\r\n \r\n"
+                },
+                {
+                    "date": 1650201695273,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,14 @@\n import { reactive, watch, ref, onMounted } from 'vue'\r\n import BoxItem from '../BoxItem/BoxItem.vue';\r\n import { useBox } from '../../store/box';\r\n import { storeToRefs } from 'pinia';\r\n-\r\n+import {\r\n+  Document,\r\n+  Menu as IconMenu,\r\n+  Location,\r\n+  Setting,\r\n+} from '@element-plus/icons-vue'\r\n const boxStore = useBox()\r\n let boxItemData = reactive(boxStore.boxItem)\r\n \r\n // 监听boxItemData\r\n@@ -76,14 +81,9 @@\n   return false\r\n }\r\n // 设置\r\n const drawer = ref(false)\r\n-import {\r\n-  Document,\r\n-  Menu as IconMenu,\r\n-  Location,\r\n-  Setting,\r\n-} from '@element-plus/icons-vue'\r\n+\r\n const handleOpen = (key: string, keyPath: string[]) => {\r\n   console.log(key, keyPath)\r\n }\r\n const handleClose = (key: string, keyPath: string[]) => {\r\n"
+                },
+                {
+                    "date": 1650201737907,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -130,21 +130,9 @@\n           <el-col :span=\"12\">\r\n             <h5 class=\"mb-2\">Default colors</h5>\r\n             <el-menu default-active=\"2\" class=\"el-menu-vertical-demo\" @open=\"handleOpen\" @close=\"handleClose\">\r\n               <el-sub-menu index=\"1\">\r\n-                <template #title>\r\n-                  <el-icon>\r\n-                    <location />\r\n-                  </el-icon>\r\n-                  <span>设置</span>\r\n-                </template>\r\n-                <el-menu-item-group title=\"Group Two\">\r\n-                  <el-menu-item index=\"1-3\">item three</el-menu-item>\r\n-                </el-menu-item-group>\r\n-                <el-sub-menu index=\"1-4\">\r\n-                  <template #title>item four</template>\r\n-                  <el-menu-item index=\"1-4-1\">item one</el-menu-item>\r\n-                </el-sub-menu>\r\n+\r\n               </el-sub-menu>\r\n               <el-menu-item index=\"2\">\r\n                 <el-icon>\r\n                   <icon-menu />\r\n"
+                },
+                {
+                    "date": 1650201782049,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -129,17 +129,20 @@\n         <el-row class=\"tac\">\r\n           <el-col :span=\"12\">\r\n             <h5 class=\"mb-2\">Default colors</h5>\r\n             <el-menu default-active=\"2\" class=\"el-menu-vertical-demo\" @open=\"handleOpen\" @close=\"handleClose\">\r\n-              <el-sub-menu index=\"1\">\r\n-\r\n-              </el-sub-menu>\r\n               <el-menu-item index=\"2\">\r\n                 <el-icon>\r\n                   <icon-menu />\r\n                 </el-icon>\r\n                 <span>Navigator Two</span>\r\n               </el-menu-item>\r\n+              <el-menu-item index=\"2\">\r\n+                <el-icon>\r\n+                  <icon-menu />\r\n+                </el-icon>\r\n+                <span>Navigator Two</span>\r\n+              </el-menu-item>\r\n               <el-menu-item index=\"3\" disabled>\r\n                 <el-icon>\r\n                   <document />\r\n                 </el-icon>\r\n"
+                },
+                {
+                    "date": 1650201795912,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -131,9 +131,9 @@\n             <h5 class=\"mb-2\">Default colors</h5>\r\n             <el-menu default-active=\"2\" class=\"el-menu-vertical-demo\" @open=\"handleOpen\" @close=\"handleClose\">\r\n               <el-menu-item index=\"2\">\r\n                 <el-icon>\r\n-                  <icon-menu />\r\n+                  <Location />\r\n                 </el-icon>\r\n                 <span>Navigator Two</span>\r\n               </el-menu-item>\r\n               <el-menu-item index=\"2\">\r\n"
+                },
+                {
+                    "date": 1650201805286,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -133,9 +133,9 @@\n               <el-menu-item index=\"2\">\r\n                 <el-icon>\r\n                   <Location />\r\n                 </el-icon>\r\n-                <span>Navigator Two</span>\r\n+                <span>设置</span>\r\n               </el-menu-item>\r\n               <el-menu-item index=\"2\">\r\n                 <el-icon>\r\n                   <icon-menu />\r\n"
+                },
+                {
+                    "date": 1650201832425,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -129,11 +129,11 @@\n         <el-row class=\"tac\">\r\n           <el-col :span=\"12\">\r\n             <h5 class=\"mb-2\">Default colors</h5>\r\n             <el-menu default-active=\"2\" class=\"el-menu-vertical-demo\" @open=\"handleOpen\" @close=\"handleClose\">\r\n-              <el-menu-item index=\"2\">\r\n+              <el-menu-item index=\"1\">\r\n                 <el-icon>\r\n-                  <Location />\r\n+                  <location />\r\n                 </el-icon>\r\n                 <span>设置</span>\r\n               </el-menu-item>\r\n               <el-menu-item index=\"2\">\r\n"
+                },
+                {
+                    "date": 1650201931522,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -199,8 +199,9 @@\n     background-position: center;\r\n   }\r\n }\r\n \r\n+//右击菜单\r\n .contextmenu {\r\n   width: 150px;\r\n   height: 200px;\r\n   margin: 0;\r\n@@ -231,5 +232,10 @@\n       }\r\n     }\r\n   }\r\n }\r\n+\r\n+// 设置\r\n+.el-menu-vertical-demo {\r\n+  width: 100%;\r\n+}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650202047975,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -236,6 +236,10 @@\n \r\n // 设置\r\n .el-menu-vertical-demo {\r\n   width: 100%;\r\n+\r\n+  .el-drawer__body {\r\n+    padding: 0;\r\n+  }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650202084064,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -237,9 +237,10 @@\n // 设置\r\n .el-menu-vertical-demo {\r\n   width: 100%;\r\n \r\n-  .el-drawer__body {\r\n-    padding: 0;\r\n-  }\r\n }\r\n+\r\n+.el-drawer__body {\r\n+  padding: 0;\r\n+}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650202101025,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -240,7 +240,7 @@\n \r\n }\r\n \r\n .el-drawer__body {\r\n-  padding: 0;\r\n+  padding: 10px 0 10px 0;\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650202143308,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -240,7 +240,11 @@\n \r\n }\r\n \r\n .el-drawer__body {\r\n-  padding: 10px 0 10px 0;\r\n+  padding: 20px 0 10px 0;\r\n+\r\n+  .el-menu-item {\r\n+    padding: 0;\r\n+  }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650202173243,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -237,14 +237,15 @@\n // 设置\r\n .el-menu-vertical-demo {\r\n   width: 100%;\r\n \r\n+  .el-menu-item {\r\n+    padding: 0;\r\n+  }\r\n }\r\n \r\n .el-drawer__body {\r\n   padding: 20px 0 10px 0;\r\n \r\n-  .el-menu-item {\r\n-    padding: 0;\r\n-  }\r\n+\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650202206718,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -238,9 +238,9 @@\n .el-menu-vertical-demo {\r\n   width: 100%;\r\n \r\n   .el-menu-item {\r\n-    padding: 0;\r\n+    padding: 0 !important;\r\n   }\r\n }\r\n \r\n .el-drawer__body {\r\n"
+                },
+                {
+                    "date": 1650202257746,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -234,18 +234,21 @@\n   }\r\n }\r\n \r\n // 设置\r\n-.el-menu-vertical-demo {\r\n-  width: 100%;\r\n+.el-col-12 {\r\n \r\n-  .el-menu-item {\r\n-    padding: 0 !important;\r\n+  .el-menu-vertical-demo {\r\n+    width: 100%;\r\n+\r\n+    .el-menu-item {\r\n+      padding: 0 !important;\r\n+    }\r\n   }\r\n-}\r\n \r\n-.el-drawer__body {\r\n-  padding: 20px 0 10px 0;\r\n+  .el-drawer__body {\r\n+    padding: 20px 0 10px 0;\r\n \r\n \r\n+  }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650202293239,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -234,21 +234,23 @@\n   }\r\n }\r\n \r\n // 设置\r\n-.el-col-12 {\r\n+.el-drawer__body {\r\n+  padding: 20px 0 10px 0;\r\n \r\n-  .el-menu-vertical-demo {\r\n-    width: 100%;\r\n+  .el-col-12 {\r\n \r\n-    .el-menu-item {\r\n-      padding: 0 !important;\r\n+    .el-menu-vertical-demo {\r\n+      width: 100%;\r\n+\r\n+      .el-menu-item {\r\n+        padding: 0 !important;\r\n+      }\r\n     }\r\n-  }\r\n \r\n-  .el-drawer__body {\r\n-    padding: 20px 0 10px 0;\r\n \r\n \r\n+\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650202306569,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -238,8 +238,9 @@\n .el-drawer__body {\r\n   padding: 20px 0 10px 0;\r\n \r\n   .el-col-12 {\r\n+    width: 100%;\r\n \r\n     .el-menu-vertical-demo {\r\n       width: 100%;\r\n \r\n"
+                },
+                {
+                    "date": 1650202335929,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -237,9 +237,9 @@\n // 设置\r\n .el-drawer__body {\r\n   padding: 20px 0 10px 0;\r\n \r\n-  .el-col-12 {\r\n+  .el-row {\r\n     width: 100%;\r\n \r\n     .el-menu-vertical-demo {\r\n       width: 100%;\r\n"
+                },
+                {
+                    "date": 1650202406938,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -237,10 +237,10 @@\n // 设置\r\n .el-drawer__body {\r\n   padding: 20px 0 10px 0;\r\n \r\n-  .el-row {\r\n-    width: 100%;\r\n+  .el-col-12 {\r\n+    max-width: ;\r\n \r\n     .el-menu-vertical-demo {\r\n       width: 100%;\r\n \r\n"
+                },
+                {
+                    "date": 1650202451064,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -238,9 +238,10 @@\n .el-drawer__body {\r\n   padding: 20px 0 10px 0;\r\n \r\n   .el-col-12 {\r\n-    max-width: ;\r\n+    max-width: 100%;\r\n+    height: 100%;\r\n \r\n     .el-menu-vertical-demo {\r\n       width: 100%;\r\n \r\n"
+                },
+                {
+                    "date": 1650202474184,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -239,12 +239,12 @@\n   padding: 20px 0 10px 0;\r\n \r\n   .el-col-12 {\r\n     max-width: 100%;\r\n-    height: 100%;\r\n \r\n     .el-menu-vertical-demo {\r\n       width: 100%;\r\n+      height: 100%;\r\n \r\n       .el-menu-item {\r\n         padding: 0 !important;\r\n       }\r\n"
+                },
+                {
+                    "date": 1650202493467,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -242,9 +242,8 @@\n     max-width: 100%;\r\n \r\n     .el-menu-vertical-demo {\r\n       width: 100%;\r\n-      height: 100%;\r\n \r\n       .el-menu-item {\r\n         padding: 0 !important;\r\n       }\r\n"
+                },
+                {
+                    "date": 1650202617124,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -239,8 +239,10 @@\n   padding: 20px 0 10px 0;\r\n \r\n   .el-col-12 {\r\n     max-width: 100%;\r\n+    overflow-x: hidden;\r\n+    overflow-y: hidden;\r\n \r\n     .el-menu-vertical-demo {\r\n       width: 100%;\r\n \r\n"
+                },
+                {
+                    "date": 1650202626972,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -239,10 +239,8 @@\n   padding: 20px 0 10px 0;\r\n \r\n   .el-col-12 {\r\n     max-width: 100%;\r\n-    overflow-x: hidden;\r\n-    overflow-y: hidden;\r\n \r\n     .el-menu-vertical-demo {\r\n       width: 100%;\r\n \r\n"
                 }
             ],
             "date": 1649582189419,

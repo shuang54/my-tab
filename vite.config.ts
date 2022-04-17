@@ -24,6 +24,7 @@ export default defineConfig({
   }),
 
   ],
+
   server: {
     port: 8080, //启动端口
     hmr: {
@@ -33,11 +34,17 @@ export default defineConfig({
     // 设置 https 代理
     proxy: {
       '/api': {
-        target: 'http://www.foogeoo.ltd',
+        target: 'https://tuapi.eees.cc',
         changeOrigin: true,
+        secure: true,
         rewrite: (path: string) => path.replace(/^\/api/, '')
       }
-    }
-  }
-});
+    },
+
+
+  },
+
+}
+
+);
 
