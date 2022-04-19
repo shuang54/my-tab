@@ -1,0 +1,390 @@
+{
+    "sourceFile": "src/components/Setup/Setup.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 93,
+            "patches": [
+                {
+                    "date": 1650281423509,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1650281482655,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,18 +8,16 @@\n </script>\r\n <template>\r\n   <el-container>\r\n     <el-header>设置</el-header>\r\n-\r\n     <el-main>\r\n       <el-tabs tab-position=\"left\" style=\"height: 100%\">\r\n         <el-tab-pane label=\"用户\">用户</el-tab-pane>\r\n         <el-tab-pane label=\"添加图标\">添加图标</el-tab-pane>\r\n         <el-tab-pane label=\"排序\">排序</el-tab-pane>\r\n         <el-tab-pane label=\"壁纸\">壁纸</el-tab-pane>\r\n       </el-tabs>\r\n     </el-main>\r\n-\r\n   </el-container>\r\n </template>\r\n <style lang=\"less\">\r\n // 设置\r\n"
+                },
+                {
+                    "date": 1650284563389,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,27 @@\n     <el-header>设置</el-header>\r\n     <el-main>\r\n       <el-tabs tab-position=\"left\" style=\"height: 100%\">\r\n         <el-tab-pane label=\"用户\">用户</el-tab-pane>\r\n-        <el-tab-pane label=\"添加图标\">添加图标</el-tab-pane>\r\n+        <el-tab-pane label=\"添加图标\">\r\n+          <el-form ref=\"ruleFormRef\" :model=\"ruleForm\" status-icon :rules=\"rules\" label-width=\"120px\"\r\n+            class=\"demo-ruleForm\">\r\n+            <el-form-item label=\"Password\" prop=\"pass\">\r\n+              <el-input v-model=\"ruleForm.pass\" type=\"password\" autocomplete=\"off\" />\r\n+            </el-form-item>\r\n+            <el-form-item label=\"Confirm\" prop=\"checkPass\">\r\n+              <el-input v-model=\"ruleForm.checkPass\" type=\"password\" autocomplete=\"off\" />\r\n+            </el-form-item>\r\n+            <el-form-item label=\"Age\" prop=\"age\">\r\n+              <el-input v-model.number=\"ruleForm.age\" />\r\n+            </el-form-item>\r\n+            <el-form-item>\r\n+              <el-button type=\"primary\" @click=\"submitForm(ruleFormRef)\">Submit</el-button>\r\n+              <el-button @click=\"resetForm(ruleFormRef)\">Reset</el-button>\r\n+            </el-form-item>\r\n+          </el-form>\r\n+\r\n+        </el-tab-pane>\r\n         <el-tab-pane label=\"排序\">排序</el-tab-pane>\r\n         <el-tab-pane label=\"壁纸\">壁纸</el-tab-pane>\r\n       </el-tabs>\r\n     </el-main>\r\n"
+                },
+                {
+                    "date": 1650284574820,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,79 @@\n   Menu as IconMenu,\r\n   Location,\r\n   Setting,\r\n } from '@element-plus/icons-vue'\r\n+import { reactive, ref } from 'vue'\r\n+import type { FormInstance } from 'element-plus'\r\n+\r\n+const ruleFormRef = ref<FormInstance>()\r\n+\r\n+const checkAge = (rule: any, value: any, callback: any) => {\r\n+  if (!value) {\r\n+    return callback(new Error('Please input the age'))\r\n+  }\r\n+  setTimeout(() => {\r\n+    if (!Number.isInteger(value)) {\r\n+      callback(new Error('Please input digits'))\r\n+    } else {\r\n+      if (value < 18) {\r\n+        callback(new Error('Age must be greater than 18'))\r\n+      } else {\r\n+        callback()\r\n+      }\r\n+    }\r\n+  }, 1000)\r\n+}\r\n+\r\n+const validatePass = (rule: any, value: any, callback: any) => {\r\n+  if (value === '') {\r\n+    callback(new Error('Please input the password'))\r\n+  } else {\r\n+    if (ruleForm.checkPass !== '') {\r\n+      if (!ruleFormRef.value) return\r\n+      ruleFormRef.value.validateField('checkPass', () => null)\r\n+    }\r\n+    callback()\r\n+  }\r\n+}\r\n+const validatePass2 = (rule: any, value: any, callback: any) => {\r\n+  if (value === '') {\r\n+    callback(new Error('Please input the password again'))\r\n+  } else if (value !== ruleForm.pass) {\r\n+    callback(new Error(\"Two inputs don't match!\"))\r\n+  } else {\r\n+    callback()\r\n+  }\r\n+}\r\n+\r\n+const ruleForm = reactive({\r\n+  pass: '',\r\n+  checkPass: '',\r\n+  age: '',\r\n+})\r\n+\r\n+const rules = reactive({\r\n+  pass: [{ validator: validatePass, trigger: 'blur' }],\r\n+  checkPass: [{ validator: validatePass2, trigger: 'blur' }],\r\n+  age: [{ validator: checkAge, trigger: 'blur' }],\r\n+})\r\n+\r\n+const submitForm = (formEl: FormInstance | undefined) => {\r\n+  if (!formEl) return\r\n+  formEl.validate((valid) => {\r\n+    if (valid) {\r\n+      console.log('submit!')\r\n+    } else {\r\n+      console.log('error submit!')\r\n+      return false\r\n+    }\r\n+  })\r\n+}\r\n+\r\n+const resetForm = (formEl: FormInstance | undefined) => {\r\n+  if (!formEl) return\r\n+  formEl.resetFields()\r\n+}\r\n </script>\r\n <template>\r\n   <el-container>\r\n     <el-header>设置</el-header>\r\n"
+                },
+                {
+                    "date": 1650284648150,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -95,10 +95,10 @@\n             <el-form-item label=\"Age\" prop=\"age\">\r\n               <el-input v-model.number=\"ruleForm.age\" />\r\n             </el-form-item>\r\n             <el-form-item>\r\n-              <el-button type=\"primary\" @click=\"submitForm(ruleFormRef)\">Submit</el-button>\r\n-              <el-button @click=\"resetForm(ruleFormRef)\">Reset</el-button>\r\n+              <el-button type=\"primary\" @click=\"submitForm(ruleFormRef)\">提交</el-button>\r\n+              <el-button @click=\"resetForm(ruleFormRef)\">重置</el-button>\r\n             </el-form-item>\r\n           </el-form>\r\n \r\n         </el-tab-pane>\r\n"
+                },
+                {
+                    "date": 1650284663409,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -85,9 +85,9 @@\n         <el-tab-pane label=\"用户\">用户</el-tab-pane>\r\n         <el-tab-pane label=\"添加图标\">\r\n           <el-form ref=\"ruleFormRef\" :model=\"ruleForm\" status-icon :rules=\"rules\" label-width=\"120px\"\r\n             class=\"demo-ruleForm\">\r\n-            <el-form-item label=\"Password\" prop=\"pass\">\r\n+            <el-form-item label=\"地址\" prop=\"pass\">\r\n               <el-input v-model=\"ruleForm.pass\" type=\"password\" autocomplete=\"off\" />\r\n             </el-form-item>\r\n             <el-form-item label=\"Confirm\" prop=\"checkPass\">\r\n               <el-input v-model=\"ruleForm.checkPass\" type=\"password\" autocomplete=\"off\" />\r\n"
+                },
+                {
+                    "date": 1650284676005,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -85,15 +85,15 @@\n         <el-tab-pane label=\"用户\">用户</el-tab-pane>\r\n         <el-tab-pane label=\"添加图标\">\r\n           <el-form ref=\"ruleFormRef\" :model=\"ruleForm\" status-icon :rules=\"rules\" label-width=\"120px\"\r\n             class=\"demo-ruleForm\">\r\n-            <el-form-item label=\"地址\" prop=\"pass\">\r\n+            <el-form-item label=\"网站地址\" prop=\"pass\">\r\n               <el-input v-model=\"ruleForm.pass\" type=\"password\" autocomplete=\"off\" />\r\n             </el-form-item>\r\n-            <el-form-item label=\"Confirm\" prop=\"checkPass\">\r\n+            <el-form-item label=\"网站名称\" prop=\"checkPass\">\r\n               <el-input v-model=\"ruleForm.checkPass\" type=\"password\" autocomplete=\"off\" />\r\n             </el-form-item>\r\n-            <el-form-item label=\"Age\" prop=\"age\">\r\n+            <el-form-item label=\"图片\" prop=\"age\">\r\n               <el-input v-model.number=\"ruleForm.age\" />\r\n             </el-form-item>\r\n             <el-form-item>\r\n               <el-button type=\"primary\" @click=\"submitForm(ruleFormRef)\">提交</el-button>\r\n"
+                },
+                {
+                    "date": 1650284698740,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -91,9 +91,9 @@\n             </el-form-item>\r\n             <el-form-item label=\"网站名称\" prop=\"checkPass\">\r\n               <el-input v-model=\"ruleForm.checkPass\" type=\"password\" autocomplete=\"off\" />\r\n             </el-form-item>\r\n-            <el-form-item label=\"图片\" prop=\"age\">\r\n+            <el-form-item label=\"图标\" prop=\"age\">\r\n               <el-input v-model.number=\"ruleForm.age\" />\r\n             </el-form-item>\r\n             <el-form-item>\r\n               <el-button type=\"primary\" @click=\"submitForm(ruleFormRef)\">提交</el-button>\r\n"
+                },
+                {
+                    "date": 1650284777674,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -146,5 +146,10 @@\n     height: 100%;\r\n     left: 104px;\r\n   }\r\n }\r\n+\r\n+// 添加图标\r\n+.el-form-item__label {\r\n+  width: 80px;\r\n+}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650284820868,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -149,7 +149,8 @@\n }\r\n \r\n // 添加图标\r\n .el-form-item__label {\r\n-  width: 80px;\r\n+  width: 80px !important;\r\n+  text-align: left;\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650284836984,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -151,6 +151,7 @@\n // 添加图标\r\n .el-form-item__label {\r\n   width: 80px !important;\r\n   text-align: left;\r\n+  padding: 10px;\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650284859977,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -85,15 +85,15 @@\n         <el-tab-pane label=\"用户\">用户</el-tab-pane>\r\n         <el-tab-pane label=\"添加图标\">\r\n           <el-form ref=\"ruleFormRef\" :model=\"ruleForm\" status-icon :rules=\"rules\" label-width=\"120px\"\r\n             class=\"demo-ruleForm\">\r\n-            <el-form-item label=\"网站地址\" prop=\"pass\">\r\n+            <el-form-item label=\"网站地址:\" prop=\"pass\">\r\n               <el-input v-model=\"ruleForm.pass\" type=\"password\" autocomplete=\"off\" />\r\n             </el-form-item>\r\n-            <el-form-item label=\"网站名称\" prop=\"checkPass\">\r\n+            <el-form-item label=\"网站名称:\" prop=\"checkPass\">\r\n               <el-input v-model=\"ruleForm.checkPass\" type=\"password\" autocomplete=\"off\" />\r\n             </el-form-item>\r\n-            <el-form-item label=\"图标\" prop=\"age\">\r\n+            <el-form-item label=\"图标:\" prop=\"age\">\r\n               <el-input v-model.number=\"ruleForm.age\" />\r\n             </el-form-item>\r\n             <el-form-item>\r\n               <el-button type=\"primary\" @click=\"submitForm(ruleFormRef)\">提交</el-button>\r\n"
+                },
+                {
+                    "date": 1650284874471,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -91,9 +91,9 @@\n             </el-form-item>\r\n             <el-form-item label=\"网站名称:\" prop=\"checkPass\">\r\n               <el-input v-model=\"ruleForm.checkPass\" type=\"password\" autocomplete=\"off\" />\r\n             </el-form-item>\r\n-            <el-form-item label=\"图标:\" prop=\"age\">\r\n+            <el-form-item label=\"图    标:\" prop=\"age\">\r\n               <el-input v-model.number=\"ruleForm.age\" />\r\n             </el-form-item>\r\n             <el-form-item>\r\n               <el-button type=\"primary\" @click=\"submitForm(ruleFormRef)\">提交</el-button>\r\n"
+                },
+                {
+                    "date": 1650284942364,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -153,5 +153,9 @@\n   width: 80px !important;\r\n   text-align: left;\r\n   padding: 10px;\r\n }\r\n+\r\n+.el-input__inner {\r\n+  width: 60%;\r\n+}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650286688264,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -86,9 +86,9 @@\n         <el-tab-pane label=\"添加图标\">\r\n           <el-form ref=\"ruleFormRef\" :model=\"ruleForm\" status-icon :rules=\"rules\" label-width=\"120px\"\r\n             class=\"demo-ruleForm\">\r\n             <el-form-item label=\"网站地址:\" prop=\"pass\">\r\n-              <el-input v-model=\"ruleForm.pass\" type=\"password\" autocomplete=\"off\" />\r\n+              <el-input v-model=\"ruleForm.pass\" type=\"text\" autocomplete=\"off\" />\r\n             </el-form-item>\r\n             <el-form-item label=\"网站名称:\" prop=\"checkPass\">\r\n               <el-input v-model=\"ruleForm.checkPass\" type=\"password\" autocomplete=\"off\" />\r\n             </el-form-item>\r\n"
+                },
+                {
+                    "date": 1650286714400,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -86,9 +86,9 @@\n         <el-tab-pane label=\"添加图标\">\r\n           <el-form ref=\"ruleFormRef\" :model=\"ruleForm\" status-icon :rules=\"rules\" label-width=\"120px\"\r\n             class=\"demo-ruleForm\">\r\n             <el-form-item label=\"网站地址:\" prop=\"pass\">\r\n-              <el-input v-model=\"ruleForm.pass\" type=\"text\" autocomplete=\"off\" />\r\n+              <el-input v-model=\"ruleForm.pass\" type=\"text\" />\r\n             </el-form-item>\r\n             <el-form-item label=\"网站名称:\" prop=\"checkPass\">\r\n               <el-input v-model=\"ruleForm.checkPass\" type=\"password\" autocomplete=\"off\" />\r\n             </el-form-item>\r\n"
+                },
+                {
+                    "date": 1650286770386,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -89,9 +89,9 @@\n             <el-form-item label=\"网站地址:\" prop=\"pass\">\r\n               <el-input v-model=\"ruleForm.pass\" type=\"text\" />\r\n             </el-form-item>\r\n             <el-form-item label=\"网站名称:\" prop=\"checkPass\">\r\n-              <el-input v-model=\"ruleForm.checkPass\" type=\"password\" autocomplete=\"off\" />\r\n+              <el-input v-model=\"ruleForm.checkPass\" type=\"text\" autocomplete=\"off\" />\r\n             </el-form-item>\r\n             <el-form-item label=\"图    标:\" prop=\"age\">\r\n               <el-input v-model.number=\"ruleForm.age\" />\r\n             </el-form-item>\r\n"
+                },
+                {
+                    "date": 1650286783471,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -85,10 +85,10 @@\n         <el-tab-pane label=\"用户\">用户</el-tab-pane>\r\n         <el-tab-pane label=\"添加图标\">\r\n           <el-form ref=\"ruleFormRef\" :model=\"ruleForm\" status-icon :rules=\"rules\" label-width=\"120px\"\r\n             class=\"demo-ruleForm\">\r\n-            <el-form-item label=\"网站地址:\" prop=\"pass\">\r\n-              <el-input v-model=\"ruleForm.pass\" type=\"text\" />\r\n+            <el-form-item label=\"网站地址:\" prop=\"address\">\r\n+              <el-input v-model=\"ruleForm.address\" type=\"text\" />\r\n             </el-form-item>\r\n             <el-form-item label=\"网站名称:\" prop=\"checkPass\">\r\n               <el-input v-model=\"ruleForm.checkPass\" type=\"text\" autocomplete=\"off\" />\r\n             </el-form-item>\r\n"
+                },
+                {
+                    "date": 1650286938028,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,38 +26,38 @@\n     }\r\n   }, 1000)\r\n }\r\n \r\n-const validatePass = (rule: any, value: any, callback: any) => {\r\n+const addressRule = (rule: any, value: any, callback: any) => {\r\n   if (value === '') {\r\n-    callback(new Error('Please input the password'))\r\n+    callback(new Error('请输入网站地址'))\r\n   } else {\r\n-    if (ruleForm.checkPass !== '') {\r\n+    if (ruleForm.address !== '') {\r\n       if (!ruleFormRef.value) return\r\n       ruleFormRef.value.validateField('checkPass', () => null)\r\n     }\r\n     callback()\r\n   }\r\n }\r\n-const validatePass2 = (rule: any, value: any, callback: any) => {\r\n+const siteNameRule = (rule: any, value: any, callback: any) => {\r\n   if (value === '') {\r\n-    callback(new Error('Please input the password again'))\r\n-  } else if (value !== ruleForm.pass) {\r\n+    callback(new Error('请输入网址名称'))\r\n+  } else if (value !== ruleForm.siteName) {\r\n     callback(new Error(\"Two inputs don't match!\"))\r\n   } else {\r\n     callback()\r\n   }\r\n }\r\n \r\n const ruleForm = reactive({\r\n-  pass: '',\r\n-  checkPass: '',\r\n+  address: '',\r\n+  siteName: '',\r\n   age: '',\r\n })\r\n \r\n const rules = reactive({\r\n-  pass: [{ validator: validatePass, trigger: 'blur' }],\r\n-  checkPass: [{ validator: validatePass2, trigger: 'blur' }],\r\n+  address: [{ validator: addressRule, trigger: 'blur' }],\r\n+  siteName: [{ validator: siteNameRule, trigger: 'blur' }],\r\n   age: [{ validator: checkAge, trigger: 'blur' }],\r\n })\r\n \r\n const submitForm = (formEl: FormInstance | undefined) => {\r\n@@ -88,10 +88,10 @@\n             class=\"demo-ruleForm\">\r\n             <el-form-item label=\"网站地址:\" prop=\"address\">\r\n               <el-input v-model=\"ruleForm.address\" type=\"text\" />\r\n             </el-form-item>\r\n-            <el-form-item label=\"网站名称:\" prop=\"checkPass\">\r\n-              <el-input v-model=\"ruleForm.checkPass\" type=\"text\" autocomplete=\"off\" />\r\n+            <el-form-item label=\"网站名称:\" prop=\"siteName\">\r\n+              <el-input v-model=\"ruleForm.siteName\" type=\"text\" autocomplete=\"off\" />\r\n             </el-form-item>\r\n             <el-form-item label=\"图    标:\" prop=\"age\">\r\n               <el-input v-model.number=\"ruleForm.age\" />\r\n             </el-form-item>\r\n"
+                },
+                {
+                    "date": 1650286980185,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,20 +30,14 @@\n const addressRule = (rule: any, value: any, callback: any) => {\r\n   if (value === '') {\r\n     callback(new Error('请输入网站地址'))\r\n   } else {\r\n-    if (ruleForm.address !== '') {\r\n-      if (!ruleFormRef.value) return\r\n-      ruleFormRef.value.validateField('checkPass', () => null)\r\n-    }\r\n-    callback()\r\n+    ack()\r\n   }\r\n }\r\n const siteNameRule = (rule: any, value: any, callback: any) => {\r\n   if (value === '') {\r\n     callback(new Error('请输入网址名称'))\r\n-  } else if (value !== ruleForm.siteName) {\r\n-    callback(new Error(\"Two inputs don't match!\"))\r\n   } else {\r\n     callback()\r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1650369833174,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,161 @@\n+<script lang=\"ts\" setup>\r\n+import {\r\n+  Document,\r\n+  Menu as IconMenu,\r\n+  Location,\r\n+  Setting,\r\n+} from '@element-plus/icons-vue'\r\n+import { reactive, ref } from 'vue'\r\n+import type { FormInstance } from 'element-plus'\r\n+\r\n+const ruleFormRef = ref<FormInstance>()\r\n+\r\n+const checkAge = (rule: any, value: any, callback: any) => {\r\n+  if (!value) {\r\n+    return callback(new Error('Please input the age'))\r\n+  }\r\n+  setTimeout(() => {\r\n+    if (!Number.isInteger(value)) {\r\n+      callback(new Error('Please input digits'))\r\n+    } else {\r\n+      if (value < 18) {\r\n+        callback(new Error('Age must be greater than 18'))\r\n+      } else {\r\n+        callback()\r\n+      }\r\n+    }\r\n+  }, 1000)\r\n+}\r\n+\r\n+const addressRule = (rule: any, value: any, callback: any) => {\r\n+  if (value === '') {\r\n+    callback(new Error('请输入网站地址'))\r\n+  } else {\r\n+    callback()\r\n+  }\r\n+}\r\n+const siteNameRule = (rule: any, value: any, callback: any) => {\r\n+  if (value === '') {\r\n+    callback(new Error('请输入网址名称'))\r\n+  } else {\r\n+    callback()\r\n+  }\r\n+}\r\n+\r\n+const ruleForm = reactive({\r\n+  address: '',\r\n+  siteName: '',\r\n+  age: '',\r\n+})\r\n+\r\n+const rules = reactive({\r\n+  address: [{ validator: addressRule, trigger: 'blur' }],\r\n+  siteName: [{ validator: siteNameRule, trigger: 'blur' }],\r\n+  age: [{ validator: checkAge, trigger: 'blur' }],\r\n+})\r\n+\r\n+const submitForm = (formEl: FormInstance | undefined) => {\r\n+  if (!formEl) return\r\n+  formEl.validate((valid) => {\r\n+    if (valid) {\r\n+      console.log('submit!')\r\n+    } else {\r\n+      console.log('error submit!')\r\n+      return false\r\n+    }\r\n+  })\r\n+}\r\n+\r\n+const resetForm = (formEl: FormInstance | undefined) => {\r\n+  if (!formEl) return\r\n+  formEl.resetFields()\r\n+}\r\n+</script>\r\n+<template>\r\n+  <el-container>\r\n+    <el-header>设置</el-header>\r\n+    <el-main>\r\n+      <el-tabs tab-position=\"left\" style=\"height: 100%\">\r\n+        <el-tab-pane label=\"用户\">用户</el-tab-pane>\r\n+        <el-tab-pane label=\"添加图标\">\r\n+          <el-form ref=\"ruleFormRef\" :model=\"ruleForm\" status-icon :rules=\"rules\" label-width=\"120px\"\r\n+            class=\"demo-ruleForm\">\r\n+            <el-form-item label=\"网站地址:\" prop=\"address\">\r\n+              <el-input v-model=\"ruleForm.address\" type=\"text\" />\r\n+            </el-form-item>\r\n+            <el-form-item label=\"网站名称:\" prop=\"siteName\">\r\n+              <el-input v-model=\"ruleForm.siteName\" type=\"text\" autocomplete=\"off\" />\r\n+            </el-form-item>\r\n+            <el-form-item label=\"图    标:\" prop=\"age\">\r\n+              <div class=\"icon\"></div>\r\n+            </el-form-item>\r\n+            <el-form-item>\r\n+              <el-button type=\"primary\" @click=\"submitForm(ruleFormRef)\">提交</el-button>\r\n+              <el-button @click=\"resetForm(ruleFormRef)\">重置</el-button>\r\n+            </el-form-item>\r\n+          </el-form>\r\n+\r\n+        </el-tab-pane>\r\n+        <el-tab-pane label=\"排序\">排序</el-tab-pane>\r\n+        <el-tab-pane label=\"壁纸\">壁纸</el-tab-pane>\r\n+      </el-tabs>\r\n+    </el-main>\r\n+  </el-container>\r\n+</template>\r\n+<style lang=\"less\">\r\n+// 设置\r\n+.el-drawer__body {\r\n+  padding: 20px 0 10px 0;\r\n+\r\n+  .el-tabs__nav-scroll {\r\n+    width: 100px;\r\n+    padding: 0 5px;\r\n+\r\n+    .el-tabs__active-bar {\r\n+      background-color: #f5f7fa;\r\n+    }\r\n+\r\n+    .el-tabs__item {\r\n+      text-align: left !important;\r\n+      padding-left: 5px;\r\n+\r\n+      &:hover {\r\n+        color: none;\r\n+      }\r\n+    }\r\n+\r\n+    .is-active {\r\n+      background-color: #f5f7fa;\r\n+      color: #409eff;\r\n+      border-right: 0;\r\n+    }\r\n+\r\n+  }\r\n+\r\n+  .el-tabs__content {\r\n+    position: absolute;\r\n+    background-color: #f5f7fa;\r\n+    width: 100%;\r\n+    z-index: 99;\r\n+    height: 100%;\r\n+    left: 104px;\r\n+  }\r\n+}\r\n+\r\n+// 添加图标\r\n+.el-form-item__label {\r\n+  width: 80px !important;\r\n+  text-align: left;\r\n+  padding: 10px;\r\n+}\r\n+\r\n+.el-input__inner {\r\n+  width: 60%;\r\n+\r\n+  .icon {\r\n+    width: 100px;\r\n+    height: 100px;\r\n+    border: 1px solid #ccc;\r\n+  }\r\n+}\r\n+</style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650369842735,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -154,163 +154,8 @@\n \r\n   .icon {\r\n     width: 100px;\r\n     height: 100px;\r\n-    border: 1px solid #ccc;\r\n+    border: 1px solid #409eff;\r\n   }\r\n }\r\n-</style>\n-<script lang=\"ts\" setup>\r\n-import {\r\n-  Document,\r\n-  Menu as IconMenu,\r\n-  Location,\r\n-  Setting,\r\n-} from '@element-plus/icons-vue'\r\n-import { reactive, ref } from 'vue'\r\n-import type { FormInstance } from 'element-plus'\r\n-\r\n-const ruleFormRef = ref<FormInstance>()\r\n-\r\n-const checkAge = (rule: any, value: any, callback: any) => {\r\n-  if (!value) {\r\n-    return callback(new Error('Please input the age'))\r\n-  }\r\n-  setTimeout(() => {\r\n-    if (!Number.isInteger(value)) {\r\n-      callback(new Error('Please input digits'))\r\n-    } else {\r\n-      if (value < 18) {\r\n-        callback(new Error('Age must be greater than 18'))\r\n-      } else {\r\n-        callback()\r\n-      }\r\n-    }\r\n-  }, 1000)\r\n-}\r\n-\r\n-const addressRule = (rule: any, value: any, callback: any) => {\r\n-  if (value === '') {\r\n-    callback(new Error('请输入网站地址'))\r\n-  } else {\r\n-    ack()\r\n-  }\r\n-}\r\n-const siteNameRule = (rule: any, value: any, callback: any) => {\r\n-  if (value === '') {\r\n-    callback(new Error('请输入网址名称'))\r\n-  } else {\r\n-    callback()\r\n-  }\r\n-}\r\n-\r\n-const ruleForm = reactive({\r\n-  address: '',\r\n-  siteName: '',\r\n-  age: '',\r\n-})\r\n-\r\n-const rules = reactive({\r\n-  address: [{ validator: addressRule, trigger: 'blur' }],\r\n-  siteName: [{ validator: siteNameRule, trigger: 'blur' }],\r\n-  age: [{ validator: checkAge, trigger: 'blur' }],\r\n-})\r\n-\r\n-const submitForm = (formEl: FormInstance | undefined) => {\r\n-  if (!formEl) return\r\n-  formEl.validate((valid) => {\r\n-    if (valid) {\r\n-      console.log('submit!')\r\n-    } else {\r\n-      console.log('error submit!')\r\n-      return false\r\n-    }\r\n-  })\r\n-}\r\n-\r\n-const resetForm = (formEl: FormInstance | undefined) => {\r\n-  if (!formEl) return\r\n-  formEl.resetFields()\r\n-}\r\n-</script>\r\n-<template>\r\n-  <el-container>\r\n-    <el-header>设置</el-header>\r\n-    <el-main>\r\n-      <el-tabs tab-position=\"left\" style=\"height: 100%\">\r\n-        <el-tab-pane label=\"用户\">用户</el-tab-pane>\r\n-        <el-tab-pane label=\"添加图标\">\r\n-          <el-form ref=\"ruleFormRef\" :model=\"ruleForm\" status-icon :rules=\"rules\" label-width=\"120px\"\r\n-            class=\"demo-ruleForm\">\r\n-            <el-form-item label=\"网站地址:\" prop=\"address\">\r\n-              <el-input v-model=\"ruleForm.address\" type=\"text\" />\r\n-            </el-form-item>\r\n-            <el-form-item label=\"网站名称:\" prop=\"siteName\">\r\n-              <el-input v-model=\"ruleForm.siteName\" type=\"text\" autocomplete=\"off\" />\r\n-            </el-form-item>\r\n-            <el-form-item label=\"图    标:\" prop=\"age\">\r\n-              <el-input v-model.number=\"ruleForm.age\" />\r\n-            </el-form-item>\r\n-            <el-form-item>\r\n-              <el-button type=\"primary\" @click=\"submitForm(ruleFormRef)\">提交</el-button>\r\n-              <el-button @click=\"resetForm(ruleFormRef)\">重置</el-button>\r\n-            </el-form-item>\r\n-          </el-form>\r\n-\r\n-        </el-tab-pane>\r\n-        <el-tab-pane label=\"排序\">排序</el-tab-pane>\r\n-        <el-tab-pane label=\"壁纸\">壁纸</el-tab-pane>\r\n-      </el-tabs>\r\n-    </el-main>\r\n-  </el-container>\r\n-</template>\r\n-<style lang=\"less\">\r\n-// 设置\r\n-.el-drawer__body {\r\n-  padding: 20px 0 10px 0;\r\n-\r\n-  .el-tabs__nav-scroll {\r\n-    width: 100px;\r\n-    padding: 0 5px;\r\n-\r\n-    .el-tabs__active-bar {\r\n-      background-color: #f5f7fa;\r\n-    }\r\n-\r\n-    .el-tabs__item {\r\n-      text-align: left !important;\r\n-      padding-left: 5px;\r\n-\r\n-      &:hover {\r\n-        color: none;\r\n-      }\r\n-    }\r\n-\r\n-    .is-active {\r\n-      background-color: #f5f7fa;\r\n-      color: #409eff;\r\n-      border-right: 0;\r\n-    }\r\n-\r\n-  }\r\n-\r\n-  .el-tabs__content {\r\n-    position: absolute;\r\n-    background-color: #f5f7fa;\r\n-    width: 100%;\r\n-    z-index: 99;\r\n-    height: 100%;\r\n-    left: 104px;\r\n-  }\r\n-}\r\n-\r\n-// 添加图标\r\n-.el-form-item__label {\r\n-  width: 80px !important;\r\n-  text-align: left;\r\n-  padding: 10px;\r\n-}\r\n-\r\n-.el-input__inner {\r\n-  width: 60%;\r\n-}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650369876087,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -151,11 +151,12 @@\n \r\n .el-input__inner {\r\n   width: 60%;\r\n \r\n-  .icon {\r\n-    width: 100px;\r\n-    height: 100px;\r\n-    border: 1px solid #409eff;\r\n-  }\r\n }\r\n+\r\n+.icon {\r\n+  width: 100px;\r\n+  height: 100px;\r\n+  border: 1px solid #409eff;\r\n+}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650369891923,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -156,7 +156,7 @@\n \r\n .icon {\r\n   width: 100px;\r\n   height: 100px;\r\n-  border: 1px solid #409eff;\r\n+  border: 1px solid white;\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650369974487,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -87,8 +87,12 @@\n               <el-input v-model=\"ruleForm.siteName\" type=\"text\" autocomplete=\"off\" />\r\n             </el-form-item>\r\n             <el-form-item label=\"图    标:\" prop=\"age\">\r\n               <div class=\"icon\"></div>\r\n+              <div class=\"demo-color-block\">\r\n+                <span class=\"demonstration\">With default value</span>\r\n+                <el-color-picker v-model=\"color1\" />\r\n+              </div>\r\n             </el-form-item>\r\n             <el-form-item>\r\n               <el-button type=\"primary\" @click=\"submitForm(ruleFormRef)\">提交</el-button>\r\n               <el-button @click=\"resetForm(ruleFormRef)\">重置</el-button>\r\n@@ -156,7 +160,7 @@\n \r\n .icon {\r\n   width: 100px;\r\n   height: 100px;\r\n-  border: 1px solid white;\r\n+  border: 1px solid #409eff;\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650369993725,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,8 +69,10 @@\n const resetForm = (formEl: FormInstance | undefined) => {\r\n   if (!formEl) return\r\n   formEl.resetFields()\r\n }\r\n+// 颜色选择器\r\n+const color1 = ref('#409EFF')\r\n </script>\r\n <template>\r\n   <el-container>\r\n     <el-header>设置</el-header>\r\n"
+                },
+                {
+                    "date": 1650370020928,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -164,5 +164,16 @@\n   width: 100px;\r\n   height: 100px;\r\n   border: 1px solid #409eff;\r\n }\r\n+\r\n+// 颜色选择器\r\n+.demo-color-block {\r\n+  display: flex;\r\n+  align-items: center;\r\n+  margin-bottom: 16px;\r\n+}\r\n+\r\n+.demo-color-block .demonstration {\r\n+  margin-right: 16px;\r\n+}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650370039316,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -90,9 +90,9 @@\n             </el-form-item>\r\n             <el-form-item label=\"图    标:\" prop=\"age\">\r\n               <div class=\"icon\"></div>\r\n               <div class=\"demo-color-block\">\r\n-                <span class=\"demonstration\">With default value</span>\r\n+                <span class=\"demonstration\"></span>\r\n                 <el-color-picker v-model=\"color1\" />\r\n               </div>\r\n             </el-form-item>\r\n             <el-form-item>\r\n"
+                },
+                {
+                    "date": 1650370135639,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -111,8 +111,9 @@\n <style lang=\"less\">\r\n // 设置\r\n .el-drawer__body {\r\n   padding: 20px 0 10px 0;\r\n+  min-width: ;\r\n \r\n   .el-tabs__nav-scroll {\r\n     width: 100px;\r\n     padding: 0 5px;\r\n"
+                },
+                {
+                    "date": 1650370665826,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,24 +9,8 @@\n import type { FormInstance } from 'element-plus'\r\n \r\n const ruleFormRef = ref<FormInstance>()\r\n \r\n-const checkAge = (rule: any, value: any, callback: any) => {\r\n-  if (!value) {\r\n-    return callback(new Error('Please input the age'))\r\n-  }\r\n-  setTimeout(() => {\r\n-    if (!Number.isInteger(value)) {\r\n-      callback(new Error('Please input digits'))\r\n-    } else {\r\n-      if (value < 18) {\r\n-        callback(new Error('Age must be greater than 18'))\r\n-      } else {\r\n-        callback()\r\n-      }\r\n-    }\r\n-  }, 1000)\r\n-}\r\n \r\n const addressRule = (rule: any, value: any, callback: any) => {\r\n   if (value === '') {\r\n     callback(new Error('请输入网站地址'))\r\n@@ -44,15 +28,13 @@\n \r\n const ruleForm = reactive({\r\n   address: '',\r\n   siteName: '',\r\n-  age: '',\r\n })\r\n \r\n const rules = reactive({\r\n   address: [{ validator: addressRule, trigger: 'blur' }],\r\n   siteName: [{ validator: siteNameRule, trigger: 'blur' }],\r\n-  age: [{ validator: checkAge, trigger: 'blur' }],\r\n })\r\n \r\n const submitForm = (formEl: FormInstance | undefined) => {\r\n   if (!formEl) return\r\n@@ -111,9 +93,9 @@\n <style lang=\"less\">\r\n // 设置\r\n .el-drawer__body {\r\n   padding: 20px 0 10px 0;\r\n-  min-width: ;\r\n+  min-width: 400px;\r\n \r\n   .el-tabs__nav-scroll {\r\n     width: 100px;\r\n     padding: 0 5px;\r\n"
+                },
+                {
+                    "date": 1650370832515,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n   Setting,\r\n } from '@element-plus/icons-vue'\r\n import { reactive, ref } from 'vue'\r\n import type { FormInstance } from 'element-plus'\r\n+import { ru } from 'element-plus/lib/locale';\r\n \r\n const ruleFormRef = ref<FormInstance>()\r\n \r\n \r\n@@ -39,9 +40,11 @@\n const submitForm = (formEl: FormInstance | undefined) => {\r\n   if (!formEl) return\r\n   formEl.validate((valid) => {\r\n     if (valid) {\r\n-      console.log('submit!')\r\n+      console.log(ruleForm.address, ruleForm.siteName, color1);\r\n+\r\n+\r\n     } else {\r\n       console.log('error submit!')\r\n       return false\r\n     }\r\n@@ -69,10 +72,12 @@\n             </el-form-item>\r\n             <el-form-item label=\"网站名称:\" prop=\"siteName\">\r\n               <el-input v-model=\"ruleForm.siteName\" type=\"text\" autocomplete=\"off\" />\r\n             </el-form-item>\r\n-            <el-form-item label=\"图    标:\" prop=\"age\">\r\n+            <el-form-item label=\"图    片:\" prop=\"age\">\r\n+              <!-- 图片-->\r\n               <div class=\"icon\"></div>\r\n+              <!-- 设置图片背景颜色 -->\r\n               <div class=\"demo-color-block\">\r\n                 <span class=\"demonstration\"></span>\r\n                 <el-color-picker v-model=\"color1\" />\r\n               </div>\r\n"
+                },
+                {
+                    "date": 1650370901171,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n const submitForm = (formEl: FormInstance | undefined) => {\r\n   if (!formEl) return\r\n   formEl.validate((valid) => {\r\n     if (valid) {\r\n-      console.log(ruleForm.address, ruleForm.siteName, color1);\r\n+      console.log(ruleForm.address, ruleForm.siteName, color1.value);\r\n \r\n \r\n     } else {\r\n       console.log('error submit!')\r\n@@ -74,9 +74,9 @@\n               <el-input v-model=\"ruleForm.siteName\" type=\"text\" autocomplete=\"off\" />\r\n             </el-form-item>\r\n             <el-form-item label=\"图    片:\" prop=\"age\">\r\n               <!-- 图片-->\r\n-              <div class=\"icon\"></div>\r\n+              <div class=\"icon\" :style=\"{ 'background-color': color1 }\"></div>\r\n               <!-- 设置图片背景颜色 -->\r\n               <div class=\"demo-color-block\">\r\n                 <span class=\"demonstration\"></span>\r\n                 <el-color-picker v-model=\"color1\" />\r\n"
+                },
+                {
+                    "date": 1650370935033,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -150,9 +150,8 @@\n \r\n .icon {\r\n   width: 100px;\r\n   height: 100px;\r\n-  border: 1px solid #409eff;\r\n }\r\n \r\n // 颜色选择器\r\n .demo-color-block {\r\n"
+                },
+                {
+                    "date": 1650371133632,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,10 +78,15 @@\n               <div class=\"icon\" :style=\"{ 'background-color': color1 }\"></div>\r\n               <!-- 设置图片背景颜色 -->\r\n               <div class=\"demo-color-block\">\r\n                 <span class=\"demonstration\"></span>\r\n+                <div>a</div>\r\n+              </div>\r\n+              <div class=\"demo-color-block\">\r\n+                <span class=\"demonstration\"></span>\r\n                 <el-color-picker v-model=\"color1\" />\r\n               </div>\r\n+\r\n             </el-form-item>\r\n             <el-form-item>\r\n               <el-button type=\"primary\" @click=\"submitForm(ruleFormRef)\">提交</el-button>\r\n               <el-button @click=\"resetForm(ruleFormRef)\">重置</el-button>\r\n"
+                },
+                {
+                    "date": 1650371140721,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,9 +78,9 @@\n               <div class=\"icon\" :style=\"{ 'background-color': color1 }\"></div>\r\n               <!-- 设置图片背景颜色 -->\r\n               <div class=\"demo-color-block\">\r\n                 <span class=\"demonstration\"></span>\r\n-                <div>a</div>\r\n+                <span>a</span>\r\n               </div>\r\n               <div class=\"demo-color-block\">\r\n                 <span class=\"demonstration\"></span>\r\n                 <el-color-picker v-model=\"color1\" />\r\n"
+                },
+                {
+                    "date": 1650371182402,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -76,17 +76,20 @@\n             <el-form-item label=\"图    片:\" prop=\"age\">\r\n               <!-- 图片-->\r\n               <div class=\"icon\" :style=\"{ 'background-color': color1 }\"></div>\r\n               <!-- 设置图片背景颜色 -->\r\n-              <div class=\"demo-color-block\">\r\n-                <span class=\"demonstration\"></span>\r\n-                <span>a</span>\r\n+              <div class=\"colorSelectGroup\">\r\n+                <div class=\"demo-color-block\">\r\n+                  <span class=\"demonstration\"></span>\r\n+                  <span>a</span>\r\n+                </div>\r\n+                <div class=\"demo-color-block\">\r\n+                  <span class=\"demonstration\"></span>\r\n+                  <el-color-picker v-model=\"color1\" />\r\n+                </div>\r\n               </div>\r\n-              <div class=\"demo-color-block\">\r\n-                <span class=\"demonstration\"></span>\r\n-                <el-color-picker v-model=\"color1\" />\r\n-              </div>\r\n \r\n+\r\n             </el-form-item>\r\n             <el-form-item>\r\n               <el-button type=\"primary\" @click=\"submitForm(ruleFormRef)\">提交</el-button>\r\n               <el-button @click=\"resetForm(ruleFormRef)\">重置</el-button>\r\n"
+                },
+                {
+                    "date": 1650371200592,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -161,14 +161,17 @@\n   height: 100px;\r\n }\r\n \r\n // 颜色选择器\r\n-.demo-color-block {\r\n-  display: flex;\r\n-  align-items: center;\r\n-  margin-bottom: 16px;\r\n-}\r\n+.colorSelectGroup {\r\n \r\n-.demo-color-block .demonstration {\r\n-  margin-right: 16px;\r\n+  .demo-color-block {\r\n+    display: flex;\r\n+    align-items: center;\r\n+    margin-bottom: 16px;\r\n+  }\r\n+\r\n+  .demo-color-block .demonstration {\r\n+    margin-right: 16px;\r\n+  }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650371231859,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -162,8 +162,9 @@\n }\r\n \r\n // 颜色选择器\r\n .colorSelectGroup {\r\n+  display: flex;\r\n \r\n   .demo-color-block {\r\n     display: flex;\r\n     align-items: center;\r\n"
+                },
+                {
+                    "date": 1650371257963,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -163,8 +163,9 @@\n \r\n // 颜色选择器\r\n .colorSelectGroup {\r\n   display: flex;\r\n+  flex-direction: column;\r\n \r\n   .demo-color-block {\r\n     display: flex;\r\n     align-items: center;\r\n"
+                },
+                {
+                    "date": 1650371266605,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -165,8 +165,9 @@\n .colorSelectGroup {\r\n   display: flex;\r\n   flex-direction: column;\r\n \r\n+\r\n   .demo-color-block {\r\n     display: flex;\r\n     align-items: center;\r\n     margin-bottom: 16px;\r\n"
+                },
+                {
+                    "date": 1650371279548,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -164,10 +164,10 @@\n // 颜色选择器\r\n .colorSelectGroup {\r\n   display: flex;\r\n   flex-direction: column;\r\n+  justify-content: center;\r\n \r\n-\r\n   .demo-color-block {\r\n     display: flex;\r\n     align-items: center;\r\n     margin-bottom: 16px;\r\n"
+                },
+                {
+                    "date": 1650371300934,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -165,8 +165,9 @@\n .colorSelectGroup {\r\n   display: flex;\r\n   flex-direction: column;\r\n   justify-content: center;\r\n+  align-items: center;\r\n \r\n   .demo-color-block {\r\n     display: flex;\r\n     align-items: center;\r\n"
+                },
+                {
+                    "date": 1650371405043,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -171,11 +171,12 @@\n   .demo-color-block {\r\n     display: flex;\r\n     align-items: center;\r\n     margin-bottom: 16px;\r\n+\r\n+    .demonstration {\r\n+      margin-right: 16px;\r\n+    }\r\n   }\r\n \r\n-  .demo-color-block .demonstration {\r\n-    margin-right: 16px;\r\n-  }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650371432525,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -168,8 +168,9 @@\n   justify-content: center;\r\n   align-items: center;\r\n \r\n   .demo-color-block {\r\n+    border: 1px solid red;\r\n     display: flex;\r\n     align-items: center;\r\n     margin-bottom: 16px;\r\n \r\n"
+                },
+                {
+                    "date": 1650371439557,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -171,13 +171,10 @@\n   .demo-color-block {\r\n     border: 1px solid red;\r\n     display: flex;\r\n     align-items: center;\r\n-    margin-bottom: 16px;\r\n \r\n-    .demonstration {\r\n-      margin-right: 16px;\r\n-    }\r\n+    .demonstration {}\r\n   }\r\n \r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650371493722,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,8 @@\n                   <span class=\"demonstration\"></span>\r\n                   <span>a</span>\r\n                 </div>\r\n                 <div class=\"demo-color-block\">\r\n-                  <span class=\"demonstration\"></span>\r\n                   <el-color-picker v-model=\"color1\" />\r\n                 </div>\r\n               </div>\r\n \r\n"
+                },
+                {
+                    "date": 1650371574329,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,10 +78,9 @@\n               <div class=\"icon\" :style=\"{ 'background-color': color1 }\"></div>\r\n               <!-- 设置图片背景颜色 -->\r\n               <div class=\"colorSelectGroup\">\r\n                 <div class=\"demo-color-block\">\r\n-                  <span class=\"demonstration\"></span>\r\n-                  <span>a</span>\r\n+                  <span class=\"colorDemo\">a</span>\r\n                 </div>\r\n                 <div class=\"demo-color-block\">\r\n                   <el-color-picker v-model=\"color1\" />\r\n                 </div>\r\n@@ -171,9 +170,13 @@\n     border: 1px solid red;\r\n     display: flex;\r\n     align-items: center;\r\n \r\n-    .demonstration {}\r\n+    .colorDemo {\r\n+      width: 32px;\r\n+      height: 32px;\r\n+      background-color: red;\r\n+    }\r\n   }\r\n \r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650371601349,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -173,8 +173,9 @@\n \r\n     .colorDemo {\r\n       width: 32px;\r\n       height: 32px;\r\n+      padding: 4px;\r\n       background-color: red;\r\n     }\r\n   }\r\n \r\n"
+                },
+                {
+                    "date": 1650371614418,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -171,8 +171,9 @@\n     display: flex;\r\n     align-items: center;\r\n \r\n     .colorDemo {\r\n+      box-sizing: border-box;\r\n       width: 32px;\r\n       height: 32px;\r\n       padding: 4px;\r\n       background-color: red;\r\n"
+                },
+                {
+                    "date": 1650371620176,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -166,9 +166,8 @@\n   justify-content: center;\r\n   align-items: center;\r\n \r\n   .demo-color-block {\r\n-    border: 1px solid red;\r\n     display: flex;\r\n     align-items: center;\r\n \r\n     .colorDemo {\r\n"
+                },
+                {
+                    "date": 1650371639700,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -174,9 +174,9 @@\n       box-sizing: border-box;\r\n       width: 32px;\r\n       height: 32px;\r\n       padding: 4px;\r\n-      background-color: red;\r\n+\r\n     }\r\n   }\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1650371684375,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,10 +77,10 @@\n               <!-- 图片-->\r\n               <div class=\"icon\" :style=\"{ 'background-color': color1 }\"></div>\r\n               <!-- 设置图片背景颜色 -->\r\n               <div class=\"colorSelectGroup\">\r\n-                <div class=\"demo-color-block\">\r\n-                  <span class=\"colorDemo\">a</span>\r\n+                <div class=\"colorDemo\">\r\n+                  <span class=\"\">a</span>\r\n                 </div>\r\n                 <div class=\"demo-color-block\">\r\n                   <el-color-picker v-model=\"color1\" />\r\n                 </div>\r\n@@ -175,8 +175,11 @@\n       width: 32px;\r\n       height: 32px;\r\n       padding: 4px;\r\n \r\n+      span {\r\n+        background-color: red;\r\n+      }\r\n     }\r\n   }\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1650371735371,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -170,9 +170,8 @@\n     display: flex;\r\n     align-items: center;\r\n \r\n     .colorDemo {\r\n-      box-sizing: border-box;\r\n       width: 32px;\r\n       height: 32px;\r\n       padding: 4px;\r\n \r\n"
+                },
+                {
+                    "date": 1650371750974,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -168,17 +168,17 @@\n \r\n   .demo-color-block {\r\n     display: flex;\r\n     align-items: center;\r\n+  }\r\n \r\n-    .colorDemo {\r\n-      width: 32px;\r\n-      height: 32px;\r\n-      padding: 4px;\r\n+  .colorDemo {\r\n+    width: 32px;\r\n+    height: 32px;\r\n+    padding: 4px;\r\n \r\n-      span {\r\n-        background-color: red;\r\n-      }\r\n+    span {\r\n+      background-color: red;\r\n     }\r\n   }\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1650371769274,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -171,8 +171,9 @@\n     align-items: center;\r\n   }\r\n \r\n   .colorDemo {\r\n+    box-sizing: border-box;\r\n     width: 32px;\r\n     height: 32px;\r\n     padding: 4px;\r\n \r\n"
+                },
+                {
+                    "date": 1650371776389,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -177,8 +177,9 @@\n     height: 32px;\r\n     padding: 4px;\r\n \r\n     span {\r\n+      display: block;\r\n       background-color: red;\r\n     }\r\n   }\r\n \r\n"
+                },
+                {
+                    "date": 1650371830339,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -175,8 +175,9 @@\n     box-sizing: border-box;\r\n     width: 32px;\r\n     height: 32px;\r\n     padding: 4px;\r\n+    margin-bottom: 10px;\r\n \r\n     span {\r\n       display: block;\r\n       background-color: red;\r\n"
+                },
+                {
+                    "date": 1650371864216,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -178,8 +178,9 @@\n     padding: 4px;\r\n     margin-bottom: 10px;\r\n \r\n     span {\r\n+      height: 28px;\r\n       display: block;\r\n       background-color: red;\r\n     }\r\n   }\r\n"
+                },
+                {
+                    "date": 1650371873384,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -178,9 +178,9 @@\n     padding: 4px;\r\n     margin-bottom: 10px;\r\n \r\n     span {\r\n-      height: 28px;\r\n+      height: 24px;\r\n       display: block;\r\n       background-color: red;\r\n     }\r\n   }\r\n"
+                },
+                {
+                    "date": 1650371885637,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -178,9 +178,9 @@\n     padding: 4px;\r\n     margin-bottom: 10px;\r\n \r\n     span {\r\n-      height: 24px;\r\n+      height: 20px;\r\n       display: block;\r\n       background-color: red;\r\n     }\r\n   }\r\n"
+                },
+                {
+                    "date": 1650371895701,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -178,8 +178,9 @@\n     padding: 4px;\r\n     margin-bottom: 10px;\r\n \r\n     span {\r\n+      width: 20px;\r\n       height: 20px;\r\n       display: block;\r\n       background-color: red;\r\n     }\r\n"
+                },
+                {
+                    "date": 1650371918064,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -174,10 +174,12 @@\n   .colorDemo {\r\n     box-sizing: border-box;\r\n     width: 32px;\r\n     height: 32px;\r\n-    padding: 4px;\r\n     margin-bottom: 10px;\r\n+    text-align: center;\r\n+    align-items: center;\r\n+    line-height: 32px;\r\n \r\n     span {\r\n       width: 20px;\r\n       height: 20px;\r\n"
+                },
+                {
+                    "date": 1650371938730,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -175,13 +175,12 @@\n     box-sizing: border-box;\r\n     width: 32px;\r\n     height: 32px;\r\n     margin-bottom: 10px;\r\n-    text-align: center;\r\n-    align-items: center;\r\n-    line-height: 32px;\r\n \r\n+\r\n     span {\r\n+      margin: 0 auto;\r\n       width: 20px;\r\n       height: 20px;\r\n       display: block;\r\n       background-color: red;\r\n"
+                },
+                {
+                    "date": 1650371945862,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -178,9 +178,9 @@\n     margin-bottom: 10px;\r\n \r\n \r\n     span {\r\n-      margin: 0 auto;\r\n+      margin: auto;\r\n       width: 20px;\r\n       height: 20px;\r\n       display: block;\r\n       background-color: red;\r\n"
+                },
+                {
+                    "date": 1650371970046,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -175,10 +175,10 @@\n     box-sizing: border-box;\r\n     width: 32px;\r\n     height: 32px;\r\n     margin-bottom: 10px;\r\n+    padding: 4px;\r\n \r\n-\r\n     span {\r\n       margin: auto;\r\n       width: 20px;\r\n       height: 20px;\r\n"
+                },
+                {
+                    "date": 1650371985774,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -175,9 +175,9 @@\n     box-sizing: border-box;\r\n     width: 32px;\r\n     height: 32px;\r\n     margin-bottom: 10px;\r\n-    padding: 4px;\r\n+    padding: 8px;\r\n \r\n     span {\r\n       margin: auto;\r\n       width: 20px;\r\n"
+                },
+                {
+                    "date": 1650372008120,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -175,9 +175,9 @@\n     box-sizing: border-box;\r\n     width: 32px;\r\n     height: 32px;\r\n     margin-bottom: 10px;\r\n-    padding: 8px;\r\n+    padding: 6px;\r\n \r\n     span {\r\n       margin: auto;\r\n       width: 20px;\r\n"
+                },
+                {
+                    "date": 1650372016540,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -176,8 +176,9 @@\n     width: 32px;\r\n     height: 32px;\r\n     margin-bottom: 10px;\r\n     padding: 6px;\r\n+    background-color: #f5f7fa;\r\n \r\n     span {\r\n       margin: auto;\r\n       width: 20px;\r\n"
+                },
+                {
+                    "date": 1650372054445,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -164,8 +164,9 @@\n   display: flex;\r\n   flex-direction: column;\r\n   justify-content: center;\r\n   align-items: center;\r\n+  margin-left: 10px;\r\n \r\n   .demo-color-block {\r\n     display: flex;\r\n     align-items: center;\r\n@@ -176,9 +177,9 @@\n     width: 32px;\r\n     height: 32px;\r\n     margin-bottom: 10px;\r\n     padding: 6px;\r\n-    background-color: #f5f7fa;\r\n+    background-color: #ccc;\r\n \r\n     span {\r\n       margin: auto;\r\n       width: 20px;\r\n"
+                },
+                {
+                    "date": 1650372073547,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -177,9 +177,10 @@\n     width: 32px;\r\n     height: 32px;\r\n     margin-bottom: 10px;\r\n     padding: 6px;\r\n-    background-color: #ccc;\r\n+    border: 1px solid #ccc;\r\n+    background-color: #white;\r\n \r\n     span {\r\n       margin: auto;\r\n       width: 20px;\r\n"
+                },
+                {
+                    "date": 1650372100749,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -178,12 +178,11 @@\n     height: 32px;\r\n     margin-bottom: 10px;\r\n     padding: 6px;\r\n     border: 1px solid #ccc;\r\n-    background-color: #white;\r\n+    background-color: white;\r\n \r\n     span {\r\n-      margin: auto;\r\n       width: 20px;\r\n       height: 20px;\r\n       display: block;\r\n       background-color: red;\r\n"
+                },
+                {
+                    "date": 1650372145602,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -176,13 +176,14 @@\n     box-sizing: border-box;\r\n     width: 32px;\r\n     height: 32px;\r\n     margin-bottom: 10px;\r\n-    padding: 6px;\r\n+    padding: 5px;\r\n     border: 1px solid #ccc;\r\n     background-color: white;\r\n \r\n     span {\r\n+      border: 1px solid #ccc;\r\n       width: 20px;\r\n       height: 20px;\r\n       display: block;\r\n       background-color: red;\r\n"
+                },
+                {
+                    "date": 1650372154375,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -181,9 +181,8 @@\n     border: 1px solid #ccc;\r\n     background-color: white;\r\n \r\n     span {\r\n-      border: 1px solid #ccc;\r\n       width: 20px;\r\n       height: 20px;\r\n       display: block;\r\n       background-color: red;\r\n"
+                },
+                {
+                    "date": 1650372169303,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,9 +78,9 @@\n               <div class=\"icon\" :style=\"{ 'background-color': color1 }\"></div>\r\n               <!-- 设置图片背景颜色 -->\r\n               <div class=\"colorSelectGroup\">\r\n                 <div class=\"colorDemo\">\r\n-                  <span class=\"\">a</span>\r\n+                  <span class=\"\"></span>\r\n                 </div>\r\n                 <div class=\"demo-color-block\">\r\n                   <el-color-picker v-model=\"color1\" />\r\n                 </div>\r\n@@ -172,8 +172,9 @@\n     align-items: center;\r\n   }\r\n \r\n   .colorDemo {\r\n+    border-radius: 2px;\r\n     box-sizing: border-box;\r\n     width: 32px;\r\n     height: 32px;\r\n     margin-bottom: 10px;\r\n"
+                },
+                {
+                    "date": 1650372182820,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -172,9 +172,9 @@\n     align-items: center;\r\n   }\r\n \r\n   .colorDemo {\r\n-    border-radius: 2px;\r\n+    border-radius: 6px;\r\n     box-sizing: border-box;\r\n     width: 32px;\r\n     height: 32px;\r\n     margin-bottom: 10px;\r\n"
+                },
+                {
+                    "date": 1650372245684,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,8 +80,14 @@\n               <div class=\"colorSelectGroup\">\r\n                 <div class=\"colorDemo\">\r\n                   <span class=\"\"></span>\r\n                 </div>\r\n+                <div class=\"colorDemo\">\r\n+                  <span class=\"\"></span>\r\n+                </div>\r\n+                <div class=\"colorDemo\">\r\n+                  <span class=\"\"></span>\r\n+                </div>\r\n                 <div class=\"demo-color-block\">\r\n                   <el-color-picker v-model=\"color1\" />\r\n                 </div>\r\n               </div>\r\n"
+                },
+                {
+                    "date": 1650372265170,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -167,9 +167,9 @@\n \r\n // 颜色选择器\r\n .colorSelectGroup {\r\n   display: flex;\r\n-  flex-direction: column;\r\n+  flex-direction: row;\r\n   justify-content: center;\r\n   align-items: center;\r\n   margin-left: 10px;\r\n \r\n"
+                },
+                {
+                    "date": 1650372274195,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -182,9 +182,9 @@\n     border-radius: 6px;\r\n     box-sizing: border-box;\r\n     width: 32px;\r\n     height: 32px;\r\n-    margin-bottom: 10px;\r\n+    margin-left: 10px;\r\n     padding: 5px;\r\n     border: 1px solid #ccc;\r\n     background-color: white;\r\n \r\n"
+                },
+                {
+                    "date": 1650372279601,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -182,9 +182,9 @@\n     border-radius: 6px;\r\n     box-sizing: border-box;\r\n     width: 32px;\r\n     height: 32px;\r\n-    margin-left: 10px;\r\n+    margin-right: 10px;\r\n     padding: 5px;\r\n     border: 1px solid #ccc;\r\n     background-color: white;\r\n \r\n"
+                },
+                {
+                    "date": 1650372293877,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -178,8 +178,9 @@\n     align-items: center;\r\n   }\r\n \r\n   .colorDemo {\r\n+    float: right;\r\n     border-radius: 6px;\r\n     box-sizing: border-box;\r\n     width: 32px;\r\n     height: 32px;\r\n"
+                },
+                {
+                    "date": 1650372299935,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -178,9 +178,8 @@\n     align-items: center;\r\n   }\r\n \r\n   .colorDemo {\r\n-    float: right;\r\n     border-radius: 6px;\r\n     box-sizing: border-box;\r\n     width: 32px;\r\n     height: 32px;\r\n"
+                },
+                {
+                    "date": 1650372396915,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -165,36 +165,40 @@\n   height: 100px;\r\n }\r\n \r\n // 颜色选择器\r\n-.colorSelectGroup {\r\n-  display: flex;\r\n-  flex-direction: row;\r\n-  justify-content: center;\r\n-  align-items: center;\r\n-  margin-left: 10px;\r\n+.el-form-item__content {\r\n+  flex-direction: column;\r\n \r\n-  .demo-color-block {\r\n+  .colorSelectGroup {\r\n     display: flex;\r\n+    flex-direction: row;\r\n+    justify-content: center;\r\n     align-items: center;\r\n-  }\r\n+    margin-left: 10px;\r\n \r\n-  .colorDemo {\r\n-    border-radius: 6px;\r\n-    box-sizing: border-box;\r\n-    width: 32px;\r\n-    height: 32px;\r\n-    margin-right: 10px;\r\n-    padding: 5px;\r\n-    border: 1px solid #ccc;\r\n-    background-color: white;\r\n+    .demo-color-block {\r\n+      display: flex;\r\n+      align-items: center;\r\n+    }\r\n \r\n-    span {\r\n-      width: 20px;\r\n-      height: 20px;\r\n-      display: block;\r\n-      background-color: red;\r\n+    .colorDemo {\r\n+      border-radius: 6px;\r\n+      box-sizing: border-box;\r\n+      width: 32px;\r\n+      height: 32px;\r\n+      margin-right: 10px;\r\n+      padding: 5px;\r\n+      border: 1px solid #ccc;\r\n+      background-color: white;\r\n+\r\n+      span {\r\n+        width: 20px;\r\n+        height: 20px;\r\n+        display: block;\r\n+        background-color: red;\r\n+      }\r\n     }\r\n+\r\n   }\r\n-\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650372501558,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -166,9 +166,8 @@\n }\r\n \r\n // 颜色选择器\r\n .el-form-item__content {\r\n-  flex-direction: column;\r\n \r\n   .colorSelectGroup {\r\n     display: flex;\r\n     flex-direction: row;\r\n"
+                },
+                {
+                    "date": 1650372571337,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,9 +72,9 @@\n             </el-form-item>\r\n             <el-form-item label=\"网站名称:\" prop=\"siteName\">\r\n               <el-input v-model=\"ruleForm.siteName\" type=\"text\" autocomplete=\"off\" />\r\n             </el-form-item>\r\n-            <el-form-item label=\"图    片:\" prop=\"age\">\r\n+            <el-form-item class=\"imageIcon\" label=\"图    片:\" prop=\"age\">\r\n               <!-- 图片-->\r\n               <div class=\"icon\" :style=\"{ 'background-color': color1 }\"></div>\r\n               <!-- 设置图片背景颜色 -->\r\n               <div class=\"colorSelectGroup\">\r\n@@ -165,9 +165,9 @@\n   height: 100px;\r\n }\r\n \r\n // 颜色选择器\r\n-.el-form-item__content {\r\n+.imageIcon {\r\n \r\n   .colorSelectGroup {\r\n     display: flex;\r\n     flex-direction: row;\r\n"
+                },
+                {
+                    "date": 1650372609777,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -166,8 +166,9 @@\n }\r\n \r\n // 颜色选择器\r\n .imageIcon {\r\n+  flex-direction: column;\r\n \r\n   .colorSelectGroup {\r\n     display: flex;\r\n     flex-direction: row;\r\n"
+                },
+                {
+                    "date": 1650372615314,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -166,9 +166,8 @@\n }\r\n \r\n // 颜色选择器\r\n .imageIcon {\r\n-  flex-direction: column;\r\n \r\n   .colorSelectGroup {\r\n     display: flex;\r\n     flex-direction: row;\r\n"
+                },
+                {
+                    "date": 1650372703984,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -166,9 +166,13 @@\n }\r\n \r\n // 颜色选择器\r\n .imageIcon {\r\n+  .el-form-item__content {\r\n+    flex-direction: column;\r\n \r\n+  }\r\n+\r\n   .colorSelectGroup {\r\n     display: flex;\r\n     flex-direction: row;\r\n     justify-content: center;\r\n"
+                },
+                {
+                    "date": 1650372782555,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -168,9 +168,9 @@\n // 颜色选择器\r\n .imageIcon {\r\n   .el-form-item__content {\r\n     flex-direction: column;\r\n-\r\n+    el-form-item__content\r\n   }\r\n \r\n   .colorSelectGroup {\r\n     display: flex;\r\n"
+                },
+                {
+                    "date": 1650372789568,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -168,9 +168,9 @@\n // 颜色选择器\r\n .imageIcon {\r\n   .el-form-item__content {\r\n     flex-direction: column;\r\n-    el-form-item__content\r\n+    align-items: start;\r\n   }\r\n \r\n   .colorSelectGroup {\r\n     display: flex;\r\n"
+                },
+                {
+                    "date": 1650372825700,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -176,9 +176,9 @@\n     display: flex;\r\n     flex-direction: row;\r\n     justify-content: center;\r\n     align-items: center;\r\n-    margin-left: 10px;\r\n+    margin-top: 10px;\r\n \r\n     .demo-color-block {\r\n       display: flex;\r\n       align-items: center;\r\n"
+                },
+                {
+                    "date": 1650372847068,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -184,8 +184,9 @@\n       align-items: center;\r\n     }\r\n \r\n     .colorDemo {\r\n+      cursor: pointer;\r\n       border-radius: 6px;\r\n       box-sizing: border-box;\r\n       width: 32px;\r\n       height: 32px;\r\n"
+                },
+                {
+                    "date": 1650372855591,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -184,9 +184,8 @@\n       align-items: center;\r\n     }\r\n \r\n     .colorDemo {\r\n-      cursor: pointer;\r\n       border-radius: 6px;\r\n       box-sizing: border-box;\r\n       width: 32px;\r\n       height: 32px;\r\n@@ -195,8 +194,10 @@\n       border: 1px solid #ccc;\r\n       background-color: white;\r\n \r\n       span {\r\n+        cursor: pointer;\r\n+\r\n         width: 20px;\r\n         height: 20px;\r\n         display: block;\r\n         background-color: red;\r\n"
+                },
+                {
+                    "date": 1650372944428,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,9 +78,8 @@\n               <div class=\"icon\" :style=\"{ 'background-color': color1 }\"></div>\r\n               <!-- 设置图片背景颜色 -->\r\n               <div class=\"colorSelectGroup\">\r\n                 <div class=\"colorDemo\">\r\n-\r\n                   <span style=\"  background-color: red;\" class=\"\"></span>\r\n                 </div>\r\n                 <div class=\"colorDemo\">\r\n                   <span class=\"\"></span>\r\n"
+                },
+                {
+                    "date": 1650376505984,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -170,9 +170,9 @@\n   .icon-name {\r\n     display: block;\r\n     text-align: center;\r\n     line-height: 100px;\r\n-\r\n+tr\r\n   }\r\n }\r\n \r\n // 颜色选择器\r\n"
+                }
+            ],
+            "date": 1650281423509,
+            "name": "Commit-0",
+            "content": "<script lang=\"ts\" setup>\r\nimport {\r\n  Document,\r\n  Menu as IconMenu,\r\n  Location,\r\n  Setting,\r\n} from '@element-plus/icons-vue'\r\n</script>\r\n<template>\r\n  <el-container>\r\n    <el-header>设置</el-header>\r\n\r\n    <el-main>\r\n      <el-tabs tab-position=\"left\" style=\"height: 100%\">\r\n        <el-tab-pane label=\"用户\">用户</el-tab-pane>\r\n        <el-tab-pane label=\"添加图标\">添加图标</el-tab-pane>\r\n        <el-tab-pane label=\"排序\">排序</el-tab-pane>\r\n        <el-tab-pane label=\"壁纸\">壁纸</el-tab-pane>\r\n      </el-tabs>\r\n    </el-main>\r\n\r\n  </el-container>\r\n</template>\r\n<style lang=\"less\">\r\n// 设置\r\n.el-drawer__body {\r\n  padding: 20px 0 10px 0;\r\n\r\n  .el-tabs__nav-scroll {\r\n    width: 100px;\r\n    padding: 0 5px;\r\n\r\n    .el-tabs__active-bar {\r\n      background-color: #f5f7fa;\r\n    }\r\n\r\n    .el-tabs__item {\r\n      text-align: left !important;\r\n      padding-left: 5px;\r\n\r\n      &:hover {\r\n        color: none;\r\n      }\r\n    }\r\n\r\n    .is-active {\r\n      background-color: #f5f7fa;\r\n      color: #409eff;\r\n      border-right: 0;\r\n    }\r\n\r\n  }\r\n\r\n  .el-tabs__content {\r\n    position: absolute;\r\n    background-color: #f5f7fa;\r\n    width: 100%;\r\n    z-index: 99;\r\n    height: 100%;\r\n    left: 104px;\r\n  }\r\n}\r\n</style>"
+        }
+    ]
+}

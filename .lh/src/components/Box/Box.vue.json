@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 331,
+            "activePatchIndex": 409,
             "patches": [
                 {
                     "date": 1649582189419,
@@ -1332,6 +1332,318 @@
                 {
                     "date": 1650202626972,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -239,10 +239,8 @@\n   padding: 20px 0 10px 0;\r\n \r\n   .el-col-12 {\r\n     max-width: 100%;\r\n-    overflow-x: hidden;\r\n-    overflow-y: hidden;\r\n \r\n     .el-menu-vertical-demo {\r\n       width: 100%;\r\n \r\n"
+                },
+                {
+                    "date": 1650278090883,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -240,18 +240,21 @@\n \r\n   .el-col-12 {\r\n     max-width: 100%;\r\n \r\n-    .el-menu-vertical-demo {\r\n-      width: 100%;\r\n+    .el-menu {\r\n \r\n-      .el-menu-item {\r\n-        padding: 0 !important;\r\n+      .el-menu-vertical-demo {\r\n+        width: 100%;\r\n+\r\n+        .el-menu-item {\r\n+          padding: 0 !important;\r\n+        }\r\n       }\r\n+\r\n     }\r\n \r\n \r\n \r\n-\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650278109885,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -241,10 +241,9 @@\n   .el-col-12 {\r\n     max-width: 100%;\r\n \r\n     .el-menu {\r\n-\r\n-      .el-menu-vertical-demo {\r\n+      --el-menu-border-color: .el-menu-vertical-demo {\r\n         width: 100%;\r\n \r\n         .el-menu-item {\r\n           padding: 0 !important;\r\n"
+                },
+                {
+                    "date": 1650278126460,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -241,9 +241,11 @@\n   .el-col-12 {\r\n     max-width: 100%;\r\n \r\n     .el-menu {\r\n-      --el-menu-border-color: .el-menu-vertical-demo {\r\n+      border-color: none;\r\n+\r\n+      .el-menu-vertical-demo {\r\n         width: 100%;\r\n \r\n         .el-menu-item {\r\n           padding: 0 !important;\r\n"
+                },
+                {
+                    "date": 1650278149782,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -241,9 +241,9 @@\n   .el-col-12 {\r\n     max-width: 100%;\r\n \r\n     .el-menu {\r\n-      border-color: none;\r\n+      border-color: none !important;\r\n \r\n       .el-menu-vertical-demo {\r\n         width: 100%;\r\n \r\n"
+                },
+                {
+                    "date": 1650278176678,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -241,9 +241,9 @@\n   .el-col-12 {\r\n     max-width: 100%;\r\n \r\n     .el-menu {\r\n-      border-color: none !important;\r\n+      --el-menu-border-color: none !important;\r\n \r\n       .el-menu-vertical-demo {\r\n         width: 100%;\r\n \r\n"
+                },
+                {
+                    "date": 1650278223284,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -242,20 +242,20 @@\n     max-width: 100%;\r\n \r\n     .el-menu {\r\n       --el-menu-border-color: none !important;\r\n+    }\r\n \r\n-      .el-menu-vertical-demo {\r\n-        width: 100%;\r\n+    .el-menu-vertical-demo {\r\n+      width: 100%;\r\n \r\n-        .el-menu-item {\r\n-          padding: 0 !important;\r\n-        }\r\n+      .el-menu-item {\r\n+        padding: 0 !important;\r\n       }\r\n-\r\n     }\r\n \r\n \r\n \r\n+\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650278258490,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -139,21 +139,21 @@\n               <el-menu-item index=\"2\">\r\n                 <el-icon>\r\n                   <icon-menu />\r\n                 </el-icon>\r\n-                <span>Navigator Two</span>\r\n+                <span> Two</span>\r\n               </el-menu-item>\r\n               <el-menu-item index=\"3\" disabled>\r\n                 <el-icon>\r\n                   <document />\r\n                 </el-icon>\r\n-                <span>Navigator Three</span>\r\n+                <span> Three</span>\r\n               </el-menu-item>\r\n               <el-menu-item index=\"4\">\r\n                 <el-icon>\r\n                   <setting />\r\n                 </el-icon>\r\n-                <span>Navigator Four</span>\r\n+                <span> Four</span>\r\n               </el-menu-item>\r\n             </el-menu>\r\n           </el-col>\r\n         </el-row>\r\n"
+                },
+                {
+                    "date": 1650278422627,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -139,21 +139,21 @@\n               <el-menu-item index=\"2\">\r\n                 <el-icon>\r\n                   <icon-menu />\r\n                 </el-icon>\r\n-                <span> Two</span>\r\n+                <span>Navigator Two</span>\r\n               </el-menu-item>\r\n               <el-menu-item index=\"3\" disabled>\r\n                 <el-icon>\r\n                   <document />\r\n                 </el-icon>\r\n-                <span> Three</span>\r\n+                <span>Navigator Three</span>\r\n               </el-menu-item>\r\n               <el-menu-item index=\"4\">\r\n                 <el-icon>\r\n                   <setting />\r\n                 </el-icon>\r\n-                <span> Four</span>\r\n+                <span>Navigator Four</span>\r\n               </el-menu-item>\r\n             </el-menu>\r\n           </el-col>\r\n         </el-row>\r\n"
+                },
+                {
+                    "date": 1650278432114,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -242,20 +242,20 @@\n     max-width: 100%;\r\n \r\n     .el-menu {\r\n       --el-menu-border-color: none !important;\r\n-    }\r\n \r\n-    .el-menu-vertical-demo {\r\n-      width: 100%;\r\n+      .el-menu-vertical-demo {\r\n+        width: 100%;\r\n \r\n-      .el-menu-item {\r\n-        padding: 0 !important;\r\n+        .el-menu-item {\r\n+          padding: 0 !important;\r\n+        }\r\n       }\r\n+\r\n     }\r\n \r\n \r\n \r\n-\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650278494907,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -141,9 +141,9 @@\n                   <icon-menu />\r\n                 </el-icon>\r\n                 <span>Navigator Two</span>\r\n               </el-menu-item>\r\n-              <el-menu-item index=\"3\" disabled>\r\n+              <el-menu-item index=\"3\">\r\n                 <el-icon>\r\n                   <document />\r\n                 </el-icon>\r\n                 <span>Navigator Three</span>\r\n"
+                },
+                {
+                    "date": 1650278501577,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -139,21 +139,21 @@\n               <el-menu-item index=\"2\">\r\n                 <el-icon>\r\n                   <icon-menu />\r\n                 </el-icon>\r\n-                <span>Navigator Two</span>\r\n+                <span> Two</span>\r\n               </el-menu-item>\r\n               <el-menu-item index=\"3\">\r\n                 <el-icon>\r\n                   <document />\r\n                 </el-icon>\r\n-                <span>Navigator Three</span>\r\n+                <span> Three</span>\r\n               </el-menu-item>\r\n               <el-menu-item index=\"4\">\r\n                 <el-icon>\r\n                   <setting />\r\n                 </el-icon>\r\n-                <span>Navigator Four</span>\r\n+                <span> Four</span>\r\n               </el-menu-item>\r\n             </el-menu>\r\n           </el-col>\r\n         </el-row>\r\n"
+                },
+                {
+                    "date": 1650278550761,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -124,8 +124,9 @@\n   </el-card>\r\n   <!-- 设置 -->\r\n   <el-drawer v-model=\"drawer\" title=\"I am the title\" :with-header=\"false\">\r\n     <el-container>\r\n+      <el-header>Header</el-header>\r\n       <el-aside width=\"120px\">\r\n         <el-row class=\"tac\">\r\n           <el-col :span=\"12\">\r\n             <h5 class=\"mb-2\">Default colors</h5>\r\n"
+                },
+                {
+                    "date": 1650278615870,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -125,42 +125,45 @@\n   <!-- 设置 -->\r\n   <el-drawer v-model=\"drawer\" title=\"I am the title\" :with-header=\"false\">\r\n     <el-container>\r\n       <el-header>Header</el-header>\r\n-      <el-aside width=\"120px\">\r\n-        <el-row class=\"tac\">\r\n-          <el-col :span=\"12\">\r\n-            <h5 class=\"mb-2\">Default colors</h5>\r\n-            <el-menu default-active=\"2\" class=\"el-menu-vertical-demo\" @open=\"handleOpen\" @close=\"handleClose\">\r\n-              <el-menu-item index=\"1\">\r\n-                <el-icon>\r\n-                  <location />\r\n-                </el-icon>\r\n-                <span>设置</span>\r\n-              </el-menu-item>\r\n-              <el-menu-item index=\"2\">\r\n-                <el-icon>\r\n-                  <icon-menu />\r\n-                </el-icon>\r\n-                <span> Two</span>\r\n-              </el-menu-item>\r\n-              <el-menu-item index=\"3\">\r\n-                <el-icon>\r\n-                  <document />\r\n-                </el-icon>\r\n-                <span> Three</span>\r\n-              </el-menu-item>\r\n-              <el-menu-item index=\"4\">\r\n-                <el-icon>\r\n-                  <setting />\r\n-                </el-icon>\r\n-                <span> Four</span>\r\n-              </el-menu-item>\r\n-            </el-menu>\r\n-          </el-col>\r\n-        </el-row>\r\n-      </el-aside>\r\n-      <el-main>Main</el-main>\r\n+      <el-container>\r\n+        <el-aside width=\"120px\">\r\n+          <el-row class=\"tac\">\r\n+            <el-col :span=\"12\">\r\n+              <h5 class=\"mb-2\">Default colors</h5>\r\n+              <el-menu default-active=\"2\" class=\"el-menu-vertical-demo\" @open=\"handleOpen\" @close=\"handleClose\">\r\n+                <el-menu-item index=\"1\">\r\n+                  <el-icon>\r\n+                    <location />\r\n+                  </el-icon>\r\n+                  <span>设置</span>\r\n+                </el-menu-item>\r\n+                <el-menu-item index=\"2\">\r\n+                  <el-icon>\r\n+                    <icon-menu />\r\n+                  </el-icon>\r\n+                  <span> Two</span>\r\n+                </el-menu-item>\r\n+                <el-menu-item index=\"3\">\r\n+                  <el-icon>\r\n+                    <document />\r\n+                  </el-icon>\r\n+                  <span> Three</span>\r\n+                </el-menu-item>\r\n+                <el-menu-item index=\"4\">\r\n+                  <el-icon>\r\n+                    <setting />\r\n+                  </el-icon>\r\n+                  <span> Four</span>\r\n+                </el-menu-item>\r\n+              </el-menu>\r\n+            </el-col>\r\n+          </el-row>\r\n+        </el-aside>\r\n+        <el-main>Main</el-main>\r\n+      </el-container>\r\n+\r\n     </el-container>\r\n   </el-drawer>\r\n </template>\r\n <style lang=\"less\">\r\n"
+                },
+                {
+                    "date": 1650278955595,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -125,45 +125,11 @@\n   <!-- 设置 -->\r\n   <el-drawer v-model=\"drawer\" title=\"I am the title\" :with-header=\"false\">\r\n     <el-container>\r\n       <el-header>Header</el-header>\r\n-      <el-container>\r\n-        <el-aside width=\"120px\">\r\n-          <el-row class=\"tac\">\r\n-            <el-col :span=\"12\">\r\n-              <h5 class=\"mb-2\">Default colors</h5>\r\n-              <el-menu default-active=\"2\" class=\"el-menu-vertical-demo\" @open=\"handleOpen\" @close=\"handleClose\">\r\n-                <el-menu-item index=\"1\">\r\n-                  <el-icon>\r\n-                    <location />\r\n-                  </el-icon>\r\n-                  <span>设置</span>\r\n-                </el-menu-item>\r\n-                <el-menu-item index=\"2\">\r\n-                  <el-icon>\r\n-                    <icon-menu />\r\n-                  </el-icon>\r\n-                  <span> Two</span>\r\n-                </el-menu-item>\r\n-                <el-menu-item index=\"3\">\r\n-                  <el-icon>\r\n-                    <document />\r\n-                  </el-icon>\r\n-                  <span> Three</span>\r\n-                </el-menu-item>\r\n-                <el-menu-item index=\"4\">\r\n-                  <el-icon>\r\n-                    <setting />\r\n-                  </el-icon>\r\n-                  <span> Four</span>\r\n-                </el-menu-item>\r\n-              </el-menu>\r\n-            </el-col>\r\n-          </el-row>\r\n-        </el-aside>\r\n-        <el-main>Main</el-main>\r\n-      </el-container>\r\n \r\n+      <el-main>Main</el-main>\r\n+\r\n     </el-container>\r\n   </el-drawer>\r\n </template>\r\n <style lang=\"less\">\r\n"
+                },
+                {
+                    "date": 1650278970411,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -126,9 +126,16 @@\n   <el-drawer v-model=\"drawer\" title=\"I am the title\" :with-header=\"false\">\r\n     <el-container>\r\n       <el-header>Header</el-header>\r\n \r\n-      <el-main>Main</el-main>\r\n+      <el-main>\r\n+        <el-tabs :tab-position=\"tabPosition\" style=\"height: 200px\" class=\"demo-tabs\">\r\n+          <el-tab-pane label=\"User\">User</el-tab-pane>\r\n+          <el-tab-pane label=\"Config\">Config</el-tab-pane>\r\n+          <el-tab-pane label=\"Role\">Role</el-tab-pane>\r\n+          <el-tab-pane label=\"Task\">Task</el-tab-pane>\r\n+        </el-tabs>\r\n+      </el-main>\r\n \r\n     </el-container>\r\n   </el-drawer>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1650278983946,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -127,9 +127,9 @@\n     <el-container>\r\n       <el-header>Header</el-header>\r\n \r\n       <el-main>\r\n-        <el-tabs :tab-position=\"tabPosition\" style=\"height: 200px\" class=\"demo-tabs\">\r\n+        <el-tabs :tab-position=\"left\" style=\"height: 200px\" class=\"demo-tabs\">\r\n           <el-tab-pane label=\"User\">User</el-tab-pane>\r\n           <el-tab-pane label=\"Config\">Config</el-tab-pane>\r\n           <el-tab-pane label=\"Role\">Role</el-tab-pane>\r\n           <el-tab-pane label=\"Task\">Task</el-tab-pane>\r\n"
+                },
+                {
+                    "date": 1650279013164,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -127,9 +127,9 @@\n     <el-container>\r\n       <el-header>Header</el-header>\r\n \r\n       <el-main>\r\n-        <el-tabs :tab-position=\"left\" style=\"height: 200px\" class=\"demo-tabs\">\r\n+        <el-tabs :tab-position=\"left\" type=\"cart\" style=\"height: 200px\" class=\"demo-tabs\">\r\n           <el-tab-pane label=\"User\">User</el-tab-pane>\r\n           <el-tab-pane label=\"Config\">Config</el-tab-pane>\r\n           <el-tab-pane label=\"Role\">Role</el-tab-pane>\r\n           <el-tab-pane label=\"Task\">Task</el-tab-pane>\r\n"
+                },
+                {
+                    "date": 1650279041091,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -127,9 +127,9 @@\n     <el-container>\r\n       <el-header>Header</el-header>\r\n \r\n       <el-main>\r\n-        <el-tabs :tab-position=\"left\" type=\"cart\" style=\"height: 200px\" class=\"demo-tabs\">\r\n+        <el-tabs :tab-position=\"left\" type=\"border-card\" style=\"height: 200px\" class=\"demo-tabs\">\r\n           <el-tab-pane label=\"User\">User</el-tab-pane>\r\n           <el-tab-pane label=\"Config\">Config</el-tab-pane>\r\n           <el-tab-pane label=\"Role\">Role</el-tab-pane>\r\n           <el-tab-pane label=\"Task\">Task</el-tab-pane>\r\n"
+                },
+                {
+                    "date": 1650279050158,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -127,9 +127,9 @@\n     <el-container>\r\n       <el-header>Header</el-header>\r\n \r\n       <el-main>\r\n-        <el-tabs :tab-position=\"left\" type=\"border-card\" style=\"height: 200px\" class=\"demo-tabs\">\r\n+        <el-tabs tab-position=\"left\" type=\"border-card\" style=\"height: 200px\" class=\"demo-tabs\">\r\n           <el-tab-pane label=\"User\">User</el-tab-pane>\r\n           <el-tab-pane label=\"Config\">Config</el-tab-pane>\r\n           <el-tab-pane label=\"Role\">Role</el-tab-pane>\r\n           <el-tab-pane label=\"Task\">Task</el-tab-pane>\r\n"
+                },
+                {
+                    "date": 1650279104533,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -127,9 +127,9 @@\n     <el-container>\r\n       <el-header>Header</el-header>\r\n \r\n       <el-main>\r\n-        <el-tabs tab-position=\"left\" type=\"border-card\" style=\"height: 200px\" class=\"demo-tabs\">\r\n+        <el-tabs tab-position=\"left\" type=\"border-card\" style=\"height: 10%\" class=\"demo-tabs\">\r\n           <el-tab-pane label=\"User\">User</el-tab-pane>\r\n           <el-tab-pane label=\"Config\">Config</el-tab-pane>\r\n           <el-tab-pane label=\"Role\">Role</el-tab-pane>\r\n           <el-tab-pane label=\"Task\">Task</el-tab-pane>\r\n"
+                },
+                {
+                    "date": 1650279158358,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -127,9 +127,9 @@\n     <el-container>\r\n       <el-header>Header</el-header>\r\n \r\n       <el-main>\r\n-        <el-tabs tab-position=\"left\" type=\"border-card\" style=\"height: 10%\" class=\"demo-tabs\">\r\n+        <el-tabs tab-position=\"left\" style=\"height: 100%\" class=\"demo-tabs\">\r\n           <el-tab-pane label=\"User\">User</el-tab-pane>\r\n           <el-tab-pane label=\"Config\">Config</el-tab-pane>\r\n           <el-tab-pane label=\"Role\">Role</el-tab-pane>\r\n           <el-tab-pane label=\"Task\">Task</el-tab-pane>\r\n"
+                },
+                {
+                    "date": 1650279314093,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -127,9 +127,9 @@\n     <el-container>\r\n       <el-header>Header</el-header>\r\n \r\n       <el-main>\r\n-        <el-tabs tab-position=\"left\" style=\"height: 100%\" class=\"demo-tabs\">\r\n+        <el-tabs tab-position=\"left\" style=\"height: 100%\">\r\n           <el-tab-pane label=\"User\">User</el-tab-pane>\r\n           <el-tab-pane label=\"Config\">Config</el-tab-pane>\r\n           <el-tab-pane label=\"Role\">Role</el-tab-pane>\r\n           <el-tab-pane label=\"Task\">Task</el-tab-pane>\r\n@@ -214,25 +214,12 @@\n // 设置\r\n .el-drawer__body {\r\n   padding: 20px 0 10px 0;\r\n \r\n-  .el-col-12 {\r\n-    max-width: 100%;\r\n+  .is-active {\r\n+    background-color: pink;\r\n \r\n-    .el-menu {\r\n-      --el-menu-border-color: none !important;\r\n+  }\r\n \r\n-      .el-menu-vertical-demo {\r\n-        width: 100%;\r\n-\r\n-        .el-menu-item {\r\n-          padding: 0 !important;\r\n-        }\r\n-      }\r\n-\r\n-    }\r\n-\r\n-\r\n-\r\n-  }\r\n }\r\n+}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650279414202,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -124,16 +124,16 @@\n   </el-card>\r\n   <!-- 设置 -->\r\n   <el-drawer v-model=\"drawer\" title=\"I am the title\" :with-header=\"false\">\r\n     <el-container>\r\n-      <el-header>Header</el-header>\r\n+      <el-header>设置</el-header>\r\n \r\n       <el-main>\r\n         <el-tabs tab-position=\"left\" style=\"height: 100%\">\r\n-          <el-tab-pane label=\"User\">User</el-tab-pane>\r\n-          <el-tab-pane label=\"Config\">Config</el-tab-pane>\r\n-          <el-tab-pane label=\"Role\">Role</el-tab-pane>\r\n-          <el-tab-pane label=\"Task\">Task</el-tab-pane>\r\n+          <el-tab-pane label=\"User\">用户</el-tab-pane>\r\n+          <el-tab-pane label=\"Config\">添加图标</el-tab-pane>\r\n+          <el-tab-pane label=\"Role\">排序</el-tab-pane>\r\n+          <el-tab-pane label=\"Task\">壁纸</el-tab-pane>\r\n         </el-tabs>\r\n       </el-main>\r\n \r\n     </el-container>\r\n@@ -220,6 +220,5 @@\n \r\n   }\r\n \r\n }\r\n-}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650279429432,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -128,12 +128,12 @@\n       <el-header>设置</el-header>\r\n \r\n       <el-main>\r\n         <el-tabs tab-position=\"left\" style=\"height: 100%\">\r\n-          <el-tab-pane label=\"User\">用户</el-tab-pane>\r\n-          <el-tab-pane label=\"Config\">添加图标</el-tab-pane>\r\n-          <el-tab-pane label=\"Role\">排序</el-tab-pane>\r\n-          <el-tab-pane label=\"Task\">壁纸</el-tab-pane>\r\n+          <el-tab-pane label=\"用户\">用户</el-tab-pane>\r\n+          <el-tab-pane label=\"添加图标\">添加图标</el-tab-pane>\r\n+          <el-tab-pane label=\"排序\">排序</el-tab-pane>\r\n+          <el-tab-pane label=\"壁纸\">壁纸</el-tab-pane>\r\n         </el-tabs>\r\n       </el-main>\r\n \r\n     </el-container>\r\n"
+                },
+                {
+                    "date": 1650279506896,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -214,11 +214,15 @@\n // 设置\r\n .el-drawer__body {\r\n   padding: 20px 0 10px 0;\r\n \r\n-  .is-active {\r\n-    background-color: pink;\r\n+  .el-tabs__active-bar {\r\n+    text-align: left;\r\n \r\n+    .is-active {\r\n+      background-color: pink;\r\n+\r\n+    }\r\n+\r\n   }\r\n-\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650279542875,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -215,10 +215,13 @@\n .el-drawer__body {\r\n   padding: 20px 0 10px 0;\r\n \r\n   .el-tabs__active-bar {\r\n-    text-align: left;\r\n+    .el-tabs__item {\r\n+      text-align: left;\r\n \r\n+    }\r\n+\r\n     .is-active {\r\n       background-color: pink;\r\n \r\n     }\r\n"
+                },
+                {
+                    "date": 1650279553678,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -216,9 +216,9 @@\n   padding: 20px 0 10px 0;\r\n \r\n   .el-tabs__active-bar {\r\n     .el-tabs__item {\r\n-      text-align: left;\r\n+      text-align: left !important;\r\n \r\n     }\r\n \r\n     .is-active {\r\n"
+                },
+                {
+                    "date": 1650279578539,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -214,18 +214,16 @@\n // 设置\r\n .el-drawer__body {\r\n   padding: 20px 0 10px 0;\r\n \r\n-  .el-tabs__active-bar {\r\n-    .el-tabs__item {\r\n-      text-align: left !important;\r\n+  .el-tabs__item {\r\n+    text-align: left !important;\r\n \r\n-    }\r\n+  }\r\n \r\n-    .is-active {\r\n-      background-color: pink;\r\n+  .is-active {\r\n+    background-color: pink;\r\n \r\n-    }\r\n+  }\r\n \r\n-  }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650279651979,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -220,9 +220,9 @@\n \r\n   }\r\n \r\n   .is-active {\r\n-    background-color: pink;\r\n+    background-color: 98, 51, 209;\r\n \r\n   }\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1650279664748,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -220,10 +220,10 @@\n \r\n   }\r\n \r\n   .is-active {\r\n-    background-color: 98, 51, 209;\r\n-\r\n+    background-color: #6233d1;\r\n+    color: white;\r\n   }\r\n \r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650279687441,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -220,9 +220,9 @@\n \r\n   }\r\n \r\n   .is-active {\r\n-    background-color: #6233d1;\r\n+    background-color: #ac8870;\r\n     color: white;\r\n   }\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1650279701186,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -220,9 +220,9 @@\n \r\n   }\r\n \r\n   .is-active {\r\n-    background-color: #ac8870;\r\n+    background-color: #fee6d9;\r\n     color: white;\r\n   }\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1650279738480,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -220,9 +220,9 @@\n \r\n   }\r\n \r\n   .is-active {\r\n-    background-color: #fee6d9;\r\n+    background-color: #ccc;\r\n     color: white;\r\n   }\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1650279773357,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -217,8 +217,11 @@\n \r\n   .el-tabs__item {\r\n     text-align: left !important;\r\n \r\n+    &:hover {\r\n+      color: white;\r\n+    }\r\n   }\r\n \r\n   .is-active {\r\n     background-color: #ccc;\r\n"
+                },
+                {
+                    "date": 1650279779590,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -218,9 +218,9 @@\n   .el-tabs__item {\r\n     text-align: left !important;\r\n \r\n     &:hover {\r\n-      color: white;\r\n+      color: #000;\r\n     }\r\n   }\r\n \r\n   .is-active {\r\n"
+                },
+                {
+                    "date": 1650279792125,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -223,9 +223,9 @@\n     }\r\n   }\r\n \r\n   .is-active {\r\n-    background-color: #ccc;\r\n+    background-color: #ccc !important;\r\n     color: white;\r\n   }\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1650279814700,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -218,9 +218,9 @@\n   .el-tabs__item {\r\n     text-align: left !important;\r\n \r\n     &:hover {\r\n-      color: #000;\r\n+      color: none;\r\n     }\r\n   }\r\n \r\n   .is-active {\r\n"
+                },
+                {
+                    "date": 1650279860928,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -220,13 +220,15 @@\n \r\n     &:hover {\r\n       color: none;\r\n     }\r\n-  }\r\n \r\n-  .is-active {\r\n-    background-color: #ccc !important;\r\n-    color: white;\r\n+    .is-active {\r\n+      background-color: #ccc !important;\r\n+      color: white;\r\n+    }\r\n   }\r\n \r\n+\r\n+\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650279872561,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -220,15 +220,13 @@\n \r\n     &:hover {\r\n       color: none;\r\n     }\r\n+  }\r\n \r\n-    .is-active {\r\n-      background-color: #ccc !important;\r\n-      color: white;\r\n-    }\r\n+  .is-active {\r\n+    background-color: #ccc !important;\r\n+    color: white;\r\n   }\r\n \r\n-\r\n-\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650279897386,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -225,8 +225,9 @@\n \r\n   .is-active {\r\n     background-color: #ccc !important;\r\n     color: white;\r\n+    border-radius: 5px;\r\n   }\r\n \r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650279905913,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -225,9 +225,9 @@\n \r\n   .is-active {\r\n     background-color: #ccc !important;\r\n     color: white;\r\n-    border-radius: 5px;\r\n+    border-radius: 25%;\r\n   }\r\n \r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650279924339,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -225,9 +225,10 @@\n \r\n   .is-active {\r\n     background-color: #ccc !important;\r\n     color: white;\r\n-    border-radius: 25%;\r\n+    border-radius: 10%;\r\n+    margin: 10px;\r\n   }\r\n \r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650279938545,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -226,9 +226,9 @@\n   .is-active {\r\n     background-color: #ccc !important;\r\n     color: white;\r\n     border-radius: 10%;\r\n-    margin: 10px;\r\n+    margin: 0 5px 0 5px;\r\n   }\r\n \r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650279944524,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -225,9 +225,9 @@\n \r\n   .is-active {\r\n     background-color: #ccc !important;\r\n     color: white;\r\n-    border-radius: 10%;\r\n+    border-radius: 15%;\r\n     margin: 0 5px 0 5px;\r\n   }\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1650280006370,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -225,9 +225,9 @@\n \r\n   .is-active {\r\n     background-color: #ccc !important;\r\n     color: white;\r\n-    border-radius: 15%;\r\n+    border-radius: 10px;\r\n     margin: 0 5px 0 5px;\r\n   }\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1650280034528,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -214,21 +214,24 @@\n // 设置\r\n .el-drawer__body {\r\n   padding: 20px 0 10px 0;\r\n \r\n-  .el-tabs__item {\r\n-    text-align: left !important;\r\n+  .el-tabs__nav-scroll {\r\n \r\n-    &:hover {\r\n-      color: none;\r\n+    .el-tabs__item {\r\n+      text-align: left !important;\r\n+\r\n+      &:hover {\r\n+        color: none;\r\n+      }\r\n     }\r\n-  }\r\n \r\n-  .is-active {\r\n-    background-color: #ccc !important;\r\n-    color: white;\r\n-    border-radius: 10px;\r\n-    margin: 0 5px 0 5px;\r\n+    .is-active {\r\n+      background-color: #ccc !important;\r\n+      color: white;\r\n+      border-radius: 10px;\r\n+      margin: 0 5px 0 5px;\r\n+    }\r\n+\r\n   }\r\n-\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650280046457,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -215,8 +215,9 @@\n .el-drawer__body {\r\n   padding: 20px 0 10px 0;\r\n \r\n   .el-tabs__nav-scroll {\r\n+    width: 200px;\r\n \r\n     .el-tabs__item {\r\n       text-align: left !important;\r\n \r\n"
+                },
+                {
+                    "date": 1650280115003,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -215,9 +215,9 @@\n .el-drawer__body {\r\n   padding: 20px 0 10px 0;\r\n \r\n   .el-tabs__nav-scroll {\r\n-    width: 200px;\r\n+    width: 100px;\r\n \r\n     .el-tabs__item {\r\n       text-align: left !important;\r\n \r\n@@ -229,9 +229,8 @@\n     .is-active {\r\n       background-color: #ccc !important;\r\n       color: white;\r\n       border-radius: 10px;\r\n-      margin: 0 5px 0 5px;\r\n     }\r\n \r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1650280125776,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -216,8 +216,9 @@\n   padding: 20px 0 10px 0;\r\n \r\n   .el-tabs__nav-scroll {\r\n     width: 100px;\r\n+    padding: 0 5px;\r\n \r\n     .el-tabs__item {\r\n       text-align: left !important;\r\n \r\n"
+                },
+                {
+                    "date": 1650280188900,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -127,9 +127,9 @@\n     <el-container>\r\n       <el-header>设置</el-header>\r\n \r\n       <el-main>\r\n-        <el-tabs tab-position=\"left\" style=\"height: 100%\">\r\n+        <el-tabs tab-position=\"left\" type=\"card\" style=\"height: 100%\">\r\n           <el-tab-pane label=\"用户\">用户</el-tab-pane>\r\n           <el-tab-pane label=\"添加图标\">添加图标</el-tab-pane>\r\n           <el-tab-pane label=\"排序\">排序</el-tab-pane>\r\n           <el-tab-pane label=\"壁纸\">壁纸</el-tab-pane>\r\n"
+                },
+                {
+                    "date": 1650280216415,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -227,9 +227,8 @@\n       }\r\n     }\r\n \r\n     .is-active {\r\n-      background-color: #ccc !important;\r\n       color: white;\r\n       border-radius: 10px;\r\n     }\r\n \r\n"
+                },
+                {
+                    "date": 1650280254557,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -226,12 +226,9 @@\n         color: none;\r\n       }\r\n     }\r\n \r\n-    .is-active {\r\n-      color: white;\r\n-      border-radius: 10px;\r\n-    }\r\n+    .is-active {}\r\n \r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650280320898,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -228,7 +228,10 @@\n     }\r\n \r\n     .is-active {}\r\n \r\n+    .el-tabs__content {\r\n+      background-color: #ccc;\r\n+    }\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650280469059,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -226,12 +226,18 @@\n         color: none;\r\n       }\r\n     }\r\n \r\n-    .is-active {}\r\n+    .is-active {\r\n+      background-color: #ccc;\r\n+      color: white;\r\n+    }\r\n \r\n     .el-tabs__content {\r\n       background-color: #ccc;\r\n+      width: 100%;\r\n+      height: 100%;\r\n+      left: 100px;\r\n     }\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650280505555,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -231,13 +231,14 @@\n       background-color: #ccc;\r\n       color: white;\r\n     }\r\n \r\n-    .el-tabs__content {\r\n-      background-color: #ccc;\r\n-      width: 100%;\r\n-      height: 100%;\r\n-      left: 100px;\r\n-    }\r\n   }\r\n+\r\n+  .el-tabs__content {\r\n+    background-color: #ccc;\r\n+    width: 100%;\r\n+    height: 100%;\r\n+    left: 100px;\r\n+  }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650280573990,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -234,11 +234,12 @@\n \r\n   }\r\n \r\n   .el-tabs__content {\r\n+    position: absolute;\r\n     background-color: #ccc;\r\n     width: 100%;\r\n     height: 100%;\r\n-    left: 100px;\r\n+    left: 105px;\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650280649598,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -229,8 +229,9 @@\n \r\n     .is-active {\r\n       background-color: #ccc;\r\n       color: white;\r\n+      border-right: 0;\r\n     }\r\n \r\n   }\r\n \r\n@@ -238,8 +239,8 @@\n     position: absolute;\r\n     background-color: #ccc;\r\n     width: 100%;\r\n     height: 100%;\r\n-    left: 105px;\r\n+    left: 104px;\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650280711927,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -238,8 +238,9 @@\n   .el-tabs__content {\r\n     position: absolute;\r\n     background-color: #ccc;\r\n     width: 100%;\r\n+    z-index: 99;\r\n     height: 100%;\r\n     left: 104px;\r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1650280746294,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -236,9 +236,9 @@\n   }\r\n \r\n   .el-tabs__content {\r\n     position: absolute;\r\n-    background-color: #ccc;\r\n+    background-color: #f5f7fa;\r\n     width: 100%;\r\n     z-index: 99;\r\n     height: 100%;\r\n     left: 104px;\r\n"
+                },
+                {
+                    "date": 1650280752331,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -227,9 +227,9 @@\n       }\r\n     }\r\n \r\n     .is-active {\r\n-      background-color: #ccc;\r\n+      background-color: #f5f7fa;\r\n       color: white;\r\n       border-right: 0;\r\n     }\r\n \r\n"
+                },
+                {
+                    "date": 1650280773326,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -228,9 +228,9 @@\n     }\r\n \r\n     .is-active {\r\n       background-color: #f5f7fa;\r\n-      color: white;\r\n+      color: #409eff;\r\n       border-right: 0;\r\n     }\r\n \r\n   }\r\n"
+                },
+                {
+                    "date": 1650280835608,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -127,9 +127,9 @@\n     <el-container>\r\n       <el-header>设置</el-header>\r\n \r\n       <el-main>\r\n-        <el-tabs tab-position=\"left\" type=\"card\" style=\"height: 100%\">\r\n+        <el-tabs tab-position=\"left\" style=\"height: 100%\">\r\n           <el-tab-pane label=\"用户\">用户</el-tab-pane>\r\n           <el-tab-pane label=\"添加图标\">添加图标</el-tab-pane>\r\n           <el-tab-pane label=\"排序\">排序</el-tab-pane>\r\n           <el-tab-pane label=\"壁纸\">壁纸</el-tab-pane>\r\n"
+                },
+                {
+                    "date": 1650280948854,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -218,8 +218,12 @@\n   .el-tabs__nav-scroll {\r\n     width: 100px;\r\n     padding: 0 5px;\r\n \r\n+    .el-tabs__active-bar {\r\n+      color: none;\r\n+    }\r\n+\r\n     .el-tabs__item {\r\n       text-align: left !important;\r\n \r\n       &:hover {\r\n"
+                },
+                {
+                    "date": 1650280968597,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -219,9 +219,9 @@\n     width: 100px;\r\n     padding: 0 5px;\r\n \r\n     .el-tabs__active-bar {\r\n-      color: none;\r\n+      background-color: #ccc;\r\n     }\r\n \r\n     .el-tabs__item {\r\n       text-align: left !important;\r\n"
+                },
+                {
+                    "date": 1650280975474,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -219,9 +219,9 @@\n     width: 100px;\r\n     padding: 0 5px;\r\n \r\n     .el-tabs__active-bar {\r\n-      background-color: #ccc;\r\n+      background-color: #f5f7fa;\r\n     }\r\n \r\n     .el-tabs__item {\r\n       text-align: left !important;\r\n"
+                },
+                {
+                    "date": 1650281072840,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -224,8 +224,9 @@\n     }\r\n \r\n     .el-tabs__item {\r\n       text-align: left !important;\r\n+      padding: 0;\r\n \r\n       &:hover {\r\n         color: none;\r\n       }\r\n"
+                },
+                {
+                    "date": 1650281119571,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -224,9 +224,9 @@\n     }\r\n \r\n     .el-tabs__item {\r\n       text-align: left !important;\r\n-      padding: 0;\r\n+      padding: 5px;\r\n \r\n       &:hover {\r\n         color: none;\r\n       }\r\n"
+                },
+                {
+                    "date": 1650281128528,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -224,9 +224,8 @@\n     }\r\n \r\n     .el-tabs__item {\r\n       text-align: left !important;\r\n-      padding: 5px;\r\n \r\n       &:hover {\r\n         color: none;\r\n       }\r\n"
+                },
+                {
+                    "date": 1650281138564,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -224,8 +224,9 @@\n     }\r\n \r\n     .el-tabs__item {\r\n       text-align: left !important;\r\n+      padding-left: 5px;\r\n \r\n       &:hover {\r\n         color: none;\r\n       }\r\n"
+                },
+                {
+                    "date": 1650281421504,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,14 +2,9 @@\n import { reactive, watch, ref, onMounted } from 'vue'\r\n import BoxItem from '../BoxItem/BoxItem.vue';\r\n import { useBox } from '../../store/box';\r\n import { storeToRefs } from 'pinia';\r\n-import {\r\n-  Document,\r\n-  Menu as IconMenu,\r\n-  Location,\r\n-  Setting,\r\n-} from '@element-plus/icons-vue'\r\n+import SetupVue from '../Setup/Setup.vue';\r\n const boxStore = useBox()\r\n let boxItemData = reactive(boxStore.boxItem)\r\n \r\n // 监听boxItemData\r\n@@ -123,21 +118,9 @@\n     </ul>\r\n   </el-card>\r\n   <!-- 设置 -->\r\n   <el-drawer v-model=\"drawer\" title=\"I am the title\" :with-header=\"false\">\r\n-    <el-container>\r\n-      <el-header>设置</el-header>\r\n-\r\n-      <el-main>\r\n-        <el-tabs tab-position=\"left\" style=\"height: 100%\">\r\n-          <el-tab-pane label=\"用户\">用户</el-tab-pane>\r\n-          <el-tab-pane label=\"添加图标\">添加图标</el-tab-pane>\r\n-          <el-tab-pane label=\"排序\">排序</el-tab-pane>\r\n-          <el-tab-pane label=\"壁纸\">壁纸</el-tab-pane>\r\n-        </el-tabs>\r\n-      </el-main>\r\n-\r\n-    </el-container>\r\n+    <SetupVue></SetupVue>\r\n   </el-drawer>\r\n </template>\r\n <style lang=\"less\">\r\n .box-grid {\r\n@@ -209,44 +192,5 @@\n       }\r\n     }\r\n   }\r\n }\r\n-\r\n-// 设置\r\n-.el-drawer__body {\r\n-  padding: 20px 0 10px 0;\r\n-\r\n-  .el-tabs__nav-scroll {\r\n-    width: 100px;\r\n-    padding: 0 5px;\r\n-\r\n-    .el-tabs__active-bar {\r\n-      background-color: #f5f7fa;\r\n-    }\r\n-\r\n-    .el-tabs__item {\r\n-      text-align: left !important;\r\n-      padding-left: 5px;\r\n-\r\n-      &:hover {\r\n-        color: none;\r\n-      }\r\n-    }\r\n-\r\n-    .is-active {\r\n-      background-color: #f5f7fa;\r\n-      color: #409eff;\r\n-      border-right: 0;\r\n-    }\r\n-\r\n-  }\r\n-\r\n-  .el-tabs__content {\r\n-    position: absolute;\r\n-    background-color: #f5f7fa;\r\n-    width: 100%;\r\n-    z-index: 99;\r\n-    height: 100%;\r\n-    left: 104px;\r\n-  }\r\n-}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650370338625,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -117,9 +117,9 @@\n       <li @click=\"drawer = true\">设置</li>\r\n     </ul>\r\n   </el-card>\r\n   <!-- 设置 -->\r\n-  <el-drawer v-model=\"drawer\" title=\"I am the title\" :with-header=\"false\">\r\n+  <el-drawer style=\"width: none;\" v-model=\"drawer\" title=\"I am the title\" :with-header=\"false\">\r\n     <SetupVue></SetupVue>\r\n   </el-drawer>\r\n </template>\r\n <style lang=\"less\">\r\n"
+                },
+                {
+                    "date": 1650370401153,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -192,5 +192,9 @@\n       }\r\n     }\r\n   }\r\n }\r\n+\r\n+.element.style {\r\n+  width: none;\r\n+}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650370440601,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -117,9 +117,9 @@\n       <li @click=\"drawer = true\">设置</li>\r\n     </ul>\r\n   </el-card>\r\n   <!-- 设置 -->\r\n-  <el-drawer style=\"width: none;\" v-model=\"drawer\" title=\"I am the title\" :with-header=\"false\">\r\n+  <el-drawer style=\"width: 100%;\" v-model=\"drawer\" title=\"I am the title\" :with-header=\"false\">\r\n     <SetupVue></SetupVue>\r\n   </el-drawer>\r\n </template>\r\n <style lang=\"less\">\r\n@@ -192,9 +192,5 @@\n       }\r\n     }\r\n   }\r\n }\r\n-\r\n-.element.style {\r\n-  width: none;\r\n-}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650370486365,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -192,5 +192,9 @@\n       }\r\n     }\r\n   }\r\n }\r\n+\r\n+.el-drawer.rtl {\r\n+  width: none;\r\n+}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650370515223,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -117,9 +117,9 @@\n       <li @click=\"drawer = true\">设置</li>\r\n     </ul>\r\n   </el-card>\r\n   <!-- 设置 -->\r\n-  <el-drawer style=\"width: 100%;\" v-model=\"drawer\" title=\"I am the title\" :with-header=\"false\">\r\n+  <el-drawer v-model=\"drawer\" title=\"I am the title\" :with-header=\"false\">\r\n     <SetupVue></SetupVue>\r\n   </el-drawer>\r\n </template>\r\n <style lang=\"less\">\r\n@@ -194,7 +194,7 @@\n   }\r\n }\r\n \r\n .el-drawer.rtl {\r\n-  width: none;\r\n+  width: 100% !important;\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650370554476,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -194,7 +194,7 @@\n   }\r\n }\r\n \r\n .el-drawer.rtl {\r\n-  width: 100% !important;\r\n+  width: 40% !important;\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650370573509,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -194,7 +194,8 @@\n   }\r\n }\r\n \r\n .el-drawer.rtl {\r\n+  min-width: 400px;\r\n   width: 40% !important;\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650373078006,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -195,7 +195,7 @@\n }\r\n \r\n .el-drawer.rtl {\r\n   min-width: 400px;\r\n-  width: 40% !important;\r\n+  width: 30% !important;\r\n }\r\n </style>\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1649582189419,

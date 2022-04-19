@@ -3,12 +3,7 @@ import { reactive, watch, ref, onMounted } from 'vue'
 import BoxItem from '../BoxItem/BoxItem.vue';
 import { useBox } from '../../store/box';
 import { storeToRefs } from 'pinia';
-import {
-  Document,
-  Menu as IconMenu,
-  Location,
-  Setting,
-} from '@element-plus/icons-vue'
+import SetupVue from '../Setup/Setup.vue';
 const boxStore = useBox()
 let boxItemData = reactive(boxStore.boxItem)
 
@@ -124,42 +119,7 @@ const updateWallpaper = () => {
   </el-card>
   <!-- 设置 -->
   <el-drawer v-model="drawer" title="I am the title" :with-header="false">
-    <el-container>
-      <el-aside width="120px">
-        <el-row class="tac">
-          <el-col :span="12">
-            <h5 class="mb-2">Default colors</h5>
-            <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
-              <el-menu-item index="1">
-                <el-icon>
-                  <location />
-                </el-icon>
-                <span>设置</span>
-              </el-menu-item>
-              <el-menu-item index="2">
-                <el-icon>
-                  <icon-menu />
-                </el-icon>
-                <span>Navigator Two</span>
-              </el-menu-item>
-              <el-menu-item index="3" disabled>
-                <el-icon>
-                  <document />
-                </el-icon>
-                <span>Navigator Three</span>
-              </el-menu-item>
-              <el-menu-item index="4">
-                <el-icon>
-                  <setting />
-                </el-icon>
-                <span>Navigator Four</span>
-              </el-menu-item>
-            </el-menu>
-          </el-col>
-        </el-row>
-      </el-aside>
-      <el-main>Main</el-main>
-    </el-container>
+    <SetupVue></SetupVue>
   </el-drawer>
 </template>
 <style lang="less">
@@ -234,24 +194,8 @@ const updateWallpaper = () => {
   }
 }
 
-// 设置
-.el-drawer__body {
-  padding: 20px 0 10px 0;
-
-  .el-col-12 {
-    max-width: 100%;
-
-    .el-menu-vertical-demo {
-      width: 100%;
-
-      .el-menu-item {
-        padding: 0 !important;
-      }
-    }
-
-
-
-
-  }
+.el-drawer.rtl {
+  min-width: 400px;
+  width: 30% !important;
 }
 </style>
