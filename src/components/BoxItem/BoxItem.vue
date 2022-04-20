@@ -10,7 +10,7 @@ let boxStore = useBox()
 const boxItemData = boxStore.boxItem
 
 const boxItemDataByIndex = boxItemData[props.i]
-let { w, h, title, bgImage, target, X, Y, id } = boxItemDataByIndex
+let { w, h, title, bgImage, target, X, Y, id, bgType, bgColor, bgFont, bgText } = boxItemDataByIndex
 let item: any = ref(null)
 let zIndex: any = 1;
 // 存储item document对象
@@ -155,13 +155,22 @@ function handlePaste(event) {
   event.preventDefault()
   return false
 }
+
 </script>
 <template>
   <div @contextmenu.native="handlePaste($event)" class="item" ref="item" :style="{
     'width': w * 100 + 'px', 'height': h * 100 + 'px',
   }">
-    <div class=" item-icon">
-      <a><img :src="bgImage" :alt="title"></a>
+    <div class="item-icon">
+      <a class="icon-a"><img v-if="bgType == 'image'" :src="'https://api.iowen.cn/favicon/get.php?url=' + bgImage"
+          :alt="title">
+        <p class="imageIcon" v-else-if="bgType == 'icon'">
+          <!-- 图片-->
+          <div class="icon" :style="{ 'background-color': bgColor }">
+            <span :style="{ 'font-size': bgFont + 'px' }" class="icon-name">{{ bgText }}</span>
+          </div>
+        </p>
+      </a>
     </div>
     <p class="title">{{ title }}</p>
   </div>
@@ -204,6 +213,27 @@ function handlePaste(event) {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+}
+
+.icon-a {
+
+
+  .icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 18px;
+
+    .icon-name {
+      display: block;
+      text-align: center;
+      line-height: 80px;
+
+      &:hover {
+        color: #666;
+      }
+
+    }
   }
 }
 </style>

@@ -5,16 +5,17 @@ import { useBox } from '../../store/box';
 import { storeToRefs } from 'pinia';
 import SetupVue from '../Setup/Setup.vue';
 const boxStore = useBox()
-let boxItemData = reactive(boxStore.boxItem)
+// let boxItemData = reactive(boxStore.boxItem)
+let { boxItem: boxItemData } = storeToRefs(useBox())
 
 // 监听boxItemData
-watch(boxItemData, (nVal, oVal) => {
-  localStorage.setItem('boxItemData', JSON.stringify(boxItemData))
+watch(boxItemData.value, (nVal, oVal) => {
+  localStorage.setItem('boxItemData', JSON.stringify(boxItemData.value))
 })
 
 
 //如果没有从本地获取数据，那么从发送请求获取数据
-if (boxItemData == '') {
+if (boxItemData.value == '') {
 }
 
 // 对item进行排序
@@ -35,7 +36,7 @@ function defaultSorting() {
   const interval = 100
   let page = 0
   let num = 0
-  boxItemData.forEach(element => {
+  boxItemData.value.forEach(element => {
     let Y = num * 100
     if (Y > BoxOffsetHeight - 100) {
       page++

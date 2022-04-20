@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 409,
+            "activePatchIndex": 417,
             "patches": [
                 {
                     "date": 1649582189419,
@@ -1644,6 +1644,38 @@
                 {
                     "date": 1650373078006,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -195,7 +195,7 @@\n }\r\n \r\n .el-drawer.rtl {\r\n   min-width: 400px;\r\n-  width: 40% !important;\r\n+  width: 30% !important;\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650459387266,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,10 @@\n import { useBox } from '../../store/box';\r\n import { storeToRefs } from 'pinia';\r\n import SetupVue from '../Setup/Setup.vue';\r\n const boxStore = useBox()\r\n-let boxItemData = reactive(boxStore.boxItem)\r\n+// let boxItemData = reactive(boxStore.boxItem)\r\n+let { boxItem: boxItemData } = storeToRefs(useBox())\r\n \r\n // 监听boxItemData\r\n watch(boxItemData, (nVal, oVal) => {\r\n   localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n"
+                },
+                {
+                    "date": 1650459405833,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,15 +8,15 @@\n // let boxItemData = reactive(boxStore.boxItem)\r\n let { boxItem: boxItemData } = storeToRefs(useBox())\r\n \r\n // 监听boxItemData\r\n-watch(boxItemData, (nVal, oVal) => {\r\n-  localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n-})\r\n+// watch(boxItemData, (nVal, oVal) => {\r\n+//   localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n+// })\r\n \r\n \r\n //如果没有从本地获取数据，那么从发送请求获取数据\r\n-if (boxItemData == '') {\r\n+if (boxItemData.value == '') {\r\n }\r\n \r\n // 对item进行排序\r\n // 获取box元素\r\n"
+                },
+                {
+                    "date": 1650459514119,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,11 +8,11 @@\n // let boxItemData = reactive(boxStore.boxItem)\r\n let { boxItem: boxItemData } = storeToRefs(useBox())\r\n \r\n // 监听boxItemData\r\n-// watch(boxItemData, (nVal, oVal) => {\r\n-//   localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n-// })\r\n+watch(boxItemData, (nVal, oVal) => {\r\n+  localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n+})\r\n \r\n \r\n //如果没有从本地获取数据，那么从发送请求获取数据\r\n if (boxItemData.value == '') {\r\n"
+                },
+                {
+                    "date": 1650459542049,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,19 +4,19 @@\n import { useBox } from '../../store/box';\r\n import { storeToRefs } from 'pinia';\r\n import SetupVue from '../Setup/Setup.vue';\r\n const boxStore = useBox()\r\n-// let boxItemData = reactive(boxStore.boxItem)\r\n-let { boxItem: boxItemData } = storeToRefs(useBox())\r\n+let boxItemData = reactive(boxStore.boxItem)\r\n+// let { boxItem: boxItemData } = storeToRefs(useBox())\r\n \r\n // 监听boxItemData\r\n watch(boxItemData, (nVal, oVal) => {\r\n   localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n })\r\n \r\n \r\n //如果没有从本地获取数据，那么从发送请求获取数据\r\n-if (boxItemData.value == '') {\r\n+if (boxItemData == '') {\r\n }\r\n \r\n // 对item进行排序\r\n // 获取box元素\r\n"
+                },
+                {
+                    "date": 1650459664281,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,19 +4,19 @@\n import { useBox } from '../../store/box';\r\n import { storeToRefs } from 'pinia';\r\n import SetupVue from '../Setup/Setup.vue';\r\n const boxStore = useBox()\r\n-let boxItemData = reactive(boxStore.boxItem)\r\n-// let { boxItem: boxItemData } = storeToRefs(useBox())\r\n+// let boxItemData = reactive(boxStore.boxItem)\r\n+let { boxItem: boxItemData } = storeToRefs(useBox())\r\n \r\n // 监听boxItemData\r\n watch(boxItemData, (nVal, oVal) => {\r\n   localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n })\r\n \r\n \r\n //如果没有从本地获取数据，那么从发送请求获取数据\r\n-if (boxItemData == '') {\r\n+if (boxItemData.value == '') {\r\n }\r\n \r\n // 对item进行排序\r\n // 获取box元素\r\n"
+                },
+                {
+                    "date": 1650459684925,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,19 +4,19 @@\n import { useBox } from '../../store/box';\r\n import { storeToRefs } from 'pinia';\r\n import SetupVue from '../Setup/Setup.vue';\r\n const boxStore = useBox()\r\n-// let boxItemData = reactive(boxStore.boxItem)\r\n-let { boxItem: boxItemData } = storeToRefs(useBox())\r\n+let boxItemData = reactive(boxStore.boxItem)\r\n+// let { boxItem: boxItemData } = storeToRefs(useBox())\r\n \r\n // 监听boxItemData\r\n watch(boxItemData, (nVal, oVal) => {\r\n   localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n })\r\n \r\n \r\n //如果没有从本地获取数据，那么从发送请求获取数据\r\n-if (boxItemData.value == '') {\r\n+if (boxItemData == '') {\r\n }\r\n \r\n // 对item进行排序\r\n // 获取box元素\r\n"
+                },
+                {
+                    "date": 1650460389978,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,19 +4,19 @@\n import { useBox } from '../../store/box';\r\n import { storeToRefs } from 'pinia';\r\n import SetupVue from '../Setup/Setup.vue';\r\n const boxStore = useBox()\r\n-let boxItemData = reactive(boxStore.boxItem)\r\n-// let { boxItem: boxItemData } = storeToRefs(useBox())\r\n+// let boxItemData = reactive(boxStore.boxItem)\r\n+let { boxItem: boxItemData } = storeToRefs(useBox())\r\n \r\n // 监听boxItemData\r\n watch(boxItemData, (nVal, oVal) => {\r\n   localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n })\r\n \r\n \r\n //如果没有从本地获取数据，那么从发送请求获取数据\r\n-if (boxItemData == '') {\r\n+if (boxItemData.value == '') {\r\n }\r\n \r\n // 对item进行排序\r\n // 获取box元素\r\n@@ -35,9 +35,9 @@\n function defaultSorting() {\r\n   const interval = 100\r\n   let page = 0\r\n   let num = 0\r\n-  boxItemData.forEach(element => {\r\n+  boxItemData.value.forEach(element => {\r\n     let Y = num * 100\r\n     if (Y > BoxOffsetHeight - 100) {\r\n       page++\r\n       num = 0\r\n"
+                },
+                {
+                    "date": 1650460494366,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,10 +8,10 @@\n // let boxItemData = reactive(boxStore.boxItem)\r\n let { boxItem: boxItemData } = storeToRefs(useBox())\r\n \r\n // 监听boxItemData\r\n-watch(boxItemData, (nVal, oVal) => {\r\n-  localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n+watch(boxItemData.value, (nVal, oVal) => {\r\n+  localStorage.setItem('boxItemData', JSON.stringify(boxItemData.value))\r\n })\r\n \r\n \r\n //如果没有从本地获取数据，那么从发送请求获取数据\r\n"
                 }
             ],
             "date": 1649582189419,

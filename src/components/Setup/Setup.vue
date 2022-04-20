@@ -1,10 +1,12 @@
 <script lang="ts" setup>
-import { reactive, ref } from 'vue'
+import { reactive, ref, watch } from 'vue'
 import type { FormInstance } from 'element-plus'
-
+import { v4 as uuidv4 } from 'uuid';
+import { useBox } from '../../store/box';
+const boxStore = useBox()
 const ruleFormRef = ref<FormInstance>()
 
-
+// 验证表单规则
 const addressRule = (rule: any, value: any, callback: any) => {
   if (value === '') {
     callback(new Error('请输入网站地址'))
@@ -12,46 +14,64 @@ const addressRule = (rule: any, value: any, callback: any) => {
     callback()
   }
 }
-const siteNameRule = (rule: any, value: any, callback: any) => {
+const titleRule = (rule: any, value: any, callback: any) => {
   if (value === '') {
     callback(new Error('请输入网址名称'))
   } else {
     callback()
   }
 }
-const iconNameRule = (rule: any, value: any, callback: any) => {
-  console.log(value);
 
-  if (value.length > 5) {
-    callback(new Error('图标文字不能超过5位'))
-  } else {
-    callback()
-  }
-}
-
+// 定义表单数据
 const ruleForm = reactive({
   address: '',
-  siteName: '',
+  title: '',
   iconName: ''
 })
-
+// 将规则与数据进行邦定
 const rules = reactive({
   address: [{ validator: addressRule, trigger: 'blur' }],
-  siteName: [{ validator: siteNameRule, trigger: 'blur' }],
+  title: [{ validator: titleRule, trigger: 'blur' }],
 })
-
+// 提交按钮
 const submitForm = (formEl: FormInstance | undefined) => {
+
   if (!formEl) return
   formEl.validate((valid) => {
     if (valid) {
-      console.log(ruleForm.address, ruleForm.siteName, ruleForm.iconName, color1.value);
+      let boxItemData: any = window.localStorage.getItem('boxItemData')
+      // // if (ruleForm.address.slice(0, 3) == 'www') {
+      // //   ruleForm.address = 'http://' + ruleForm.address
+      // // }
+      boxItemData = JSON.parse(boxItemData)
+      const data = {
+        title: ruleForm.title,
+        bgType: "image",
+        bgImage: ruleForm.address + '/favicon.ico',
+        id: uuidv4(),
+        target: ruleForm.address,
+        bgColor: color1.value,
+        bgFont: iconFontSize.value,
+        bgText: ruleForm.iconName,
+        bgColorImage: null,
+        w: 1,
+        h: 1,
+        X: 0,
+        Y: 0
+      }
+      boxItemData.push(data)
+      boxStore.boxItem = boxItemData
+      boxItemData = JSON.stringify(boxItemData)
+
+      window.localStorage.setItem('boxItemData', boxItemData)
+      formEl.resetFields()
     } else {
       console.log('error submit!')
       return false
     }
   })
 }
-
+// 重置按钮
 const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.resetFields()
@@ -61,8 +81,19 @@ const color1 = ref('#409EFF')
 // 点击颜色
 const changeColor = (color) => {
   color1.value = color
-
 }
+// icon字体大小
+let iconFontSize = ref(120)
+watch(() => ruleForm.iconName, (nVal, oVal) => {
+  if (ruleForm.iconName.length > 5) {
+    ruleForm.iconName = oVal
+    return;
+  }
+  ruleForm.iconName.length == 1 && (iconFontSize.value = 95);
+  ruleForm.iconName.length == 2 && (iconFontSize.value = 40);
+  ruleForm.iconName.length == 3 && (iconFontSize.value = 20);
+  ruleForm.iconName.length == 4 && (iconFontSize.value = 20)
+})
 </script>
 <template>
   <el-container>
@@ -76,13 +107,13 @@ const changeColor = (color) => {
             <el-form-item label="网站地址:" prop="address">
               <el-input v-model="ruleForm.address" type="text" />
             </el-form-item>
-            <el-form-item label="网站名称:" prop="siteName">
-              <el-input v-model="ruleForm.siteName" type="text" autocomplete="off" />
+            <el-form-item label="网站名称:" prop="title">
+              <el-input v-model="ruleForm.title" type="text" autocomplete="off" />
             </el-form-item>
-            <el-form-item class="imageIcon" label="图    片:" prop="age">
+            <el-form-item class="imageIcon" label="图    片:">
               <!-- 图片-->
               <div class="icon" :style="{ 'background-color': color1 }">
-                <span :style="{ 'font-size': '20px' }" class="icon-name">{{ ruleForm.iconName }}</span>
+                <span :style="{ 'font-size': iconFontSize + 'px' }" class="icon-name">{{ ruleForm.iconName }}</span>
               </div>
               <!-- 设置图片背景颜色 -->
               <div class="colorSelectGroup">
@@ -107,8 +138,8 @@ const changeColor = (color) => {
               <el-input v-model="ruleForm.iconName" type="text" autocomplete="off" />
             </el-form-item>
             <el-form-item class="sub">
-              <el-button type="primary" @click="submitForm(ruleFormRef)">提交</el-button>
-              <el-button @click="resetForm(ruleFormRef)">重置</el-button>
+              <el-button type="primary" @click="submitForm(ruleFormRef)">添加图标</el-button>
+              <el-button @click="resetForm(ruleFormRef)">重置信息</el-button>
             </el-form-item>
           </el-form>
 
