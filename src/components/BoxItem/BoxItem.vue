@@ -1,22 +1,23 @@
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia';
-import { computed, onMounted, ref, toRaw, reactive, watch } from 'vue';
+import { computed, onMounted, ref, toRaw, reactive, watch, toRefs } from 'vue';
 import { useBox } from '../../store/box';
 const props = defineProps({
-  i: { default: 0, type: Number }
+  i: { default: 0, type: Number },
+  boxItemData: { default: {}, type: Object }
 })
 
 let boxStore = useBox()
 const boxItemData = boxStore.boxItem
-
+// const { boxItem: boxItemData } = storeToRefs(boxStore)
 const boxItemDataByIndex = boxItemData[props.i]
-let { w, h, title, bgImage, target, X, Y, id, bgType, bgColor, bgFont, bgText } = boxItemDataByIndex
+let { w, h, title, bgImage, target, X, Y, id, bgType, bgColor, bgFont, bgText } = toRefs(boxItemDataByIndex)
 let item: any = ref(null)
 let zIndex: any = 1;
 // 存储item document对象
 let el
 
-let option = { 'top': Y + 'px', 'left': X + 'px' }
+let option = { 'top': Y.value + 'px', 'left': X.value + 'px' }
 
 let x = 0
 let y = 0
@@ -94,8 +95,10 @@ function onMouseMove(e) {
 function onMouseUp(e) {
   let flag = true
   // 网格化界面
-  left = Math.round(left / 100) * 100
-  top = Math.round(top / 100) * 100
+  if (boxStore.GlobalConfiguration.isGridding) {
+    left = Math.round(left / 100) * 100
+    top = Math.round(top / 100) * 100
+  }
   if (top > document.documentElement.clientHeight - el.clientHeight) top -= 100
   if (left > document.documentElement.clientWidth - el.clientWidth) left -= 100
   // 让item不叠加在一起
@@ -106,7 +109,7 @@ function onMouseUp(e) {
   // el.setCapture && el.setCapture() //释放全局捕获
 
   if (!isDrag) {
-    window.location.href = target
+    window.location.href = target.value
   }
   isDrag = false
 
@@ -117,7 +120,7 @@ function doNotStask() {
   let flag = true
   for (let i = 0; i < boxItemData.length; i++) {
 
-    if (boxItemData[i].id == id) {
+    if (boxItemData[i].id == id.value) {
       continue
     }
     if (boxItemData[i].X == left && boxItemData[i].Y == top) {
@@ -130,7 +133,6 @@ function doNotStask() {
 
   // 当flag为true表示可以在当前位置存放坐标
   if (flag && isDrag) {
-
     el.style.left = left + 'px'
     el.style.top = top + 'px'
     // 存储坐标
@@ -139,13 +141,13 @@ function doNotStask() {
     // 回到原来存储的位置
     el.style.left = boxItemData[props.i].X + 'px'
     el.style.top = boxItemData[props.i].Y + 'px'
-
   }
 }
 //默认排序
 watch(boxItemDataByIndex, (nVal, oVal) => {
   el.style.left = nVal.X + 'px'
   el.style.top = nVal.Y + 'px'
+  let { w, h, title, bgImage, target, X, Y, id, bgType, bgColor, bgFont, bgText } = toRefs(nVal)
 })
 // 禁用鼠标右键
 let rightClick = ref(false)
@@ -155,15 +157,20 @@ function handlePaste(event) {
   event.preventDefault()
   return false
 }
+// 图片加载失败
+const imgError = () => {
+  bgType.value = 'icon'
 
+}
 </script>
 <template>
   <div @contextmenu.native="handlePaste($event)" class="item" ref="item" :style="{
     'width': w * 100 + 'px', 'height': h * 100 + 'px',
   }">
     <div class="item-icon">
-      <a class="icon-a"><img v-if="bgType == 'image'" :src="'https://api.iowen.cn/favicon/get.php?url=' + bgImage"
-          :alt="title">
+      <a class="icon-a">
+        <img v-if="bgType == 'image'" :src="'https://api.iowen.cn/favicon/get.php?url=' + bgImage" :alt="title"
+          @error="imgError()">
         <p class="imageIcon" v-else-if="bgType == 'icon'">
           <!-- 图片-->
           <div class="icon" :style="{ 'background-color': bgColor }">
@@ -207,7 +214,7 @@ function handlePaste(event) {
 
   .title {
     width: 100%;
-    font-size: 18px;
+    font-size: 15px;
     color: white;
     text-align: center;
     overflow: hidden;

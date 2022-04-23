@@ -8,6 +8,10 @@ export const useBox = defineStore({
       zIndex: 1,
       boxItem: JSON.parse(window.localStorage.getItem('boxItemData') || ''),
       globalPicture: '',
+      boxContainer: { width: 0, height: 0 },
+      GlobalConfiguration: {
+        isGridding: true,
+      }
       // boxItem: [
       //   {
       //     "title": "npm仓库",
@@ -78,6 +82,7 @@ export const useBox = defineStore({
     //     $message.error('更新背景失败！')
     //   }
     // },
+    // 获取背景图片
     async updatedGlobalPicture() {
       let result: any = await get("https://api.codelife.cc/wallpaper/random")
       if (result.code == 200) {
@@ -85,7 +90,21 @@ export const useBox = defineStore({
       } else {
         $message.error('更新背景失败！')
       }
+    },
+    // 根据index删除item
+    deleteBoxItemByIndex(i) {
+      this.boxItem.splice(i, 1)
+    },
+    // 根据index更新item
+    updateBoxItemIndex(i, data) {
+      for (const key in data) {
+        this.boxItem[i][key] = data[key]
+      }
+    },
+    isGridding() {
+      this.GlobalConfiguration.isGridding = !this.GlobalConfiguration.isGridding
     }
-  }
+  },
+
 
 })

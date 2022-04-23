@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 42,
+            "activePatchIndex": 75,
             "patches": [
                 {
                     "date": 1649682507536,
@@ -176,6 +176,138 @@
                 {
                     "date": 1650199915662,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -79,10 +79,8 @@\n     //   }\r\n     // },\r\n     async updatedGlobalPicture() {\r\n       let result: any = await get(\"https://api.codelife.cc/wallpaper/random\")\r\n-      console.log(result);\r\n-\r\n       if (result.code == 200) {\r\n         this.globalPicture = result.data\r\n       } else {\r\n         $message.error('更新背景失败！')\r\n"
+                },
+                {
+                    "date": 1650680254479,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,96 @@\n+import { defineStore } from \"pinia\";\r\n+import { get } from \"../utils/axios\"\r\n+import { ElMessage as $message, ElStep } from 'element-plus'\r\n+export const useBox = defineStore({\r\n+  id: 'box',\r\n+  state: () => {\r\n+    return {\r\n+      zIndex: 1,\r\n+      boxItem: JSON.parse(window.localStorage.getItem('boxItemData') || ''),\r\n+      globalPicture: '',\r\n+      // boxItem: [\r\n+      //   {\r\n+      //     \"title\": \"npm仓库\",\r\n+      //     \"uuid\": \"5fcfb221d915e4341c1e069f14a1b945\",\r\n+      //     \"bgType\": \"image\",\r\n+      //     \"bgImage\": \"https://static.npmjs.com/b0f1a8318363185cc2ea6a40ac23eeb2.png\",\r\n+      //     \"id\": \"siteId-1fjg5riks7kwo6q5z2rvwrdblv0\",\r\n+      //     \"target\": \"https://www.npmjs.com/\",\r\n+      //     \"bgColor\": \"rgba(255,207,12,1)\",\r\n+      //     \"bgFont\": 30,\r\n+      //     \"bgText\": \"npm\",\r\n+      //     \"bgColorImage\": null,\r\n+      //     \"w\": 1,\r\n+      //     \"h\": 1\r\n+      //   },\r\n+      //   {\r\n+      //     \"title\": \"GitHub\",\r\n+      //     \"uuid\": \"3290568f329ecd28a1601b98351d2040\",\r\n+      //     \"bgType\": \"image\",\r\n+      //     \"bgImage\": \"https://files.codelife.cc/website/codepen.svg\",\r\n+      //     \"updatetime\": 1635851916974,\r\n+      //     \"id\": \"siteId-1fjg5ullepy4cfzy6za4wf0h1kf\",\r\n+      //     \"target\": \"https://github.com/\",\r\n+      //     \"type\": \"web\",\r\n+      //     \"w\": 1,\r\n+      //     \"h\": 1\r\n+      //   },\r\n+      //   {\r\n+      //     \"title\": \"Vue.js\",\r\n+      //     \"uuid\": \"61bee01d513b4e844394b85b38b01a3e\",\r\n+      //     \"bgType\": \"image\",\r\n+      //     \"bgImage\": \"https://cn.vuejs.org/images/logo.svg\",\r\n+      //     \"updatetime\": 1636034500242,\r\n+      //     \"id\": \"siteId-1fjlk2lki7nu2o2x1i5ytii9o6z\",\r\n+      //     \"target\": \"https://cn.vuejs.org/\",\r\n+      //     \"type\": \"web\"\r\n+      //     , \"w\": 1,\r\n+      //     \"h\": 1\r\n+      //   },\r\n+      //   {\r\n+      //     \"title\": \"Stack Overflow - Where Developers Learn, Share, & Build Careers\",\r\n+      //     \"uuid\": \"43e54a82b30dbf7d3e2ee8cfe537c849\",\r\n+      //     \"bgType\": \"image\",\r\n+      //     \"bgImage\": \"https://infinityicon.infinitynewtab.com/user-share-icon/43e54a82b30dbf7d3e2ee8cfe537c849.png\",\r\n+      //     \"updatetime\": 1636183457101,\r\n+      //     \"id\": \"siteId-1fjq24faedg649wxgk0qtg1wfvo\",\r\n+      //     \"target\": \"https://stackoverflow.com/\",\r\n+      //     \"type\": \"web\",\r\n+      //     \"w\": 1,\r\n+      //     \"h\": 1\r\n+      //   },\r\n+      // ]\r\n+    }\r\n+  },\r\n+  actions: {\r\n+    getzIndex() {\r\n+      this.zIndex += 1\r\n+      return this.zIndex\r\n+    },\r\n+    setBoxItemXY(i, X, Y) {\r\n+      this.boxItem[i].X = X, this.boxItem[i].Y = Y\r\n+    },\r\n+    // async updatedGlobalPicture() {\r\n+    //   let result: any = await get(\"/api.php?category={dongman,fengjing,biying,meinv}&type=json\")\r\n+    //   if (result.result == 200) {\r\n+    //     this.globalPicture = result.img\r\n+    //   } else {\r\n+    //     $message.error('更新背景失败！')\r\n+    //   }\r\n+    // },\r\n+    // 获取背景图片\r\n+    async updatedGlobalPicture() {\r\n+      let result: any = await get(\"https://api.codelife.cc/wallpaper/random\")\r\n+      if (result.code == 200) {\r\n+        this.globalPicture = result.data\r\n+      } else {\r\n+        $message.error('更新背景失败！')\r\n+      }\r\n+    }, deleteBoxItemByIndex(i) {\r\n+\r\n+    }\r\n+  },\r\n+  // 根据索引删除item\r\n+\r\n+\r\n+})\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650680275213,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -85,103 +85,14 @@\n         this.globalPicture = result.data\r\n       } else {\r\n         $message.error('更新背景失败！')\r\n       }\r\n-    }, deleteBoxItemByIndex(i) {\r\n+    },\r\n+    deleteBoxItemByIndex(i) {\r\n+      console.log(boxItem, i);\r\n \r\n     }\r\n   },\r\n   // 根据索引删除item\r\n \r\n \r\n-})\n-import { defineStore } from \"pinia\";\r\n-import { get } from \"../utils/axios\"\r\n-import { ElMessage as $message, ElStep } from 'element-plus'\r\n-export const useBox = defineStore({\r\n-  id: 'box',\r\n-  state: () => {\r\n-    return {\r\n-      zIndex: 1,\r\n-      boxItem: JSON.parse(window.localStorage.getItem('boxItemData') || ''),\r\n-      globalPicture: '',\r\n-      // boxItem: [\r\n-      //   {\r\n-      //     \"title\": \"npm仓库\",\r\n-      //     \"uuid\": \"5fcfb221d915e4341c1e069f14a1b945\",\r\n-      //     \"bgType\": \"image\",\r\n-      //     \"bgImage\": \"https://static.npmjs.com/b0f1a8318363185cc2ea6a40ac23eeb2.png\",\r\n-      //     \"id\": \"siteId-1fjg5riks7kwo6q5z2rvwrdblv0\",\r\n-      //     \"target\": \"https://www.npmjs.com/\",\r\n-      //     \"bgColor\": \"rgba(255,207,12,1)\",\r\n-      //     \"bgFont\": 30,\r\n-      //     \"bgText\": \"npm\",\r\n-      //     \"bgColorImage\": null,\r\n-      //     \"w\": 1,\r\n-      //     \"h\": 1\r\n-      //   },\r\n-      //   {\r\n-      //     \"title\": \"GitHub\",\r\n-      //     \"uuid\": \"3290568f329ecd28a1601b98351d2040\",\r\n-      //     \"bgType\": \"image\",\r\n-      //     \"bgImage\": \"https://files.codelife.cc/website/codepen.svg\",\r\n-      //     \"updatetime\": 1635851916974,\r\n-      //     \"id\": \"siteId-1fjg5ullepy4cfzy6za4wf0h1kf\",\r\n-      //     \"target\": \"https://github.com/\",\r\n-      //     \"type\": \"web\",\r\n-      //     \"w\": 1,\r\n-      //     \"h\": 1\r\n-      //   },\r\n-      //   {\r\n-      //     \"title\": \"Vue.js\",\r\n-      //     \"uuid\": \"61bee01d513b4e844394b85b38b01a3e\",\r\n-      //     \"bgType\": \"image\",\r\n-      //     \"bgImage\": \"https://cn.vuejs.org/images/logo.svg\",\r\n-      //     \"updatetime\": 1636034500242,\r\n-      //     \"id\": \"siteId-1fjlk2lki7nu2o2x1i5ytii9o6z\",\r\n-      //     \"target\": \"https://cn.vuejs.org/\",\r\n-      //     \"type\": \"web\"\r\n-      //     , \"w\": 1,\r\n-      //     \"h\": 1\r\n-      //   },\r\n-      //   {\r\n-      //     \"title\": \"Stack Overflow - Where Developers Learn, Share, & Build Careers\",\r\n-      //     \"uuid\": \"43e54a82b30dbf7d3e2ee8cfe537c849\",\r\n-      //     \"bgType\": \"image\",\r\n-      //     \"bgImage\": \"https://infinityicon.infinitynewtab.com/user-share-icon/43e54a82b30dbf7d3e2ee8cfe537c849.png\",\r\n-      //     \"updatetime\": 1636183457101,\r\n-      //     \"id\": \"siteId-1fjq24faedg649wxgk0qtg1wfvo\",\r\n-      //     \"target\": \"https://stackoverflow.com/\",\r\n-      //     \"type\": \"web\",\r\n-      //     \"w\": 1,\r\n-      //     \"h\": 1\r\n-      //   },\r\n-      // ]\r\n-    }\r\n-  },\r\n-  actions: {\r\n-    getzIndex() {\r\n-      this.zIndex += 1\r\n-      return this.zIndex\r\n-    },\r\n-    setBoxItemXY(i, X, Y) {\r\n-      this.boxItem[i].X = X, this.boxItem[i].Y = Y\r\n-    },\r\n-    // async updatedGlobalPicture() {\r\n-    //   let result: any = await get(\"/api.php?category={dongman,fengjing,biying,meinv}&type=json\")\r\n-    //   if (result.result == 200) {\r\n-    //     this.globalPicture = result.img\r\n-    //   } else {\r\n-    //     $message.error('更新背景失败！')\r\n-    //   }\r\n-    // },\r\n-    async updatedGlobalPicture() {\r\n-      let result: any = await get(\"https://api.codelife.cc/wallpaper/random\")\r\n-      if (result.code == 200) {\r\n-        this.globalPicture = result.data\r\n-      } else {\r\n-        $message.error('更新背景失败！')\r\n-      }\r\n-    }\r\n-  }\r\n-\r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650680304912,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -87,9 +87,9 @@\n         $message.error('更新背景失败！')\r\n       }\r\n     },\r\n     deleteBoxItemByIndex(i) {\r\n-      console.log(boxItem, i);\r\n+      console.log(this.boxItem, i);\r\n \r\n     }\r\n   },\r\n   // 根据索引删除item\r\n"
+                },
+                {
+                    "date": 1650680392630,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -87,9 +87,9 @@\n         $message.error('更新背景失败！')\r\n       }\r\n     },\r\n     deleteBoxItemByIndex(i) {\r\n-      console.log(this.boxItem, i);\r\n+      this.boxItem = this.boxItem.value\r\n \r\n     }\r\n   },\r\n   // 根据索引删除item\r\n"
+                },
+                {
+                    "date": 1650680421436,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -87,9 +87,9 @@\n         $message.error('更新背景失败！')\r\n       }\r\n     },\r\n     deleteBoxItemByIndex(i) {\r\n-      this.boxItem = this.boxItem.value\r\n+      this.boxItem = this.boxItem.value.splic(i, 1)\r\n \r\n     }\r\n   },\r\n   // 根据索引删除item\r\n"
+                },
+                {
+                    "date": 1650680430462,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -88,8 +88,9 @@\n       }\r\n     },\r\n     deleteBoxItemByIndex(i) {\r\n       this.boxItem = this.boxItem.value.splic(i, 1)\r\n+      console.log(this.boxItem);\r\n \r\n     }\r\n   },\r\n   // 根据索引删除item\r\n"
+                },
+                {
+                    "date": 1650680447655,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -87,9 +87,9 @@\n         $message.error('更新背景失败！')\r\n       }\r\n     },\r\n     deleteBoxItemByIndex(i) {\r\n-      this.boxItem = this.boxItem.value.splic(i, 1)\r\n+      this.boxItem = this.boxItem.value.splice(i, 1)\r\n       console.log(this.boxItem);\r\n \r\n     }\r\n   },\r\n"
+                },
+                {
+                    "date": 1650680460075,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -87,10 +87,10 @@\n         $message.error('更新背景失败！')\r\n       }\r\n     },\r\n     deleteBoxItemByIndex(i) {\r\n+      console.log(this.boxItem);\r\n       this.boxItem = this.boxItem.value.splice(i, 1)\r\n-      console.log(this.boxItem);\r\n \r\n     }\r\n   },\r\n   // 根据索引删除item\r\n"
+                },
+                {
+                    "date": 1650680472674,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -88,9 +88,9 @@\n       }\r\n     },\r\n     deleteBoxItemByIndex(i) {\r\n       console.log(this.boxItem);\r\n-      this.boxItem = this.boxItem.value.splice(i, 1)\r\n+      this.boxItem = this.boxItem.splice(i, 1)\r\n \r\n     }\r\n   },\r\n   // 根据索引删除item\r\n"
+                },
+                {
+                    "date": 1650680722541,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -87,10 +87,10 @@\n         $message.error('更新背景失败！')\r\n       }\r\n     },\r\n     deleteBoxItemByIndex(i) {\r\n-      console.log(this.boxItem);\r\n-      this.boxItem = this.boxItem.splice(i, 1)\r\n+      console.log(this.boxItem.value);\r\n+      // this.boxItem = this.boxItem.splice(i, 1)\r\n \r\n     }\r\n   },\r\n   // 根据索引删除item\r\n"
+                },
+                {
+                    "date": 1650680730893,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -87,9 +87,9 @@\n         $message.error('更新背景失败！')\r\n       }\r\n     },\r\n     deleteBoxItemByIndex(i) {\r\n-      console.log(this.boxItem.value);\r\n+      console.log(this.boxItem);\r\n       // this.boxItem = this.boxItem.splice(i, 1)\r\n \r\n     }\r\n   },\r\n"
+                },
+                {
+                    "date": 1650680739333,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -87,9 +87,9 @@\n         $message.error('更新背景失败！')\r\n       }\r\n     },\r\n     deleteBoxItemByIndex(i) {\r\n-      console.log(this.boxItem);\r\n+      console.log(this.boxItem.splice(i, 1));\r\n       // this.boxItem = this.boxItem.splice(i, 1)\r\n \r\n     }\r\n   },\r\n"
+                },
+                {
+                    "date": 1650680779317,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -87,10 +87,10 @@\n         $message.error('更新背景失败！')\r\n       }\r\n     },\r\n     deleteBoxItemByIndex(i) {\r\n-      console.log(this.boxItem.splice(i, 1));\r\n-      // this.boxItem = this.boxItem.splice(i, 1)\r\n+      this.boxItem.splice(i, 1)\r\n+      console.log(this.boxItem);\r\n \r\n     }\r\n   },\r\n   // 根据索引删除item\r\n"
+                },
+                {
+                    "date": 1650680966259,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -88,10 +88,8 @@\n       }\r\n     },\r\n     deleteBoxItemByIndex(i) {\r\n       this.boxItem.splice(i, 1)\r\n-      console.log(this.boxItem);\r\n-\r\n     }\r\n   },\r\n   // 根据索引删除item\r\n \r\n"
+                },
+                {
+                    "date": 1650686061900,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -88,8 +88,11 @@\n       }\r\n     },\r\n     deleteBoxItemByIndex(i) {\r\n       this.boxItem.splice(i, 1)\r\n+    },\r\n+    updateBoxItemIndex(i, data) {\r\n+      this.boxItem[i] = data\r\n     }\r\n   },\r\n   // 根据索引删除item\r\n \r\n"
+                },
+                {
+                    "date": 1650688697714,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -90,9 +90,11 @@\n     deleteBoxItemByIndex(i) {\r\n       this.boxItem.splice(i, 1)\r\n     },\r\n     updateBoxItemIndex(i, data) {\r\n-      this.boxItem[i] = data\r\n+      data.forEach(k, v => {\r\n+\r\n+      });\r\n     }\r\n   },\r\n   // 根据索引删除item\r\n \r\n"
+                },
+                {
+                    "date": 1650688727265,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -90,11 +90,11 @@\n     deleteBoxItemByIndex(i) {\r\n       this.boxItem.splice(i, 1)\r\n     },\r\n     updateBoxItemIndex(i, data) {\r\n-      data.forEach(k, v => {\r\n+      for (const iterator of object) {\r\n \r\n-      });\r\n+      }\r\n     }\r\n   },\r\n   // 根据索引删除item\r\n \r\n"
+                },
+                {
+                    "date": 1650688786465,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -90,9 +90,10 @@\n     deleteBoxItemByIndex(i) {\r\n       this.boxItem.splice(i, 1)\r\n     },\r\n     updateBoxItemIndex(i, data) {\r\n-      for (const iterator of object) {\r\n+      for (const k in data) {\r\n+        console.log(data[v]);\r\n \r\n       }\r\n     }\r\n   },\r\n"
+                },
+                {
+                    "date": 1650688796448,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -91,9 +91,9 @@\n       this.boxItem.splice(i, 1)\r\n     },\r\n     updateBoxItemIndex(i, data) {\r\n       for (const k in data) {\r\n-        console.log(data[v]);\r\n+        console.log(data.v);\r\n \r\n       }\r\n     }\r\n   },\r\n"
+                },
+                {
+                    "date": 1650688812989,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -91,9 +91,9 @@\n       this.boxItem.splice(i, 1)\r\n     },\r\n     updateBoxItemIndex(i, data) {\r\n       for (const k in data) {\r\n-        console.log(data.v);\r\n+        console.log(data.k);\r\n \r\n       }\r\n     }\r\n   },\r\n"
+                },
+                {
+                    "date": 1650688893496,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -90,10 +90,11 @@\n     deleteBoxItemByIndex(i) {\r\n       this.boxItem.splice(i, 1)\r\n     },\r\n     updateBoxItemIndex(i, data) {\r\n-      for (const k in data) {\r\n-        console.log(data.k);\r\n+      this.boxItem[i] = data\r\n+      for (const key in data) {\r\n+        console.log(key);\r\n \r\n       }\r\n     }\r\n   },\r\n"
+                },
+                {
+                    "date": 1650688916421,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -92,9 +92,9 @@\n     },\r\n     updateBoxItemIndex(i, data) {\r\n       this.boxItem[i] = data\r\n       for (const key in data) {\r\n-        console.log(key);\r\n+        console.log(data.key);\r\n \r\n       }\r\n     }\r\n   },\r\n"
+                },
+                {
+                    "date": 1650688925692,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -92,9 +92,9 @@\n     },\r\n     updateBoxItemIndex(i, data) {\r\n       this.boxItem[i] = data\r\n       for (const key in data) {\r\n-        console.log(data.key);\r\n+        console.log(data[key]);\r\n \r\n       }\r\n     }\r\n   },\r\n"
+                },
+                {
+                    "date": 1650688949780,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -92,10 +92,9 @@\n     },\r\n     updateBoxItemIndex(i, data) {\r\n       this.boxItem[i] = data\r\n       for (const key in data) {\r\n-        console.log(data[key]);\r\n-\r\n+        this.boxItem[i][key] = data[key]\r\n       }\r\n     }\r\n   },\r\n   // 根据索引删除item\r\n"
+                },
+                {
+                    "date": 1650703653562,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -86,13 +86,14 @@\n       } else {\r\n         $message.error('更新背景失败！')\r\n       }\r\n     },\r\n+    // 根据index删除item\r\n     deleteBoxItemByIndex(i) {\r\n       this.boxItem.splice(i, 1)\r\n     },\r\n+    // 根据index更新item\r\n     updateBoxItemIndex(i, data) {\r\n-      this.boxItem[i] = data\r\n       for (const key in data) {\r\n         this.boxItem[i][key] = data[key]\r\n       }\r\n     }\r\n"
+                },
+                {
+                    "date": 1650703858331,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n     return {\r\n       zIndex: 1,\r\n       boxItem: JSON.parse(window.localStorage.getItem('boxItemData') || ''),\r\n       globalPicture: '',\r\n+      box\r\n       // boxItem: [\r\n       //   {\r\n       //     \"title\": \"npm仓库\",\r\n       //     \"uuid\": \"5fcfb221d915e4341c1e069f14a1b945\",\r\n"
+                },
+                {
+                    "date": 1650703871891,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n     return {\r\n       zIndex: 1,\r\n       boxItem: JSON.parse(window.localStorage.getItem('boxItemData') || ''),\r\n       globalPicture: '',\r\n-      box\r\n+      boxContainer: {}\r\n       // boxItem: [\r\n       //   {\r\n       //     \"title\": \"npm仓库\",\r\n       //     \"uuid\": \"5fcfb221d915e4341c1e069f14a1b945\",\r\n"
+                },
+                {
+                    "date": 1650703951332,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n     return {\r\n       zIndex: 1,\r\n       boxItem: JSON.parse(window.localStorage.getItem('boxItemData') || ''),\r\n       globalPicture: '',\r\n-      boxContainer: {}\r\n+      boxContainer: undefined,\r\n       // boxItem: [\r\n       //   {\r\n       //     \"title\": \"npm仓库\",\r\n       //     \"uuid\": \"5fcfb221d915e4341c1e069f14a1b945\",\r\n"
+                },
+                {
+                    "date": 1650703977322,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n     return {\r\n       zIndex: 1,\r\n       boxItem: JSON.parse(window.localStorage.getItem('boxItemData') || ''),\r\n       globalPicture: '',\r\n-      boxContainer: undefined,\r\n+      boxContainer: { width: 0, height: 0 },\r\n       // boxItem: [\r\n       //   {\r\n       //     \"title\": \"npm仓库\",\r\n       //     \"uuid\": \"5fcfb221d915e4341c1e069f14a1b945\",\r\n"
+                },
+                {
+                    "date": 1650717450784,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,11 @@\n       zIndex: 1,\r\n       boxItem: JSON.parse(window.localStorage.getItem('boxItemData') || ''),\r\n       globalPicture: '',\r\n       boxContainer: { width: 0, height: 0 },\r\n+      GlobalConfiguration: {\r\n+        isGridding\r\n+      }\r\n       // boxItem: [\r\n       //   {\r\n       //     \"title\": \"npm仓库\",\r\n       //     \"uuid\": \"5fcfb221d915e4341c1e069f14a1b945\",\r\n"
+                },
+                {
+                    "date": 1650717462320,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n       boxItem: JSON.parse(window.localStorage.getItem('boxItemData') || ''),\r\n       globalPicture: '',\r\n       boxContainer: { width: 0, height: 0 },\r\n       GlobalConfiguration: {\r\n-        isGridding\r\n+        isGridding: true,\r\n       }\r\n       // boxItem: [\r\n       //   {\r\n       //     \"title\": \"npm仓库\",\r\n"
+                },
+                {
+                    "date": 1650717551217,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -101,8 +101,10 @@\n         this.boxItem[i][key] = data[key]\r\n       }\r\n     }\r\n   },\r\n-  // 根据索引删除item\r\n+  isGridding() {\r\n+    this.GlobalConfiguration.isGridding = !this.GlobalConfiguration.isGridding\r\n+  }\r\n \r\n \r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650717556614,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -99,12 +99,12 @@\n     updateBoxItemIndex(i, data) {\r\n       for (const key in data) {\r\n         this.boxItem[i][key] = data[key]\r\n       }\r\n+    },\r\n+    isGridding() {\r\n+      this.GlobalConfiguration.isGridding = !this.GlobalConfiguration.isGridding\r\n     }\r\n   },\r\n-  isGridding() {\r\n-    this.GlobalConfiguration.isGridding = !this.GlobalConfiguration.isGridding\r\n-  }\r\n \r\n \r\n })\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1649682507536,

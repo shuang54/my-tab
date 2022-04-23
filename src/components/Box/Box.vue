@@ -4,6 +4,7 @@ import BoxItem from '../BoxItem/BoxItem.vue';
 import { useBox } from '../../store/box';
 import { storeToRefs } from 'pinia';
 import SetupVue from '../Setup/Setup.vue';
+import ItemForm from '@/components/ItemForm.vue'
 const boxStore = useBox()
 // let boxItemData = reactive(boxStore.boxItem)
 let { boxItem: boxItemData } = storeToRefs(useBox())
@@ -28,10 +29,11 @@ let BoxOffsetWidth
 onMounted(() => {
   BoxOffsetHeight = box.value.offsetHeight
   BoxOffsetWidth = box.value.offsetWidth
-  // 调用默认排序方法
-  // defaultSorting()
-})
+  boxStore.boxContainer.width = BoxOffsetWidth
+  boxStore.boxContainer.height = BoxOffsetHeight
 
+})
+// 默认排序
 function defaultSorting() {
   const interval = 100
   let page = 0
@@ -62,8 +64,16 @@ watch(visible, (value) => {
   }
 })
 function openMenu(e) {
+  closeMenu2()
   let x = e.pageX;
   let y = e.pageY;
+
+  if (x + 150 > boxStore.boxContainer.width) {
+    x = boxStore.boxContainer.width - 152
+  }
+  if (y + 200 > boxStore.boxContainer.height) {
+    y = boxStore.boxContainer.height - 212
+  }
   top.value = y;
   left.value = x;
   visible.value = true;
@@ -99,29 +109,106 @@ const updateWallpaper = () => {
     // box.value.style.backgroundImage = `url(${globalPicture.value})`
   })
 }
-</script>
+// 网格化
+let gridding = () => {
+  boxStore.isGridding()
+}
+// item右击事件
+let visible2 = ref(false)
+// 
+let rightClickItemIndex = ref(null)
+watch(visible2, (value) => {
+  if (value) {
+    document.body.addEventListener('click', closeMenu2)
+  } else {
+    document.body.removeEventListener('click', closeMenu2)
+  }
+})
+const show = ($event, i) => {
+  closeMenu()
 
+  let x = $event.pageX;
+  let y = $event.pageY;
+  if (x + 100 > boxStore.boxContainer.width) {
+    x = boxStore.boxContainer.width - 102
+  }
+  if (y + 80 > boxStore.boxContainer.height) {
+    y = boxStore.boxContainer.height - 150
+  }
+
+  top.value = y;
+  left.value = x;
+  visible2.value = true
+  rightClickItemIndex.value = i
+
+}
+
+function closeMenu2() {
+  visible2.value = false;
+}
+function editItem() {
+  dialogFormVisible.value = true
+
+}
+// 删除Item
+function deleteItem() {
+  boxStore.deleteBoxItemByIndex(rightClickItemIndex.value)
+}
+// 编辑Item
+const dialogFormVisible = ref(false)
+const formLabelWidth = '140px'
+
+// 提交编辑 按钮
+
+// const dialog: any = ref(null)
+const ruleFormRef: any = ref(null)
+let editBut = () => {
+  dialogFormVisible.value = false
+  ruleFormRef.value.updateBoxItemByIndex()
+  // itemForm.value.updateBoxItemByIndex()
+}
+</script>
 <template>
   <div class="bg">
     <img :src="globalPicture" alt="背景图片" class="bgImage">
   </div>
   <div ref="box" class="box-grid " @contextmenu.prevent="openMenu($event)">
-    <BoxItem v-for="(item, i) in boxItemData" :key="item.id" :w="item.w" :h="item.h" :i="i">
+    <BoxItem @contextmenu.prevent.stop="show($event, i)" v-for="(item, i) in boxItemData" :key="item.id" :w="item.w"
+      :h="item.h" :i="i">
     </BoxItem>
   </div>
   <!-- 右击菜单 -->
   <el-card @contextmenu.native="handlePaste($event)" class="box-card contextmenu" v-show="visible"
     :style="{ left: left + 'px', top: top + 'px' }">
     <ul>
+      <li @click="gridding()">将图标网格化对齐</li>
       <li @click="defaultSorting()">默认排序</li>
       <li @click="updateWallpaper()">更新壁纸</li>
       <li @click="drawer = true">设置</li>
+    </ul>
+  </el-card>
+  <!-- item右击菜单 -->
+  <el-card @contextmenu.native="handlePaste($event)" class="box-card contextmenu contextmenu2" v-show="visible2"
+    :style="{ left: left + 'px', top: top + 'px' }">
+    <ul>
+      <li @click="editItem()">编辑 | 添加图标</li>
+      <li @click="deleteItem()">删除</li>
     </ul>
   </el-card>
   <!-- 设置 -->
   <el-drawer v-model="drawer" title="I am the title" :with-header="false">
     <SetupVue></SetupVue>
   </el-drawer>
+  <!-- 编辑Item -->
+  <el-dialog ref="dialog" destroy-on-close v-model="dialogFormVisible" title="编辑 | 添加图标">
+    <ItemForm ref="ruleFormRef" :index="rightClickItemIndex"></ItemForm>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="dialogFormVisible = false" size="large">取消</el-button>
+        <el-button type="primary" @click="editBut" size="large">编辑图标</el-button>
+      </span>
+    </template>
+  </el-dialog>
 </template>
 <style lang="less">
 .box-grid {
@@ -161,7 +248,12 @@ const updateWallpaper = () => {
   }
 }
 
+.el-card {
+  transition: none;
+}
+
 //右击菜单
+
 .contextmenu {
   width: 150px;
   height: 200px;
@@ -193,6 +285,11 @@ const updateWallpaper = () => {
       }
     }
   }
+}
+
+.contextmenu2 {
+  width: 100px;
+  height: 60px;
 }
 
 .el-drawer.rtl {

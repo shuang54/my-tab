@@ -1,0 +1,442 @@
+{
+    "sourceFile": "src/components/ItemForm.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 106,
+            "patches": [
+                {
+                    "date": 1650682566195,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1650682625255,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,141 @@\n <script lang=\"ts\" setup>\r\n+import { reactive, ref, watch } from 'vue'\r\n+import type { FormInstance } from 'element-plus'\r\n+import { v4 as uuidv4 } from 'uuid';\r\n+import { useBox } from '../../store/box';\r\n+const boxStore = useBox()\r\n+const ruleFormRef = ref<FormInstance>()\r\n+\r\n+// 验证表单规则\r\n+const addressRule = (rule: any, value: any, callback: any) => {\r\n+  if (value === '') {\r\n+    callback(new Error('请输入网站地址'))\r\n+  } else {\r\n+    callback()\r\n+  }\r\n+}\r\n+const titleRule = (rule: any, value: any, callback: any) => {\r\n+  if (value === '') {\r\n+    callback(new Error('请输入网址名称'))\r\n+  } else {\r\n+    callback()\r\n+  }\r\n+}\r\n+\r\n+// 定义表单数据\r\n+const ruleForm = reactive({\r\n+  address: '',\r\n+  title: '',\r\n+  iconName: ''\r\n+})\r\n+// 将规则与数据进行邦定\r\n+const rules = reactive({\r\n+  address: [{ validator: addressRule, trigger: 'blur' }],\r\n+  title: [{ validator: titleRule, trigger: 'blur' }],\r\n+})\r\n+// 提交按钮\r\n+const submitForm = (formEl: FormInstance | undefined) => {\r\n+\r\n+  if (!formEl) return\r\n+  formEl.validate((valid) => {\r\n+    if (valid) {\r\n+      let boxItemData: any = window.localStorage.getItem('boxItemData')\r\n+      // // if (ruleForm.address.slice(0, 3) == 'www') {\r\n+      // //   ruleForm.address = 'http://' + ruleForm.address\r\n+      // // }\r\n+      boxItemData = JSON.parse(boxItemData)\r\n+      const data = {\r\n+        title: ruleForm.title,\r\n+        bgType: \"image\",\r\n+        bgImage: ruleForm.address + '/favicon.ico',\r\n+        id: uuidv4(),\r\n+        target: ruleForm.address,\r\n+        bgColor: color1.value,\r\n+        bgFont: iconFontSize.value,\r\n+        bgText: ruleForm.iconName,\r\n+        bgColorImage: null,\r\n+        w: 1,\r\n+        h: 1,\r\n+        X: 0,\r\n+        Y: 0\r\n+      }\r\n+      boxItemData.push(data)\r\n+      boxStore.boxItem = boxItemData\r\n+      boxItemData = JSON.stringify(boxItemData)\r\n+\r\n+      window.localStorage.setItem('boxItemData', boxItemData)\r\n+      formEl.resetFields()\r\n+    } else {\r\n+      console.log('error submit!')\r\n+      return false\r\n+    }\r\n+  })\r\n+}\r\n+// 重置按钮\r\n+const resetForm = (formEl: FormInstance | undefined) => {\r\n+  if (!formEl) return\r\n+  formEl.resetFields()\r\n+}\r\n+// 颜色选择器\r\n+const color1 = ref('#409EFF')\r\n+// 点击颜色\r\n+const changeColor = (color) => {\r\n+  color1.value = color\r\n+}\r\n+// icon字体大小\r\n+let iconFontSize = ref(120)\r\n+watch(() => ruleForm.iconName, (nVal, oVal) => {\r\n+  if (ruleForm.iconName.length > 5) {\r\n+    ruleForm.iconName = oVal\r\n+    return;\r\n+  }\r\n+  ruleForm.iconName.length == 1 && (iconFontSize.value = 95);\r\n+  ruleForm.iconName.length == 2 && (iconFontSize.value = 40);\r\n+  ruleForm.iconName.length == 3 && (iconFontSize.value = 20);\r\n+  ruleForm.iconName.length == 4 && (iconFontSize.value = 20)\r\n+})\r\n </script>\r\n <template>\r\n+  <el-form ref=\"ruleFormRef\" :model=\"ruleForm\" status-icon :rules=\"rules\" label-width=\"120px\" class=\"demo-ruleForm\">\r\n+    <el-form-item label=\"网站地址:\" prop=\"address\">\r\n+      <el-input v-model=\"ruleForm.address\" type=\"text\" />\r\n+    </el-form-item>\r\n+    <el-form-item label=\"网站名称:\" prop=\"title\">\r\n+      <el-input v-model=\"ruleForm.title\" type=\"text\" autocomplete=\"off\" />\r\n+    </el-form-item>\r\n+    <el-form-item class=\"imageIcon\" label=\"图    片:\">\r\n+      <!-- 图片-->\r\n+      <div class=\"icon\" :style=\"{ 'background-color': color1 }\">\r\n+        <span :style=\"{ 'font-size': iconFontSize + 'px' }\" class=\"icon-name\">{{ ruleForm.iconName }}</span>\r\n+      </div>\r\n+      <!-- 设置图片背景颜色 -->\r\n+      <div class=\"colorSelectGroup\">\r\n+        <div class=\"colorDemo\">\r\n+          <span @click=\"changeColor('#bc8f8f')\" style=\"background-color: rosybrown ;\" class=\"\"></span>\r\n+        </div>\r\n+        <div class=\"colorDemo\">\r\n+          <span @click=\"changeColor('#eee8aa')\" style=\"background-color: palegoldenrod ;\" class=\"\"></span>\r\n+        </div>\r\n+        <div class=\"colorDemo\">\r\n+          <span @click=\"changeColor('#98fb98')\" style=\"background-color: palegreen ;\" class=\"\"></span>\r\n+        </div>\r\n+        <div class=\"colorDemo\">\r\n+          <span @click=\"changeColor('#ffdab9')\" style=\"background-color: peachpuff  ;\" class=\"\"></span>\r\n+        </div>\r\n+        <div class=\"demo-color-block\">\r\n+          <el-color-picker v-model=\"color1\" />\r\n+        </div>\r\n+      </div>\r\n+    </el-form-item>\r\n+    <el-form-item label=\"图标文字:\">\r\n+      <el-input v-model=\"ruleForm.iconName\" type=\"text\" autocomplete=\"off\" />\r\n+    </el-form-item>\r\n+    <el-form-item class=\"sub\">\r\n+      <el-button type=\"primary\" @click=\"submitForm(ruleFormRef)\">添加图标</el-button>\r\n+      <el-button @click=\"resetForm(ruleFormRef)\">重置信息</el-button>\r\n+    </el-form-item>\r\n+  </el-form>\r\n+\r\n </template>\r\n <style lang=\"less\">\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650682652640,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n <script lang=\"ts\" setup>\r\n import { reactive, ref, watch } from 'vue'\r\n import type { FormInstance } from 'element-plus'\r\n import { v4 as uuidv4 } from 'uuid';\r\n-import { useBox } from '../../store/box';\r\n+import { useBox } from '../store/box';\r\n const boxStore = useBox()\r\n const ruleFormRef = ref<FormInstance>()\r\n \r\n // 验证表单规则\r\n@@ -137,5 +137,73 @@\n   </el-form>\r\n \r\n </template>\r\n <style lang=\"less\">\r\n+// 添加图标\r\n+.el-form-item__label {\r\n+  width: 80px !important;\r\n+  text-align: left;\r\n+  padding: 10px;\r\n+}\r\n+\r\n+.el-input__inner {\r\n+  width: 60%;\r\n+\r\n+}\r\n+\r\n+.icon {\r\n+  width: 100px;\r\n+  height: 100px;\r\n+\r\n+  .icon-name {\r\n+    display: block;\r\n+    text-align: center;\r\n+    line-height: 100px;\r\n+  }\r\n+}\r\n+\r\n+// 颜色选择器\r\n+.imageIcon {\r\n+  .el-form-item__content {\r\n+    flex-direction: column;\r\n+    align-items: start;\r\n+  }\r\n+\r\n+  .colorSelectGroup {\r\n+    display: flex;\r\n+    flex-direction: row;\r\n+    justify-content: center;\r\n+    align-items: center;\r\n+    margin-top: 10px;\r\n+\r\n+    .demo-color-block {\r\n+      display: flex;\r\n+      align-items: center;\r\n+    }\r\n+\r\n+    .colorDemo {\r\n+      border-radius: 6px;\r\n+      box-sizing: border-box;\r\n+      width: 32px;\r\n+      height: 32px;\r\n+      margin-right: 10px;\r\n+      padding: 5px;\r\n+      border: 1px solid #ccc;\r\n+      background-color: white;\r\n+\r\n+      span {\r\n+        cursor: pointer;\r\n+\r\n+        width: 20px;\r\n+        height: 20px;\r\n+        display: block;\r\n+      }\r\n+    }\r\n+\r\n+  }\r\n+}\r\n+\r\n+// 提交\r\n+.sub {\r\n+  justify-content: start;\r\n+}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650684731745,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,12 @@\n <script lang=\"ts\" setup>\r\n-import { reactive, ref, watch } from 'vue'\r\n+import { reactive, ref, watch, } from 'vue'\r\n import type { FormInstance } from 'element-plus'\r\n import { v4 as uuidv4 } from 'uuid';\r\n import { useBox } from '../store/box';\r\n const boxStore = useBox()\r\n const ruleFormRef = ref<FormInstance>()\r\n-\r\n+const props = defineProps(['index'])\r\n // 验证表单规则\r\n const addressRule = (rule: any, value: any, callback: any) => {\r\n   if (value === '') {\r\n     callback(new Error('请输入网站地址'))\r\n"
+                },
+                {
+                    "date": 1650684739711,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,10 @@\n import { useBox } from '../store/box';\r\n const boxStore = useBox()\r\n const ruleFormRef = ref<FormInstance>()\r\n const props = defineProps(['index'])\r\n+console.log(props);\r\n+\r\n // 验证表单规则\r\n const addressRule = (rule: any, value: any, callback: any) => {\r\n   if (value === '') {\r\n     callback(new Error('请输入网站地址'))\r\n"
+                },
+                {
+                    "date": 1650684968578,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,12 @@\n import { useBox } from '../store/box';\r\n const boxStore = useBox()\r\n const ruleFormRef = ref<FormInstance>()\r\n const props = defineProps(['index'])\r\n-console.log(props);\r\n+const boxItemDataByIndex = boxStore.boxItem[props.index]\r\n+console.log(boxItemDataByIndex);\r\n \r\n+\r\n // 验证表单规则\r\n const addressRule = (rule: any, value: any, callback: any) => {\r\n   if (value === '') {\r\n     callback(new Error('请输入网站地址'))\r\n@@ -29,8 +31,12 @@\n   address: '',\r\n   title: '',\r\n   iconName: ''\r\n })\r\n+// 根据index 添加默认数据\r\n+if (props.index) {\r\n+  ruleForm\r\n+}\r\n // 将规则与数据进行邦定\r\n const rules = reactive({\r\n   address: [{ validator: addressRule, trigger: 'blur' }],\r\n   title: [{ validator: titleRule, trigger: 'blur' }],\r\n"
+                },
+                {
+                    "date": 1650685114482,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,8 @@\n import { useBox } from '../store/box';\r\n const boxStore = useBox()\r\n const ruleFormRef = ref<FormInstance>()\r\n const props = defineProps(['index'])\r\n-const boxItemDataByIndex = boxStore.boxItem[props.index]\r\n-console.log(boxItemDataByIndex);\r\n \r\n \r\n // 验证表单规则\r\n const addressRule = (rule: any, value: any, callback: any) => {\r\n@@ -33,9 +31,11 @@\n   iconName: ''\r\n })\r\n // 根据index 添加默认数据\r\n if (props.index) {\r\n-  ruleForm\r\n+  const boxItemDataByIndex = boxStore.boxItem[props.index]\r\n+\r\n+  ruleForm.address = boxItemDataByIndex.\r\n }\r\n // 将规则与数据进行邦定\r\n const rules = reactive({\r\n   address: [{ validator: addressRule, trigger: 'blur' }],\r\n"
+                },
+                {
+                    "date": 1650685143696,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,10 +32,11 @@\n })\r\n // 根据index 添加默认数据\r\n if (props.index) {\r\n   const boxItemDataByIndex = boxStore.boxItem[props.index]\r\n-\r\n-  ruleForm.address = boxItemDataByIndex.\r\n+  ruleForm.address = boxItemDataByIndex.target\r\n+  ruleForm.title = boxItemDataByIndex.target\r\n+  ruleForm.iconName = boxItemDataByIndex.target\r\n }\r\n // 将规则与数据进行邦定\r\n const rules = reactive({\r\n   address: [{ validator: addressRule, trigger: 'blur' }],\r\n"
+                },
+                {
+                    "date": 1650685165456,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n // 根据index 添加默认数据\r\n if (props.index) {\r\n   const boxItemDataByIndex = boxStore.boxItem[props.index]\r\n   ruleForm.address = boxItemDataByIndex.target\r\n-  ruleForm.title = boxItemDataByIndex.target\r\n+  ruleForm.title = boxItemDataByIndex.title\r\n   ruleForm.iconName = boxItemDataByIndex.target\r\n }\r\n // 将规则与数据进行邦定\r\n const rules = reactive({\r\n"
+                },
+                {
+                    "date": 1650685184737,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n if (props.index) {\r\n   const boxItemDataByIndex = boxStore.boxItem[props.index]\r\n   ruleForm.address = boxItemDataByIndex.target\r\n   ruleForm.title = boxItemDataByIndex.title\r\n-  ruleForm.iconName = boxItemDataByIndex.target\r\n+  ruleForm.iconName = boxItemDataByIndex.bg\r\n }\r\n // 将规则与数据进行邦定\r\n const rules = reactive({\r\n   address: [{ validator: addressRule, trigger: 'blur' }],\r\n"
+                },
+                {
+                    "date": 1650685235598,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n if (props.index) {\r\n   const boxItemDataByIndex = boxStore.boxItem[props.index]\r\n   ruleForm.address = boxItemDataByIndex.target\r\n   ruleForm.title = boxItemDataByIndex.title\r\n-  ruleForm.iconName = boxItemDataByIndex.bg\r\n+  ruleForm.iconName = boxItemDataByIndex.bgText\r\n }\r\n // 将规则与数据进行邦定\r\n const rules = reactive({\r\n   address: [{ validator: addressRule, trigger: 'blur' }],\r\n"
+                },
+                {
+                    "date": 1650685288773,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n   iconName: ''\r\n })\r\n // 根据index 添加默认数据\r\n if (props.index) {\r\n-  const boxItemDataByIndex = boxStore.boxItem[props.index]\r\n+  let boxItemDataByIndex = boxStore.boxItem[props.index]\r\n   ruleForm.address = boxItemDataByIndex.target\r\n   ruleForm.title = boxItemDataByIndex.title\r\n   ruleForm.iconName = boxItemDataByIndex.bgText\r\n }\r\n"
+                },
+                {
+                    "date": 1650685307071,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n import { useBox } from '../store/box';\r\n const boxStore = useBox()\r\n const ruleFormRef = ref<FormInstance>()\r\n const props = defineProps(['index'])\r\n+console.log(props.index);\r\n \r\n \r\n // 验证表单规则\r\n const addressRule = (rule: any, value: any, callback: any) => {\r\n"
+                },
+                {
+                    "date": 1650685420469,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,8 @@\n import { useBox } from '../store/box';\r\n const boxStore = useBox()\r\n const ruleFormRef = ref<FormInstance>()\r\n const props = defineProps(['index'])\r\n-console.log(props.index);\r\n \r\n \r\n // 验证表单规则\r\n const addressRule = (rule: any, value: any, callback: any) => {\r\n@@ -30,15 +29,9 @@\n   address: '',\r\n   title: '',\r\n   iconName: ''\r\n })\r\n-// 根据index 添加默认数据\r\n-if (props.index) {\r\n-  let boxItemDataByIndex = boxStore.boxItem[props.index]\r\n-  ruleForm.address = boxItemDataByIndex.target\r\n-  ruleForm.title = boxItemDataByIndex.title\r\n-  ruleForm.iconName = boxItemDataByIndex.bgText\r\n-}\r\n+\r\n // 将规则与数据进行邦定\r\n const rules = reactive({\r\n   address: [{ validator: addressRule, trigger: 'blur' }],\r\n   title: [{ validator: titleRule, trigger: 'blur' }],\r\n@@ -103,8 +96,16 @@\n   ruleForm.iconName.length == 2 && (iconFontSize.value = 40);\r\n   ruleForm.iconName.length == 3 && (iconFontSize.value = 20);\r\n   ruleForm.iconName.length == 4 && (iconFontSize.value = 20)\r\n })\r\n+// 根据index 添加默认数据\r\n+if (props.index) {\r\n+  let boxItemDataByIndex = boxStore.boxItem[props.index]\r\n+  ruleForm.address = boxItemDataByIndex.target\r\n+  ruleForm.title = boxItemDataByIndex.title\r\n+  ruleForm.iconName = boxItemDataByIndex.bgText\r\n+  iconFontSize = boxItemDataByIndex.bgFont\r\n+}\r\n </script>\r\n <template>\r\n   <el-form ref=\"ruleFormRef\" :model=\"ruleForm\" status-icon :rules=\"rules\" label-width=\"120px\" class=\"demo-ruleForm\">\r\n     <el-form-item label=\"网站地址:\" prop=\"address\">\r\n"
+                },
+                {
+                    "date": 1650685446586,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -102,9 +102,9 @@\n   let boxItemDataByIndex = boxStore.boxItem[props.index]\r\n   ruleForm.address = boxItemDataByIndex.target\r\n   ruleForm.title = boxItemDataByIndex.title\r\n   ruleForm.iconName = boxItemDataByIndex.bgText\r\n-  iconFontSize = boxItemDataByIndex.bgFont\r\n+  iconFontSize.value = boxItemDataByIndex.bgFont\r\n }\r\n </script>\r\n <template>\r\n   <el-form ref=\"ruleFormRef\" :model=\"ruleForm\" status-icon :rules=\"rules\" label-width=\"120px\" class=\"demo-ruleForm\">\r\n"
+                },
+                {
+                    "date": 1650686067285,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -104,8 +104,28 @@\n   ruleForm.title = boxItemDataByIndex.title\r\n   ruleForm.iconName = boxItemDataByIndex.bgText\r\n   iconFontSize.value = boxItemDataByIndex.bgFont\r\n }\r\n+// 修改事件\r\n+const updateBoxItemByIndex = () => {\r\n+  const data = {\r\n+    title: ruleForm.title,\r\n+    bgType: \"image\",\r\n+    bgImage: ruleForm.address + '/favicon.ico',\r\n+    id: uuidv4(),\r\n+    target: ruleForm.address,\r\n+    bgColor: color1.value,\r\n+    bgFont: iconFontSize.value,\r\n+    bgText: ruleForm.iconName,\r\n+    bgColorImage: null,\r\n+    w: 1,\r\n+    h: 1,\r\n+    X: 0,\r\n+    Y: 0\r\n+  }\r\n+  boxStore.updateBoxItemIndex(props.index, data)\r\n+\r\n+}\r\n </script>\r\n <template>\r\n   <el-form ref=\"ruleFormRef\" :model=\"ruleForm\" status-icon :rules=\"rules\" label-width=\"120px\" class=\"demo-ruleForm\">\r\n     <el-form-item label=\"网站地址:\" prop=\"address\">\r\n"
+                },
+                {
+                    "date": 1650686162814,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -122,9 +122,8 @@\n     X: 0,\r\n     Y: 0\r\n   }\r\n   boxStore.updateBoxItemIndex(props.index, data)\r\n-\r\n }\r\n </script>\r\n <template>\r\n   <el-form ref=\"ruleFormRef\" :model=\"ruleForm\" status-icon :rules=\"rules\" label-width=\"120px\" class=\"demo-ruleForm\">\r\n"
+                },
+                {
+                    "date": 1650687228862,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -106,8 +106,10 @@\n   iconFontSize.value = boxItemDataByIndex.bgFont\r\n }\r\n // 修改事件\r\n const updateBoxItemByIndex = () => {\r\n+  console.log('update');\r\n+\r\n   const data = {\r\n     title: ruleForm.title,\r\n     bgType: \"image\",\r\n     bgImage: ruleForm.address + '/favicon.ico',\r\n"
+                },
+                {
+                    "date": 1650688118430,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -125,8 +125,9 @@\n     Y: 0\r\n   }\r\n   boxStore.updateBoxItemIndex(props.index, data)\r\n }\r\n+defineExpose(['updateBoxItemByIndex'])\r\n </script>\r\n <template>\r\n   <el-form ref=\"ruleFormRef\" :model=\"ruleForm\" status-icon :rules=\"rules\" label-width=\"120px\" class=\"demo-ruleForm\">\r\n     <el-form-item label=\"网站地址:\" prop=\"address\">\r\n"
+                },
+                {
+                    "date": 1650688169831,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -125,9 +125,9 @@\n     Y: 0\r\n   }\r\n   boxStore.updateBoxItemIndex(props.index, data)\r\n }\r\n-defineExpose(['updateBoxItemByIndex'])\r\n+defineEmits()\r\n </script>\r\n <template>\r\n   <el-form ref=\"ruleFormRef\" :model=\"ruleForm\" status-icon :rules=\"rules\" label-width=\"120px\" class=\"demo-ruleForm\">\r\n     <el-form-item label=\"网站地址:\" prop=\"address\">\r\n"
+                },
+                {
+                    "date": 1650688202988,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -125,9 +125,9 @@\n     Y: 0\r\n   }\r\n   boxStore.updateBoxItemIndex(props.index, data)\r\n }\r\n-defineEmits()\r\n+defineEmits(['update'])\r\n </script>\r\n <template>\r\n   <el-form ref=\"ruleFormRef\" :model=\"ruleForm\" status-icon :rules=\"rules\" label-width=\"120px\" class=\"demo-ruleForm\">\r\n     <el-form-item label=\"网站地址:\" prop=\"address\">\r\n"
+                },
+                {
+                    "date": 1650688211962,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -125,9 +125,9 @@\n     Y: 0\r\n   }\r\n   boxStore.updateBoxItemIndex(props.index, data)\r\n }\r\n-defineEmits(['update'])\r\n+const emit = defineEmits(['update'])\r\n </script>\r\n <template>\r\n   <el-form ref=\"ruleFormRef\" :model=\"ruleForm\" status-icon :rules=\"rules\" label-width=\"120px\" class=\"demo-ruleForm\">\r\n     <el-form-item label=\"网站地址:\" prop=\"address\">\r\n"
+                },
+                {
+                    "date": 1650688222198,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -126,8 +126,9 @@\n   }\r\n   boxStore.updateBoxItemIndex(props.index, data)\r\n }\r\n const emit = defineEmits(['update'])\r\n+\r\n </script>\r\n <template>\r\n   <el-form ref=\"ruleFormRef\" :model=\"ruleForm\" status-icon :rules=\"rules\" label-width=\"120px\" class=\"demo-ruleForm\">\r\n     <el-form-item label=\"网站地址:\" prop=\"address\">\r\n"
+                },
+                {
+                    "date": 1650688284657,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -125,10 +125,9 @@\n     Y: 0\r\n   }\r\n   boxStore.updateBoxItemIndex(props.index, data)\r\n }\r\n-const emit = defineEmits(['update'])\r\n-\r\n+defineExpose(['updateBoxItemByIndex'])\r\n </script>\r\n <template>\r\n   <el-form ref=\"ruleFormRef\" :model=\"ruleForm\" status-icon :rules=\"rules\" label-width=\"120px\" class=\"demo-ruleForm\">\r\n     <el-form-item label=\"网站地址:\" prop=\"address\">\r\n"
+                },
+                {
+                    "date": 1650688298301,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -125,9 +125,9 @@\n     Y: 0\r\n   }\r\n   boxStore.updateBoxItemIndex(props.index, data)\r\n }\r\n-defineExpose(['updateBoxItemByIndex'])\r\n+defineExpose({ updateBoxItemByIndex })\r\n </script>\r\n <template>\r\n   <el-form ref=\"ruleFormRef\" :model=\"ruleForm\" status-icon :rules=\"rules\" label-width=\"120px\" class=\"demo-ruleForm\">\r\n     <el-form-item label=\"网站地址:\" prop=\"address\">\r\n"
+                },
+                {
+                    "date": 1650688654417,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -112,18 +112,13 @@\n   const data = {\r\n     title: ruleForm.title,\r\n     bgType: \"image\",\r\n     bgImage: ruleForm.address + '/favicon.ico',\r\n-    id: uuidv4(),\r\n     target: ruleForm.address,\r\n     bgColor: color1.value,\r\n     bgFont: iconFontSize.value,\r\n     bgText: ruleForm.iconName,\r\n     bgColorImage: null,\r\n-    w: 1,\r\n-    h: 1,\r\n-    X: 0,\r\n-    Y: 0\r\n   }\r\n   boxStore.updateBoxItemIndex(props.index, data)\r\n }\r\n defineExpose({ updateBoxItemByIndex })\r\n"
+                },
+                {
+                    "date": 1650696660523,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,11 +42,11 @@\n   if (!formEl) return\r\n   formEl.validate((valid) => {\r\n     if (valid) {\r\n       let boxItemData: any = window.localStorage.getItem('boxItemData')\r\n-      // // if (ruleForm.address.slice(0, 3) == 'www') {\r\n-      // //   ruleForm.address = 'http://' + ruleForm.address\r\n-      // // }\r\n+      if (ruleForm.address.slice(0, 3) == 'www') {\r\n+        ruleForm.address = 'http://' + ruleForm.address\r\n+      }\r\n       boxItemData = JSON.parse(boxItemData)\r\n       const data = {\r\n         title: ruleForm.title,\r\n         bgType: \"image\",\r\n"
+                },
+                {
+                    "date": 1650697126816,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n const boxStore = useBox()\r\n const ruleFormRef = ref<FormInstance>()\r\n const props = defineProps(['index'])\r\n \r\n+console.log(props.index);\r\n \r\n // 验证表单规则\r\n const addressRule = (rule: any, value: any, callback: any) => {\r\n   if (value === '') {\r\n@@ -43,9 +44,9 @@\n   formEl.validate((valid) => {\r\n     if (valid) {\r\n       let boxItemData: any = window.localStorage.getItem('boxItemData')\r\n       if (ruleForm.address.slice(0, 3) == 'www') {\r\n-        ruleForm.address = 'http://' + ruleForm.address\r\n+        ruleForm.address = 'https://' + ruleForm.address\r\n       }\r\n       boxItemData = JSON.parse(boxItemData)\r\n       const data = {\r\n         title: ruleForm.title,\r\n"
+                },
+                {
+                    "date": 1650697163589,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,8 @@\n const boxStore = useBox()\r\n const ruleFormRef = ref<FormInstance>()\r\n const props = defineProps(['index'])\r\n \r\n-console.log(props.index);\r\n \r\n // 验证表单规则\r\n const addressRule = (rule: any, value: any, callback: any) => {\r\n   if (value === '') {\r\n@@ -105,8 +104,10 @@\n   ruleForm.title = boxItemDataByIndex.title\r\n   ruleForm.iconName = boxItemDataByIndex.bgText\r\n   iconFontSize.value = boxItemDataByIndex.bgFont\r\n }\r\n+console.log(boxItemDataByIndex);\r\n+\r\n // 修改事件\r\n const updateBoxItemByIndex = () => {\r\n   console.log('update');\r\n \r\n"
+                },
+                {
+                    "date": 1650697172732,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -103,10 +103,10 @@\n   ruleForm.address = boxItemDataByIndex.target\r\n   ruleForm.title = boxItemDataByIndex.title\r\n   ruleForm.iconName = boxItemDataByIndex.bgText\r\n   iconFontSize.value = boxItemDataByIndex.bgFont\r\n+  console.log(boxItemDataByIndex);\r\n }\r\n-console.log(boxItemDataByIndex);\r\n \r\n // 修改事件\r\n const updateBoxItemByIndex = () => {\r\n   console.log('update');\r\n"
+                },
+                {
+                    "date": 1650697210413,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -97,8 +97,10 @@\n   ruleForm.iconName.length == 3 && (iconFontSize.value = 20);\r\n   ruleForm.iconName.length == 4 && (iconFontSize.value = 20)\r\n })\r\n // 根据index 添加默认数据\r\n+console.log(props.index);\r\n+\r\n if (props.index) {\r\n   let boxItemDataByIndex = boxStore.boxItem[props.index]\r\n   ruleForm.address = boxItemDataByIndex.target\r\n   ruleForm.title = boxItemDataByIndex.title\r\n"
+                },
+                {
+                    "date": 1650697227451,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -105,9 +105,9 @@\n   ruleForm.address = boxItemDataByIndex.target\r\n   ruleForm.title = boxItemDataByIndex.title\r\n   ruleForm.iconName = boxItemDataByIndex.bgText\r\n   iconFontSize.value = boxItemDataByIndex.bgFont\r\n-  console.log(boxItemDataByIndex);\r\n+  console.log(boxStore.boxItem[props.index]);\r\n }\r\n \r\n // 修改事件\r\n const updateBoxItemByIndex = () => {\r\n"
+                },
+                {
+                    "date": 1650697235216,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -105,9 +105,9 @@\n   ruleForm.address = boxItemDataByIndex.target\r\n   ruleForm.title = boxItemDataByIndex.title\r\n   ruleForm.iconName = boxItemDataByIndex.bgText\r\n   iconFontSize.value = boxItemDataByIndex.bgFont\r\n-  console.log(boxStore.boxItem[props.index]);\r\n+  console.log(boxStore.boxItem[props.index], boxStore.boxItem);\r\n }\r\n \r\n // 修改事件\r\n const updateBoxItemByIndex = () => {\r\n"
+                },
+                {
+                    "date": 1650697287712,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -99,9 +99,9 @@\n })\r\n // 根据index 添加默认数据\r\n console.log(props.index);\r\n \r\n-if (props.index) {\r\n+if (props.index != undefined) {\r\n   let boxItemDataByIndex = boxStore.boxItem[props.index]\r\n   ruleForm.address = boxItemDataByIndex.target\r\n   ruleForm.title = boxItemDataByIndex.title\r\n   ruleForm.iconName = boxItemDataByIndex.bgText\r\n"
+                },
+                {
+                    "date": 1650697297591,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -105,9 +105,8 @@\n   ruleForm.address = boxItemDataByIndex.target\r\n   ruleForm.title = boxItemDataByIndex.title\r\n   ruleForm.iconName = boxItemDataByIndex.bgText\r\n   iconFontSize.value = boxItemDataByIndex.bgFont\r\n-  console.log(boxStore.boxItem[props.index], boxStore.boxItem);\r\n }\r\n \r\n // 修改事件\r\n const updateBoxItemByIndex = () => {\r\n"
+                },
+                {
+                    "date": 1650699775379,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -97,9 +97,8 @@\n   ruleForm.iconName.length == 3 && (iconFontSize.value = 20);\r\n   ruleForm.iconName.length == 4 && (iconFontSize.value = 20)\r\n })\r\n // 根据index 添加默认数据\r\n-console.log(props.index);\r\n \r\n if (props.index != undefined) {\r\n   let boxItemDataByIndex = boxStore.boxItem[props.index]\r\n   ruleForm.address = boxItemDataByIndex.target\r\n"
+                },
+                {
+                    "date": 1650699903762,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -103,8 +103,9 @@\n   let boxItemDataByIndex = boxStore.boxItem[props.index]\r\n   ruleForm.address = boxItemDataByIndex.target\r\n   ruleForm.title = boxItemDataByIndex.title\r\n   ruleForm.iconName = boxItemDataByIndex.bgText\r\n+  color1.value = boxItemDataByIndex.bgColor\r\n   iconFontSize.value = boxItemDataByIndex.bgFont\r\n }\r\n \r\n // 修改事件\r\n"
+                },
+                {
+                    "date": 1650699923959,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -109,10 +109,8 @@\n }\r\n \r\n // 修改事件\r\n const updateBoxItemByIndex = () => {\r\n-  console.log('update');\r\n-\r\n   const data = {\r\n     title: ruleForm.title,\r\n     bgType: \"image\",\r\n     bgImage: ruleForm.address + '/favicon.ico',\r\n"
+                },
+                {
+                    "date": 1650700546001,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -129,9 +129,9 @@\n     <el-form-item label=\"网站地址:\" prop=\"address\">\r\n       <el-input v-model=\"ruleForm.address\" type=\"text\" />\r\n     </el-form-item>\r\n     <el-form-item label=\"网站名称:\" prop=\"title\">\r\n-      <el-input v-model=\"ruleForm.title\" type=\"text\" autocomplete=\"off\" />\r\n+      <el-input v-model=\"ruleForm.title\" type=\"text\" autocomplete=\"off\" placeholder=\"www.baidu.com\" />\r\n     </el-form-item>\r\n     <el-form-item class=\"imageIcon\" label=\"图    片:\">\r\n       <!-- 图片-->\r\n       <div class=\"icon\" :style=\"{ 'background-color': color1 }\">\r\n"
+                },
+                {
+                    "date": 1650700554558,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -129,9 +129,9 @@\n     <el-form-item label=\"网站地址:\" prop=\"address\">\r\n       <el-input v-model=\"ruleForm.address\" type=\"text\" />\r\n     </el-form-item>\r\n     <el-form-item label=\"网站名称:\" prop=\"title\">\r\n-      <el-input v-model=\"ruleForm.title\" type=\"text\" autocomplete=\"off\" placeholder=\"www.baidu.com\" />\r\n+      <el-input v-model=\"ruleForm.title\" type=\"text\" autocomplete=\"off\" placeholder=\"例如:www.baidu.com\" />\r\n     </el-form-item>\r\n     <el-form-item class=\"imageIcon\" label=\"图    片:\">\r\n       <!-- 图片-->\r\n       <div class=\"icon\" :style=\"{ 'background-color': color1 }\">\r\n"
+                },
+                {
+                    "date": 1650700568131,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -126,12 +126,12 @@\n </script>\r\n <template>\r\n   <el-form ref=\"ruleFormRef\" :model=\"ruleForm\" status-icon :rules=\"rules\" label-width=\"120px\" class=\"demo-ruleForm\">\r\n     <el-form-item label=\"网站地址:\" prop=\"address\">\r\n-      <el-input v-model=\"ruleForm.address\" type=\"text\" />\r\n+      <el-input v-model=\"ruleForm.address\" type=\"text\" placeholder=\"例如:www.baidu.com\" />\r\n     </el-form-item>\r\n     <el-form-item label=\"网站名称:\" prop=\"title\">\r\n-      <el-input v-model=\"ruleForm.title\" type=\"text\" autocomplete=\"off\" placeholder=\"例如:www.baidu.com\" />\r\n+      <el-input v-model=\"ruleForm.title\" type=\"text\" autocomplete=\"off\" />\r\n     </el-form-item>\r\n     <el-form-item class=\"imageIcon\" label=\"图    片:\">\r\n       <!-- 图片-->\r\n       <div class=\"icon\" :style=\"{ 'background-color': color1 }\">\r\n"
+                },
+                {
+                    "date": 1650700652819,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -131,9 +131,9 @@\n     </el-form-item>\r\n     <el-form-item label=\"网站名称:\" prop=\"title\">\r\n       <el-input v-model=\"ruleForm.title\" type=\"text\" autocomplete=\"off\" />\r\n     </el-form-item>\r\n-    <el-form-item class=\"imageIcon\" label=\"图    片:\">\r\n+    <el-form-item class=\"imageIcon\" label=\"图片加载时显示:\">\r\n       <!-- 图片-->\r\n       <div class=\"icon\" :style=\"{ 'background-color': color1 }\">\r\n         <span :style=\"{ 'font-size': iconFontSize + 'px' }\" class=\"icon-name\">{{ ruleForm.iconName }}</span>\r\n       </div>\r\n"
+                },
+                {
+                    "date": 1650700672661,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -131,9 +131,9 @@\n     </el-form-item>\r\n     <el-form-item label=\"网站名称:\" prop=\"title\">\r\n       <el-input v-model=\"ruleForm.title\" type=\"text\" autocomplete=\"off\" />\r\n     </el-form-item>\r\n-    <el-form-item class=\"imageIcon\" label=\"图片加载时显示:\">\r\n+    <el-form-item class=\"imageIcon\" label=\"图片加载失败时显示:\">\r\n       <!-- 图片-->\r\n       <div class=\"icon\" :style=\"{ 'background-color': color1 }\">\r\n         <span :style=\"{ 'font-size': iconFontSize + 'px' }\" class=\"icon-name\">{{ ruleForm.iconName }}</span>\r\n       </div>\r\n"
+                },
+                {
+                    "date": 1650701274169,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -94,9 +94,9 @@\n   }\r\n   ruleForm.iconName.length == 1 && (iconFontSize.value = 95);\r\n   ruleForm.iconName.length == 2 && (iconFontSize.value = 40);\r\n   ruleForm.iconName.length == 3 && (iconFontSize.value = 20);\r\n-  ruleForm.iconName.length == 4 && (iconFontSize.value = 20)\r\n+  ruleForm.iconName.length == 4 && (iconFontSize.value = 15)\r\n })\r\n // 根据index 添加默认数据\r\n \r\n if (props.index != undefined) {\r\n"
+                },
+                {
+                    "date": 1650703527170,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,8 +35,9 @@\n const rules = reactive({\r\n   address: [{ validator: addressRule, trigger: 'blur' }],\r\n   title: [{ validator: titleRule, trigger: 'blur' }],\r\n })\r\n+function\r\n // 提交按钮\r\n const submitForm = (formEl: FormInstance | undefined) => {\r\n \r\n   if (!formEl) return\r\n"
+                },
+                {
+                    "date": 1650703664370,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,11 @@\n const rules = reactive({\r\n   address: [{ validator: addressRule, trigger: 'blur' }],\r\n   title: [{ validator: titleRule, trigger: 'blur' }],\r\n })\r\n-function\r\n+function addTraversal(boxItemData) {\r\n+\r\n+}\r\n // 提交按钮\r\n const submitForm = (formEl: FormInstance | undefined) => {\r\n \r\n   if (!formEl) return\r\n"
+                },
+                {
+                    "date": 1650703858321,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,8 +36,23 @@\n   address: [{ validator: addressRule, trigger: 'blur' }],\r\n   title: [{ validator: titleRule, trigger: 'blur' }],\r\n })\r\n function addTraversal(boxItemData) {\r\n+  const interval = 100\r\n+  let page = 0\r\n+  let num = 0\r\n+  boxItemData.value.forEach(element => {\r\n+    let Y = num * 100\r\n+    if (Y > BoxOffsetHeight - 100) {\r\n+      page++\r\n+      num = 0\r\n+      Y = num * 100\r\n+    }\r\n+    let X = 100 * page\r\n+    element.X = X\r\n+    element.Y = Y\r\n+    num++\r\n+  });\r\n \r\n }\r\n // 提交按钮\r\n const submitForm = (formEl: FormInstance | undefined) => {\r\n"
+                },
+                {
+                    "date": 1650704017624,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n   let page = 0\r\n   let num = 0\r\n   boxItemData.value.forEach(element => {\r\n     let Y = num * 100\r\n-    if (Y > BoxOffsetHeight - 100) {\r\n+    if (Y > boxStore.boxContainer.height - 100) {\r\n       page++\r\n       num = 0\r\n       Y = num * 100\r\n     }\r\n"
+                },
+                {
+                    "date": 1650704061195,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,11 +46,11 @@\n       page++\r\n       num = 0\r\n       Y = num * 100\r\n     }\r\n+\r\n     let X = 100 * page\r\n-    element.X = X\r\n-    element.Y = Y\r\n+    console.log(X, Y);\r\n     num++\r\n   });\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1650704088690,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,8 +35,9 @@\n const rules = reactive({\r\n   address: [{ validator: addressRule, trigger: 'blur' }],\r\n   title: [{ validator: titleRule, trigger: 'blur' }],\r\n })\r\n+// 添加时的X，Y坐标\r\n function addTraversal(boxItemData) {\r\n   const interval = 100\r\n   let page = 0\r\n   let num = 0\r\n"
+                },
+                {
+                    "date": 1650704097484,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,8 +65,9 @@\n       if (ruleForm.address.slice(0, 3) == 'www') {\r\n         ruleForm.address = 'https://' + ruleForm.address\r\n       }\r\n       boxItemData = JSON.parse(boxItemData)\r\n+      addTraversal(boxItemData)\r\n       const data = {\r\n         title: ruleForm.title,\r\n         bgType: \"image\",\r\n         bgImage: ruleForm.address + '/favicon.ico',\r\n"
+                },
+                {
+                    "date": 1650704114222,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,9 +65,9 @@\n       if (ruleForm.address.slice(0, 3) == 'www') {\r\n         ruleForm.address = 'https://' + ruleForm.address\r\n       }\r\n       boxItemData = JSON.parse(boxItemData)\r\n-      addTraversal(boxItemData)\r\n+      // addTraversal(boxItemData)\r\n       const data = {\r\n         title: ruleForm.title,\r\n         bgType: \"image\",\r\n         bgImage: ruleForm.address + '/favicon.ico',\r\n"
+                },
+                {
+                    "date": 1650704149817,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,9 +65,9 @@\n       if (ruleForm.address.slice(0, 3) == 'www') {\r\n         ruleForm.address = 'https://' + ruleForm.address\r\n       }\r\n       boxItemData = JSON.parse(boxItemData)\r\n-      // addTraversal(boxItemData)\r\n+      addTraversal(boxItemData)\r\n       const data = {\r\n         title: ruleForm.title,\r\n         bgType: \"image\",\r\n         bgImage: ruleForm.address + '/favicon.ico',\r\n"
+                },
+                {
+                    "date": 1650704169025,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,20 +40,20 @@\n function addTraversal(boxItemData) {\r\n   const interval = 100\r\n   let page = 0\r\n   let num = 0\r\n-  boxItemData.value.forEach(element => {\r\n-    let Y = num * 100\r\n-    if (Y > boxStore.boxContainer.height - 100) {\r\n-      page++\r\n-      num = 0\r\n-      Y = num * 100\r\n-    }\r\n+  // boxItemData.value.forEach(element => {\r\n+  //   let Y = num * 100\r\n+  //   if (Y > boxStore.boxContainer.height - 100) {\r\n+  //     page++\r\n+  //     num = 0\r\n+  //     Y = num * 100\r\n+  //   }\r\n \r\n-    let X = 100 * page\r\n-    console.log(X, Y);\r\n-    num++\r\n-  });\r\n+  //   let X = 100 * page\r\n+  //   console.log(X, Y);\r\n+  //   num++\r\n+  // });\r\n \r\n }\r\n // 提交按钮\r\n const submitForm = (formEl: FormInstance | undefined) => {\r\n"
+                },
+                {
+                    "date": 1650704195454,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,20 +40,20 @@\n function addTraversal(boxItemData) {\r\n   const interval = 100\r\n   let page = 0\r\n   let num = 0\r\n-  // boxItemData.value.forEach(element => {\r\n-  //   let Y = num * 100\r\n-  //   if (Y > boxStore.boxContainer.height - 100) {\r\n-  //     page++\r\n-  //     num = 0\r\n-  //     Y = num * 100\r\n-  //   }\r\n+  boxItemData.forEach(element => {\r\n+    let Y = num * 100\r\n+    if (Y > boxStore.boxContainer.height - 100) {\r\n+      page++\r\n+      num = 0\r\n+      Y = num * 100\r\n+    }\r\n \r\n-  //   let X = 100 * page\r\n-  //   console.log(X, Y);\r\n-  //   num++\r\n-  // });\r\n+    let X = 100 * page\r\n+    console.log(X, Y);\r\n+    num++\r\n+  });\r\n \r\n }\r\n // 提交按钮\r\n const submitForm = (formEl: FormInstance | undefined) => {\r\n"
+                },
+                {
+                    "date": 1650704442161,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,11 @@\n })\r\n // 添加时的X，Y坐标\r\n function addTraversal(boxItemData) {\r\n   const interval = 100\r\n+  // 第几列\r\n   let page = 0\r\n+  // 第几个\r\n   let num = 0\r\n   boxItemData.forEach(element => {\r\n     let Y = num * 100\r\n     if (Y > boxStore.boxContainer.height - 100) {\r\n@@ -49,9 +51,9 @@\n       Y = num * 100\r\n     }\r\n \r\n     let X = 100 * page\r\n-    console.log(X, Y);\r\n+    console.log(X, Y, page, num);\r\n     num++\r\n   });\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1650704471019,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n function addTraversal(boxItemData) {\r\n   const interval = 100\r\n   // 第几列\r\n   let page = 0\r\n-  // 第几个\r\n+  // 第几个元素\r\n   let num = 0\r\n   boxItemData.forEach(element => {\r\n     let Y = num * 100\r\n     if (Y > boxStore.boxContainer.height - 100) {\r\n@@ -51,9 +51,8 @@\n       Y = num * 100\r\n     }\r\n \r\n     let X = 100 * page\r\n-    console.log(X, Y, page, num);\r\n     num++\r\n   });\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1650704582643,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,17 +42,20 @@\n   // 第几列\r\n   let page = 0\r\n   // 第几个元素\r\n   let num = 0\r\n-  boxItemData.forEach(element => {\r\n+  boxItemData.forEach((i, element) => {\r\n     let Y = num * 100\r\n     if (Y > boxStore.boxContainer.height - 100) {\r\n       page++\r\n       num = 0\r\n       Y = num * 100\r\n     }\r\n+    let X = 100 * page\r\n+    if (X != boxItemData[num].X && Y != boxItemData[num].Y) {\r\n+      console.log(X, Y);\r\n \r\n-    let X = 100 * page\r\n+    }\r\n     num++\r\n   });\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1650704650488,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,8 +50,10 @@\n       num = 0\r\n       Y = num * 100\r\n     }\r\n     let X = 100 * page\r\n+    console.log(X, boxItemData[num].X, Y, boxItemData[num].Y);\r\n+\r\n     if (X != boxItemData[num].X && Y != boxItemData[num].Y) {\r\n       console.log(X, Y);\r\n \r\n     }\r\n"
+                },
+                {
+                    "date": 1650704769445,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,8 +50,10 @@\n       num = 0\r\n       Y = num * 100\r\n     }\r\n     let X = 100 * page\r\n+    console.log(num);\r\n+\r\n     console.log(X, boxItemData[num].X, Y, boxItemData[num].Y);\r\n \r\n     if (X != boxItemData[num].X && Y != boxItemData[num].Y) {\r\n       console.log(X, Y);\r\n"
+                },
+                {
+                    "date": 1650704775341,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n \r\n     console.log(X, boxItemData[num].X, Y, boxItemData[num].Y);\r\n \r\n     if (X != boxItemData[num].X && Y != boxItemData[num].Y) {\r\n-      console.log(X, Y);\r\n+      // console.log(X, Y);\r\n \r\n     }\r\n     num++\r\n   });\r\n"
+                },
+                {
+                    "date": 1650704803214,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,13 +50,13 @@\n       num = 0\r\n       Y = num * 100\r\n     }\r\n     let X = 100 * page\r\n-    console.log(num);\r\n+    console.log(i);\r\n \r\n-    console.log(X, boxItemData[num].X, Y, boxItemData[num].Y);\r\n+    console.log(X, boxItemData[i].X, Y, boxItemData[i].Y);\r\n \r\n-    if (X != boxItemData[num].X && Y != boxItemData[num].Y) {\r\n+    if (X != boxItemData[i].X && Y != boxItemData[i].Y) {\r\n       // console.log(X, Y);\r\n \r\n     }\r\n     num++\r\n"
+                },
+                {
+                    "date": 1650704829839,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,14 +52,14 @@\n     }\r\n     let X = 100 * page\r\n     console.log(i);\r\n \r\n-    console.log(X, boxItemData[i].X, Y, boxItemData[i].Y);\r\n+    // console.log(X, boxItemData[i].X, Y, boxItemData[i].Y);\r\n \r\n-    if (X != boxItemData[i].X && Y != boxItemData[i].Y) {\r\n-      // console.log(X, Y);\r\n+    // if (X != boxItemData[i].X && Y != boxItemData[i].Y) {\r\n+    // console.log(X, Y);\r\n \r\n-    }\r\n+  }\r\n     num++\r\n   });\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1650704840574,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,11 +55,11 @@\n \r\n     // console.log(X, boxItemData[i].X, Y, boxItemData[i].Y);\r\n \r\n     // if (X != boxItemData[i].X && Y != boxItemData[i].Y) {\r\n-    // console.log(X, Y);\r\n+    //   // console.log(X, Y);\r\n \r\n-  }\r\n+    // }\r\n     num++\r\n   });\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1650704869349,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n   // 第几列\r\n   let page = 0\r\n   // 第几个元素\r\n   let num = 0\r\n-  boxItemData.forEach((i, element) => {\r\n+  boxItemData.forEach((element, i) => {\r\n     let Y = num * 100\r\n     if (Y > boxStore.boxContainer.height - 100) {\r\n       page++\r\n       num = 0\r\n"
+                },
+                {
+                    "date": 1650704931295,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,14 +52,14 @@\n     }\r\n     let X = 100 * page\r\n     console.log(i);\r\n \r\n-    // console.log(X, boxItemData[i].X, Y, boxItemData[i].Y);\r\n+    console.log(X, boxItemData[i].X, Y, boxItemData[i].Y);\r\n \r\n-    // if (X != boxItemData[i].X && Y != boxItemData[i].Y) {\r\n-    //   // console.log(X, Y);\r\n+    if (X != boxItemData[i].X && Y != boxItemData[i].Y) {\r\n+      // console.log(X, Y);\r\n \r\n-    // }\r\n+    }\r\n     num++\r\n   });\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1650705070109,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,27 +42,21 @@\n   // 第几列\r\n   let page = 0\r\n   // 第几个元素\r\n   let num = 0\r\n-  boxItemData.forEach((element, i) => {\r\n+  for () {\r\n+\r\n     let Y = num * 100\r\n     if (Y > boxStore.boxContainer.height - 100) {\r\n       page++\r\n       num = 0\r\n       Y = num * 100\r\n     }\r\n     let X = 100 * page\r\n-    console.log(i);\r\n+    num++\r\n+  }\r\n \r\n-    console.log(X, boxItemData[i].X, Y, boxItemData[i].Y);\r\n \r\n-    if (X != boxItemData[i].X && Y != boxItemData[i].Y) {\r\n-      // console.log(X, Y);\r\n-\r\n-    }\r\n-    num++\r\n-  });\r\n-\r\n }\r\n // 提交按钮\r\n const submitForm = (formEl: FormInstance | undefined) => {\r\n \r\n"
+                },
+                {
+                    "date": 1650705093753,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n   // 第几列\r\n   let page = 0\r\n   // 第几个元素\r\n   let num = 0\r\n-  for () {\r\n+  for (let i = 0; i < boxItemData.length; i++) {\r\n \r\n     let Y = num * 100\r\n     if (Y > boxStore.boxContainer.height - 100) {\r\n       page++\r\n"
+                },
+                {
+                    "date": 1650705115208,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,8 +51,10 @@\n       num = 0\r\n       Y = num * 100\r\n     }\r\n     let X = 100 * page\r\n+    console.log(X, Y, i);\r\n+\r\n     num++\r\n   }\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1650705199875,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,10 +51,9 @@\n       num = 0\r\n       Y = num * 100\r\n     }\r\n     let X = 100 * page\r\n-    console.log(X, Y, i);\r\n-\r\n+    boxItemData.even\r\n     num++\r\n   }\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1650705235410,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n       num = 0\r\n       Y = num * 100\r\n     }\r\n     let X = 100 * page\r\n-    boxItemData.even\r\n+    boxItemData.some()\r\n     num++\r\n   }\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1650705264048,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,11 @@\n       num = 0\r\n       Y = num * 100\r\n     }\r\n     let X = 100 * page\r\n-    boxItemData.some()\r\n+    boxItemData.some(() => {\r\n+\r\n+    })\r\n     num++\r\n   }\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1650705292275,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n       Y = num * 100\r\n     }\r\n     let X = 100 * page\r\n     boxItemData.some(() => {\r\n-\r\n+      return\r\n     })\r\n     num++\r\n   }\r\n \r\n"
+                },
+                {
+                    "date": 1650705308259,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n       num = 0\r\n       Y = num * 100\r\n     }\r\n     let X = 100 * page\r\n-    boxItemData.some(() => {\r\n+    boxItemData.even(() => {\r\n       return\r\n     })\r\n     num++\r\n   }\r\n"
+                },
+                {
+                    "date": 1650705414551,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,10 +51,10 @@\n       num = 0\r\n       Y = num * 100\r\n     }\r\n     let X = 100 * page\r\n-    boxItemData.even(() => {\r\n-      return\r\n+    boxItemData.some((i) => {\r\n+      return X == boxItemData[i]\r\n     })\r\n     num++\r\n   }\r\n \r\n"
+                },
+                {
+                    "date": 1650705424139,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,8 +52,10 @@\n       Y = num * 100\r\n     }\r\n     let X = 100 * page\r\n     boxItemData.some((i) => {\r\n+      console.log(i);\r\n+\r\n       return X == boxItemData[i]\r\n     })\r\n     num++\r\n   }\r\n"
+                },
+                {
+                    "date": 1650705452886,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,10 +51,9 @@\n       num = 0\r\n       Y = num * 100\r\n     }\r\n     let X = 100 * page\r\n-    boxItemData.some((i) => {\r\n-      console.log(i);\r\n+    boxItemData.some((v, i) => {\r\n \r\n       return X == boxItemData[i]\r\n     })\r\n     num++\r\n"
+                },
+                {
+                    "date": 1650705469813,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,8 @@\n       Y = num * 100\r\n     }\r\n     let X = 100 * page\r\n     boxItemData.some((v, i) => {\r\n-\r\n       return X == boxItemData[i]\r\n     })\r\n     num++\r\n   }\r\n"
+                },
+                {
+                    "date": 1650705614560,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,18 +43,17 @@\n   let page = 0\r\n   // 第几个元素\r\n   let num = 0\r\n   for (let i = 0; i < boxItemData.length; i++) {\r\n-\r\n     let Y = num * 100\r\n     if (Y > boxStore.boxContainer.height - 100) {\r\n       page++\r\n       num = 0\r\n       Y = num * 100\r\n     }\r\n     let X = 100 * page\r\n-    boxItemData.some((v, i) => {\r\n-      return X == boxItemData[i]\r\n+    let result = boxItemData.some((v, i) => {\r\n+      return X == v.X && Y == v.Y\r\n     })\r\n     num++\r\n   }\r\n \r\n"
+                },
+                {
+                    "date": 1650705632606,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,8 +51,11 @@\n       Y = num * 100\r\n     }\r\n     let X = 100 * page\r\n     let result = boxItemData.some((v, i) => {\r\n+      if (X == v.X && Y == v.Y) {\r\n+\r\n+      }\r\n       return X == v.X && Y == v.Y\r\n     })\r\n     num++\r\n   }\r\n"
+                },
+                {
+                    "date": 1650705671138,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,8 +52,9 @@\n     }\r\n     let X = 100 * page\r\n     let result = boxItemData.some((v, i) => {\r\n       if (X == v.X && Y == v.Y) {\r\n+        console.log(X, v.X, Y, v.Y);\r\n \r\n       }\r\n       return X == v.X && Y == v.Y\r\n     })\r\n"
+                },
+                {
+                    "date": 1650705677447,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,8 @@\n     let X = 100 * page\r\n     let result = boxItemData.some((v, i) => {\r\n       if (X == v.X && Y == v.Y) {\r\n         console.log(X, v.X, Y, v.Y);\r\n-\r\n       }\r\n       return X == v.X && Y == v.Y\r\n     })\r\n     num++\r\n"
+                },
+                {
+                    "date": 1650705746099,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,10 +53,10 @@\n     let X = 100 * page\r\n     let result = boxItemData.some((v, i) => {\r\n       if (X == v.X && Y == v.Y) {\r\n         console.log(X, v.X, Y, v.Y);\r\n+        return X == v.X && Y == v.Y\r\n       }\r\n-      return X == v.X && Y == v.Y\r\n     })\r\n     num++\r\n   }\r\n \r\n"
+                },
+                {
+                    "date": 1650705797516,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,9 @@\n     let X = 100 * page\r\n     let result = boxItemData.some((v, i) => {\r\n       if (X == v.X && Y == v.Y) {\r\n         console.log(X, v.X, Y, v.Y);\r\n-        return X == v.X && Y == v.Y\r\n+        return (X == v.X && Y == v.Y)\r\n       }\r\n     })\r\n     num++\r\n   }\r\n"
+                },
+                {
+                    "date": 1650705810240,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,9 @@\n     let X = 100 * page\r\n     let result = boxItemData.some((v, i) => {\r\n       if (X == v.X && Y == v.Y) {\r\n         console.log(X, v.X, Y, v.Y);\r\n-        return (X == v.X && Y == v.Y)\r\n+        return ((X == v.X) && (Y == v.Y))\r\n       }\r\n     })\r\n     num++\r\n   }\r\n"
+                },
+                {
+                    "date": 1650705817968,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n       Y = num * 100\r\n     }\r\n     let X = 100 * page\r\n     let result = boxItemData.some((v, i) => {\r\n-      if (X == v.X && Y == v.Y) {\r\n+      if ((X == v.X) && (Y == v.Y)) {\r\n         console.log(X, v.X, Y, v.Y);\r\n         return ((X == v.X) && (Y == v.Y))\r\n       }\r\n     })\r\n"
+                },
+                {
+                    "date": 1650705871212,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,11 +51,11 @@\n       Y = num * 100\r\n     }\r\n     let X = 100 * page\r\n     let result = boxItemData.some((v, i) => {\r\n-      if ((X == v.X) && (Y == v.Y)) {\r\n+      if ((X != v.X) && (Y != v.Y)) {\r\n         console.log(X, v.X, Y, v.Y);\r\n-        return ((X == v.X) && (Y == v.Y))\r\n+        return false\r\n       }\r\n     })\r\n     num++\r\n   }\r\n"
+                },
+                {
+                    "date": 1650705893827,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,9 @@\n     let X = 100 * page\r\n     let result = boxItemData.some((v, i) => {\r\n       if ((X != v.X) && (Y != v.Y)) {\r\n         console.log(X, v.X, Y, v.Y);\r\n-        return false\r\n+        return true\r\n       }\r\n     })\r\n     num++\r\n   }\r\n"
+                },
+                {
+                    "date": 1650705958376,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n       Y = num * 100\r\n     }\r\n     let X = 100 * page\r\n     let result = boxItemData.some((v, i) => {\r\n-      if ((X != v.X) && (Y != v.Y)) {\r\n+      if ((X == v.X) && (Y == v.Y)) {\r\n         console.log(X, v.X, Y, v.Y);\r\n         return true\r\n       }\r\n     })\r\n"
+                },
+                {
+                    "date": 1650705974687,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,9 @@\n     let X = 100 * page\r\n     let result = boxItemData.some((v, i) => {\r\n       if ((X == v.X) && (Y == v.Y)) {\r\n         console.log(X, v.X, Y, v.Y);\r\n-        return true\r\n+        return (X == v.X) && (Y == v.Y)\r\n       }\r\n     })\r\n     num++\r\n   }\r\n"
+                },
+                {
+                    "date": 1650706025802,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n       num = 0\r\n       Y = num * 100\r\n     }\r\n     let X = 100 * page\r\n-    let result = boxItemData.some((v, i) => {\r\n+    let result = boxItemData.every((v, i) => {\r\n       if ((X == v.X) && (Y == v.Y)) {\r\n         console.log(X, v.X, Y, v.Y);\r\n         return (X == v.X) && (Y == v.Y)\r\n       }\r\n"
+                },
+                {
+                    "date": 1650706060069,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n       num = 0\r\n       Y = num * 100\r\n     }\r\n     let X = 100 * page\r\n-    let result = boxItemData.every((v, i) => {\r\n+    let result = boxItemData.some((v, i) => {\r\n       if ((X == v.X) && (Y == v.Y)) {\r\n         console.log(X, v.X, Y, v.Y);\r\n         return (X == v.X) && (Y == v.Y)\r\n       }\r\n"
+                },
+                {
+                    "date": 1650706067201,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,8 +56,10 @@\n         console.log(X, v.X, Y, v.Y);\r\n         return (X == v.X) && (Y == v.Y)\r\n       }\r\n     })\r\n+    console.log(result);\r\n+\r\n     num++\r\n   }\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1650706163617,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,8 +50,9 @@\n       num = 0\r\n       Y = num * 100\r\n     }\r\n     let X = 100 * page\r\n+    // 只要有一项重复则重新循环\r\n     let result = boxItemData.some((v, i) => {\r\n       if ((X == v.X) && (Y == v.Y)) {\r\n         console.log(X, v.X, Y, v.Y);\r\n         return (X == v.X) && (Y == v.Y)\r\n"
+                },
+                {
+                    "date": 1650706256985,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,9 +58,12 @@\n         return (X == v.X) && (Y == v.Y)\r\n       }\r\n     })\r\n     console.log(result);\r\n+    if (result) {\r\n+      console.log(X, Y);\r\n \r\n+    }\r\n     num++\r\n   }\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1650706287270,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,10 +57,10 @@\n         console.log(X, v.X, Y, v.Y);\r\n         return (X == v.X) && (Y == v.Y)\r\n       }\r\n     })\r\n-    console.log(result);\r\n-    if (result) {\r\n+    // console.log(result);\r\n+    if (!result) {\r\n       console.log(X, Y);\r\n \r\n     }\r\n     num++\r\n"
+                },
+                {
+                    "date": 1650706345076,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,10 +59,9 @@\n       }\r\n     })\r\n     // console.log(result);\r\n     if (!result) {\r\n-      console.log(X, Y);\r\n-\r\n+      return X, Y\r\n     }\r\n     num++\r\n   }\r\n \r\n"
+                },
+                {
+                    "date": 1650706354321,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,9 +59,9 @@\n       }\r\n     })\r\n     // console.log(result);\r\n     if (!result) {\r\n-      return X, Y\r\n+      return { X, Y }\r\n     }\r\n     num++\r\n   }\r\n \r\n"
+                },
+                {
+                    "date": 1650706428887,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n       if (ruleForm.address.slice(0, 3) == 'www') {\r\n         ruleForm.address = 'https://' + ruleForm.address\r\n       }\r\n       boxItemData = JSON.parse(boxItemData)\r\n-      addTraversal(boxItemData)\r\n+      let { X, Y } = addTraversal(boxItemData)\r\n       const data = {\r\n         title: ruleForm.title,\r\n         bgType: \"image\",\r\n         bgImage: ruleForm.address + '/favicon.ico',\r\n"
+                },
+                {
+                    "date": 1650706438126,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -64,9 +64,9 @@\n     }\r\n     num++\r\n   }\r\n \r\n-\r\n+  return { X, Y }\r\n }\r\n // 提交按钮\r\n const submitForm = (formEl: FormInstance | undefined) => {\r\n \r\n"
+                },
+                {
+                    "date": 1650706445776,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,8 +78,10 @@\n         ruleForm.address = 'https://' + ruleForm.address\r\n       }\r\n       boxItemData = JSON.parse(boxItemData)\r\n       let { X, Y } = addTraversal(boxItemData)\r\n+      console.log(X, Y);\r\n+\r\n       const data = {\r\n         title: ruleForm.title,\r\n         bgType: \"image\",\r\n         bgImage: ruleForm.address + '/favicon.ico',\r\n"
+                },
+                {
+                    "date": 1650706510220,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,8 +42,9 @@\n   // 第几列\r\n   let page = 0\r\n   // 第几个元素\r\n   let num = 0\r\n+  let X, Y\r\n   for (let i = 0; i < boxItemData.length; i++) {\r\n     let Y = num * 100\r\n     if (Y > boxStore.boxContainer.height - 100) {\r\n       page++\r\n"
+                },
+                {
+                    "date": 1650706571794,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,15 +44,15 @@\n   // 第几个元素\r\n   let num = 0\r\n   let X, Y\r\n   for (let i = 0; i < boxItemData.length; i++) {\r\n-    let Y = num * 100\r\n+    Y = num * 100\r\n     if (Y > boxStore.boxContainer.height - 100) {\r\n       page++\r\n       num = 0\r\n       Y = num * 100\r\n     }\r\n-    let X = 100 * page\r\n+    X = 100 * page\r\n     // 只要有一项重复则重新循环\r\n     let result = boxItemData.some((v, i) => {\r\n       if ((X == v.X) && (Y == v.Y)) {\r\n         console.log(X, v.X, Y, v.Y);\r\n"
+                },
+                {
+                    "date": 1650706607873,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,15 +44,15 @@\n   // 第几个元素\r\n   let num = 0\r\n   let X, Y\r\n   for (let i = 0; i < boxItemData.length; i++) {\r\n-    Y = num * 100\r\n+    let Y = num * 100\r\n     if (Y > boxStore.boxContainer.height - 100) {\r\n       page++\r\n       num = 0\r\n       Y = num * 100\r\n     }\r\n-    X = 100 * page\r\n+    let X = 100 * page\r\n     // 只要有一项重复则重新循环\r\n     let result = boxItemData.some((v, i) => {\r\n       if ((X == v.X) && (Y == v.Y)) {\r\n         console.log(X, v.X, Y, v.Y);\r\n"
+                },
+                {
+                    "date": 1650706622032,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -93,10 +93,10 @@\n         bgText: ruleForm.iconName,\r\n         bgColorImage: null,\r\n         w: 1,\r\n         h: 1,\r\n-        X: 0,\r\n-        Y: 0\r\n+        X: X,\r\n+        Y: Y\r\n       }\r\n       boxItemData.push(data)\r\n       boxStore.boxItem = boxItemData\r\n       boxItemData = JSON.stringify(boxItemData)\r\n"
+                },
+                {
+                    "date": 1650715090102,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -96,8 +96,10 @@\n         h: 1,\r\n         X: X,\r\n         Y: Y\r\n       }\r\n+      console.log(data);\r\n+\r\n       boxItemData.push(data)\r\n       boxStore.boxItem = boxItemData\r\n       boxItemData = JSON.stringify(boxItemData)\r\n \r\n"
+                },
+                {
+                    "date": 1650715142486,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -79,9 +79,8 @@\n         ruleForm.address = 'https://' + ruleForm.address\r\n       }\r\n       boxItemData = JSON.parse(boxItemData)\r\n       let { X, Y } = addTraversal(boxItemData)\r\n-      console.log(X, Y);\r\n \r\n       const data = {\r\n         title: ruleForm.title,\r\n         bgType: \"image\",\r\n@@ -96,9 +95,8 @@\n         h: 1,\r\n         X: X,\r\n         Y: Y\r\n       }\r\n-      console.log(data);\r\n \r\n       boxItemData.push(data)\r\n       boxStore.boxItem = boxItemData\r\n       boxItemData = JSON.stringify(boxItemData)\r\n"
+                }
+            ],
+            "date": 1650682566195,
+            "name": "Commit-0",
+            "content": "<script lang=\"ts\" setup>\r\n</script>\r\n<template>\r\n</template>\r\n<style lang=\"less\">\r\n</style>"
+        }
+    ]
+}

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 417,
+            "activePatchIndex": 438,
             "patches": [
                 {
                     "date": 1649582189419,
@@ -1676,6 +1676,90 @@
                 {
                     "date": 1650460494366,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,10 +8,10 @@\n // let boxItemData = reactive(boxStore.boxItem)\r\n let { boxItem: boxItemData } = storeToRefs(useBox())\r\n \r\n // 监听boxItemData\r\n-watch(boxItemData, (nVal, oVal) => {\r\n-  localStorage.setItem('boxItemData', JSON.stringify(boxItemData))\r\n+watch(boxItemData.value, (nVal, oVal) => {\r\n+  localStorage.setItem('boxItemData', JSON.stringify(boxItemData.value))\r\n })\r\n \r\n \r\n //如果没有从本地获取数据，那么从发送请求获取数据\r\n"
+                },
+                {
+                    "date": 1650677650322,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -98,16 +98,21 @@\n   boxStore.updatedGlobalPicture().then(() => {\r\n     // box.value.style.backgroundImage = `url(${globalPicture.value})`\r\n   })\r\n }\r\n+// 右击事件\r\n+const show = () => {\r\n+  console.log('a');\r\n+\r\n+}\r\n </script>\r\n \r\n <template>\r\n   <div class=\"bg\">\r\n     <img :src=\"globalPicture\" alt=\"背景图片\" class=\"bgImage\">\r\n   </div>\r\n   <div ref=\"box\" class=\"box-grid \" @contextmenu.prevent=\"openMenu($event)\">\r\n-    <BoxItem v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n+    <BoxItem @contextmenu.prevent=\"show\" v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n     </BoxItem>\r\n   </div>\r\n   <!-- 右击菜单 -->\r\n   <el-card @contextmenu.native=\"handlePaste($event)\" class=\"box-card contextmenu\" v-show=\"visible\"\r\n"
+                },
+                {
+                    "date": 1650677723123,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -100,9 +100,11 @@\n   })\r\n }\r\n // 右击事件\r\n const show = () => {\r\n+  event.preventDefault()\r\n   console.log('a');\r\n+  return false\r\n \r\n }\r\n </script>\r\n \r\n"
+                },
+                {
+                    "date": 1650677810753,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,8 +61,9 @@\n     document.body.removeEventListener('click', closeMenu)\r\n   }\r\n })\r\n function openMenu(e) {\r\n+  visible.value = false;\r\n   let x = e.pageX;\r\n   let y = e.pageY;\r\n   top.value = y;\r\n   left.value = x;\r\n"
+                },
+                {
+                    "date": 1650677837713,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,9 +61,8 @@\n     document.body.removeEventListener('click', closeMenu)\r\n   }\r\n })\r\n function openMenu(e) {\r\n-  visible.value = false;\r\n   let x = e.pageX;\r\n   let y = e.pageY;\r\n   top.value = y;\r\n   left.value = x;\r\n"
+                },
+                {
+                    "date": 1650677905457,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -112,9 +112,10 @@\n   <div class=\"bg\">\r\n     <img :src=\"globalPicture\" alt=\"背景图片\" class=\"bgImage\">\r\n   </div>\r\n   <div ref=\"box\" class=\"box-grid \" @contextmenu.prevent=\"openMenu($event)\">\r\n-    <BoxItem @contextmenu.prevent=\"show\" v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\" :i=\"i\">\r\n+    <BoxItem @contextmenu.prevent.stop=\"show\" v-for=\"(item, i) in boxItemData\" :key=\"item.id\" :w=\"item.w\" :h=\"item.h\"\r\n+      :i=\"i\">\r\n     </BoxItem>\r\n   </div>\r\n   <!-- 右击菜单 -->\r\n   <el-card @contextmenu.native=\"handlePaste($event)\" class=\"box-card contextmenu\" v-show=\"visible\"\r\n"
+                },
+                {
+                    "date": 1650677950724,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -98,11 +98,10 @@\n   boxStore.updatedGlobalPicture().then(() => {\r\n     // box.value.style.backgroundImage = `url(${globalPicture.value})`\r\n   })\r\n }\r\n-// 右击事件\r\n+// item右击事件\r\n const show = () => {\r\n-  event.preventDefault()\r\n   console.log('a');\r\n   return false\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1650677977576,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -100,8 +100,9 @@\n   })\r\n }\r\n // item右击事件\r\n const show = () => {\r\n+  closeMenu()\r\n   console.log('a');\r\n   return false\r\n \r\n }\r\n"
+                },
+                {
+                    "date": 1650677989171,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -102,9 +102,8 @@\n // item右击事件\r\n const show = () => {\r\n   closeMenu()\r\n   console.log('a');\r\n-  return false\r\n \r\n }\r\n </script>\r\n \r\n"
+                },
+                {
+                    "date": 1650678176450,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -124,8 +124,17 @@\n       <li @click=\"updateWallpaper()\">更新壁纸</li>\r\n       <li @click=\"drawer = true\">设置</li>\r\n     </ul>\r\n   </el-card>\r\n+  <!-- item右击菜单 -->\r\n+  <el-card @contextmenu.native=\"handlePaste($event)\" class=\"box-card contextmenu\" v-show=\"visible\"\r\n+    :style=\"{ left: left + 'px', top: top + 'px' }\">\r\n+    <ul>\r\n+      <li @click=\"defaultSorting()\">默认排序</li>\r\n+      <li @click=\"updateWallpaper()\">更新壁纸</li>\r\n+      <li @click=\"drawer = true\">设置</li>\r\n+    </ul>\r\n+  </el-card>\r\n   <!-- 设置 -->\r\n   <el-drawer v-model=\"drawer\" title=\"I am the title\" :with-header=\"false\">\r\n     <SetupVue></SetupVue>\r\n   </el-drawer>\r\n"
+                },
+                {
+                    "date": 1650678239877,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -119,11 +119,10 @@\n   <!-- 右击菜单 -->\r\n   <el-card @contextmenu.native=\"handlePaste($event)\" class=\"box-card contextmenu\" v-show=\"visible\"\r\n     :style=\"{ left: left + 'px', top: top + 'px' }\">\r\n     <ul>\r\n-      <li @click=\"defaultSorting()\">默认排序</li>\r\n-      <li @click=\"updateWallpaper()\">更新壁纸</li>\r\n-      <li @click=\"drawer = true\">设置</li>\r\n+      <li @click=\"defaultSorting()\">编辑</li>\r\n+\r\n     </ul>\r\n   </el-card>\r\n   <!-- item右击菜单 -->\r\n   <el-card @contextmenu.native=\"handlePaste($event)\" class=\"box-card contextmenu\" v-show=\"visible\"\r\n"
+                },
+                {
+                    "date": 1650678272864,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -104,8 +104,12 @@\n   closeMenu()\r\n   console.log('a');\r\n \r\n }\r\n+function edit() {\r\n+  console.log('edit');\r\n+\r\n+}\r\n </script>\r\n \r\n <template>\r\n   <div class=\"bg\">\r\n@@ -119,9 +123,9 @@\n   <!-- 右击菜单 -->\r\n   <el-card @contextmenu.native=\"handlePaste($event)\" class=\"box-card contextmenu\" v-show=\"visible\"\r\n     :style=\"{ left: left + 'px', top: top + 'px' }\">\r\n     <ul>\r\n-      <li @click=\"defaultSorting()\">编辑</li>\r\n+      <li @click=\"edit()\">编辑</li>\r\n \r\n     </ul>\r\n   </el-card>\r\n   <!-- item右击菜单 -->\r\n"
+                },
+                {
+                    "date": 1650678453365,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -99,10 +99,14 @@\n     // box.value.style.backgroundImage = `url(${globalPicture.value})`\r\n   })\r\n }\r\n // item右击事件\r\n-const show = () => {\r\n+const show = (e) => {\r\n   closeMenu()\r\n+  let x = e.pageX;\r\n+  let y = e.pageY;\r\n+  top.value = y;\r\n+  left.value = x;\r\n   console.log('a');\r\n \r\n }\r\n function edit() {\r\n"
+                },
+                {
+                    "date": 1650678461207,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -100,14 +100,15 @@\n   })\r\n }\r\n // item右击事件\r\n const show = (e) => {\r\n+\r\n   closeMenu()\r\n   let x = e.pageX;\r\n   let y = e.pageY;\r\n   top.value = y;\r\n   left.value = x;\r\n-  console.log('a');\r\n+  console.log(e);\r\n \r\n }\r\n function edit() {\r\n   console.log('edit');\r\n"
+                },
+                {
+                    "date": 1650678542318,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -128,19 +128,19 @@\n   <!-- 右击菜单 -->\r\n   <el-card @contextmenu.native=\"handlePaste($event)\" class=\"box-card contextmenu\" v-show=\"visible\"\r\n     :style=\"{ left: left + 'px', top: top + 'px' }\">\r\n     <ul>\r\n-      <li @click=\"edit()\">编辑</li>\r\n-\r\n+ <li @click=\"defaultSorting()\">默认排序</li>\r\n+      <li @click=\"updateWallpaper()\">更新壁纸</li>\r\n+      <li @click=\"drawer = true\">设置</li>\r\n     </ul>\r\n   </el-card>\r\n   <!-- item右击菜单 -->\r\n   <el-card @contextmenu.native=\"handlePaste($event)\" class=\"box-card contextmenu\" v-show=\"visible\"\r\n     :style=\"{ left: left + 'px', top: top + 'px' }\">\r\n     <ul>\r\n-      <li @click=\"defaultSorting()\">默认排序</li>\r\n-      <li @click=\"updateWallpaper()\">更新壁纸</li>\r\n-      <li @click=\"drawer = true\">设置</li>\r\n+          <li @click=\"edit()\">编辑</li>\r\n+\r\n     </ul>\r\n   </el-card>\r\n   <!-- 设置 -->\r\n   <el-drawer v-model=\"drawer\" title=\"I am the title\" :with-header=\"false\">\r\n"
+                },
+                {
+                    "date": 1650678587179,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -99,8 +99,9 @@\n     // box.value.style.backgroundImage = `url(${globalPicture.value})`\r\n   })\r\n }\r\n // item右击事件\r\n+let visible2 = false\r\n const show = (e) => {\r\n \r\n   closeMenu()\r\n   let x = e.pageX;\r\n@@ -128,18 +129,18 @@\n   <!-- 右击菜单 -->\r\n   <el-card @contextmenu.native=\"handlePaste($event)\" class=\"box-card contextmenu\" v-show=\"visible\"\r\n     :style=\"{ left: left + 'px', top: top + 'px' }\">\r\n     <ul>\r\n- <li @click=\"defaultSorting()\">默认排序</li>\r\n+      <li @click=\"defaultSorting()\">默认排序</li>\r\n       <li @click=\"updateWallpaper()\">更新壁纸</li>\r\n       <li @click=\"drawer = true\">设置</li>\r\n     </ul>\r\n   </el-card>\r\n   <!-- item右击菜单 -->\r\n-  <el-card @contextmenu.native=\"handlePaste($event)\" class=\"box-card contextmenu\" v-show=\"visible\"\r\n+  <el-card @contextmenu.native=\"handlePaste($event)\" class=\"box-card contextmenu\" v-show=\"visible2\"\r\n     :style=\"{ left: left + 'px', top: top + 'px' }\">\r\n     <ul>\r\n-          <li @click=\"edit()\">编辑</li>\r\n+      <li @click=\"edit()\">编辑</li>\r\n \r\n     </ul>\r\n   </el-card>\r\n   <!-- 设置 -->\r\n"
+                },
+                {
+                    "date": 1650678609535,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -107,10 +107,9 @@\n   let x = e.pageX;\r\n   let y = e.pageY;\r\n   top.value = y;\r\n   left.value = x;\r\n-  console.log(e);\r\n-\r\n+  visible2 = true\r\n }\r\n function edit() {\r\n   console.log('edit');\r\n \r\n"
+                },
+                {
+                    "date": 1650678796576,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -99,9 +99,16 @@\n     // box.value.style.backgroundImage = `url(${globalPicture.value})`\r\n   })\r\n }\r\n // item右击事件\r\n-let visible2 = false\r\n+let visible2 = ref(false)\r\n+watch(visible, (value) => {\r\n+  if (value) {\r\n+    document.body.addEventListener('click', closeMenu2)\r\n+  } else {\r\n+    document.body.removeEventListener('click', closeMenu2)\r\n+  }\r\n+})\r\n const show = (e) => {\r\n \r\n   closeMenu()\r\n   let x = e.pageX;\r\n@@ -113,8 +120,11 @@\n function edit() {\r\n   console.log('edit');\r\n \r\n }\r\n+function closeMenu2() {\r\n+  visible2.value = false;\r\n+}\r\n </script>\r\n \r\n <template>\r\n   <div class=\"bg\">\r\n"
+                },
+                {
+                    "date": 1650678815843,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -114,17 +114,18 @@\n   let x = e.pageX;\r\n   let y = e.pageY;\r\n   top.value = y;\r\n   left.value = x;\r\n-  visible2 = true\r\n+  visible2.value = true\r\n }\r\n+\r\n+function closeMenu2() {\r\n+  visible2.value = false;\r\n+}\r\n function edit() {\r\n   console.log('edit');\r\n \r\n }\r\n-function closeMenu2() {\r\n-  visible2.value = false;\r\n-}\r\n </script>\r\n \r\n <template>\r\n   <div class=\"bg\">\r\n"
+                },
+                {
+                    "date": 1650678875989,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -108,9 +108,8 @@\n     document.body.removeEventListener('click', closeMenu2)\r\n   }\r\n })\r\n const show = (e) => {\r\n-\r\n   closeMenu()\r\n   let x = e.pageX;\r\n   let y = e.pageY;\r\n   top.value = y;\r\n"
+                },
+                {
+                    "date": 1650678913619,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,9 +69,9 @@\n   visible.value = true;\r\n }\r\n function closeMenu() {\r\n   visible.value = false;\r\n-  closeMenu2\r\n+  closeMenu2()\r\n }\r\n function handlePaste(event) {\r\n   // 禁用鼠标右键\r\n   event.preventDefault()\r\n"
+                },
+                {
+                    "date": 1650682745300,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -181,9 +181,9 @@\n     <SetupVue></SetupVue>\r\n   </el-drawer>\r\n   <!-- 编辑Item -->\r\n   <el-dialog v-model=\"dialogFormVisible\" title=\"编辑图标\">\r\n-    <ItemForm></ItemForm>>\r\n+    <ItemForm></ItemForm>\r\n     <template #footer>\r\n       <span class=\"dialog-footer\">\r\n         <el-button @click=\"dialogFormVisible = false\">取消</el-button>\r\n         <el-button type=\"primary\" @click=\"dialogFormVisible = false\">编辑</el-button>\r\n"
                 }
             ],
             "date": 1649582189419,
