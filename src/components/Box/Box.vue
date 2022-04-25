@@ -8,7 +8,7 @@ import ItemForm from '@/components/ItemForm.vue'
 const boxStore = useBox()
 // let boxItemData = reactive(boxStore.boxItem)
 let { boxItem: boxItemData } = storeToRefs(useBox())
-
+let { GlobalConfiguration: config } = storeToRefs(boxStore)
 // 监听boxItemData
 watch(boxItemData.value, (nVal, oVal) => {
   localStorage.setItem('boxItemData', JSON.stringify(boxItemData.value))
@@ -124,9 +124,10 @@ watch(visible2, (value) => {
     document.body.removeEventListener('click', closeMenu2)
   }
 })
+
+// item上的右击事件
 const show = ($event, i) => {
   closeMenu()
-
   let x = $event.pageX;
   let y = $event.pageY;
   if (x + 100 > boxStore.boxContainer.width) {
@@ -135,14 +136,18 @@ const show = ($event, i) => {
   if (y + 80 > boxStore.boxContainer.height) {
     y = boxStore.boxContainer.height - 150
   }
-
   top.value = y;
   left.value = x;
   visible2.value = true
   rightClickItemIndex.value = i
-
 }
-
+// 是否显示item
+const isShow = () => {
+  config.value.isShow = !config.value.isShow
+}
+const refresh = () => {
+  // boxStore.setBoxItem(JSON.parse(window.localStorage.getItem('boxItemData') || ''))
+}
 function closeMenu2() {
   visible2.value = false;
 }
@@ -181,10 +186,12 @@ let editBut = () => {
   <el-card @contextmenu.native="handlePaste($event)" class="box-card contextmenu" v-show="visible"
     :style="{ left: left + 'px', top: top + 'px' }">
     <ul>
-      <li @click="gridding()">将图标网格化对齐</li>
-      <li @click="defaultSorting()">默认排序</li>
       <li @click="updateWallpaper()">更新壁纸</li>
-      <li @click="drawer = true">设置</li>
+      <li @click="refresh">刷新</li>
+      <li @click="defaultSorting()">默认排序</li>
+      <li @click="isShow">{{ config.isShow ? '隐藏' : '显示' }}图标</li>
+      <li @click="gridding()">将图标网格化对齐</li>
+      <li @click="drawer = true">更多设置</li>
     </ul>
   </el-card>
   <!-- item右击菜单 -->

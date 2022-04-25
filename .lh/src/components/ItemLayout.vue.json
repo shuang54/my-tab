@@ -1,0 +1,210 @@
+{
+    "sourceFile": "src/components/ItemLayout.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 48,
+            "patches": [
+                {
+                    "date": 1650761733766,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1650761753010,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n-<script>\r\n+<script lang=\"ts\" setup>\r\n </script>\r\n <template>\r\n </template>\r\n-<style>\r\n+<style lang=\"less\">\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650761811359,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n <script lang=\"ts\" setup>\r\n </script>\r\n <template>\r\n+  itemlayout\r\n </template>\r\n <style lang=\"less\">\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650761849235,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <script lang=\"ts\" setup>\r\n </script>\r\n <template>\r\n-  itemlayout\r\n+\r\n </template>\r\n <style lang=\"less\">\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650799731239,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,15 @@\n <script lang=\"ts\" setup>\r\n </script>\r\n <template>\r\n-\r\n+  <el-card class=\"box-card\">\r\n+    <template #header>\r\n+      <div class=\"card-header\">\r\n+        <span>Card name</span>\r\n+        <el-button class=\"button\" type=\"text\">Operation button</el-button>\r\n+      </div>\r\n+    </template>\r\n+    <div v-for=\"o in 4\" :key=\"o\" class=\"text item\">{{ 'List item ' + o }}</div>\r\n+  </el-card>\r\n </template>\r\n <style lang=\"less\">\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650799739371,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,5 +11,22 @@\n     <div v-for=\"o in 4\" :key=\"o\" class=\"text item\">{{ 'List item ' + o }}</div>\r\n   </el-card>\r\n </template>\r\n <style lang=\"less\">\r\n+.card-header {\r\n+  display: flex;\r\n+  justify-content: space-between;\r\n+  align-items: center;\r\n+}\r\n+\r\n+.text {\r\n+  font-size: 14px;\r\n+}\r\n+\r\n+.item {\r\n+  margin-bottom: 18px;\r\n+}\r\n+\r\n+.box-card {\r\n+  width: 480px;\r\n+}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650799751804,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n     </template>\r\n     <div v-for=\"o in 4\" :key=\"o\" class=\"text item\">{{ 'List item ' + o }}</div>\r\n   </el-card>\r\n </template>\r\n-<style lang=\"less\">\r\n+<style lang=\"less\" scoped>\r\n .card-header {\r\n   display: flex;\r\n   justify-content: space-between;\r\n   align-items: center;\r\n"
+                },
+                {
+                    "date": 1650799816431,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n <template>\r\n   <el-card class=\"box-card\">\r\n     <template #header>\r\n       <div class=\"card-header\">\r\n-        <span>Card name</span>\r\n+        <span>图标布局</span>\r\n         <el-button class=\"button\" type=\"text\">Operation button</el-button>\r\n       </div>\r\n     </template>\r\n     <div v-for=\"o in 4\" :key=\"o\" class=\"text item\">{{ 'List item ' + o }}</div>\r\n"
+                },
+                {
+                    "date": 1650799849760,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,12 +4,11 @@\n   <el-card class=\"box-card\">\r\n     <template #header>\r\n       <div class=\"card-header\">\r\n         <span>图标布局</span>\r\n-        <el-button class=\"button\" type=\"text\">Operation button</el-button>\r\n       </div>\r\n     </template>\r\n-    <div v-for=\"o in 4\" :key=\"o\" class=\"text item\">{{ 'List item ' + o }}</div>\r\n+    <div></div>\r\n   </el-card>\r\n </template>\r\n <style lang=\"less\" scoped>\r\n .card-header {\r\n"
+                },
+                {
+                    "date": 1650799902708,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,12 @@\n       <div class=\"card-header\">\r\n         <span>图标布局</span>\r\n       </div>\r\n     </template>\r\n-    <div></div>\r\n+    <div>上对齐</div>\r\n+    <div>右对齐</div>\r\n+    <div>下对齐</div>\r\n+    <div>左对齐</div>\r\n   </el-card>\r\n </template>\r\n <style lang=\"less\" scoped>\r\n .card-header {\r\n"
+                },
+                {
+                    "date": 1650800111406,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,16 +19,8 @@\n   justify-content: space-between;\r\n   align-items: center;\r\n }\r\n \r\n-.text {\r\n-  font-size: 14px;\r\n-}\r\n-\r\n-.item {\r\n-  margin-bottom: 18px;\r\n-}\r\n-\r\n .box-card {\r\n   width: 480px;\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650800130629,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,10 +17,10 @@\n .card-header {\r\n   display: flex;\r\n   justify-content: space-between;\r\n   align-items: center;\r\n-}\r\n \r\n-.box-card {\r\n-  width: 480px;\r\n+  .box-card {\r\n+    width: 100%；\r\n+  }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650800166651,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,12 +6,12 @@\n       <div class=\"card-header\">\r\n         <span>图标布局</span>\r\n       </div>\r\n     </template>\r\n-    <div>上对齐</div>\r\n-    <div>右对齐</div>\r\n-    <div>下对齐</div>\r\n-    <div>左对齐</div>\r\n+    <div class=\"item\">上对齐</div>\r\n+    <div class=\"item\">右对齐</div>\r\n+    <div class=\"item\">下对齐</div>\r\n+    <div class=\"item\">左对齐</div>\r\n   </el-card>\r\n </template>\r\n <style lang=\"less\" scoped>\r\n .card-header {\r\n@@ -19,8 +19,8 @@\n   justify-content: space-between;\r\n   align-items: center;\r\n \r\n   .box-card {\r\n-    width: 100%；\r\n+    width: 100%;\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650800188575,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,7 +20,13 @@\n   align-items: center;\r\n \r\n   .box-card {\r\n     width: 100%;\r\n+\r\n+    .item {\r\n+      height: 30px;\r\n+      font-size: 20px;\r\n+\r\n+    }\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650800195246,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n     width: 100%;\r\n \r\n     .item {\r\n       height: 30px;\r\n-      font-size: 20px;\r\n+      font-size: 30px;\r\n \r\n     }\r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1650800248568,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n       <div class=\"card-header\">\r\n         <span>图标布局</span>\r\n       </div>\r\n     </template>\r\n-    <div class=\"item\">上对齐</div>\r\n+    <div>上对齐</div>\r\n     <div class=\"item\">右对齐</div>\r\n     <div class=\"item\">下对齐</div>\r\n     <div class=\"item\">左对齐</div>\r\n   </el-card>\r\n"
+                },
+                {
+                    "date": 1650800261176,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n       <div class=\"card-header\">\r\n         <span>图标布局</span>\r\n       </div>\r\n     </template>\r\n-    <div>上对齐</div>\r\n+    <div class=\"item\">上对齐</div>\r\n     <div class=\"item\">右对齐</div>\r\n     <div class=\"item\">下对齐</div>\r\n     <div class=\"item\">左对齐</div>\r\n   </el-card>\r\n"
+                },
+                {
+                    "date": 1650800296532,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n     width: 100%;\r\n \r\n     .item {\r\n       height: 30px;\r\n-      font-size: 30px;\r\n+      font-size: 30px !important;\r\n \r\n     }\r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1650800312989,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n     width: 100%;\r\n \r\n     .item {\r\n       height: 30px;\r\n-      font-size: 30px !important;\r\n+      font-size: 30px;\r\n \r\n     }\r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1650800371701,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,12 +21,15 @@\n \r\n   .box-card {\r\n     width: 100%;\r\n \r\n-    .item {\r\n-      height: 30px;\r\n-      font-size: 30px;\r\n+    .el-card__body {\r\n \r\n+      .item {\r\n+        height: 30px;\r\n+        font-size: 30px;\r\n+\r\n+      }\r\n     }\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650800387664,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,19 +17,19 @@\n .card-header {\r\n   display: flex;\r\n   justify-content: space-between;\r\n   align-items: center;\r\n+}\r\n \r\n-  .box-card {\r\n-    width: 100%;\r\n+.box-card {\r\n+  width: 100%;\r\n \r\n-    .el-card__body {\r\n+  .el-card__body {\r\n \r\n-      .item {\r\n-        height: 30px;\r\n-        font-size: 30px;\r\n+    .item {\r\n+      height: 30px;\r\n+      font-size: 30px;\r\n \r\n-      }\r\n     }\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650800417200,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,14 +22,13 @@\n \r\n .box-card {\r\n   width: 100%;\r\n \r\n-  .el-card__body {\r\n+  .el-card__body {}\r\n+}\r\n \r\n-    .item {\r\n-      height: 30px;\r\n-      font-size: 30px;\r\n+.item {\r\n+  height: 30px;\r\n+  font-size: 30px;\r\n \r\n-    }\r\n-  }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650800455348,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,8 +27,8 @@\n }\r\n \r\n .item {\r\n   height: 30px;\r\n-  font-size: 30px;\r\n+  font-size: 16px;\r\n \r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650800467816,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,7 +28,7 @@\n \r\n .item {\r\n   height: 30px;\r\n   font-size: 16px;\r\n-\r\n+  line-height: 30px;\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650800784969,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,12 +6,14 @@\n       <div class=\"card-header\">\r\n         <span>图标布局</span>\r\n       </div>\r\n     </template>\r\n-    <div class=\"item\">上对齐</div>\r\n-    <div class=\"item\">右对齐</div>\r\n-    <div class=\"item\">下对齐</div>\r\n-    <div class=\"item\">左对齐</div>\r\n+    <el-radio-group v-model=\"radio1\" size=\"large\">\r\n+      <el-radio-button label=\"New York\" />\r\n+      <el-radio-button label=\"Washington\" />\r\n+      <el-radio-button label=\"Los Angeles\" />\r\n+      <el-radio-button label=\"Chicago\" />\r\n+    </el-radio-group>\r\n   </el-card>\r\n </template>\r\n <style lang=\"less\" scoped>\r\n .card-header {\r\n@@ -22,13 +24,6 @@\n \r\n .box-card {\r\n   width: 100%;\r\n \r\n-  .el-card__body {}\r\n }\r\n-\r\n-.item {\r\n-  height: 30px;\r\n-  font-size: 16px;\r\n-  line-height: 30px;\r\n-}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650800791640,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n         <span>图标布局</span>\r\n       </div>\r\n     </template>\r\n     <el-radio-group v-model=\"radio1\" size=\"large\">\r\n-      <el-radio-button label=\"New York\" />\r\n+      <el-radio-button label=\"上对齐\" />\r\n       <el-radio-button label=\"Washington\" />\r\n       <el-radio-button label=\"Los Angeles\" />\r\n       <el-radio-button label=\"Chicago\" />\r\n     </el-radio-group>\r\n"
+                },
+                {
+                    "date": 1650800811824,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,8 @@\n <script lang=\"ts\" setup>\r\n+import { ref } from 'vue';\r\n+\r\n+let radio1 = ref('')\r\n </script>\r\n <template>\r\n   <el-card class=\"box-card\">\r\n     <template #header>\r\n"
+                },
+                {
+                    "date": 1650800890104,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,7 +26,10 @@\n }\r\n \r\n .box-card {\r\n   width: 100%;\r\n+}\r\n \r\n+.el-radio-button:first-child .el-radio-button__inner {\r\n+  width: 100%;\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650800975872,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,8 +28,8 @@\n .box-card {\r\n   width: 100%;\r\n }\r\n \r\n-.el-radio-button:first-child .el-radio-button__inner {\r\n+.el-radio-button {\r\n   width: 100%;\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650801002976,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,8 +28,6 @@\n .box-card {\r\n   width: 100%;\r\n }\r\n \r\n-.el-radio-button {\r\n-  width: 100%;\r\n-}\r\n+.el-radio-button {}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650801106048,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,11 +11,11 @@\n       </div>\r\n     </template>\r\n     <el-radio-group v-model=\"radio1\" size=\"large\">\r\n       <el-radio-button label=\"上对齐\" />\r\n-      <el-radio-button label=\"Washington\" />\r\n-      <el-radio-button label=\"Los Angeles\" />\r\n-      <el-radio-button label=\"Chicago\" />\r\n+      <el-radio-button label=\"上对齐\" />\r\n+      <el-radio-button label=\"上对齐\" />\r\n+      <el-radio-button label=\"上对齐\" />\r\n     </el-radio-group>\r\n   </el-card>\r\n </template>\r\n <style lang=\"less\" scoped>\r\n"
+                },
+                {
+                    "date": 1650801148728,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n       <div class=\"card-header\">\r\n         <span>图标布局</span>\r\n       </div>\r\n     </template>\r\n-    <el-radio-group v-model=\"radio1\" size=\"large\">\r\n+    <el-radio-group border v-model=\"radio1\" size=\"large\">\r\n       <el-radio-button label=\"上对齐\" />\r\n       <el-radio-button label=\"上对齐\" />\r\n       <el-radio-button label=\"上对齐\" />\r\n       <el-radio-button label=\"上对齐\" />\r\n"
+                },
+                {
+                    "date": 1650801216229,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,12 +10,12 @@\n         <span>图标布局</span>\r\n       </div>\r\n     </template>\r\n     <el-radio-group border v-model=\"radio1\" size=\"large\">\r\n-      <el-radio-button label=\"上对齐\" />\r\n-      <el-radio-button label=\"上对齐\" />\r\n-      <el-radio-button label=\"上对齐\" />\r\n-      <el-radio-button label=\"上对齐\" />\r\n+      <el-radio-button label=\"top\" name=\"a\" />\r\n+      <el-radio-button label=\"right\" />\r\n+      <el-radio-button label=\"bottom\" />\r\n+      <el-radio-button label=\"left\" />\r\n     </el-radio-group>\r\n   </el-card>\r\n </template>\r\n <style lang=\"less\" scoped>\r\n"
+                },
+                {
+                    "date": 1650801252425,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n         <span>图标布局</span>\r\n       </div>\r\n     </template>\r\n     <el-radio-group border v-model=\"radio1\" size=\"large\">\r\n-      <el-radio-button label=\"top\" name=\"a\" />\r\n+      <el-radio-button label=\"top\" />\r\n       <el-radio-button label=\"right\" />\r\n       <el-radio-button label=\"bottom\" />\r\n       <el-radio-button label=\"left\" />\r\n     </el-radio-group>\r\n"
+                },
+                {
+                    "date": 1650801465734,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,12 +10,13 @@\n         <span>图标布局</span>\r\n       </div>\r\n     </template>\r\n     <el-radio-group border v-model=\"radio1\" size=\"large\">\r\n-      <el-radio-button label=\"top\" />\r\n-      <el-radio-button label=\"right\" />\r\n-      <el-radio-button label=\"bottom\" />\r\n-      <el-radio-button label=\"left\" />\r\n+      <el-tooltip class=\"box-item\" effect=\"dark\" content=\"Top Left prompts info\" placement=\"top-start\">\r\n+        <el-radio-button label=\"top\" />\r\n+        <el-radio-button label=\"right\" />\r\n+        <el-radio-button label=\"bottom\" />\r\n+        <el-radio-button label=\"left\" />\r\n     </el-radio-group>\r\n   </el-card>\r\n </template>\r\n <style lang=\"less\" scoped>\r\n"
+                },
+                {
+                    "date": 1650801591152,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,12 +11,14 @@\n       </div>\r\n     </template>\r\n     <el-radio-group border v-model=\"radio1\" size=\"large\">\r\n       <el-tooltip class=\"box-item\" effect=\"dark\" content=\"Top Left prompts info\" placement=\"top-start\">\r\n-        <el-radio-button label=\"top\" />\r\n-        <el-radio-button label=\"right\" />\r\n-        <el-radio-button label=\"bottom\" />\r\n-        <el-radio-button label=\"left\" />\r\n+        <el-button>top-start</el-button>\r\n+      </el-tooltip>\r\n+      <el-radio-button label=\"top\" />\r\n+      <el-radio-button label=\"right\" />\r\n+      <el-radio-button label=\"bottom\" />\r\n+      <el-radio-button label=\"left\" />\r\n     </el-radio-group>\r\n   </el-card>\r\n </template>\r\n <style lang=\"less\" scoped>\r\n"
+                },
+                {
+                    "date": 1650801608697,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,11 +11,11 @@\n       </div>\r\n     </template>\r\n     <el-radio-group border v-model=\"radio1\" size=\"large\">\r\n       <el-tooltip class=\"box-item\" effect=\"dark\" content=\"Top Left prompts info\" placement=\"top-start\">\r\n-        <el-button>top-start</el-button>\r\n+        <el-radio-button label=\"top\" />\r\n       </el-tooltip>\r\n-      <el-radio-button label=\"top\" />\r\n+\r\n       <el-radio-button label=\"right\" />\r\n       <el-radio-button label=\"bottom\" />\r\n       <el-radio-button label=\"left\" />\r\n     </el-radio-group>\r\n"
+                },
+                {
+                    "date": 1650801652960,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,12 +13,20 @@\n     <el-radio-group border v-model=\"radio1\" size=\"large\">\r\n       <el-tooltip class=\"box-item\" effect=\"dark\" content=\"Top Left prompts info\" placement=\"top-start\">\r\n         <el-radio-button label=\"top\" />\r\n       </el-tooltip>\r\n+      <el-tooltip class=\"box-item\" effect=\"dark\" content=\"Top Left prompts info\" placement=\"top-start\">\r\n+        <el-radio-button label=\"right\" />\r\n+      </el-tooltip>\r\n+      <el-tooltip class=\"box-item\" effect=\"dark\" content=\"Top Left prompts info\" placement=\"top-start\">\r\n+        <el-radio-button label=\"bottom\" />\r\n+      </el-tooltip>\r\n+      <el-tooltip class=\"box-item\" effect=\"dark\" content=\"Top Left prompts info\" placement=\"top-start\">\r\n+        <el-radio-button label=\"left\" />\r\n+      </el-tooltip>\r\n \r\n-      <el-radio-button label=\"right\" />\r\n-      <el-radio-button label=\"bottom\" />\r\n-      <el-radio-button label=\"left\" />\r\n+\r\n+\r\n     </el-radio-group>\r\n   </el-card>\r\n </template>\r\n <style lang=\"less\" scoped>\r\n"
+                },
+                {
+                    "date": 1650801677531,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n         <span>图标布局</span>\r\n       </div>\r\n     </template>\r\n     <el-radio-group border v-model=\"radio1\" size=\"large\">\r\n-      <el-tooltip class=\"box-item\" effect=\"dark\" content=\"Top Left prompts info\" placement=\"top-start\">\r\n+      <el-tooltip class=\"box-item\" effect=\"light\" content=\"Top Left prompts info\" placement=\"top-start\">\r\n         <el-radio-button label=\"top\" />\r\n       </el-tooltip>\r\n       <el-tooltip class=\"box-item\" effect=\"dark\" content=\"Top Left prompts info\" placement=\"top-start\">\r\n         <el-radio-button label=\"right\" />\r\n"
+                },
+                {
+                    "date": 1650801759813,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,18 +10,18 @@\n         <span>图标布局</span>\r\n       </div>\r\n     </template>\r\n     <el-radio-group border v-model=\"radio1\" size=\"large\">\r\n-      <el-tooltip class=\"box-item\" effect=\"light\" content=\"Top Left prompts info\" placement=\"top-start\">\r\n+      <el-tooltip class=\"box-item\" effect=\"dark\" content=\"图标上对齐\" placement=\"top-start\">\r\n         <el-radio-button label=\"top\" />\r\n       </el-tooltip>\r\n-      <el-tooltip class=\"box-item\" effect=\"dark\" content=\"Top Left prompts info\" placement=\"top-start\">\r\n+      <el-tooltip class=\"box-item\" effect=\"dark\" content=\"图标右对齐\" placement=\"top-start\">\r\n         <el-radio-button label=\"right\" />\r\n       </el-tooltip>\r\n-      <el-tooltip class=\"box-item\" effect=\"dark\" content=\"Top Left prompts info\" placement=\"top-start\">\r\n+      <el-tooltip class=\"box-item\" effect=\"dark\" content=\"图标下对齐\" placement=\"top-start\">\r\n         <el-radio-button label=\"bottom\" />\r\n       </el-tooltip>\r\n-      <el-tooltip class=\"box-item\" effect=\"dark\" content=\"Top Left prompts info\" placement=\"top-start\">\r\n+      <el-tooltip class=\"box-item\" effect=\"dark\" content=\"图标左对齐\" placement=\"top-start\">\r\n         <el-radio-button label=\"left\" />\r\n       </el-tooltip>\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1650801791071,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,11 +22,8 @@\n       </el-tooltip>\r\n       <el-tooltip class=\"box-item\" effect=\"dark\" content=\"图标左对齐\" placement=\"top-start\">\r\n         <el-radio-button label=\"left\" />\r\n       </el-tooltip>\r\n-\r\n-\r\n-\r\n     </el-radio-group>\r\n   </el-card>\r\n </template>\r\n <style lang=\"less\" scoped>\r\n"
+                },
+                {
+                    "date": 1650801801817,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,29 @@\n         <el-radio-button label=\"left\" />\r\n       </el-tooltip>\r\n     </el-radio-group>\r\n   </el-card>\r\n+  <el-card class=\"box-card\">\r\n+    <template #header>\r\n+      <div class=\"card-header\">\r\n+        <span>图标排序</span>\r\n+      </div>\r\n+    </template>\r\n+    <el-radio-group border v-model=\"radio1\" size=\"large\">\r\n+      <el-tooltip class=\"box-item\" effect=\"dark\" content=\"图标上对齐\" placement=\"top-start\">\r\n+        <el-radio-button label=\"top\" />\r\n+      </el-tooltip>\r\n+      <el-tooltip class=\"box-item\" effect=\"dark\" content=\"图标右对齐\" placement=\"top-start\">\r\n+        <el-radio-button label=\"right\" />\r\n+      </el-tooltip>\r\n+      <el-tooltip class=\"box-item\" effect=\"dark\" content=\"图标下对齐\" placement=\"top-start\">\r\n+        <el-radio-button label=\"bottom\" />\r\n+      </el-tooltip>\r\n+      <el-tooltip class=\"box-item\" effect=\"dark\" content=\"图标左对齐\" placement=\"top-start\">\r\n+        <el-radio-button label=\"left\" />\r\n+      </el-tooltip>\r\n+    </el-radio-group>\r\n+  </el-card>\r\n </template>\r\n <style lang=\"less\" scoped>\r\n .card-header {\r\n   display: flex;\r\n"
+                },
+                {
+                    "date": 1650801820552,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,8 +55,9 @@\n }\r\n \r\n .box-card {\r\n   width: 100%;\r\n+  margin-bottom: 20px\r\n }\r\n \r\n .el-radio-button {}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650801903650,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,8 +51,9 @@\n .card-header {\r\n   display: flex;\r\n   justify-content: space-between;\r\n   align-items: center;\r\n+  font-size: 20px;\r\n }\r\n \r\n .box-card {\r\n   width: 100%;\r\n"
+                },
+                {
+                    "date": 1650802254032,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n <script lang=\"ts\" setup>\r\n import { ref } from 'vue';\r\n \r\n let radio1 = ref('')\r\n+let sort = ref('')\r\n </script>\r\n <template>\r\n   <el-card class=\"box-card\">\r\n     <template #header>\r\n@@ -30,9 +31,9 @@\n       <div class=\"card-header\">\r\n         <span>图标排序</span>\r\n       </div>\r\n     </template>\r\n-    <el-radio-group border v-model=\"radio1\" size=\"large\">\r\n+    <el-radio-group border v-model=\"sort\" size=\"large\">\r\n       <el-tooltip class=\"box-item\" effect=\"dark\" content=\"图标上对齐\" placement=\"top-start\">\r\n         <el-radio-button label=\"top\" />\r\n       </el-tooltip>\r\n       <el-tooltip class=\"box-item\" effect=\"dark\" content=\"图标右对齐\" placement=\"top-start\">\r\n@@ -58,7 +59,5 @@\n .box-card {\r\n   width: 100%;\r\n   margin-bottom: 20px\r\n }\r\n-\r\n-.el-radio-button {}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650802425256,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,20 +32,14 @@\n         <span>图标排序</span>\r\n       </div>\r\n     </template>\r\n     <el-radio-group border v-model=\"sort\" size=\"large\">\r\n-      <el-tooltip class=\"box-item\" effect=\"dark\" content=\"图标上对齐\" placement=\"top-start\">\r\n-        <el-radio-button label=\"top\" />\r\n+      <el-tooltip class=\"box-item\" effect=\"dark\" content=\"按名称\" placement=\"top-start\">\r\n+        <el-radio-button label=\"asc\" />\r\n       </el-tooltip>\r\n       <el-tooltip class=\"box-item\" effect=\"dark\" content=\"图标右对齐\" placement=\"top-start\">\r\n-        <el-radio-button label=\"right\" />\r\n+        <el-radio-button label=\"desc\" />\r\n       </el-tooltip>\r\n-      <el-tooltip class=\"box-item\" effect=\"dark\" content=\"图标下对齐\" placement=\"top-start\">\r\n-        <el-radio-button label=\"bottom\" />\r\n-      </el-tooltip>\r\n-      <el-tooltip class=\"box-item\" effect=\"dark\" content=\"图标左对齐\" placement=\"top-start\">\r\n-        <el-radio-button label=\"left\" />\r\n-      </el-tooltip>\r\n     </el-radio-group>\r\n   </el-card>\r\n </template>\r\n <style lang=\"less\" scoped>\r\n"
+                },
+                {
+                    "date": 1650802432473,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,12 +32,12 @@\n         <span>图标排序</span>\r\n       </div>\r\n     </template>\r\n     <el-radio-group border v-model=\"sort\" size=\"large\">\r\n-      <el-tooltip class=\"box-item\" effect=\"dark\" content=\"按名称\" placement=\"top-start\">\r\n+      <el-tooltip class=\"box-item\" effect=\"dark\" content=\"按名称升序\" placement=\"top-start\">\r\n         <el-radio-button label=\"asc\" />\r\n       </el-tooltip>\r\n-      <el-tooltip class=\"box-item\" effect=\"dark\" content=\"图标右对齐\" placement=\"top-start\">\r\n+      <el-tooltip class=\"box-item\" effect=\"dark\" content=\"按名称升序\" placement=\"top-start\">\r\n         <el-radio-button label=\"desc\" />\r\n       </el-tooltip>\r\n     </el-radio-group>\r\n   </el-card>\r\n"
+                },
+                {
+                    "date": 1650802438997,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,9 @@\n     <el-radio-group border v-model=\"sort\" size=\"large\">\r\n       <el-tooltip class=\"box-item\" effect=\"dark\" content=\"按名称升序\" placement=\"top-start\">\r\n         <el-radio-button label=\"asc\" />\r\n       </el-tooltip>\r\n-      <el-tooltip class=\"box-item\" effect=\"dark\" content=\"按名称升序\" placement=\"top-start\">\r\n+      <el-tooltip class=\"box-item\" effect=\"dark\" content=\"按名称降序\" placement=\"top-start\">\r\n         <el-radio-button label=\"desc\" />\r\n       </el-tooltip>\r\n     </el-radio-group>\r\n   </el-card>\r\n"
+                },
+                {
+                    "date": 1650802480007,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <script lang=\"ts\" setup>\r\n import { ref } from 'vue';\r\n \r\n-let radio1 = ref('')\r\n+let layout = ref('')\r\n let sort = ref('')\r\n </script>\r\n <template>\r\n   <el-card class=\"box-card\">\r\n@@ -10,9 +10,9 @@\n       <div class=\"card-header\">\r\n         <span>图标布局</span>\r\n       </div>\r\n     </template>\r\n-    <el-radio-group border v-model=\"radio1\" size=\"large\">\r\n+    <el-radio-group border v-model=\"layout\" size=\"large\">\r\n       <el-tooltip class=\"box-item\" effect=\"dark\" content=\"图标上对齐\" placement=\"top-start\">\r\n         <el-radio-button label=\"top\" />\r\n       </el-tooltip>\r\n       <el-tooltip class=\"box-item\" effect=\"dark\" content=\"图标右对齐\" placement=\"top-start\">\r\n"
+                }
+            ],
+            "date": 1650761733766,
+            "name": "Commit-0",
+            "content": "<script>\r\n</script>\r\n<template>\r\n</template>\r\n<style>\r\n</style>"
+        }
+    ]
+}

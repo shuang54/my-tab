@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 import { reactive, ref, watch, } from 'vue'
-import type { FormInstance } from 'element-plus'
+import { ElStep, FormInstance } from 'element-plus'
 import { v4 as uuidv4 } from 'uuid';
 import { useBox } from '../store/box';
+import { storeToRefs } from 'pinia';
 const boxStore = useBox()
 const ruleFormRef = ref<FormInstance>()
 const props = defineProps(['index'])
@@ -38,13 +39,14 @@ const rules = reactive({
 })
 // 添加时的X，Y坐标
 function addTraversal(boxItemData) {
+
   const interval = 100
   // 第几列
   let page = 0
   // 第几个元素
   let num = 0
   let X, Y
-  for (let i = 0; i < boxItemData.length; i++) {
+  for (let i = 0; i < boxItemData.length + 1; i++) {
     let Y = num * 100
     if (Y > boxStore.boxContainer.height - 100) {
       page++
@@ -55,17 +57,30 @@ function addTraversal(boxItemData) {
     // 只要有一项重复则重新循环
     let result = boxItemData.some((v, i) => {
       if ((X == v.X) && (Y == v.Y)) {
-        console.log(X, v.X, Y, v.Y);
         return (X == v.X) && (Y == v.Y)
       }
     })
-    // console.log(result);
     if (!result) {
       return { X, Y }
     }
     num++
   }
+  // if (X == undefined || Y == undefined || (X == 0 && Y == 0)) {
+  //   let maxX = boxItemData[0].X;
+  //   let maxY = boxItemData[0].Y;
+  //   for (let i = 1, ilen = boxItemData.length; i < ilen; i++) {
+  //     if (boxItemData[i].X > maxX) {
+  //       maxX = boxItemData[i].X;
+  //       if (boxItemData[i].Y > maxY) {
+  //         maxY = boxItemData[i].Y;
+  //       }
+  //     }
 
+  //   }
+  //   console.log({ X: maxX, Y: maxY });
+
+  //   return { X: maxX, Y: maxY }
+  // }
   return { X, Y }
 }
 // 提交按钮
@@ -74,12 +89,12 @@ const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.validate((valid) => {
     if (valid) {
-      let boxItemData: any = window.localStorage.getItem('boxItemData')
+      let { boxItem: boxItemData } = storeToRefs(boxStore)
       if (ruleForm.address.slice(0, 3) == 'www') {
         ruleForm.address = 'https://' + ruleForm.address
       }
-      boxItemData = JSON.parse(boxItemData)
-      let { X, Y } = addTraversal(boxItemData)
+      // 通过计算获取 X Ｙ　坐标
+      let { X, Y } = addTraversal(boxItemData.value)
 
       const data = {
         title: ruleForm.title,
@@ -97,11 +112,8 @@ const submitForm = (formEl: FormInstance | undefined) => {
         Y: Y
       }
 
-      boxItemData.push(data)
-      boxStore.boxItem = boxItemData
-      boxItemData = JSON.stringify(boxItemData)
-
-      window.localStorage.setItem('boxItemData', boxItemData)
+      boxItemData.value.push(data)
+      // 重置表单
       formEl.resetFields()
     } else {
       console.log('error submit!')

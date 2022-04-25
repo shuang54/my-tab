@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 import ItemForm from '@/components/ItemForm.vue'
+import ItemLayout from '@/components/ItemLayout.vue'
+import ConfigFile from '@/components/ConfigFile.vue'
 </script>
 <template>
   <el-container>
@@ -10,8 +12,12 @@ import ItemForm from '@/components/ItemForm.vue'
         <el-tab-pane label="添加图标">
           <ItemForm></ItemForm>
         </el-tab-pane>
-        <el-tab-pane label="排序">排序</el-tab-pane>
-        <el-tab-pane label="壁纸">壁纸</el-tab-pane>
+        <el-tab-pane label="布局">
+          <ItemLayout></ItemLayout>
+        </el-tab-pane>
+        <el-tab-pane label="配置文件">
+          <ConfigFile></ConfigFile>
+        </el-tab-pane>
       </el-tabs>
     </el-main>
   </el-container>

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 75,
+            "activePatchIndex": 84,
             "patches": [
                 {
                     "date": 1649682507536,
@@ -308,6 +308,42 @@
                 {
                     "date": 1650717556614,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -99,12 +99,12 @@\n     updateBoxItemIndex(i, data) {\r\n       for (const key in data) {\r\n         this.boxItem[i][key] = data[key]\r\n       }\r\n+    },\r\n+    isGridding() {\r\n+      this.GlobalConfiguration.isGridding = !this.GlobalConfiguration.isGridding\r\n     }\r\n   },\r\n-  isGridding() {\r\n-    this.GlobalConfiguration.isGridding = !this.GlobalConfiguration.isGridding\r\n-  }\r\n \r\n \r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650759317082,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -71,8 +71,10 @@\n       this.zIndex += 1\r\n       return this.zIndex\r\n     },\r\n     setBoxItemXY(i, X, Y) {\r\n+      console.log(this.boxItem[i].X, X, this.boxItem[i].Y, Y);\r\n+\r\n       this.boxItem[i].X = X, this.boxItem[i].Y = Y\r\n     },\r\n     // async updatedGlobalPicture() {\r\n     //   let result: any = await get(\"/api.php?category={dongman,fengjing,biying,meinv}&type=json\")\r\n"
+                },
+                {
+                    "date": 1650759415381,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -71,11 +71,13 @@\n       this.zIndex += 1\r\n       return this.zIndex\r\n     },\r\n     setBoxItemXY(i, X, Y) {\r\n+\r\n       console.log(this.boxItem[i].X, X, this.boxItem[i].Y, Y);\r\n+      this.boxItem[i].X = X, this.boxItem[i].Y = Y\r\n+      console.log(this.boxItem[i]);\r\n \r\n-      this.boxItem[i].X = X, this.boxItem[i].Y = Y\r\n     },\r\n     // async updatedGlobalPicture() {\r\n     //   let result: any = await get(\"/api.php?category={dongman,fengjing,biying,meinv}&type=json\")\r\n     //   if (result.result == 200) {\r\n"
+                },
+                {
+                    "date": 1650759762432,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,11 +72,10 @@\n       return this.zIndex\r\n     },\r\n     setBoxItemXY(i, X, Y) {\r\n \r\n-      console.log(this.boxItem[i].X, X, this.boxItem[i].Y, Y);\r\n-      this.boxItem[i].X = X, this.boxItem[i].Y = Y\r\n-      console.log(this.boxItem[i]);\r\n+      this.boxItem[i].X = X\r\n+      this.boxItem[i].Y = Y\r\n \r\n     },\r\n     // async updatedGlobalPicture() {\r\n     //   let result: any = await get(\"/api.php?category={dongman,fengjing,biying,meinv}&type=json\")\r\n"
+                },
+                {
+                    "date": 1650882648440,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,62 +9,14 @@\n       boxItem: JSON.parse(window.localStorage.getItem('boxItemData') || ''),\r\n       globalPicture: '',\r\n       boxContainer: { width: 0, height: 0 },\r\n       GlobalConfiguration: {\r\n-        isGridding: true,\r\n+        isGridding: true,//是否网格化\r\n+        sort: '',//排序\r\n+        layout: '',//布局\r\n+\r\n       }\r\n-      // boxItem: [\r\n-      //   {\r\n-      //     \"title\": \"npm仓库\",\r\n-      //     \"uuid\": \"5fcfb221d915e4341c1e069f14a1b945\",\r\n-      //     \"bgType\": \"image\",\r\n-      //     \"bgImage\": \"https://static.npmjs.com/b0f1a8318363185cc2ea6a40ac23eeb2.png\",\r\n-      //     \"id\": \"siteId-1fjg5riks7kwo6q5z2rvwrdblv0\",\r\n-      //     \"target\": \"https://www.npmjs.com/\",\r\n-      //     \"bgColor\": \"rgba(255,207,12,1)\",\r\n-      //     \"bgFont\": 30,\r\n-      //     \"bgText\": \"npm\",\r\n-      //     \"bgColorImage\": null,\r\n-      //     \"w\": 1,\r\n-      //     \"h\": 1\r\n-      //   },\r\n-      //   {\r\n-      //     \"title\": \"GitHub\",\r\n-      //     \"uuid\": \"3290568f329ecd28a1601b98351d2040\",\r\n-      //     \"bgType\": \"image\",\r\n-      //     \"bgImage\": \"https://files.codelife.cc/website/codepen.svg\",\r\n-      //     \"updatetime\": 1635851916974,\r\n-      //     \"id\": \"siteId-1fjg5ullepy4cfzy6za4wf0h1kf\",\r\n-      //     \"target\": \"https://github.com/\",\r\n-      //     \"type\": \"web\",\r\n-      //     \"w\": 1,\r\n-      //     \"h\": 1\r\n-      //   },\r\n-      //   {\r\n-      //     \"title\": \"Vue.js\",\r\n-      //     \"uuid\": \"61bee01d513b4e844394b85b38b01a3e\",\r\n-      //     \"bgType\": \"image\",\r\n-      //     \"bgImage\": \"https://cn.vuejs.org/images/logo.svg\",\r\n-      //     \"updatetime\": 1636034500242,\r\n-      //     \"id\": \"siteId-1fjlk2lki7nu2o2x1i5ytii9o6z\",\r\n-      //     \"target\": \"https://cn.vuejs.org/\",\r\n-      //     \"type\": \"web\"\r\n-      //     , \"w\": 1,\r\n-      //     \"h\": 1\r\n-      //   },\r\n-      //   {\r\n-      //     \"title\": \"Stack Overflow - Where Developers Learn, Share, & Build Careers\",\r\n-      //     \"uuid\": \"43e54a82b30dbf7d3e2ee8cfe537c849\",\r\n-      //     \"bgType\": \"image\",\r\n-      //     \"bgImage\": \"https://infinityicon.infinitynewtab.com/user-share-icon/43e54a82b30dbf7d3e2ee8cfe537c849.png\",\r\n-      //     \"updatetime\": 1636183457101,\r\n-      //     \"id\": \"siteId-1fjq24faedg649wxgk0qtg1wfvo\",\r\n-      //     \"target\": \"https://stackoverflow.com/\",\r\n-      //     \"type\": \"web\",\r\n-      //     \"w\": 1,\r\n-      //     \"h\": 1\r\n-      //   },\r\n-      // ]\r\n+\r\n     }\r\n   },\r\n   actions: {\r\n     getzIndex() {\r\n"
+                },
+                {
+                    "date": 1650882655933,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n       GlobalConfiguration: {\r\n         isGridding: true,//是否网格化\r\n         sort: '',//排序\r\n         layout: '',//布局\r\n-\r\n+        isShow: true,\r\n       }\r\n \r\n     }\r\n   },\r\n"
+                },
+                {
+                    "date": 1650882662061,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n       GlobalConfiguration: {\r\n         isGridding: true,//是否网格化\r\n         sort: '',//排序\r\n         layout: '',//布局\r\n-        isShow: true,\r\n+        isShow: true,//是否显示item\r\n       }\r\n \r\n     }\r\n   },\r\n"
+                },
+                {
+                    "date": 1650892622583,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,8 +57,12 @@\n       }\r\n     },\r\n     isGridding() {\r\n       this.GlobalConfiguration.isGridding = !this.GlobalConfiguration.isGridding\r\n+    },\r\n+    // 修改itemData\r\n+    setBoxItem(data) {\r\n+      this.boxItem = data\r\n     }\r\n   },\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1650894319003,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,14 +8,9 @@\n       zIndex: 1,\r\n       boxItem: JSON.parse(window.localStorage.getItem('boxItemData') || ''),\r\n       globalPicture: '',\r\n       boxContainer: { width: 0, height: 0 },\r\n-      GlobalConfiguration: {\r\n-        isGridding: true,//是否网格化\r\n-        sort: '',//排序\r\n-        layout: '',//布局\r\n-        isShow: true,//是否显示item\r\n-      }\r\n+      GlobalConfiguration: JSON.parse(window.localStorage.getItem('boxItemData') || ''),\r\n \r\n     }\r\n   },\r\n   actions: {\r\n"
+                },
+                {
+                    "date": 1650894330129,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n       zIndex: 1,\r\n       boxItem: JSON.parse(window.localStorage.getItem('boxItemData') || ''),\r\n       globalPicture: '',\r\n       boxContainer: { width: 0, height: 0 },\r\n-      GlobalConfiguration: JSON.parse(window.localStorage.getItem('boxItemData') || ''),\r\n+      GlobalConfiguration: JSON.parse(window.localStorage.getItem('GlobalConfiguration') || ''),\r\n \r\n     }\r\n   },\r\n   actions: {\r\n"
                 }
             ],
             "date": 1649682507536,

@@ -1,0 +1,110 @@
+{
+    "sourceFile": "src/components/ConfigFile.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 23,
+            "patches": [
+                {
+                    "date": 1650883658882,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1650883698601,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,51 +1,88 @@\n <script lang=\"ts\" setup>\r\n+import { reactive, ref } from 'vue'\r\n+import type { FormInstance, FormRules } from 'element-plus'\r\n \r\n+const formSize = ref('default')\r\n+const ruleFormRef = ref<FormInstance>()\r\n+const ruleForm = reactive({\r\n+  name: 'Hello',\r\n+  region: '',\r\n+  date1: '',\r\n+  date2: '',\r\n+  delivery: false,\r\n+  type: [],\r\n+  resource: '',\r\n+  desc: '',\r\n+})\r\n+\r\n+const rules = reactive<FormRules>({\r\n+  name: [\r\n+    { required: true, message: 'Please input Activity name', trigger: 'blur' },\r\n+    { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },\r\n+  ],\r\n+  region: [\r\n+    {\r\n+      required: true,\r\n+      message: 'Please select Activity zone',\r\n+      trigger: 'change',\r\n+    },\r\n+  ],\r\n+  date1: [\r\n+    {\r\n+      type: 'date',\r\n+      required: true,\r\n+      message: 'Please pick a date',\r\n+      trigger: 'change',\r\n+    },\r\n+  ],\r\n+  date2: [\r\n+    {\r\n+      type: 'date',\r\n+      required: true,\r\n+      message: 'Please pick a time',\r\n+      trigger: 'change',\r\n+    },\r\n+  ],\r\n+  type: [\r\n+    {\r\n+      type: 'array',\r\n+      required: true,\r\n+      message: 'Please select at least one activity type',\r\n+      trigger: 'change',\r\n+    },\r\n+  ],\r\n+  resource: [\r\n+    {\r\n+      required: true,\r\n+      message: 'Please select activity resource',\r\n+      trigger: 'change',\r\n+    },\r\n+  ],\r\n+  desc: [\r\n+    { required: true, message: 'Please input activity form', trigger: 'blur' },\r\n+  ],\r\n+})\r\n+\r\n+const submitForm = async (formEl: FormInstance | undefined) => {\r\n+  if (!formEl) return\r\n+  await formEl.validate((valid, fields) => {\r\n+    if (valid) {\r\n+      console.log('submit!')\r\n+    } else {\r\n+      console.log('error submit!', fields)\r\n+    }\r\n+  })\r\n+}\r\n+\r\n+const resetForm = (formEl: FormInstance | undefined) => {\r\n+  if (!formEl) return\r\n+  formEl.resetFields()\r\n+}\r\n </script>\r\n <template>\r\n   <el-form ref=\"ruleFormRef\" :model=\"ruleForm\" :rules=\"rules\" label-width=\"120px\" class=\"demo-ruleForm\"\r\n     :size=\"formSize\">\r\n-    <el-form-item label=\"Activity name\" prop=\"name\">\r\n-      <el-input v-model=\"ruleForm.name\" />\r\n-    </el-form-item>\r\n-    <el-form-item label=\"Activity zone\" prop=\"region\">\r\n-      <el-select v-model=\"ruleForm.region\" placeholder=\"Activity zone\">\r\n-        <el-option label=\"Zone one\" value=\"shanghai\" />\r\n-        <el-option label=\"Zone two\" value=\"beijing\" />\r\n-      </el-select>\r\n-    </el-form-item>\r\n-    <el-form-item label=\"Activity time\" required>\r\n-      <el-col :span=\"11\">\r\n-        <el-form-item prop=\"date1\">\r\n-          <el-date-picker v-model=\"ruleForm.date1\" type=\"date\" placeholder=\"Pick a date\" style=\"width: 100%\" />\r\n-        </el-form-item>\r\n-      </el-col>\r\n-      <el-col class=\"text-center\" :span=\"2\">\r\n-        <span class=\"text-gray-500\">-</span>\r\n-      </el-col>\r\n-      <el-col :span=\"11\">\r\n-        <el-form-item prop=\"date2\">\r\n-          <el-time-picker v-model=\"ruleForm.date2\" placeholder=\"Pick a time\" style=\"width: 100%\" />\r\n-        </el-form-item>\r\n-      </el-col>\r\n-    </el-form-item>\r\n-    <el-form-item label=\"Instant delivery\" prop=\"delivery\">\r\n-      <el-switch v-model=\"ruleForm.delivery\" />\r\n-    </el-form-item>\r\n-    <el-form-item label=\"Activity type\" prop=\"type\">\r\n-      <el-checkbox-group v-model=\"ruleForm.type\">\r\n-        <el-checkbox label=\"Online activities\" name=\"type\" />\r\n-        <el-checkbox label=\"Promotion activities\" name=\"type\" />\r\n-        <el-checkbox label=\"Offline activities\" name=\"type\" />\r\n-        <el-checkbox label=\"Simple brand exposure\" name=\"type\" />\r\n-      </el-checkbox-group>\r\n-    </el-form-item>\r\n-    <el-form-item label=\"Resources\" prop=\"resource\">\r\n-      <el-radio-group v-model=\"ruleForm.resource\">\r\n-        <el-radio label=\"Sponsorship\" />\r\n-        <el-radio label=\"Venue\" />\r\n-      </el-radio-group>\r\n-    </el-form-item>\r\n     <el-form-item label=\"Activity form\" prop=\"desc\">\r\n       <el-input v-model=\"ruleForm.desc\" type=\"textarea\" />\r\n     </el-form-item>\r\n     <el-form-item>\r\n"
+                },
+                {
+                    "date": 1650883817121,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -90,6 +90,9 @@\n       <el-button @click=\"resetForm(ruleFormRef)\">Reset</el-button>\r\n     </el-form-item>\r\n   </el-form>\r\n </template>\r\n-<style lang=\"less\">\r\n+<style lang=\"less\" scoped>\r\n+.el-textarea {\r\n+  width: 60%;\r\n+}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650883852189,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -85,9 +85,9 @@\n     <el-form-item label=\"Activity form\" prop=\"desc\">\r\n       <el-input v-model=\"ruleForm.desc\" type=\"textarea\" />\r\n     </el-form-item>\r\n     <el-form-item>\r\n-      <el-button type=\"primary\" @click=\"submitForm(ruleFormRef)\">Create</el-button>\r\n+      <el-button type=\"primary\" @click=\"submitForm(ruleFormRef)\">导入配置</el-button>\r\n       <el-button @click=\"resetForm(ruleFormRef)\">Reset</el-button>\r\n     </el-form-item>\r\n   </el-form>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1650883858290,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -86,9 +86,9 @@\n       <el-input v-model=\"ruleForm.desc\" type=\"textarea\" />\r\n     </el-form-item>\r\n     <el-form-item>\r\n       <el-button type=\"primary\" @click=\"submitForm(ruleFormRef)\">导入配置</el-button>\r\n-      <el-button @click=\"resetForm(ruleFormRef)\">Reset</el-button>\r\n+      <el-button @click=\"resetForm(ruleFormRef)\">重置</el-button>\r\n     </el-form-item>\r\n   </el-form>\r\n </template>\r\n <style lang=\"less\" scoped>\r\n"
+                },
+                {
+                    "date": 1650883883923,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -81,9 +81,9 @@\n </script>\r\n <template>\r\n   <el-form ref=\"ruleFormRef\" :model=\"ruleForm\" :rules=\"rules\" label-width=\"120px\" class=\"demo-ruleForm\"\r\n     :size=\"formSize\">\r\n-    <el-form-item label=\"Activity form\" prop=\"desc\">\r\n+    <el-form-item prop=\"desc\">\r\n       <el-input v-model=\"ruleForm.desc\" type=\"textarea\" />\r\n     </el-form-item>\r\n     <el-form-item>\r\n       <el-button type=\"primary\" @click=\"submitForm(ruleFormRef)\">导入配置</el-button>\r\n"
+                },
+                {
+                    "date": 1650883992750,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -91,8 +91,12 @@\n     </el-form-item>\r\n   </el-form>\r\n </template>\r\n <style lang=\"less\" scoped>\r\n+.el-form-item__content {\r\n+  margin-left: 0 !important;\r\n+}\r\n+\r\n .el-textarea {\r\n   width: 60%;\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650884018679,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -92,9 +92,9 @@\n   </el-form>\r\n </template>\r\n <style lang=\"less\" scoped>\r\n .el-form-item__content {\r\n-  margin-left: 0 !important;\r\n+  margin-left: 0px !important;\r\n }\r\n \r\n .el-textarea {\r\n   width: 60%;\r\n"
+                },
+                {
+                    "date": 1650884066505,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -81,9 +81,9 @@\n </script>\r\n <template>\r\n   <el-form ref=\"ruleFormRef\" :model=\"ruleForm\" :rules=\"rules\" label-width=\"120px\" class=\"demo-ruleForm\"\r\n     :size=\"formSize\">\r\n-    <el-form-item prop=\"desc\">\r\n+    <el-form-item prop=\"desc\" style=\"margin-left:0px;\">\r\n       <el-input v-model=\"ruleForm.desc\" type=\"textarea\" />\r\n     </el-form-item>\r\n     <el-form-item>\r\n       <el-button type=\"primary\" @click=\"submitForm(ruleFormRef)\">导入配置</el-button>\r\n"
+                },
+                {
+                    "date": 1650884178204,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -90,9 +90,9 @@\n       <el-button @click=\"resetForm(ruleFormRef)\">重置</el-button>\r\n     </el-form-item>\r\n   </el-form>\r\n </template>\r\n-<style lang=\"less\" scoped>\r\n+<style lang=\"less\" >\r\n .el-form-item__content {\r\n   margin-left: 0px !important;\r\n }\r\n \r\n"
+                },
+                {
+                    "date": 1650884204771,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -96,7 +96,7 @@\n   margin-left: 0px !important;\r\n }\r\n \r\n .el-textarea {\r\n-  width: 60%;\r\n+  width: 100%;\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650884229203,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -96,7 +96,7 @@\n   margin-left: 0px !important;\r\n }\r\n \r\n .el-textarea {\r\n-  width: 100%;\r\n+  width: 80%;\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650884319293,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -79,18 +79,13 @@\n   formEl.resetFields()\r\n }\r\n </script>\r\n <template>\r\n-  <el-form ref=\"ruleFormRef\" :model=\"ruleForm\" :rules=\"rules\" label-width=\"120px\" class=\"demo-ruleForm\"\r\n-    :size=\"formSize\">\r\n-    <el-form-item prop=\"desc\" style=\"margin-left:0px;\">\r\n-      <el-input v-model=\"ruleForm.desc\" type=\"textarea\" />\r\n-    </el-form-item>\r\n-    <el-form-item>\r\n-      <el-button type=\"primary\" @click=\"submitForm(ruleFormRef)\">导入配置</el-button>\r\n-      <el-button @click=\"resetForm(ruleFormRef)\">重置</el-button>\r\n-    </el-form-item>\r\n-  </el-form>\r\n+\r\n+  <el-form-item>\r\n+    <el-button type=\"primary\" @click=\"submitForm(ruleFormRef)\">导入配置</el-button>\r\n+    <el-button @click=\"resetForm(ruleFormRef)\">重置</el-button>\r\n+  </el-form-item>\r\n </template>\r\n <style lang=\"less\" >\r\n .el-form-item__content {\r\n   margin-left: 0px !important;\r\n"
+                },
+                {
+                    "date": 1650884337441,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,12 +80,16 @@\n }\r\n </script>\r\n <template>\r\n \r\n+  <el-form-item prop=\"desc\" style=\"margin-left:0px;\">\r\n+    <el-input v-model=\"ruleForm.desc\" type=\"textarea\" />\r\n+  </el-form-item>\r\n   <el-form-item>\r\n     <el-button type=\"primary\" @click=\"submitForm(ruleFormRef)\">导入配置</el-button>\r\n     <el-button @click=\"resetForm(ruleFormRef)\">重置</el-button>\r\n   </el-form-item>\r\n+\r\n </template>\r\n <style lang=\"less\" >\r\n .el-form-item__content {\r\n   margin-left: 0px !important;\r\n"
+                },
+                {
+                    "date": 1650884356628,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -79,17 +79,18 @@\n   formEl.resetFields()\r\n }\r\n </script>\r\n <template>\r\n-\r\n-  <el-form-item prop=\"desc\" style=\"margin-left:0px;\">\r\n-    <el-input v-model=\"ruleForm.desc\" type=\"textarea\" />\r\n-  </el-form-item>\r\n-  <el-form-item>\r\n-    <el-button type=\"primary\" @click=\"submitForm(ruleFormRef)\">导入配置</el-button>\r\n-    <el-button @click=\"resetForm(ruleFormRef)\">重置</el-button>\r\n-  </el-form-item>\r\n-\r\n+  <el-form ref=\"ruleFormRef\" :model=\"ruleForm\" :rules=\"rules\" label-width=\"120px\" class=\"demo-ruleForm\"\r\n+    :size=\"formSize\">\r\n+    <el-form-item prop=\"desc\" style=\"margin-left:0px;\">\r\n+      <el-input v-model=\"ruleForm.desc\" type=\"textarea\" />\r\n+    </el-form-item>\r\n+    <el-form-item>\r\n+      <el-button type=\"primary\" @click=\"submitForm(ruleFormRef)\">导入配置</el-button>\r\n+      <el-button @click=\"resetForm(ruleFormRef)\">重置</el-button>\r\n+    </el-form-item>\r\n+  </el-form>\r\n </template>\r\n <style lang=\"less\" >\r\n .el-form-item__content {\r\n   margin-left: 0px !important;\r\n"
+                },
+                {
+                    "date": 1650884427035,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,63 +4,13 @@\n \r\n const formSize = ref('default')\r\n const ruleFormRef = ref<FormInstance>()\r\n const ruleForm = reactive({\r\n-  name: 'Hello',\r\n-  region: '',\r\n-  date1: '',\r\n-  date2: '',\r\n-  delivery: false,\r\n-  type: [],\r\n-  resource: '',\r\n   desc: '',\r\n })\r\n-\r\n const rules = reactive<FormRules>({\r\n-  name: [\r\n-    { required: true, message: 'Please input Activity name', trigger: 'blur' },\r\n-    { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },\r\n-  ],\r\n-  region: [\r\n-    {\r\n-      required: true,\r\n-      message: 'Please select Activity zone',\r\n-      trigger: 'change',\r\n-    },\r\n-  ],\r\n-  date1: [\r\n-    {\r\n-      type: 'date',\r\n-      required: true,\r\n-      message: 'Please pick a date',\r\n-      trigger: 'change',\r\n-    },\r\n-  ],\r\n-  date2: [\r\n-    {\r\n-      type: 'date',\r\n-      required: true,\r\n-      message: 'Please pick a time',\r\n-      trigger: 'change',\r\n-    },\r\n-  ],\r\n-  type: [\r\n-    {\r\n-      type: 'array',\r\n-      required: true,\r\n-      message: 'Please select at least one activity type',\r\n-      trigger: 'change',\r\n-    },\r\n-  ],\r\n-  resource: [\r\n-    {\r\n-      required: true,\r\n-      message: 'Please select activity resource',\r\n-      trigger: 'change',\r\n-    },\r\n-  ],\r\n   desc: [\r\n-    { required: true, message: 'Please input activity form', trigger: 'blur' },\r\n+    { required: true, message: '请输入配置', trigger: 'blur' },\r\n   ],\r\n })\r\n \r\n const submitForm = async (formEl: FormInstance | undefined) => {\r\n"
+                },
+                {
+                    "date": 1650884695392,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,8 +45,8 @@\n .el-form-item__content {\r\n   margin-left: 0px !important;\r\n }\r\n \r\n-.el-textarea {\r\n+.el-textarea__inner {\r\n   width: 80%;\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650884710748,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,7 +46,7 @@\n   margin-left: 0px !important;\r\n }\r\n \r\n .el-textarea__inner {\r\n-  width: 80%;\r\n+  width: 93%;\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650884731326,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,7 +46,7 @@\n   margin-left: 0px !important;\r\n }\r\n \r\n .el-textarea__inner {\r\n-  width: 93%;\r\n+  width: 76%;\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650884924253,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,8 +39,9 @@\n       <el-button type=\"primary\" @click=\"submitForm(ruleFormRef)\">导入配置</el-button>\r\n       <el-button @click=\"resetForm(ruleFormRef)\">重置</el-button>\r\n     </el-form-item>\r\n   </el-form>\r\n+  <el-button type=\"primary\" @click=\"\">复制本地配置</el-button>\r\n </template>\r\n <style lang=\"less\" >\r\n .el-form-item__content {\r\n   margin-left: 0px !important;\r\n"
+                },
+                {
+                    "date": 1650884984110,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,6 +48,7 @@\n }\r\n \r\n .el-textarea__inner {\r\n   width: 76%;\r\n+  height: 300px;\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650884996832,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,7 +48,7 @@\n }\r\n \r\n .el-textarea__inner {\r\n   width: 76%;\r\n-  height: 300px;\r\n+  min-height: 300px;\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650885041119,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,7 +48,7 @@\n }\r\n \r\n .el-textarea__inner {\r\n   width: 76%;\r\n-  min-height: 300px;\r\n+  height: 300px;\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1650885174444,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,10 +35,9 @@\n     <el-form-item prop=\"desc\" style=\"margin-left:0px;\">\r\n       <el-input v-model=\"ruleForm.desc\" type=\"textarea\" />\r\n     </el-form-item>\r\n     <el-form-item>\r\n-      <el-button icon=\"\r\n-DocumentCopy\" type=\"primary\" @click=\"submitForm(ruleFormRef)\">导入配置</el-button>\r\n+      <el-button icon=\"DocumentCopy\" type=\"primary\" @click=\"submitForm(ruleFormRef)\">导入配置</el-button>\r\n       <el-button @click=\"resetForm(ruleFormRef)\">重置</el-button>\r\n     </el-form-item>\r\n   </el-form>\r\n   <el-button type=\"primary\" @click=\"\">复制本地配置</el-button>\r\n"
+                }
+            ],
+            "date": 1650883658882,
+            "name": "Commit-0",
+            "content": "<script lang=\"ts\" setup>\r\n\r\n</script>\r\n<template>\r\n  <el-form ref=\"ruleFormRef\" :model=\"ruleForm\" :rules=\"rules\" label-width=\"120px\" class=\"demo-ruleForm\"\r\n    :size=\"formSize\">\r\n    <el-form-item label=\"Activity name\" prop=\"name\">\r\n      <el-input v-model=\"ruleForm.name\" />\r\n    </el-form-item>\r\n    <el-form-item label=\"Activity zone\" prop=\"region\">\r\n      <el-select v-model=\"ruleForm.region\" placeholder=\"Activity zone\">\r\n        <el-option label=\"Zone one\" value=\"shanghai\" />\r\n        <el-option label=\"Zone two\" value=\"beijing\" />\r\n      </el-select>\r\n    </el-form-item>\r\n    <el-form-item label=\"Activity time\" required>\r\n      <el-col :span=\"11\">\r\n        <el-form-item prop=\"date1\">\r\n          <el-date-picker v-model=\"ruleForm.date1\" type=\"date\" placeholder=\"Pick a date\" style=\"width: 100%\" />\r\n        </el-form-item>\r\n      </el-col>\r\n      <el-col class=\"text-center\" :span=\"2\">\r\n        <span class=\"text-gray-500\">-</span>\r\n      </el-col>\r\n      <el-col :span=\"11\">\r\n        <el-form-item prop=\"date2\">\r\n          <el-time-picker v-model=\"ruleForm.date2\" placeholder=\"Pick a time\" style=\"width: 100%\" />\r\n        </el-form-item>\r\n      </el-col>\r\n    </el-form-item>\r\n    <el-form-item label=\"Instant delivery\" prop=\"delivery\">\r\n      <el-switch v-model=\"ruleForm.delivery\" />\r\n    </el-form-item>\r\n    <el-form-item label=\"Activity type\" prop=\"type\">\r\n      <el-checkbox-group v-model=\"ruleForm.type\">\r\n        <el-checkbox label=\"Online activities\" name=\"type\" />\r\n        <el-checkbox label=\"Promotion activities\" name=\"type\" />\r\n        <el-checkbox label=\"Offline activities\" name=\"type\" />\r\n        <el-checkbox label=\"Simple brand exposure\" name=\"type\" />\r\n      </el-checkbox-group>\r\n    </el-form-item>\r\n    <el-form-item label=\"Resources\" prop=\"resource\">\r\n      <el-radio-group v-model=\"ruleForm.resource\">\r\n        <el-radio label=\"Sponsorship\" />\r\n        <el-radio label=\"Venue\" />\r\n      </el-radio-group>\r\n    </el-form-item>\r\n    <el-form-item label=\"Activity form\" prop=\"desc\">\r\n      <el-input v-model=\"ruleForm.desc\" type=\"textarea\" />\r\n    </el-form-item>\r\n    <el-form-item>\r\n      <el-button type=\"primary\" @click=\"submitForm(ruleFormRef)\">Create</el-button>\r\n      <el-button @click=\"resetForm(ruleFormRef)\">Reset</el-button>\r\n    </el-form-item>\r\n  </el-form>\r\n</template>\r\n<style lang=\"less\">\r\n</style>"
+        }
+    ]
+}

@@ -8,6 +8,8 @@ const props = defineProps({
 })
 
 let boxStore = useBox()
+// 导入全局配置
+const { GlobalConfiguration: config } = storeToRefs(boxStore)
 const boxItemData = boxStore.boxItem
 // const { boxItem: boxItemData } = storeToRefs(boxStore)
 const boxItemDataByIndex = boxItemData[props.i]
@@ -137,6 +139,7 @@ function doNotStask() {
     el.style.top = top + 'px'
     // 存储坐标
     boxStore.setBoxItemXY(props.i, left, top)
+
   } else {
     // 回到原来存储的位置
     el.style.left = boxItemData[props.i].X + 'px'
@@ -165,7 +168,7 @@ const imgError = () => {
 </script>
 <template>
   <div @contextmenu.native="handlePaste($event)" class="item" ref="item" :style="{
-    'width': w * 100 + 'px', 'height': h * 100 + 'px',
+    'width': w * 100 + 'px', 'height': h * 100 + 'px', 'display': config.isShow ? '' : 'none',
   }">
     <div class="item-icon">
       <a class="icon-a">
