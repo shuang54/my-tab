@@ -10,11 +10,17 @@ const ruleFormRef = ref<FormInstance>()
 const ruleForm = reactive({
   desc: '',
 })
+// 表单验证规则
 const rules = reactive<FormRules>({
   desc: [
     { required: true, message: '请输入配置', trigger: 'blur' },
   ],
 })
+// 重置按钮
+const resetForm = (formEl: FormInstance | undefined) => {
+  if (!formEl) return
+  formEl.resetFields()
+}
 // 导入配置
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
@@ -23,6 +29,8 @@ const submitForm = async (formEl: FormInstance | undefined) => {
       const data = JSON.parse(ruleForm.desc)
       boxStore.GlobalConfiguration = data[0]
       boxStore.boxItem = data[1]
+      localStorage.setItem('boxItemData', JSON.stringify(data[1]))
+      localStorage.setItem('GlobalConfiguration', JSON.stringify(data[0]))
     } else {
       ElMessage.warning('导入失败')
     }
@@ -55,10 +63,7 @@ const copyConfig = () => {
   document.body.removeChild(cInput);
 
 }
-const resetForm = (formEl: FormInstance | undefined) => {
-  if (!formEl) return
-  formEl.resetFields()
-}
+
 </script>
 <template>
   <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="120px" class="demo-ruleForm"

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 48,
+            "activePatchIndex": 84,
             "patches": [
                 {
                     "date": 1650761733766,
@@ -200,6 +200,150 @@
                 {
                     "date": 1650802480007,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <script lang=\"ts\" setup>\r\n import { ref } from 'vue';\r\n \r\n-let radio1 = ref('')\r\n+let layout = ref('')\r\n let sort = ref('')\r\n </script>\r\n <template>\r\n   <el-card class=\"box-card\">\r\n@@ -10,9 +10,9 @@\n       <div class=\"card-header\">\r\n         <span>图标布局</span>\r\n       </div>\r\n     </template>\r\n-    <el-radio-group border v-model=\"radio1\" size=\"large\">\r\n+    <el-radio-group border v-model=\"layout\" size=\"large\">\r\n       <el-tooltip class=\"box-item\" effect=\"dark\" content=\"图标上对齐\" placement=\"top-start\">\r\n         <el-radio-button label=\"top\" />\r\n       </el-tooltip>\r\n       <el-tooltip class=\"box-item\" effect=\"dark\" content=\"图标右对齐\" placement=\"top-start\">\r\n"
+                },
+                {
+                    "date": 1650964102586,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,11 @@\n <script lang=\"ts\" setup>\r\n+import { storeToRefs } from 'pinia';\r\n import { ref } from 'vue';\r\n-\r\n-let layout = ref('')\r\n-let sort = ref('')\r\n+import { useBox } from '../store/box'\r\n+const { GlobalConfiguration: config } = storeToRefs(useBox())\r\n+let layout = config.value.layout\r\n+let sort = config.value.sort\r\n </script>\r\n <template>\r\n   <el-card class=\"box-card\">\r\n     <template #header>\r\n"
+                },
+                {
+                    "date": 1650964464373,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,11 @@\n import { storeToRefs } from 'pinia';\r\n import { ref } from 'vue';\r\n import { useBox } from '../store/box'\r\n const { GlobalConfiguration: config } = storeToRefs(useBox())\r\n-let layout = config.value.layout\r\n-let sort = config.value.sort\r\n+let layout = ref('')\r\n+let sort = ref('')\r\n+layout = config.value.layout\r\n </script>\r\n <template>\r\n   <el-card class=\"box-card\">\r\n     <template #header>\r\n"
+                },
+                {
+                    "date": 1650964483221,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import { useBox } from '../store/box'\r\n const { GlobalConfiguration: config } = storeToRefs(useBox())\r\n let layout = ref('')\r\n let sort = ref('')\r\n-layout = config.value.layout\r\n+// layout = config.value.layout\r\n </script>\r\n <template>\r\n   <el-card class=\"box-card\">\r\n     <template #header>\r\n"
+                },
+                {
+                    "date": 1650964496995,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import { storeToRefs } from 'pinia';\r\n import { ref } from 'vue';\r\n import { useBox } from '../store/box'\r\n const { GlobalConfiguration: config } = storeToRefs(useBox())\r\n-let layout = ref('')\r\n+let layout = ref('left')\r\n let sort = ref('')\r\n // layout = config.value.layout\r\n </script>\r\n <template>\r\n"
+                },
+                {
+                    "date": 1650964507709,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,10 @@\n import { useBox } from '../store/box'\r\n const { GlobalConfiguration: config } = storeToRefs(useBox())\r\n let layout = ref('left')\r\n let sort = ref('')\r\n-// layout = config.value.layout\r\n+console.log(config);\r\n+\r\n </script>\r\n <template>\r\n   <el-card class=\"box-card\">\r\n     <template #header>\r\n"
+                },
+                {
+                    "date": 1650965941505,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import { useBox } from '../store/box'\r\n const { GlobalConfiguration: config } = storeToRefs(useBox())\r\n let layout = ref('left')\r\n let sort = ref('')\r\n-console.log(config);\r\n+console.log(config.value.layou);\r\n \r\n </script>\r\n <template>\r\n   <el-card class=\"box-card\">\r\n"
+                },
+                {
+                    "date": 1650965958626,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import { useBox } from '../store/box'\r\n const { GlobalConfiguration: config } = storeToRefs(useBox())\r\n let layout = ref('left')\r\n let sort = ref('')\r\n-console.log(config.value.layou);\r\n+console.log(config.value.layout);\r\n \r\n </script>\r\n <template>\r\n   <el-card class=\"box-card\">\r\n"
+                },
+                {
+                    "date": 1650966017811,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n const { GlobalConfiguration: config } = storeToRefs(useBox())\r\n let layout = ref('left')\r\n let sort = ref('')\r\n console.log(config.value.layout);\r\n+console.log(config.value);\r\n \r\n </script>\r\n <template>\r\n   <el-card class=\"box-card\">\r\n"
+                },
+                {
+                    "date": 1650966126149,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,11 @@\n import { storeToRefs } from 'pinia';\r\n import { ref } from 'vue';\r\n import { useBox } from '../store/box'\r\n const { GlobalConfiguration: config } = storeToRefs(useBox())\r\n-let layout = ref('left')\r\n-let sort = ref('')\r\n+const layout = ref('left')\r\n+const sort = ref('')\r\n+layout.value = config.value.layout\r\n console.log(config.value.layout);\r\n console.log(config.value);\r\n \r\n </script>\r\n"
+                },
+                {
+                    "date": 1650966213093,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,11 @@\n import { storeToRefs } from 'pinia';\r\n import { ref } from 'vue';\r\n import { useBox } from '../store/box'\r\n const { GlobalConfiguration: config } = storeToRefs(useBox())\r\n-const layout = ref('left')\r\n+const layout = ref(config.value.layout)\r\n const sort = ref('')\r\n-layout.value = config.value.layout\r\n+// layout.value = config.value.layout\r\n console.log(config.value.layout);\r\n console.log(config.value);\r\n \r\n </script>\r\n"
+                },
+                {
+                    "date": 1650966260895,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import { storeToRefs } from 'pinia';\r\n import { ref } from 'vue';\r\n import { useBox } from '../store/box'\r\n const { GlobalConfiguration: config } = storeToRefs(useBox())\r\n-const layout = ref(config.value.layout)\r\n+const layout = config.value.layout\r\n const sort = ref('')\r\n // layout.value = config.value.layout\r\n console.log(config.value.layout);\r\n console.log(config.value);\r\n"
+                },
+                {
+                    "date": 1650966449413,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,10 @@\n import { ref } from 'vue';\r\n import { useBox } from '../store/box'\r\n const { GlobalConfiguration: config } = storeToRefs(useBox())\r\n const layout = config.value.layout\r\n+console.log(layout);\r\n+\r\n const sort = ref('')\r\n // layout.value = config.value.layout\r\n console.log(config.value.layout);\r\n console.log(config.value);\r\n"
+                },
+                {
+                    "date": 1650966461353,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,10 @@\n console.log(layout);\r\n \r\n const sort = ref('')\r\n // layout.value = config.value.layout\r\n-console.log(config.value.layout);\r\n-console.log(config.value);\r\n+// console.log(config.value.layout);\r\n+// console.log(config.value);\r\n \r\n </script>\r\n <template>\r\n   <el-card class=\"box-card\">\r\n"
+                },
+                {
+                    "date": 1650966472491,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import { storeToRefs } from 'pinia';\r\n import { ref } from 'vue';\r\n import { useBox } from '../store/box'\r\n const { GlobalConfiguration: config } = storeToRefs(useBox())\r\n-const layout = config.value.layout\r\n+const layout = ref(config.value.layout)\r\n console.log(layout);\r\n \r\n const sort = ref('')\r\n // layout.value = config.value.layout\r\n"
+                },
+                {
+                    "date": 1650966584503,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n import { storeToRefs } from 'pinia';\r\n import { ref } from 'vue';\r\n import { useBox } from '../store/box'\r\n const { GlobalConfiguration: config } = storeToRefs(useBox())\r\n+let { layout, sort } = ref(config)\r\n const layout = ref(config.value.layout)\r\n console.log(layout);\r\n \r\n const sort = ref('')\r\n"
+                },
+                {
+                    "date": 1650966597866,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,12 +3,12 @@\n import { ref } from 'vue';\r\n import { useBox } from '../store/box'\r\n const { GlobalConfiguration: config } = storeToRefs(useBox())\r\n let { layout, sort } = ref(config)\r\n-const layout = ref(config.value.layout)\r\n+// const layout = ref(config.value.layout)\r\n console.log(layout);\r\n \r\n-const sort = ref('')\r\n+// const sort = ref('')\r\n // layout.value = config.value.layout\r\n // console.log(config.value.layout);\r\n // console.log(config.value);\r\n \r\n"
+                },
+                {
+                    "date": 1650966663067,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,13 +2,10 @@\n import { storeToRefs } from 'pinia';\r\n import { ref } from 'vue';\r\n import { useBox } from '../store/box'\r\n const { GlobalConfiguration: config } = storeToRefs(useBox())\r\n-let { layout, sort } = ref(config)\r\n-// const layout = ref(config.value.layout)\r\n-console.log(layout);\r\n-\r\n-// const sort = ref('')\r\n+const layout = ref('')\r\n+const sort = ref('')\r\n // layout.value = config.value.layout\r\n // console.log(config.value.layout);\r\n // console.log(config.value);\r\n \r\n"
+                },
+                {
+                    "date": 1650966692783,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n import { useBox } from '../store/box'\r\n const { GlobalConfiguration: config } = storeToRefs(useBox())\r\n const layout = ref('')\r\n const sort = ref('')\r\n+config.value.layou = layout.value\r\n // layout.value = config.value.layout\r\n // console.log(config.value.layout);\r\n // console.log(config.value);\r\n \r\n"
+                },
+                {
+                    "date": 1650966704476,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,10 @@\n import { storeToRefs } from 'pinia';\r\n import { ref } from 'vue';\r\n import { useBox } from '../store/box'\r\n const { GlobalConfiguration: config } = storeToRefs(useBox())\r\n-const layout = ref('')\r\n-const sort = ref('')\r\n+let layout = ref('')\r\n+let sort = ref('')\r\n config.value.layou = layout.value\r\n // layout.value = config.value.layout\r\n // console.log(config.value.layout);\r\n // console.log(config.value);\r\n"
+                },
+                {
+                    "date": 1650966726269,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import { useBox } from '../store/box'\r\n const { GlobalConfiguration: config } = storeToRefs(useBox())\r\n let layout = ref('')\r\n let sort = ref('')\r\n-config.value.layou = layout.value\r\n+config.value.layout = layout.value\r\n // layout.value = config.value.layout\r\n // console.log(config.value.layout);\r\n // console.log(config.value);\r\n \r\n"
+                },
+                {
+                    "date": 1650966752681,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import { useBox } from '../store/box'\r\n const { GlobalConfiguration: config } = storeToRefs(useBox())\r\n let layout = ref('')\r\n let sort = ref('')\r\n-config.value.layout = layout.value\r\n+config.value.layout = ref(layout.value)\r\n // layout.value = config.value.layout\r\n // console.log(config.value.layout);\r\n // console.log(config.value);\r\n \r\n"
+                },
+                {
+                    "date": 1650966836910,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,12 @@\n <script lang=\"ts\" setup>\r\n import { storeToRefs } from 'pinia';\r\n-import { ref } from 'vue';\r\n+import { ref, watch } from 'vue';\r\n import { useBox } from '../store/box'\r\n const { GlobalConfiguration: config } = storeToRefs(useBox())\r\n let layout = ref('')\r\n let sort = ref('')\r\n-config.value.layout = ref(layout.value)\r\n+watch\r\n // layout.value = config.value.layout\r\n // console.log(config.value.layout);\r\n // console.log(config.value);\r\n \r\n"
+                },
+                {
+                    "date": 1650966866269,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,10 @@\n import { useBox } from '../store/box'\r\n const { GlobalConfiguration: config } = storeToRefs(useBox())\r\n let layout = ref('')\r\n let sort = ref('')\r\n+console.log(config.value.layout);\r\n+\r\n watch\r\n // layout.value = config.value.layout\r\n // console.log(config.value.layout);\r\n // console.log(config.value);\r\n"
+                },
+                {
+                    "date": 1650966936755,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n <script lang=\"ts\" setup>\r\n import { storeToRefs } from 'pinia';\r\n import { ref, watch } from 'vue';\r\n import { useBox } from '../store/box'\r\n-const { GlobalConfiguration: config } = storeToRefs(useBox())\r\n+let { GlobalConfiguration: config } = storeToRefs(useBox())\r\n let layout = ref('')\r\n let sort = ref('')\r\n console.log(config.value.layout);\r\n \r\n"
+                },
+                {
+                    "date": 1650966953723,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n <script lang=\"ts\" setup>\r\n import { storeToRefs } from 'pinia';\r\n-import { ref, watch } from 'vue';\r\n+import { reactive, ref, watch } from 'vue';\r\n import { useBox } from '../store/box'\r\n let { GlobalConfiguration: config } = storeToRefs(useBox())\r\n+config = reactive(config)\r\n let layout = ref('')\r\n let sort = ref('')\r\n console.log(config.value.layout);\r\n \r\n"
+                },
+                {
+                    "date": 1650966976106,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,8 @@\n import { storeToRefs } from 'pinia';\r\n import { reactive, ref, watch } from 'vue';\r\n import { useBox } from '../store/box'\r\n let { GlobalConfiguration: config } = storeToRefs(useBox())\r\n-config = reactive(config)\r\n let layout = ref('')\r\n let sort = ref('')\r\n console.log(config.value.layout);\r\n \r\n"
+                },
+                {
+                    "date": 1650967039392,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,11 +4,12 @@\n import { useBox } from '../store/box'\r\n let { GlobalConfiguration: config } = storeToRefs(useBox())\r\n let layout = ref('')\r\n let sort = ref('')\r\n-console.log(config.value.layout);\r\n \r\n-watch\r\n+watch(() => layout.value, (val) => {\r\n+  config.value.layout = val\r\n+})\r\n // layout.value = config.value.layout\r\n // console.log(config.value.layout);\r\n // console.log(config.value);\r\n \r\n"
+                },
+                {
+                    "date": 1650967079982,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,11 @@\n \r\n watch(() => layout.value, (val) => {\r\n   config.value.layout = val\r\n })\r\n+watch(() => sort.value, (val) => {\r\n+  config.value.sort = val\r\n+})\r\n // layout.value = config.value.layout\r\n // console.log(config.value.layout);\r\n // console.log(config.value);\r\n \r\n"
+                },
+                {
+                    "date": 1650967340376,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,11 +7,13 @@\n let sort = ref('')\r\n \r\n watch(() => layout.value, (val) => {\r\n   config.value.layout = val\r\n+  localStorage.setItem('GlobalConfiguration', JSON.stringify(config.value))\r\n })\r\n watch(() => sort.value, (val) => {\r\n   config.value.sort = val\r\n+  localStorage.setItem('GlobalConfiguration', JSON.stringify(config.value))\r\n })\r\n // layout.value = config.value.layout\r\n // console.log(config.value.layout);\r\n // console.log(config.value);\r\n"
+                },
+                {
+                    "date": 1650967386261,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,13 +7,15 @@\n let sort = ref('')\r\n \r\n watch(() => layout.value, (val) => {\r\n   config.value.layout = val\r\n-  localStorage.setItem('GlobalConfiguration', JSON.stringify(config.value))\r\n })\r\n watch(() => sort.value, (val) => {\r\n   config.value.sort = val\r\n+})\r\n+watch(() => config.value, (val) => {\r\n   localStorage.setItem('GlobalConfiguration', JSON.stringify(config.value))\r\n+\r\n })\r\n // layout.value = config.value.layout\r\n // console.log(config.value.layout);\r\n // console.log(config.value);\r\n"
+                },
+                {
+                    "date": 1650967520241,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n })\r\n watch(() => sort.value, (val) => {\r\n   config.value.sort = val\r\n })\r\n-watch(() => config.value, (val) => {\r\n+watch(config.value, (val) => {\r\n   localStorage.setItem('GlobalConfiguration', JSON.stringify(config.value))\r\n \r\n })\r\n // layout.value = config.value.layout\r\n"
+                },
+                {
+                    "date": 1650967590834,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,12 +11,9 @@\n })\r\n watch(() => sort.value, (val) => {\r\n   config.value.sort = val\r\n })\r\n-watch(config.value, (val) => {\r\n-  localStorage.setItem('GlobalConfiguration', JSON.stringify(config.value))\r\n \r\n-})\r\n // layout.value = config.value.layout\r\n // console.log(config.value.layout);\r\n // console.log(config.value);\r\n \r\n"
+                },
+                {
+                    "date": 1650967638124,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,10 @@\n import { useBox } from '../store/box'\r\n let { GlobalConfiguration: config } = storeToRefs(useBox())\r\n let layout = ref('')\r\n let sort = ref('')\r\n-\r\n+layout = config.value.layout\r\n+sort = config.value.sort\r\n watch(() => layout.value, (val) => {\r\n   config.value.layout = val\r\n })\r\n watch(() => sort.value, (val) => {\r\n"
+                },
+                {
+                    "date": 1650967738438,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,10 @@\n import { useBox } from '../store/box'\r\n let { GlobalConfiguration: config } = storeToRefs(useBox())\r\n let layout = ref('')\r\n let sort = ref('')\r\n-layout = config.value.layout\r\n-sort = config.value.sort\r\n+layout.value = config.value.layout\r\n+sort.value = config.value.sort\r\n watch(() => layout.value, (val) => {\r\n   config.value.layout = val\r\n })\r\n watch(() => sort.value, (val) => {\r\n"
+                },
+                {
+                    "date": 1650968856157,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,12 +13,26 @@\n watch(() => sort.value, (val) => {\r\n   config.value.sort = val\r\n })\r\n \r\n-// layout.value = config.value.layout\r\n-// console.log(config.value.layout);\r\n-// console.log(config.value);\r\n+function defaultSorting() {\r\n+  const interval = 100\r\n+  let page = 0\r\n+  let num = 0\r\n+  boxItemData.value.forEach(element => {\r\n+    let Y = num * 100\r\n+    if (Y > BoxOffsetHeight - 100) {\r\n+      page++\r\n+      num = 0\r\n+      Y = num * 100\r\n+    }\r\n+    let X = 100 * page\r\n+    element.X = X\r\n+    element.Y = Y\r\n+    num++\r\n+  });\r\n \r\n+}\r\n </script>\r\n <template>\r\n   <el-card class=\"box-card\">\r\n     <template #header>\r\n"
+                },
+                {
+                    "date": 1650969287206,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,9 @@\n     }\r\n     let Y = 100 * page\r\n     // element.X = X\r\n     // element.Y = Y\r\n-    console.log(X, y);\r\n+    console.log(X, );\r\n \r\n     num++\r\n   });\r\n \r\n"
                 }
             ],
             "date": 1650761733766,

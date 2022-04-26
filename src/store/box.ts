@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { get } from "../utils/axios"
 import { ElMessage as $message, ElStep } from 'element-plus'
+
 export const useBox = defineStore({
   id: 'box',
   state: () => {
