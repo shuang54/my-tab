@@ -32,7 +32,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
       localStorage.setItem('boxItemData', JSON.stringify(data[1]))
       localStorage.setItem('GlobalConfiguration', JSON.stringify(data[0]))
     } else {
-      ElMessage.warning('导入失败')
+      ElMessage.error('导入失败')
     }
   })
 }

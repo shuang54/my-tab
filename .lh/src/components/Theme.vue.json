@@ -1,0 +1,310 @@
+{
+    "sourceFile": "src/components/Theme.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 73,
+            "patches": [
+                {
+                    "date": 1651065505978,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1651065656637,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,6 @@\n <script lang=\"ts\" setup></script>\r\n-<template></template>\r\n+<template>\r\n+\r\n+</template>\r\n <style lang=\"less\">\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1651065767541,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,8 @@\n <script lang=\"ts\" setup></script>\r\n <template>\r\n-\r\n+  <div class=\"theme-con\">\r\n+    <div></div>\r\n+  </div>\r\n </template>\r\n <style lang=\"less\">\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1651065780383,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <script lang=\"ts\" setup></script>\r\n <template>\r\n-  <div class=\"theme-con\">\r\n+  <div class=\"theme-container\">\r\n     <div></div>\r\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n"
+                },
+                {
+                    "date": 1651065905338,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,20 @@\n <script lang=\"ts\" setup></script>\r\n <template>\r\n   <div class=\"theme-container\">\r\n-    <div></div>\r\n+    <div class=\"theme-item\"></div>\r\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n+.theme-container {\r\n+  display: flex;\r\n+  flex-direction: column;\r\n+  justify-content: center;\r\n+  width: 100%;\r\n+  height: 100%;\r\n+\r\n+  .theme-item {\r\n+    width: 200px;\r\n+    height: 100px;\r\n+  }\r\n+}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1651065922686,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,7 +14,8 @@\n \r\n   .theme-item {\r\n     width: 200px;\r\n     height: 100px;\r\n+    background-color: pink;\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1651066178173,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,8 @@\n \r\n   .theme-item {\r\n     width: 200px;\r\n     height: 100px;\r\n-    background-color: pink;\r\n+\r\n   }\r\n }\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1651066216865,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,17 @@\n <script lang=\"ts\" setup></script>\r\n <template>\r\n   <div class=\"theme-container\">\r\n-    <div class=\"theme-item\"></div>\r\n+    <div class=\"theme-item\">\r\n+      <el-image style=\"width: 100px; height: 100px\" :src=\"url\" :preview-src-list=\"srcList\" :initial-index=\"4\"\r\n+        fit=\"cover\" />\r\n+    </div>\r\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n .theme-container {\r\n   display: flex;\r\n   flex-direction: column;\r\n-  justify-content: center;\r\n   width: 100%;\r\n   height: 100%;\r\n \r\n   .theme-item {\r\n"
+                },
+                {
+                    "date": 1651066266626,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,5 +19,18 @@\n     height: 100px;\r\n \r\n   }\r\n }\r\n+\r\n+.demo-image__error .image-slot {\r\n+  font-size: 30px;\r\n+}\r\n+\r\n+.demo-image__error .image-slot .el-icon {\r\n+  font-size: 30px;\r\n+}\r\n+\r\n+.demo-image__error .el-image {\r\n+  width: 100%;\r\n+  height: 200px;\r\n+}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1651066272587,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,17 @@\n-<script lang=\"ts\" setup></script>\r\n+<script lang=\"ts\" setup>\r\n+\r\n+const url =\r\n+  'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'\r\n+const srcList = [\r\n+  'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',\r\n+  'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg',\r\n+  'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg',\r\n+  'https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg',\r\n+  'https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg',\r\n+  'https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg',\r\n+  'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg',\r\n+]</script>\r\n <template>\r\n   <div class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n       <el-image style=\"width: 100px; height: 100px\" :src=\"url\" :preview-src-list=\"srcList\" :initial-index=\"4\"\r\n"
+                },
+                {
+                    "date": 1651066306042,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,13 +9,14 @@\n   'https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg',\r\n   'https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg',\r\n   'https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg',\r\n   'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg',\r\n-]</script>\r\n+]\r\n+</script>\r\n <template>\r\n   <div class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n-      <el-image style=\"width: 100px; height: 100px\" :src=\"url\" :preview-src-list=\"srcList\" :initial-index=\"4\"\r\n+      <el-image style=\"width: 200px; height: 100px\" :src=\"url\" :preview-src-list=\"srcList\" :initial-index=\"4\"\r\n         fit=\"cover\" />\r\n     </div>\r\n   </div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1651066312141,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n </script>\r\n <template>\r\n   <div class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n-      <el-image style=\"width: 200px; height: 100px\" :src=\"url\" :preview-src-list=\"srcList\" :initial-index=\"4\"\r\n+      <el-image style=\"width: 200px; height: 150px\" :src=\"url\" :preview-src-list=\"srcList\" :initial-index=\"4\"\r\n         fit=\"cover\" />\r\n     </div>\r\n   </div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1651066337773,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n </script>\r\n <template>\r\n   <div class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n-      <el-image style=\"width: 200px; height: 150px\" :src=\"url\" :preview-src-list=\"srcList\" :initial-index=\"4\"\r\n+      <el-image style=\"width:100%; height: 200px\" :src=\"url\" :preview-src-list=\"srcList\" :initial-index=\"4\"\r\n         fit=\"cover\" />\r\n     </div>\r\n   </div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1651066475816,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <script lang=\"ts\" setup>\r\n \r\n const url =\r\n-  'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'\r\n+  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png'\r\n const srcList = [\r\n   'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',\r\n   'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg',\r\n   'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg',\r\n"
+                },
+                {
+                    "date": 1651066486645,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,15 +2,11 @@\n \r\n const url =\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png'\r\n const srcList = [\r\n-  'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',\r\n-  'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg',\r\n-  'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg',\r\n-  'https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg',\r\n-  'https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg',\r\n-  'https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg',\r\n-  'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg',\r\n+  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png',\r\n+  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3_%E6%89%8B%E6%9C%BA.png',\r\n+\r\n ]\r\n </script>\r\n <template>\r\n   <div class=\"theme-container\">\r\n"
+                },
+                {
+                    "date": 1651066515678,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n   width: 100%;\r\n   height: 100%;\r\n \r\n   .theme-item {\r\n-    width: 200px;\r\n+    width: 100%;\r\n     height: 100px;\r\n \r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1651066555018,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,9 @@\n   .theme-item {\r\n     width: 100%;\r\n     height: 100px;\r\n \r\n+    img {}\r\n   }\r\n }\r\n \r\n .demo-image__error .image-slot {\r\n"
+                },
+                {
+                    "date": 1651066562860,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,13 @@\n   .theme-item {\r\n     width: 100%;\r\n     height: 100px;\r\n \r\n-    img {}\r\n+    img {\r\n+      background-size: cover;\r\n+      background-repeat: no-repeat;\r\n+      background-position: center center;\r\n+    }\r\n   }\r\n }\r\n \r\n .demo-image__error .image-slot {\r\n"
+                },
+                {
+                    "date": 1651066660031,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n <template>\r\n   <div class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n       <el-image style=\"width:100%; height: 200px\" :src=\"url\" :preview-src-list=\"srcList\" :initial-index=\"4\"\r\n-        fit=\"cover\" />\r\n+        fit=\"contain\" />\r\n     </div>\r\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n@@ -24,15 +24,11 @@\n   height: 100%;\r\n \r\n   .theme-item {\r\n     width: 100%;\r\n-    height: 100px;\r\n+    height: 200px;\r\n \r\n-    img {\r\n-      background-size: cover;\r\n-      background-repeat: no-repeat;\r\n-      background-position: center center;\r\n-    }\r\n+\r\n   }\r\n }\r\n \r\n .demo-image__error .image-slot {\r\n"
+                },
+                {
+                    "date": 1651066763762,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n <template>\r\n   <div class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n       <el-image style=\"width:100%; height: 200px\" :src=\"url\" :preview-src-list=\"srcList\" :initial-index=\"4\"\r\n-        fit=\"contain\" />\r\n+        fit=\"scale-down\" />\r\n     </div>\r\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n"
+                },
+                {
+                    "date": 1651066791150,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n </script>\r\n <template>\r\n   <div class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n-      <el-image style=\"width:100%; height: 200px\" :src=\"url\" :preview-src-list=\"srcList\" :initial-index=\"4\"\r\n+      <el-image style=\"width:100%; height: 300px\" :src=\"url\" :preview-src-list=\"srcList\" :initial-index=\"4\"\r\n         fit=\"scale-down\" />\r\n     </div>\r\n   </div>\r\n </template>\r\n@@ -24,11 +24,11 @@\n   height: 100%;\r\n \r\n   .theme-item {\r\n     width: 100%;\r\n-    height: 200px;\r\n \r\n \r\n+\r\n   }\r\n }\r\n \r\n .demo-image__error .image-slot {\r\n"
+                },
+                {
+                    "date": 1651066807348,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n </script>\r\n <template>\r\n   <div class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n-      <el-image style=\"width:100%; height: 300px\" :src=\"url\" :preview-src-list=\"srcList\" :initial-index=\"4\"\r\n+      <el-image style=\"width:100%; height: 100px\" :src=\"url\" :preview-src-list=\"srcList\" :initial-index=\"4\"\r\n         fit=\"scale-down\" />\r\n     </div>\r\n   </div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1651066813055,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n </script>\r\n <template>\r\n   <div class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n-      <el-image style=\"width:100%; height: 100px\" :src=\"url\" :preview-src-list=\"srcList\" :initial-index=\"4\"\r\n+      <el-image style=\"width:100%; height: 200px\" :src=\"url\" :preview-src-list=\"srcList\" :initial-index=\"4\"\r\n         fit=\"scale-down\" />\r\n     </div>\r\n   </div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1651066870310,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,11 +24,11 @@\n   height: 100%;\r\n \r\n   .theme-item {\r\n     width: 100%;\r\n+    text-align: center;\r\n \r\n \r\n-\r\n   }\r\n }\r\n \r\n .demo-image__error .image-slot {\r\n"
+                },
+                {
+                    "date": 1651067167771,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n <template>\r\n   <div class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n       <el-image style=\"width:100%; height: 200px\" :src=\"url\" :preview-src-list=\"srcList\" :initial-index=\"4\"\r\n-        fit=\"scale-down\" />\r\n+        fit=\"fill\" />\r\n     </div>\r\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n"
+                },
+                {
+                    "date": 1651067188166,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,10 +10,9 @@\n </script>\r\n <template>\r\n   <div class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n-      <el-image style=\"width:100%; height: 200px\" :src=\"url\" :preview-src-list=\"srcList\" :initial-index=\"4\"\r\n-        fit=\"fill\" />\r\n+      <el-image :src=\"url\" :preview-src-list=\"srcList\" :initial-index=\"4\" fit=\"fill\" />\r\n     </div>\r\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n"
+                },
+                {
+                    "date": 1651067198024,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n </script>\r\n <template>\r\n   <div class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n-      <el-image :src=\"url\" :preview-src-list=\"srcList\" :initial-index=\"4\" fit=\"fill\" />\r\n+      <el-image :src=\"url\" :preview-src-list=\"srcList\" :initial-index=\"4\" fit=\"contain\" />\r\n     </div>\r\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n"
+                },
+                {
+                    "date": 1651067213494,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n </script>\r\n <template>\r\n   <div class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n-      <el-image :src=\"url\" :preview-src-list=\"srcList\" :initial-index=\"4\" fit=\"contain\" />\r\n+      <el-image :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n     </div>\r\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n"
+                },
+                {
+                    "date": 1651067255347,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,12 @@\n   .theme-item {\r\n     width: 100%;\r\n     text-align: center;\r\n \r\n+    img {\r\n+      width: 200px;\r\n+      height: 150px;\r\n+    }\r\n \r\n   }\r\n }\r\n \r\n"
+                },
+                {
+                    "date": 1651067264597,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n     width: 100%;\r\n     text-align: center;\r\n \r\n     img {\r\n-      width: 200px;\r\n+      width: 300px;\r\n       height: 150px;\r\n     }\r\n \r\n   }\r\n"
+                },
+                {
+                    "date": 1651067347335,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n </script>\r\n <template>\r\n   <div class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n-      <el-image :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n+      <el-image :style=\"{ 'w'}\" :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n     </div>\r\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n"
+                },
+                {
+                    "date": 1651067353930,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n </script>\r\n <template>\r\n   <div class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n-      <el-image :style=\"{ 'w'}\" :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n+      <el-image tyle=\"width: 100px; height: 100px\" :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n     </div>\r\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n@@ -25,13 +25,10 @@\n   .theme-item {\r\n     width: 100%;\r\n     text-align: center;\r\n \r\n-    img {\r\n-      width: 300px;\r\n-      height: 150px;\r\n-    }\r\n \r\n+\r\n   }\r\n }\r\n \r\n .demo-image__error .image-slot {\r\n"
+                },
+                {
+                    "date": 1651067359492,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n </script>\r\n <template>\r\n   <div class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n-      <el-image tyle=\"width: 100px; height: 100px\" :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n+      <el-image tyle=\"width: 300px; height: 140px\" :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n     </div>\r\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n"
+                },
+                {
+                    "date": 1651067382032,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n </script>\r\n <template>\r\n   <div class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n-      <el-image tyle=\"width: 300px; height: 140px\" :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n+      <el-image style=\"width: 300px; height: 140px\" :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n     </div>\r\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n"
+                },
+                {
+                    "date": 1651067387798,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n </script>\r\n <template>\r\n   <div class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n-      <el-image style=\"width: 300px; height: 140px\" :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n+      <el-image style=\"width: 300px; height: 20px\" :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n     </div>\r\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n"
+                },
+                {
+                    "date": 1651067405198,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n </script>\r\n <template>\r\n   <div class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n-      <el-image style=\"width: 300px; height: 20px\" :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n+      <el-image style=\"width: 300px; height: 200px\" :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n     </div>\r\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n@@ -23,9 +23,8 @@\n   height: 100%;\r\n \r\n   .theme-item {\r\n     width: 100%;\r\n-    text-align: center;\r\n \r\n \r\n \r\n   }\r\n"
+                },
+                {
+                    "date": 1651067438229,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n <template>\r\n   <div class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n       <el-image style=\"width: 300px; height: 200px\" :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n+\r\n     </div>\r\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n"
+                },
+                {
+                    "date": 1651067456967,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,10 @@\n <template>\r\n   <div class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n       <el-image style=\"width: 300px; height: 200px\" :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n-\r\n+      <el-button type=\"primary\">Primary</el-button>\r\n+      <el-button type=\"primary\">Primary</el-button>\r\n     </div>\r\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n"
+                },
+                {
+                    "date": 1651067466896,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,10 +11,12 @@\n <template>\r\n   <div class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n       <el-image style=\"width: 300px; height: 200px\" :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n-      <el-button type=\"primary\">Primary</el-button>\r\n-      <el-button type=\"primary\">Primary</el-button>\r\n+      <div>\r\n+        <el-button type=\"primary\">Primary</el-button>\r\n+        <el-button type=\"primary\">Primary</el-button>\r\n+      </div>\r\n     </div>\r\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n"
+                },
+                {
+                    "date": 1651067490303,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n </script>\r\n <template>\r\n   <div class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n+      <p></p>\r\n       <el-image style=\"width: 300px; height: 200px\" :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n       <div>\r\n         <el-button type=\"primary\">Primary</el-button>\r\n         <el-button type=\"primary\">Primary</el-button>\r\n"
+                },
+                {
+                    "date": 1651067498945,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n </script>\r\n <template>\r\n   <div class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n-      <p></p>\r\n+      <p>乃</p>\r\n       <el-image style=\"width: 300px; height: 200px\" :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n       <div>\r\n         <el-button type=\"primary\">Primary</el-button>\r\n         <el-button type=\"primary\">Primary</el-button>\r\n"
+                },
+                {
+                    "date": 1651067511752,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n </script>\r\n <template>\r\n   <div class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n-      <p>乃</p>\r\n+      <p>乃琳</p>\r\n       <el-image style=\"width: 300px; height: 200px\" :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n       <div>\r\n         <el-button type=\"primary\">Primary</el-button>\r\n         <el-button type=\"primary\">Primary</el-button>\r\n"
+                },
+                {
+                    "date": 1651067560569,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,10 +13,10 @@\n     <div class=\"theme-item\">\r\n       <p>乃琳</p>\r\n       <el-image style=\"width: 300px; height: 200px\" :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n       <div>\r\n+        <el-button type=\"primary\">使用主题</el-button>\r\n         <el-button type=\"primary\">Primary</el-button>\r\n-        <el-button type=\"primary\">Primary</el-button>\r\n       </div>\r\n     </div>\r\n   </div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1651067569555,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,8 @@\n       <p>乃琳</p>\r\n       <el-image style=\"width: 300px; height: 200px\" :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n       <div>\r\n         <el-button type=\"primary\">使用主题</el-button>\r\n-        <el-button type=\"primary\">Primary</el-button>\r\n       </div>\r\n     </div>\r\n   </div>\r\n </template>\r\n"
+                },
+                {
+                    "date": 1651067702953,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n <style lang=\"less\">\r\n .theme-container {\r\n   display: flex;\r\n   flex-direction: column;\r\n-  width: 100%;\r\n+  width: 80%;\r\n   height: 100%;\r\n \r\n   .theme-item {\r\n     width: 100%;\r\n"
+                },
+                {
+                    "date": 1651067764880,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n <style lang=\"less\">\r\n .theme-container {\r\n   display: flex;\r\n   flex-direction: column;\r\n-  width: 80%;\r\n+  width: 78%;\r\n   height: 100%;\r\n \r\n   .theme-item {\r\n     width: 100%;\r\n"
+                },
+                {
+                    "date": 1651067785902,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,11 +27,11 @@\n   height: 100%;\r\n \r\n   .theme-item {\r\n     width: 100%;\r\n+    display: flex;\r\n+    align-items: center;\r\n \r\n-\r\n-\r\n   }\r\n }\r\n \r\n .demo-image__error .image-slot {\r\n"
+                },
+                {
+                    "date": 1651067791782,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,8 +28,9 @@\n \r\n   .theme-item {\r\n     width: 100%;\r\n     display: flex;\r\n+    flex-direction: column;\r\n     align-items: center;\r\n \r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1651067812762,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,8 @@\n </script>\r\n <template>\r\n   <div class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n-      <p>乃琳</p>\r\n       <el-image style=\"width: 300px; height: 200px\" :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n       <div>\r\n         <el-button type=\"primary\">使用主题</el-button>\r\n       </div>\r\n"
+                },
+                {
+                    "date": 1651067927802,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,33 @@\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png'\r\n const srcList = [\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png',\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3_%E6%89%8B%E6%9C%BA.png',\r\n-\r\n ]\r\n+const url2 =\r\n+  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png'\r\n+const srcList2 = [\r\n+  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png',\r\n+  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3_%E6%89%8B%E6%9C%BA.png',\r\n+]\r\n+const url3 =\r\n+  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png'\r\n+const srcList3 = [\r\n+  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png',\r\n+  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3_%E6%89%8B%E6%9C%BA.png',\r\n+]\r\n+const url4 =\r\n+  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png'\r\n+const srcList4 = [\r\n+  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png',\r\n+  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3_%E6%89%8B%E6%9C%BA.png',\r\n+]\r\n+const url5 =\r\n+  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png'\r\n+const srcList6 = [\r\n+  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png',\r\n+  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3_%E6%89%8B%E6%9C%BA.png',\r\n+]\r\n </script>\r\n <template>\r\n   <div class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n"
+                },
+                {
+                    "date": 1651067935174,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png',\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3_%E6%89%8B%E6%9C%BA.png',\r\n ]\r\n const url2 =\r\n-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png'\r\n+  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%90%91%E6%99%9A.png'\r\n const srcList2 = [\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png',\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3_%E6%89%8B%E6%9C%BA.png',\r\n ]\r\n"
+                },
+                {
+                    "date": 1651067950198,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n const url2 =\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%90%91%E6%99%9A.png'\r\n const srcList2 = [\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png',\r\n-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3_%E6%89%8B%E6%9C%BA.png',\r\n+  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%90%91%E6%99%9A_%E6%89%8B%E6%9C%BA.png',\r\n ]\r\n const url3 =\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png'\r\n const srcList3 = [\r\n"
+                },
+                {
+                    "date": 1651067970533,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,11 +12,11 @@\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png',\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%90%91%E6%99%9A_%E6%89%8B%E6%9C%BA.png',\r\n ]\r\n const url3 =\r\n-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png'\r\n+  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%98%89%E7%84%B6.png'\r\n const srcList3 = [\r\n-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png',\r\n+  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%98%89%E7%84%B6.png',\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3_%E6%89%8B%E6%9C%BA.png',\r\n ]\r\n const url4 =\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png'\r\n"
+                },
+                {
+                    "date": 1651067983188,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,16 +8,16 @@\n ]\r\n const url2 =\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%90%91%E6%99%9A.png'\r\n const srcList2 = [\r\n-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png',\r\n+  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%90%91%E6%99%9A.png',\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%90%91%E6%99%9A_%E6%89%8B%E6%9C%BA.png',\r\n ]\r\n const url3 =\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%98%89%E7%84%B6.png'\r\n const srcList3 = [\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%98%89%E7%84%B6.png',\r\n-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3_%E6%89%8B%E6%9C%BA.png',\r\n+  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%98%89%E7%84%B6_%E6%89%8B%E6%9C%BA.png',\r\n ]\r\n const url4 =\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png'\r\n const srcList4 = [\r\n"
+                },
+                {
+                    "date": 1651068000338,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%98%89%E7%84%B6.png',\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%98%89%E7%84%B6_%E6%89%8B%E6%9C%BA.png',\r\n ]\r\n const url4 =\r\n-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png'\r\n+  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E7%8F%88%E4%B9%90.png'\r\n const srcList4 = [\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png',\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3_%E6%89%8B%E6%9C%BA.png',\r\n ]\r\n"
+                },
+                {
+                    "date": 1651068012698,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n const url4 =\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E7%8F%88%E4%B9%90.png'\r\n const srcList4 = [\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png',\r\n-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3_%E6%89%8B%E6%9C%BA.png',\r\n+  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E7%8F%88%E4%B9%90_%E6%89%8B%E6%9C%BA.png',\r\n ]\r\n const url5 =\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png'\r\n const srcList6 = [\r\n"
+                },
+                {
+                    "date": 1651068021682,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,11 +24,11 @@\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png',\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E7%8F%88%E4%B9%90_%E6%89%8B%E6%9C%BA.png',\r\n ]\r\n const url5 =\r\n-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png'\r\n+  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89.png'\r\n const srcList6 = [\r\n-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png',\r\n+  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89.png',\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3_%E6%89%8B%E6%9C%BA.png',\r\n ]\r\n </script>\r\n <template>\r\n"
+                },
+                {
+                    "date": 1651068038965,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n const url5 =\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89.png'\r\n const srcList6 = [\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89.png',\r\n-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3_%E6%89%8B%E6%9C%BA.png',\r\n+  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89_%E6%89%8B%E6%9C%BA.png',\r\n ]\r\n </script>\r\n <template>\r\n   <div class=\"theme-container\">\r\n"
+                },
+                {
+                    "date": 1651068081046,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,8 +38,32 @@\n       <div>\r\n         <el-button type=\"primary\">使用主题</el-button>\r\n       </div>\r\n     </div>\r\n+    <div class=\"theme-item\">\r\n+      <el-image style=\"width: 300px; height: 200px\" :src=\"url2\" :preview-src-list=\"srcList2\" fit=\"contain\" />\r\n+      <div>\r\n+        <el-button type=\"primary\">使用主题</el-button>\r\n+      </div>\r\n+    </div>\r\n+    <div class=\"theme-item\">\r\n+      <el-image style=\"width: 300px; height: 200px\" :src=\"url3\" :preview-src-list=\"srcList3\" fit=\"contain\" />\r\n+      <div>\r\n+        <el-button type=\"primary\">使用主题</el-button>\r\n+      </div>\r\n+    </div>\r\n+    <div class=\"theme-item\">\r\n+      <el-image style=\"width: 300px; height: 200px\" :src=\"url4\" :preview-src-list=\"srcList4\" fit=\"contain\" />\r\n+      <div>\r\n+        <el-button type=\"primary\">使用主题</el-button>\r\n+      </div>\r\n+    </div>\r\n+    <div class=\"theme-item\">\r\n+      <el-image style=\"width: 300px; height: 200px\" :src=\"url5\" :preview-src-list=\"srcList5\" fit=\"contain\" />\r\n+      <div>\r\n+        <el-button type=\"primary\">使用主题</el-button>\r\n+      </div>\r\n+    </div>\r\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n .theme-container {\r\n"
+                },
+                {
+                    "date": 1651068191147,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n ]\r\n const url4 =\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E7%8F%88%E4%B9%90.png'\r\n const srcList4 = [\r\n-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png',\r\n+  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E7%8F%88%E4%B9%90.png',\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E7%8F%88%E4%B9%90_%E6%89%8B%E6%9C%BA.png',\r\n ]\r\n const url5 =\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89.png'\r\n"
+                },
+                {
+                    "date": 1651068269776,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,8 +70,9 @@\n   display: flex;\r\n   flex-direction: column;\r\n   width: 78%;\r\n   height: 100%;\r\n+  overflow-y: scroll;\r\n \r\n   .theme-item {\r\n     width: 100%;\r\n     display: flex;\r\n"
+                },
+                {
+                    "date": 1651068288136,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E7%8F%88%E4%B9%90_%E6%89%8B%E6%9C%BA.png',\r\n ]\r\n const url5 =\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89.png'\r\n-const srcList6 = [\r\n+const srcList5 = [\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89.png',\r\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89_%E6%89%8B%E6%9C%BA.png',\r\n ]\r\n </script>\r\n"
+                },
+                {
+                    "date": 1651068395218,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89_%E6%89%8B%E6%9C%BA.png',\r\n ]\r\n </script>\r\n <template>\r\n-  <div class=\"theme-container\">\r\n+  <div v-infinite-scroll=\"load\" class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n       <el-image style=\"width: 300px; height: 200px\" :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n       <div>\r\n         <el-button type=\"primary\">使用主题</el-button>\r\n"
+                },
+                {
+                    "date": 1651068424860,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89_%E6%89%8B%E6%9C%BA.png',\r\n ]\r\n </script>\r\n <template>\r\n-  <div v-infinite-scroll=\"load\" class=\"theme-container\">\r\n+  <div style=\"overflow: auto\" class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n       <el-image style=\"width: 300px; height: 200px\" :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n       <div>\r\n         <el-button type=\"primary\">使用主题</el-button>\r\n"
+                },
+                {
+                    "date": 1651068454266,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89_%E6%89%8B%E6%9C%BA.png',\r\n ]\r\n </script>\r\n <template>\r\n-  <div style=\"overflow: auto\" class=\"theme-container\">\r\n+  <div class=\"theme-container\">\r\n     <div class=\"theme-item\">\r\n       <el-image style=\"width: 300px; height: 200px\" :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n       <div>\r\n         <el-button type=\"primary\">使用主题</el-button>\r\n@@ -70,9 +70,9 @@\n   display: flex;\r\n   flex-direction: column;\r\n   width: 78%;\r\n   height: 100%;\r\n-  overflow-y: scroll;\r\n+  overflow: scroll;\r\n \r\n   .theme-item {\r\n     width: 100%;\r\n     display: flex;\r\n"
+                },
+                {
+                    "date": 1651068853137,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89_%E6%89%8B%E6%9C%BA.png',\r\n ]\r\n </script>\r\n <template>\r\n-  <div class=\"theme-container\">\r\n+  <div class=\"theme-container\" infinite-scroll-disabled=\"disabled\">\r\n     <div class=\"theme-item\">\r\n       <el-image style=\"width: 300px; height: 200px\" :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n       <div>\r\n         <el-button type=\"primary\">使用主题</el-button>\r\n"
+                },
+                {
+                    "date": 1651068891157,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,9 +69,9 @@\n .theme-container {\r\n   display: flex;\r\n   flex-direction: column;\r\n   width: 78%;\r\n-  height: 100%;\r\n+  // height: 100%;\r\n   overflow: scroll;\r\n \r\n   .theme-item {\r\n     width: 100%;\r\n"
+                },
+                {
+                    "date": 1651068970701,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89_%E6%89%8B%E6%9C%BA.png',\r\n ]\r\n </script>\r\n <template>\r\n-  <div class=\"theme-container\" infinite-scroll-disabled=\"disabled\">\r\n+  <div class=\"theme-container\" class=\"infinite-list\" style=\"overflow: auto\">\r\n     <div class=\"theme-item\">\r\n       <el-image style=\"width: 300px; height: 200px\" :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n       <div>\r\n         <el-button type=\"primary\">使用主题</el-button>\r\n"
+                },
+                {
+                    "date": 1651068978845,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n   'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89_%E6%89%8B%E6%9C%BA.png',\r\n ]\r\n </script>\r\n <template>\r\n-  <div class=\"theme-container\" class=\"infinite-list\" style=\"overflow: auto\">\r\n+  <div class=\"theme-container infinite-list\" style=\"overflow: auto\">\r\n     <div class=\"theme-item\">\r\n       <el-image style=\"width: 300px; height: 200px\" :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n       <div>\r\n         <el-button type=\"primary\">使用主题</el-button>\r\n"
+                },
+                {
+                    "date": 1651068986186,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -93,5 +93,26 @@\n .demo-image__error .el-image {\r\n   width: 100%;\r\n   height: 200px;\r\n }\r\n+\r\n+.infinite-list {\r\n+  height: 300px;\r\n+  padding: 0;\r\n+  margin: 0;\r\n+  list-style: none;\r\n+}\r\n+\r\n+.infinite-list .infinite-list-item {\r\n+  display: flex;\r\n+  align-items: center;\r\n+  justify-content: center;\r\n+  height: 50px;\r\n+  background: var(--el-color-primary-light-9);\r\n+  margin: 10px;\r\n+  color: var(--el-color-primary);\r\n+}\r\n+\r\n+.infinite-list .infinite-list-item+.list-item {\r\n+  margin-top: 10px;\r\n+}\r\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1651069105290,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -95,9 +95,9 @@\n   height: 200px;\r\n }\r\n \r\n .infinite-list {\r\n-  height: 300px;\r\n+  height: 100%x;\r\n   padding: 0;\r\n   margin: 0;\r\n   list-style: none;\r\n }\r\n"
+                },
+                {
+                    "date": 1651069118797,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -95,9 +95,9 @@\n   height: 200px;\r\n }\r\n \r\n .infinite-list {\r\n-  height: 100%x;\r\n+  height: 1000px;\r\n   padding: 0;\r\n   margin: 0;\r\n   list-style: none;\r\n }\r\n"
+                },
+                {
+                    "date": 1651069135787,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -95,9 +95,9 @@\n   height: 200px;\r\n }\r\n \r\n .infinite-list {\r\n-  height: 1000px;\r\n+  height: 500px;\r\n   padding: 0;\r\n   margin: 0;\r\n   list-style: none;\r\n }\r\n"
+                },
+                {
+                    "date": 1651069149220,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -95,9 +95,9 @@\n   height: 200px;\r\n }\r\n \r\n .infinite-list {\r\n-  height: 500px;\r\n+  height: 800px;\r\n   padding: 0;\r\n   margin: 0;\r\n   list-style: none;\r\n }\r\n"
+                }
+            ],
+            "date": 1651065505978,
+            "name": "Commit-0",
+            "content": "<script lang=\"ts\" setup></script>\r\n<template></template>\r\n<style lang=\"less\">\r\n</style>"
+        }
+    ]
+}

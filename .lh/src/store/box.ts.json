@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 91,
+            "activePatchIndex": 93,
             "patches": [
                 {
                     "date": 1649682507536,
@@ -372,6 +372,14 @@
                 {
                     "date": 1650964367059,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,8 @@\n import { defineStore } from \"pinia\";\r\n import { get } from \"../utils/axios\"\r\n import { ElMessage as $message, ElStep } from 'element-plus'\r\n-type GlobalConfiguration = {\r\n-  isShow,\r\n-  sort,\r\n-  isGridding,\r\n-  layout\r\n \r\n-}\r\n export const useBox = defineStore({\r\n   id: 'box',\r\n   state: () => {\r\n     return {\r\n"
+                },
+                {
+                    "date": 1651058012250,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,11 +7,11 @@\n   state: () => {\r\n     return {\r\n       zIndex: 1,\r\n       boxItem: JSON.parse(window.localStorage.getItem('boxItemData') || ''),\r\n-      globalPicture: '',\r\n       boxContainer: { width: 0, height: 0 },\r\n       GlobalConfiguration: JSON.parse(window.localStorage.getItem('GlobalConfiguration') || ''),\r\n+      globalPicture: '',\r\n \r\n     }\r\n   },\r\n   actions: {\r\n"
+                },
+                {
+                    "date": 1651059124951,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n       boxItem: JSON.parse(window.localStorage.getItem('boxItemData') || ''),\r\n       boxContainer: { width: 0, height: 0 },\r\n       GlobalConfiguration: JSON.parse(window.localStorage.getItem('GlobalConfiguration') || ''),\r\n       globalPicture: '',\r\n-\r\n+      cardPicture: '',\r\n     }\r\n   },\r\n   actions: {\r\n     getzIndex() {\r\n"
                 }
             ],
             "date": 1649682507536,

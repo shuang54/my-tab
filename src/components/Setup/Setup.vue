@@ -2,18 +2,22 @@
 import ItemForm from '@/components/ItemForm.vue'
 import ItemLayout from '@/components/ItemLayout.vue'
 import ConfigFile from '@/components/ConfigFile.vue'
+import Theme from '../Theme.vue';
 </script>
 <template>
   <el-container>
-    <el-header>设置</el-header>
+    <el-header></el-header>
     <el-main>
       <el-tabs tab-position="left" style="height: 100%">
         <el-tab-pane label="用户">用户</el-tab-pane>
-        <el-tab-pane label="添加图标">
-          <ItemForm></ItemForm>
-        </el-tab-pane>
         <el-tab-pane label="布局">
           <ItemLayout></ItemLayout>
+        </el-tab-pane>
+        <el-tab-pane label="主题">
+          <Theme></Theme>
+        </el-tab-pane>
+        <el-tab-pane label="添加图标">
+          <ItemForm></ItemForm>
         </el-tab-pane>
         <el-tab-pane label="配置文件">
           <ConfigFile></ConfigFile>
@@ -23,6 +27,17 @@ import ConfigFile from '@/components/ConfigFile.vue'
   </el-container>
 </template>
 <style lang="less">
+.el-header {
+  background: url(http://niu.foogeoo.ltd/public/735b1fc26de010c376738dbddfbcb841.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.el-drawer__body {
+  padding: 0 0 10px 0 !important;
+}
+
 // 设置
 .el-drawer__body {
   padding: 20px 0 10px 0;

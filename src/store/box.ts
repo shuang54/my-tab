@@ -8,10 +8,10 @@ export const useBox = defineStore({
     return {
       zIndex: 1,
       boxItem: JSON.parse(window.localStorage.getItem('boxItemData') || ''),
-      globalPicture: '',
       boxContainer: { width: 0, height: 0 },
       GlobalConfiguration: JSON.parse(window.localStorage.getItem('GlobalConfiguration') || ''),
-
+      globalPicture: '',
+      cardPicture: '',
     }
   },
   actions: {

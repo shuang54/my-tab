@@ -17,6 +17,7 @@ declare module 'vue' {
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElHeader: typeof import('element-plus/es')['ElHeader']
+    ElImage: typeof import('element-plus/es')['ElImage']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElMain: typeof import('element-plus/es')['ElMain']
     ElRadioButton: typeof import('element-plus/es')['ElRadioButton']
@@ -25,9 +26,11 @@ declare module 'vue' {
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
     ElTabs: typeof import('element-plus/es')['ElTabs']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
+    InfiniteScroll: typeof import('element-plus/es')['ElInfiniteScroll']
     ItemForm: typeof import('./src/components/ItemForm.vue')['default']
     ItemLayout: typeof import('./src/components/ItemLayout.vue')['default']
     Setup: typeof import('./src/components/Setup/Setup.vue')['default']
+    Theme: typeof import('./src/components/Theme.vue')['default']
   }
 }
 
