@@ -58,6 +58,17 @@ export const useBox = defineStore({
     // 修改itemData
     setBoxItem(data) {
       this.boxItem = data
+    },
+    // 更新主题
+    changeTheme(item) {
+      this.globalPicture = item[0]
+      this.cardPicture = item[1]
+      this.GlobalConfiguration.globalPicture = item[0]
+      this.GlobalConfiguration.cardPicture = item[1]
+      const data = JSON.parse(window.localStorage.getItem('GlobalConfiguration') || '')
+      data.globalPicture = item[0]
+      data.cardPicture = item[1]
+      window.localStorage.setItem('GlobalConfiguration', JSON.stringify(data))
     }
   },
 

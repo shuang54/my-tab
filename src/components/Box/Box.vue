@@ -211,7 +211,7 @@ let editBut = () => {
     <SetupVue></SetupVue>
   </el-drawer>
   <!-- 编辑Item -->
-  <el-dialog ref="dialog" destroy-on-close v-model="dialogFormVisible" title="编辑 | 添加图标">
+  <el-dialog class="Mydialog" ref="dialog" destroy-on-close v-model="dialogFormVisible" title="编辑 | 添加图标">
     <ItemForm ref="ruleFormRef" :index="rightClickItemIndex"></ItemForm>
     <template #footer>
       <span class="dialog-footer">
@@ -221,7 +221,7 @@ let editBut = () => {
     </template>
   </el-dialog>
 </template>
-<style lang="less">
+<style lang="less" >
 .box-grid {
   overflow-x: hidden;
   overflow-y: hidden;
@@ -231,6 +231,10 @@ let editBut = () => {
   background-attachment: fixed;
   background-position: center;
   transition: .4s ease
+}
+
+.Mydialog {
+  width: 40% !important;
 }
 
 .bg {

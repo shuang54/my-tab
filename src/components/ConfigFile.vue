@@ -81,6 +81,7 @@ const copyConfig = () => {
 <style lang="less" >
 .el-form-item__content {
   margin-left: 0px !important;
+  flex-wrap: revert !important;
 }
 
 .el-textarea__inner {

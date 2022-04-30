@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 144,
+            "activePatchIndex": 145,
             "patches": [
                 {
                     "date": 1650682566195,
@@ -584,6 +584,10 @@
                 {
                     "date": 1650798340132,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,8 +61,9 @@\n         console.log(X, v.X, Y, v.Y);\r\n         return (X == v.X) && (Y == v.Y)\r\n       }\r\n     })\r\n+    console.log(X, Y);\r\n \r\n     if (X == undefined || Y == undefined) {\r\n       let maxX = boxItemData[0].X;\r\n       let maxY = boxItemData[0].Y;\r\n"
+                },
+                {
+                    "date": 1651239822831,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -212,9 +212,9 @@\n     </el-form-item>\r\n   </el-form>\r\n \r\n </template>\r\n-<style  lang=\"less\"  >\r\n+<style lang=\"less\"  >\r\n // 添加图标\r\n .el-form-item__label {\r\n   width: 80px !important;\r\n   text-align: left;\r\n"
                 }
             ],
             "date": 1650682566195,

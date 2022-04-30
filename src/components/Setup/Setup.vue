@@ -3,13 +3,16 @@ import ItemForm from '@/components/ItemForm.vue'
 import ItemLayout from '@/components/ItemLayout.vue'
 import ConfigFile from '@/components/ConfigFile.vue'
 import Theme from '../Theme.vue';
+import User from '../User.vue';
 </script>
 <template>
   <el-container>
     <el-header></el-header>
     <el-main>
       <el-tabs tab-position="left" style="height: 100%">
-        <el-tab-pane label="用户">用户</el-tab-pane>
+        <el-tab-pane label="用户">
+          <User></User>
+        </el-tab-pane>
         <el-tab-pane label="布局">
           <ItemLayout></ItemLayout>
         </el-tab-pane>
@@ -22,11 +25,18 @@ import Theme from '../Theme.vue';
         <el-tab-pane label="配置文件">
           <ConfigFile></ConfigFile>
         </el-tab-pane>
+        <!-- <el-tab-pane label="关于">
+          关于
+        </el-tab-pane> -->
       </el-tabs>
     </el-main>
   </el-container>
 </template>
 <style lang="less">
+.el-drawer__body .el-tabs__content {
+  width: 81% !important;
+}
+
 .el-header {
   background: url(http://niu.foogeoo.ltd/public/735b1fc26de010c376738dbddfbcb841.jpg);
   background-size: contain;

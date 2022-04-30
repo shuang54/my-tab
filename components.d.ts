@@ -26,11 +26,11 @@ declare module 'vue' {
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
     ElTabs: typeof import('element-plus/es')['ElTabs']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
-    InfiniteScroll: typeof import('element-plus/es')['ElInfiniteScroll']
     ItemForm: typeof import('./src/components/ItemForm.vue')['default']
     ItemLayout: typeof import('./src/components/ItemLayout.vue')['default']
     Setup: typeof import('./src/components/Setup/Setup.vue')['default']
     Theme: typeof import('./src/components/Theme.vue')['default']
+    User: typeof import('./src/components/User.vue')['default']
   }
 }
 

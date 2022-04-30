@@ -1,66 +1,39 @@
 <script lang="ts" setup>
+import { useBox } from '../store/box';
+const boxStore = useBox()
 
-const url =
-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png'
 const srcList = [
-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png',
-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3_%E6%89%8B%E6%9C%BA.png',
+  [
+    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png',
+    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3_%E6%89%8B%E6%9C%BA.png',
+  ],
+  [
+    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%90%91%E6%99%9A.png',
+    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%90%91%E6%99%9A_%E6%89%8B%E6%9C%BA.png',
+  ],
+  [
+    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%98%89%E7%84%B6.png',
+    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%98%89%E7%84%B6_%E6%89%8B%E6%9C%BA.png',
+  ],
+  [
+    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E7%8F%88%E4%B9%90.png',
+    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E7%8F%88%E4%B9%90_%E6%89%8B%E6%9C%BA.png',
+  ],
+  [
+    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89.png',
+    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89_%E6%89%8B%E6%9C%BA.png',
+  ]
 ]
-const url2 =
-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%90%91%E6%99%9A.png'
-const srcList2 = [
-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%90%91%E6%99%9A.png',
-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%90%91%E6%99%9A_%E6%89%8B%E6%9C%BA.png',
-]
-const url3 =
-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%98%89%E7%84%B6.png'
-const srcList3 = [
-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%98%89%E7%84%B6.png',
-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%98%89%E7%84%B6_%E6%89%8B%E6%9C%BA.png',
-]
-const url4 =
-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E7%8F%88%E4%B9%90.png'
-const srcList4 = [
-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E7%8F%88%E4%B9%90.png',
-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E7%8F%88%E4%B9%90_%E6%89%8B%E6%9C%BA.png',
-]
-const url5 =
-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89.png'
-const srcList5 = [
-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89.png',
-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89_%E6%89%8B%E6%9C%BA.png',
-]
+const changeTheme = (item) => {
+  boxStore.changeTheme(item)
+}
 </script>
 <template>
   <div class="theme-container infinite-list" style="overflow: auto">
-    <div class="theme-item">
-      <el-image style="width: 300px; height: 200px" :src="url" :preview-src-list="srcList" fit="contain" />
+    <div class="theme-item" v-for="(item, i) in srcList" :key="i">
+      <el-image style="width: 300px; height: 200px" :src="item[0]" :preview-src-list="item" fit="contain" />
       <div>
-        <el-button type="primary">使用主题</el-button>
-      </div>
-    </div>
-    <div class="theme-item">
-      <el-image style="width: 300px; height: 200px" :src="url2" :preview-src-list="srcList2" fit="contain" />
-      <div>
-        <el-button type="primary">使用主题</el-button>
-      </div>
-    </div>
-    <div class="theme-item">
-      <el-image style="width: 300px; height: 200px" :src="url3" :preview-src-list="srcList3" fit="contain" />
-      <div>
-        <el-button type="primary">使用主题</el-button>
-      </div>
-    </div>
-    <div class="theme-item">
-      <el-image style="width: 300px; height: 200px" :src="url4" :preview-src-list="srcList4" fit="contain" />
-      <div>
-        <el-button type="primary">使用主题</el-button>
-      </div>
-    </div>
-    <div class="theme-item">
-      <el-image style="width: 300px; height: 200px" :src="url5" :preview-src-list="srcList5" fit="contain" />
-      <div>
-        <el-button type="primary">使用主题</el-button>
+        <el-button type="primary" @click="changeTheme(item)">使用主题</el-button>
       </div>
     </div>
   </div>
@@ -96,9 +69,10 @@ const srcList5 = [
 }
 
 .infinite-list {
+  width: 100%;
   height: 800px;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
   list-style: none;
 }
 

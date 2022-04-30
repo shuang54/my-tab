@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 93,
+            "activePatchIndex": 97,
             "patches": [
                 {
                     "date": 1649682507536,
@@ -380,6 +380,22 @@
                 {
                     "date": 1651059124951,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n       boxItem: JSON.parse(window.localStorage.getItem('boxItemData') || ''),\r\n       boxContainer: { width: 0, height: 0 },\r\n       GlobalConfiguration: JSON.parse(window.localStorage.getItem('GlobalConfiguration') || ''),\r\n       globalPicture: '',\r\n-\r\n+      cardPicture: '',\r\n     }\r\n   },\r\n   actions: {\r\n     getzIndex() {\r\n"
+                },
+                {
+                    "date": 1651217202372,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,8 +57,13 @@\n     },\r\n     // 修改itemData\r\n     setBoxItem(data) {\r\n       this.boxItem = data\r\n+    },\r\n+    // 更新主题\r\n+    changeTheme(item) {\r\n+      this.globalPicture = item[0]\r\n+      this.cardPicture = item[0]\r\n     }\r\n   },\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1651218138684,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,9 +61,12 @@\n     },\r\n     // 更新主题\r\n     changeTheme(item) {\r\n       this.globalPicture = item[0]\r\n-      this.cardPicture = item[0]\r\n+      this.cardPicture = item[1]\r\n+\r\n+      this.GlobalConfiguration.globalPicture = item[0]\r\n+      this.GlobalConfiguration.cardPicture = item[0]\r\n     }\r\n   },\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1651218289567,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,11 +62,13 @@\n     // 更新主题\r\n     changeTheme(item) {\r\n       this.globalPicture = item[0]\r\n       this.cardPicture = item[1]\r\n-\r\n       this.GlobalConfiguration.globalPicture = item[0]\r\n-      this.GlobalConfiguration.cardPicture = item[0]\r\n+      this.GlobalConfiguration.cardPicture = item[1]\r\n+      const data = JSON.parse(window.localStorage.getItem('GlobalConfiguration') || '')\r\n+      data.globalPicture = item[0]\r\n+      data.cardPicture = item[1]\r\n     }\r\n   },\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1651218329357,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -67,8 +67,9 @@\n       this.GlobalConfiguration.cardPicture = item[1]\r\n       const data = JSON.parse(window.localStorage.getItem('GlobalConfiguration') || '')\r\n       data.globalPicture = item[0]\r\n       data.cardPicture = item[1]\r\n+      window.localStorage.setItem('GlobalConfiguration', JSON.stringify(data))\r\n     }\r\n   },\r\n \r\n \r\n"
                 }
             ],
             "date": 1649682507536,

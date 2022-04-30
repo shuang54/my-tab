@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 73,
+            "activePatchIndex": 93,
             "patches": [
                 {
                     "date": 1651065505978,
@@ -300,6 +300,86 @@
                 {
                     "date": 1651069149220,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -95,9 +95,9 @@\n   height: 200px;\r\n }\r\n \r\n .infinite-list {\r\n-  height: 500px;\r\n+  height: 800px;\r\n   padding: 0;\r\n   margin: 0;\r\n   list-style: none;\r\n }\r\n"
+                },
+                {
+                    "date": 1651216906088,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,36 +1,22 @@\n <script lang=\"ts\" setup>\r\n \r\n-const url =\r\n-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png'\r\n+\r\n const srcList = [\r\n-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png',\r\n-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3_%E6%89%8B%E6%9C%BA.png',\r\n+  [\r\n+    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png',\r\n+    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3_%E6%89%8B%E6%9C%BA.png',\r\n+  ], ['http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%90%91%E6%99%9A.png',\r\n+    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%90%91%E6%99%9A_%E6%89%8B%E6%9C%BA.png',], [\r\n+    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%98%89%E7%84%B6.png',\r\n+    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%98%89%E7%84%B6_%E6%89%8B%E6%9C%BA.png',], [\r\n+    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E7%8F%88%E4%B9%90.png',\r\n+    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E7%8F%88%E4%B9%90_%E6%89%8B%E6%9C%BA.png',], [\r\n+    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89.png',\r\n+    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89_%E6%89%8B%E6%9C%BA.png',]\r\n+\r\n ]\r\n-const url2 =\r\n-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%90%91%E6%99%9A.png'\r\n-const srcList2 = [\r\n-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%90%91%E6%99%9A.png',\r\n-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%90%91%E6%99%9A_%E6%89%8B%E6%9C%BA.png',\r\n-]\r\n-const url3 =\r\n-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%98%89%E7%84%B6.png'\r\n-const srcList3 = [\r\n-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%98%89%E7%84%B6.png',\r\n-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%98%89%E7%84%B6_%E6%89%8B%E6%9C%BA.png',\r\n-]\r\n-const url4 =\r\n-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E7%8F%88%E4%B9%90.png'\r\n-const srcList4 = [\r\n-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E7%8F%88%E4%B9%90.png',\r\n-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E7%8F%88%E4%B9%90_%E6%89%8B%E6%9C%BA.png',\r\n-]\r\n-const url5 =\r\n-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89.png'\r\n-const srcList5 = [\r\n-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89.png',\r\n-  'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89_%E6%89%8B%E6%9C%BA.png',\r\n-]\r\n+\r\n </script>\r\n <template>\r\n   <div class=\"theme-container infinite-list\" style=\"overflow: auto\">\r\n     <div class=\"theme-item\">\r\n"
+                },
+                {
+                    "date": 1651216913568,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,10 @@\n   [\r\n     'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png',\r\n     'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3_%E6%89%8B%E6%9C%BA.png',\r\n   ], ['http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%90%91%E6%99%9A.png',\r\n-    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%90%91%E6%99%9A_%E6%89%8B%E6%9C%BA.png',], [\r\n+    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%90%91%E6%99%9A_%E6%89%8B%E6%9C%BA.png',],\r\n+  [\r\n     'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%98%89%E7%84%B6.png',\r\n     'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%98%89%E7%84%B6_%E6%89%8B%E6%9C%BA.png',], [\r\n     'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E7%8F%88%E4%B9%90.png',\r\n     'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E7%8F%88%E4%B9%90_%E6%89%8B%E6%9C%BA.png',], [\r\n"
+                },
+                {
+                    "date": 1651216921998,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,15 +4,18 @@\n const srcList = [\r\n   [\r\n     'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png',\r\n     'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3_%E6%89%8B%E6%9C%BA.png',\r\n-  ], ['http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%90%91%E6%99%9A.png',\r\n+  ],\r\n+  ['http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%90%91%E6%99%9A.png',\r\n     'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%90%91%E6%99%9A_%E6%89%8B%E6%9C%BA.png',],\r\n   [\r\n     'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%98%89%E7%84%B6.png',\r\n-    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%98%89%E7%84%B6_%E6%89%8B%E6%9C%BA.png',], [\r\n+    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%98%89%E7%84%B6_%E6%89%8B%E6%9C%BA.png',],\r\n+  [\r\n     'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E7%8F%88%E4%B9%90.png',\r\n-    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E7%8F%88%E4%B9%90_%E6%89%8B%E6%9C%BA.png',], [\r\n+    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E7%8F%88%E4%B9%90_%E6%89%8B%E6%9C%BA.png',],\r\n+  [\r\n     'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89.png',\r\n     'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89_%E6%89%8B%E6%9C%BA.png',]\r\n \r\n ]\r\n"
+                },
+                {
+                    "date": 1651216932601,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,19 +5,24 @@\n   [\r\n     'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png',\r\n     'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3_%E6%89%8B%E6%9C%BA.png',\r\n   ],\r\n-  ['http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%90%91%E6%99%9A.png',\r\n-    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%90%91%E6%99%9A_%E6%89%8B%E6%9C%BA.png',],\r\n   [\r\n+    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%90%91%E6%99%9A.png',\r\n+    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%90%91%E6%99%9A_%E6%89%8B%E6%9C%BA.png',\r\n+  ],\r\n+  [\r\n     'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%98%89%E7%84%B6.png',\r\n-    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%98%89%E7%84%B6_%E6%89%8B%E6%9C%BA.png',],\r\n+    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E5%98%89%E7%84%B6_%E6%89%8B%E6%9C%BA.png',\r\n+  ],\r\n   [\r\n     'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E7%8F%88%E4%B9%90.png',\r\n-    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E7%8F%88%E4%B9%90_%E6%89%8B%E6%9C%BA.png',],\r\n+    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E7%8F%88%E4%B9%90_%E6%89%8B%E6%9C%BA.png',\r\n+  ],\r\n   [\r\n     'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89.png',\r\n-    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89_%E6%89%8B%E6%9C%BA.png',]\r\n+    'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89_%E6%89%8B%E6%9C%BA.png',\r\n+  ]\r\n \r\n ]\r\n \r\n </script>\r\n"
+                },
+                {
+                    "date": 1651216979268,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n \r\n </script>\r\n <template>\r\n   <div class=\"theme-container infinite-list\" style=\"overflow: auto\">\r\n-    <div class=\"theme-item\">\r\n+    <div class=\"theme-item\" v-for=\"item in srcList\" :key=\"i\">\r\n       <el-image style=\"width: 300px; height: 200px\" :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n       <div>\r\n         <el-button type=\"primary\">使用主题</el-button>\r\n       </div>\r\n"
+                },
+                {
+                    "date": 1651217001057,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,10 +27,10 @@\n \r\n </script>\r\n <template>\r\n   <div class=\"theme-container infinite-list\" style=\"overflow: auto\">\r\n-    <div class=\"theme-item\" v-for=\"item in srcList\" :key=\"i\">\r\n-      <el-image style=\"width: 300px; height: 200px\" :src=\"url\" :preview-src-list=\"srcList\" fit=\"contain\" />\r\n+    <div class=\"theme-item\" v-for=\"(item, i) in srcList\" :key=\"i\">\r\n+      <el-image style=\"width: 300px; height: 200px\" :src=\"item[0]\" :preview-src-list=\"item\" fit=\"contain\" />\r\n       <div>\r\n         <el-button type=\"primary\">使用主题</el-button>\r\n       </div>\r\n     </div>\r\n"
+                },
+                {
+                    "date": 1651217006516,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,33 +32,9 @@\n       <el-image style=\"width: 300px; height: 200px\" :src=\"item[0]\" :preview-src-list=\"item\" fit=\"contain\" />\r\n       <div>\r\n         <el-button type=\"primary\">使用主题</el-button>\r\n       </div>\r\n-    </div>\r\n-    <div class=\"theme-item\">\r\n-      <el-image style=\"width: 300px; height: 200px\" :src=\"url2\" :preview-src-list=\"srcList2\" fit=\"contain\" />\r\n-      <div>\r\n-        <el-button type=\"primary\">使用主题</el-button>\r\n-      </div>\r\n-    </div>\r\n-    <div class=\"theme-item\">\r\n-      <el-image style=\"width: 300px; height: 200px\" :src=\"url3\" :preview-src-list=\"srcList3\" fit=\"contain\" />\r\n-      <div>\r\n-        <el-button type=\"primary\">使用主题</el-button>\r\n-      </div>\r\n-    </div>\r\n-    <div class=\"theme-item\">\r\n-      <el-image style=\"width: 300px; height: 200px\" :src=\"url4\" :preview-src-list=\"srcList4\" fit=\"contain\" />\r\n-      <div>\r\n-        <el-button type=\"primary\">使用主题</el-button>\r\n-      </div>\r\n-    </div>\r\n-    <div class=\"theme-item\">\r\n-      <el-image style=\"width: 300px; height: 200px\" :src=\"url5\" :preview-src-list=\"srcList5\" fit=\"contain\" />\r\n-      <div>\r\n-        <el-button type=\"primary\">使用主题</el-button>\r\n-      </div>\r\n-    </div>\r\n+    </div>\\\r\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n .theme-container {\r\n"
+                },
+                {
+                    "date": 1651217089779,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,20 +21,22 @@\n   [\r\n     'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89.png',\r\n     'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89_%E6%89%8B%E6%9C%BA.png',\r\n   ]\r\n-\r\n ]\r\n+const changeTheme = (item) => {\r\n+  console.log(item);\r\n \r\n+}\r\n </script>\r\n <template>\r\n   <div class=\"theme-container infinite-list\" style=\"overflow: auto\">\r\n     <div class=\"theme-item\" v-for=\"(item, i) in srcList\" :key=\"i\">\r\n       <el-image style=\"width: 300px; height: 200px\" :src=\"item[0]\" :preview-src-list=\"item\" fit=\"contain\" />\r\n       <div>\r\n-        <el-button type=\"primary\">使用主题</el-button>\r\n+        <el-button type=\"primary\" @click=\"changeTheme(item)\">使用主题</el-button>\r\n       </div>\r\n-    </div>\\\r\n+    </div>\r\n   </div>\r\n </template>\r\n <style lang=\"less\">\r\n .theme-container {\r\n"
+                },
+                {
+                    "date": 1651217315425,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <script lang=\"ts\" setup>\r\n+import { changeTheme } from '../store/index.ts'\r\n \r\n-\r\n const srcList = [\r\n   [\r\n     'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png',\r\n     'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3_%E6%89%8B%E6%9C%BA.png',\r\n"
+                },
+                {
+                    "date": 1651217320922,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <script lang=\"ts\" setup>\r\n-import { changeTheme } from '../store/index.ts'\r\n+import { changeTheme } from '../store/box.ts'\r\n \r\n const srcList = [\r\n   [\r\n     'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png',\r\n"
+                },
+                {
+                    "date": 1651217396388,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n <script lang=\"ts\" setup>\r\n-import { changeTheme } from '../store/box.ts'\r\n+import { useBox } from '../store/box';\r\n+const boxStore = useBox()\r\n \r\n const srcList = [\r\n   [\r\n     'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E4%B9%83%E7%90%B3.png',\r\n@@ -23,9 +24,9 @@\n     'http://niu.foogeoo.ltd/public/A-SOUL%E5%A3%81%E7%BA%B8_%E8%B4%9D%E6%8B%89_%E6%89%8B%E6%9C%BA.png',\r\n   ]\r\n ]\r\n const changeTheme = (item) => {\r\n-  console.log(item);\r\n+  boxStore.changeTheme(item)\r\n \r\n }\r\n </script>\r\n <template>\r\n"
+                },
+                {
+                    "date": 1651218027006,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,8 @@\n   ]\r\n ]\r\n const changeTheme = (item) => {\r\n   boxStore.changeTheme(item)\r\n-\r\n }\r\n </script>\r\n <template>\r\n   <div class=\"theme-container infinite-list\" style=\"overflow: auto\">\r\n"
+                },
+                {
+                    "date": 1651218120475,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,10 @@\n   ]\r\n ]\r\n const changeTheme = (item) => {\r\n   boxStore.changeTheme(item)\r\n+  boxStore.globalPicture = boxStore.GlobalConfiguration.globalPicture\r\n+  boxStore.cardPicture = boxStore.GlobalConfiguration.cardPicture\r\n }\r\n </script>\r\n <template>\r\n   <div class=\"theme-container infinite-list\" style=\"overflow: auto\">\r\n"
+                },
+                {
+                    "date": 1651218167756,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,10 +25,9 @@\n   ]\r\n ]\r\n const changeTheme = (item) => {\r\n   boxStore.changeTheme(item)\r\n-  boxStore.globalPicture = boxStore.GlobalConfiguration.globalPicture\r\n-  boxStore.cardPicture = boxStore.GlobalConfiguration.cardPicture\r\n+  window.localStorage.setItem()\r\n }\r\n </script>\r\n <template>\r\n   <div class=\"theme-container infinite-list\" style=\"overflow: auto\">\r\n"
+                },
+                {
+                    "date": 1651218191758,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n   ]\r\n ]\r\n const changeTheme = (item) => {\r\n   boxStore.changeTheme(item)\r\n-  window.localStorage.setItem()\r\n+  window.localStorage.setItem('GlobalConfiguration')\r\n }\r\n </script>\r\n <template>\r\n   <div class=\"theme-container infinite-list\" style=\"overflow: auto\">\r\n"
+                },
+                {
+                    "date": 1651218239648,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,10 @@\n   ]\r\n ]\r\n const changeTheme = (item) => {\r\n   boxStore.changeTheme(item)\r\n-  window.localStorage.setItem('GlobalConfiguration')\r\n+  const data = JSON.parse(window.localStorage.getItem('GlobalConfiguration') || '')\r\n+  data[]\r\n }\r\n </script>\r\n <template>\r\n   <div class=\"theme-container infinite-list\" style=\"overflow: auto\">\r\n"
+                },
+                {
+                    "date": 1651218269634,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,10 @@\n ]\r\n const changeTheme = (item) => {\r\n   boxStore.changeTheme(item)\r\n   const data = JSON.parse(window.localStorage.getItem('GlobalConfiguration') || '')\r\n-  data[]\r\n+  data.globalPicture = item[0]\r\n+  data.cardPicture = item[1]\r\n }\r\n </script>\r\n <template>\r\n   <div class=\"theme-container infinite-list\" style=\"overflow: auto\">\r\n"
+                },
+                {
+                    "date": 1651218330527,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,11 +25,9 @@\n   ]\r\n ]\r\n const changeTheme = (item) => {\r\n   boxStore.changeTheme(item)\r\n-  const data = JSON.parse(window.localStorage.getItem('GlobalConfiguration') || '')\r\n-  data.globalPicture = item[0]\r\n-  data.cardPicture = item[1]\r\n+\r\n }\r\n </script>\r\n <template>\r\n   <div class=\"theme-container infinite-list\" style=\"overflow: auto\">\r\n"
+                },
+                {
+                    "date": 1651218693346,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,8 @@\n   ]\r\n ]\r\n const changeTheme = (item) => {\r\n   boxStore.changeTheme(item)\r\n-\r\n }\r\n </script>\r\n <template>\r\n   <div class=\"theme-container infinite-list\" style=\"overflow: auto\">\r\n"
+                },
+                {
+                    "date": 1651280249617,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,11 +68,12 @@\n   height: 200px;\r\n }\r\n \r\n .infinite-list {\r\n+  width: 100%;\r\n   height: 800px;\r\n   padding: 0;\r\n-  margin: 0;\r\n+  margin: 0 auto;\r\n   list-style: none;\r\n }\r\n \r\n .infinite-list .infinite-list-item {\r\n"
                 }
             ],
             "date": 1651065505978,

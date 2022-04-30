@@ -213,8 +213,17 @@ defineExpose({ updateBoxItemByIndex })
   </el-form>
 
 </template>
-<style lang="less">
+<style lang="less" >
+// .el-drawer__body .el-tabs__content {
+//   widows: 76% !important;
+//   padding-right: 10px !important;
+// }
+.el-form-item {
+  widows: 75% !important;
+}
+
 // 添加图标
+
 .el-form-item__label {
   width: 80px !important;
   text-align: left;
