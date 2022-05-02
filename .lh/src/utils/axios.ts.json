@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 12,
+            "activePatchIndex": 29,
             "patches": [
                 {
                     "date": 1649469160153,
@@ -56,6 +56,74 @@
                 {
                     "date": 1650192637919,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import Axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from 'axios'\r\n import { ElMessage as $message } from 'element-plus'\r\n // import * as nProgress from 'nprogress'\r\n-const BASE_URL = 'https://tuapi.eees.cc'\r\n+const BASE_URL = '/api'\r\n const TIME_OUT = 10000\r\n // 通过Axios.create()方法创建一个自定义配置的axios实例\r\n const instance: any = Axios.create({\r\n   baseURL: BASE_URL,\r\n"
+                },
+                {
+                    "date": 1651394383986,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import Axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from 'axios'\r\n import { ElMessage as $message } from 'element-plus'\r\n // import * as nProgress from 'nprogress'\r\n-const BASE_URL = '/api'\r\n+const BASE_URL = 'http://127.0.0.1:3007/api'\r\n const TIME_OUT = 10000\r\n // 通过Axios.create()方法创建一个自定义配置的axios实例\r\n const instance: any = Axios.create({\r\n   baseURL: BASE_URL,\r\n"
+                },
+                {
+                    "date": 1651394413524,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import Axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from 'axios'\r\n import { ElMessage as $message } from 'element-plus'\r\n // import * as nProgress from 'nprogress'\r\n-const BASE_URL = 'http://127.0.0.1:3007/api'\r\n+const BASE_URL = 'http://127.0.0.1:3007'\r\n const TIME_OUT = 10000\r\n // 通过Axios.create()方法创建一个自定义配置的axios实例\r\n const instance: any = Axios.create({\r\n   baseURL: BASE_URL,\r\n"
+                },
+                {
+                    "date": 1651394611057,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import Axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from 'axios'\r\n import { ElMessage as $message } from 'element-plus'\r\n // import * as nProgress from 'nprogress'\r\n-const BASE_URL = 'http://127.0.0.1:3007'\r\n+const BASE_URL = '/api'\r\n const TIME_OUT = 10000\r\n // 通过Axios.create()方法创建一个自定义配置的axios实例\r\n const instance: any = Axios.create({\r\n   baseURL: BASE_URL,\r\n"
+                },
+                {
+                    "date": 1651395083816,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,8 @@\n   timeout: TIME_OUT,\r\n   headers: {\r\n     'content-type': 'application/json',\r\n     // 'access-control-allow-origin': '*'\r\n-\r\n   }\r\n })\r\n instance.interceptors.request.use((config: any) => {\r\n \r\n"
+                },
+                {
+                    "date": 1651395096662,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   baseURL: BASE_URL,\r\n   timeout: TIME_OUT,\r\n   headers: {\r\n     'content-type': 'application/json',\r\n-    // 'access-control-allow-origin': '*'\r\n+    'access-control-allow-origin': '*'\r\n   }\r\n })\r\n instance.interceptors.request.use((config: any) => {\r\n \r\n"
+                },
+                {
+                    "date": 1651395702515,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,9 +63,9 @@\n }\r\n \r\n // 导出我们常用的请求方法：\r\n const get = (url: string, params?: any) => getPromise('get', url, { params })\r\n-const post = (url: string, params: any, config?: AxiosRequestConfig) => getPromise('post', url, params, config)\r\n+const post = (url: string, params?: any, config?: AxiosRequestConfig) => getPromise('post', url, params, config)\r\n const del = (url: string, params?: any, config?: AxiosRequestConfig) => getPromise('delete', url, params, config)\r\n const put = (url: string, params?: any, config?: AxiosRequestConfig) => getPromise('put', url, params, config)\r\n export {\r\n   get,\r\n"
+                },
+                {
+                    "date": 1651396523408,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n   baseURL: BASE_URL,\r\n   timeout: TIME_OUT,\r\n   headers: {\r\n     'content-type': 'application/json',\r\n+\r\n     'access-control-allow-origin': '*'\r\n   }\r\n })\r\n instance.interceptors.request.use((config: any) => {\r\n"
+                },
+                {
+                    "date": 1651396538149,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,10 @@\n const instance: any = Axios.create({\r\n   baseURL: BASE_URL,\r\n   timeout: TIME_OUT,\r\n   headers: {\r\n-    'content-type': 'application/json',\r\n+    // 'content-type': 'application/json',\r\n+    'content-type': 'Content-Type:application/x-www-form-urlencoded',\r\n \r\n     'access-control-allow-origin': '*'\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1651396630411,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   baseURL: BASE_URL,\r\n   timeout: TIME_OUT,\r\n   headers: {\r\n     // 'content-type': 'application/json',\r\n-    'content-type': 'Content-Type:application/x-www-form-urlencoded',\r\n+    // 'content-type': 'Content-Type:application/x-www-form-urlencoded',\r\n \r\n     'access-control-allow-origin': '*'\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1651397030043,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   baseURL: BASE_URL,\r\n   timeout: TIME_OUT,\r\n   headers: {\r\n     // 'content-type': 'application/json',\r\n-    // 'content-type': 'Content-Type:application/x-www-form-urlencoded',\r\n+    'content-type': 'application/x-www-form-urlencoded',\r\n \r\n     'access-control-allow-origin': '*'\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1651398213270,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   baseURL: BASE_URL,\r\n   timeout: TIME_OUT,\r\n   headers: {\r\n     // 'content-type': 'application/json',\r\n-    'content-type': 'application/x-www-form-urlencoded',\r\n+    'Content-Type': 'application/x-www-form-urlencoded'\r\n \r\n     'access-control-allow-origin': '*'\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1651398391376,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   baseURL: BASE_URL,\r\n   timeout: TIME_OUT,\r\n   headers: {\r\n     // 'content-type': 'application/json',\r\n-    'Content-Type': 'application/x-www-form-urlencoded'\r\n+    'Content-Type': 'application/x-www-form-urlencoded',\r\n \r\n     'access-control-allow-origin': '*'\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1651398414857,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   baseURL: BASE_URL,\r\n   timeout: TIME_OUT,\r\n   headers: {\r\n     // 'content-type': 'application/json',\r\n-    'Content-Type': 'application/x-www-form-urlencoded',\r\n+    // 'Content-Type': 'application/x-www-form-urlencoded',\r\n \r\n     'access-control-allow-origin': '*'\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1651398464469,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   baseURL: BASE_URL,\r\n   timeout: TIME_OUT,\r\n   headers: {\r\n     // 'content-type': 'application/json',\r\n-    // 'Content-Type': 'application/x-www-form-urlencoded',\r\n+    'Content-Type': 'application/x-www-form-urlencoded',\r\n \r\n     'access-control-allow-origin': '*'\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1651398642236,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import Axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from 'axios'\r\n import { ElMessage as $message } from 'element-plus'\r\n // import * as nProgress from 'nprogress'\r\n-const BASE_URL = '/api'\r\n+const BASE_URL = 'http://127.0.0.1:3007'\r\n const TIME_OUT = 10000\r\n // 通过Axios.create()方法创建一个自定义配置的axios实例\r\n const instance: any = Axios.create({\r\n   baseURL: BASE_URL,\r\n"
+                },
+                {
+                    "date": 1651411252437,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,11 @@\n     'access-control-allow-origin': '*'\r\n   }\r\n })\r\n instance.interceptors.request.use((config: any) => {\r\n-\r\n+  if (localStorage.getItem('Authorization')) {\r\n+    config.headers.Authorization = localStorage.getItem('Authorization');\r\n+  }\r\n   return config;\r\n })\r\n // 使用后置拦截器，对获取的响应进行拦截：\r\n instance.interceptors.response.use(\r\n"
+                },
+                {
+                    "date": 1651411269199,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,10 +14,10 @@\n     'access-control-allow-origin': '*'\r\n   }\r\n })\r\n instance.interceptors.request.use((config: any) => {\r\n-  if (localStorage.getItem('Authorization')) {\r\n-    config.headers.Authorization = localStorage.getItem('Authorization');\r\n+  if (localStorage.getItem('token')) {\r\n+    config.headers.Authorization = localStorage.getItem('token');\r\n   }\r\n   return config;\r\n })\r\n // 使用后置拦截器，对获取的响应进行拦截：\r\n"
                 }
             ],
             "date": 1649469160153,

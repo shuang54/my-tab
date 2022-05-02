@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 29,
+            "activePatchIndex": 33,
             "patches": [
                 {
                     "date": 1649468462673,
@@ -124,6 +124,22 @@
                 {
                     "date": 1650192640751,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n       '/api': {\n         target: 'https://tuapi.eees.cc',\n         changeOrigin: true,\n         secure: true,\n-        // rewrite: (path: string) => path.replace(/^\\/api/, '')\n+        rewrite: (path: string) => path.replace(/^\\/api/, '')\n       }\n     },\n \n \n"
+                },
+                {
+                    "date": 1651391765513,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n     },\n     // 设置 https 代理\n     proxy: {\n       '/api': {\n-        target: 'https://tuapi.eees.cc',\n+        target: 'http://127.0.0.1:3007',\n         changeOrigin: true,\n         secure: true,\n         rewrite: (path: string) => path.replace(/^\\/api/, '')\n       }\n"
+                },
+                {
+                    "date": 1651395513108,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n       '/api': {\n         target: 'http://127.0.0.1:3007',\n         changeOrigin: true,\n         secure: true,\n-        rewrite: (path: string) => path.replace(/^\\/api/, '')\n+        // rewrite: (path: string) => path.replace(/^\\/api/, '')\n       }\n     },\n \n \n"
+                },
+                {
+                    "date": 1651395536724,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,12 +26,12 @@\n   ],\n \n   server: {\n     port: 8080, //启动端口\n-    hmr: {\n-      host: '127.0.0.1',\n-      port: 8080\n-    },\n+    // hmr: {\n+    //   host: '127.0.0.1',\n+    //   port: 8080\n+    // },\n     // 设置 https 代理\n     proxy: {\n       '/api': {\n         target: 'http://127.0.0.1:3007',\n"
+                },
+                {
+                    "date": 1651395588474,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n       '/api': {\n         target: 'http://127.0.0.1:3007',\n         changeOrigin: true,\n         secure: true,\n-        // rewrite: (path: string) => path.replace(/^\\/api/, '')\n+        rewrite: (path: string) => path.replace(/^\\/api/, '')\n       }\n     },\n \n \n"
                 }
             ],
             "date": 1649468462673,

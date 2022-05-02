@@ -27,14 +27,14 @@ export default defineConfig({
 
   server: {
     port: 8080, //启动端口
-    hmr: {
-      host: '127.0.0.1',
-      port: 8080
-    },
+    // hmr: {
+    //   host: '127.0.0.1',
+    //   port: 8080
+    // },
     // 设置 https 代理
     proxy: {
       '/api': {
-        target: 'https://tuapi.eees.cc',
+        target: 'http://127.0.0.1:3007',
         changeOrigin: true,
         secure: true,
         rewrite: (path: string) => path.replace(/^\/api/, '')

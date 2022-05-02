@@ -223,8 +223,8 @@ let editBut = () => {
 </template>
 <style lang="less" >
 .box-grid {
-  overflow-x: hidden;
-  overflow-y: hidden;
+  // overflow-x: hidden;
+  // overflow-y: hidden;
   height: 100%;
   position: relative;
   background-repeat: repeat;

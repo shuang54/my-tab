@@ -1,0 +1,18 @@
+{
+    "sourceFile": "axios/base.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1651396211552,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1651396211552,
+            "name": "Commit-0",
+            "content": "// base.ts\r\nexport class Base {\r\n  /* 公共模块 */\r\n  static env = process.env.NODE_ENV === \"development\"\r\n    ? \"http://localhost:8087\"\r\n    : \"https://produceCommon.com(生产线地址)\"\r\n}\r\n"
+        }
+    ]
+}

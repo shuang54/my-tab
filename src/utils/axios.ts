@@ -1,20 +1,23 @@
 import Axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from 'axios'
 import { ElMessage as $message } from 'element-plus'
 // import * as nProgress from 'nprogress'
-const BASE_URL = '/api'
+const BASE_URL = 'http://127.0.0.1:3007'
 const TIME_OUT = 10000
 // 通过Axios.create()方法创建一个自定义配置的axios实例
 const instance: any = Axios.create({
   baseURL: BASE_URL,
   timeout: TIME_OUT,
   headers: {
-    'content-type': 'application/json',
-    // 'access-control-allow-origin': '*'
+    // 'content-type': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded',
 
+    'access-control-allow-origin': '*'
   }
 })
 instance.interceptors.request.use((config: any) => {
-
+  if (localStorage.getItem('token')) {
+    config.headers.Authorization = localStorage.getItem('token');
+  }
   return config;
 })
 // 使用后置拦截器，对获取的响应进行拦截：
@@ -65,7 +68,7 @@ const getPromise = (method: string, url: string, params: { params: any }, config
 
 // 导出我们常用的请求方法：
 const get = (url: string, params?: any) => getPromise('get', url, { params })
-const post = (url: string, params: any, config?: AxiosRequestConfig) => getPromise('post', url, params, config)
+const post = (url: string, params?: any, config?: AxiosRequestConfig) => getPromise('post', url, params, config)
 const del = (url: string, params?: any, config?: AxiosRequestConfig) => getPromise('delete', url, params, config)
 const put = (url: string, params?: any, config?: AxiosRequestConfig) => getPromise('put', url, params, config)
 export {

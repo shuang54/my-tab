@@ -3,11 +3,419 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 102,
             "patches": [
                 {
                     "date": 1649468847181,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1651391765519,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,15 @@\n import { defineStore } from 'pinia'\r\n-\r\n+import { get, post } from '../utils/axios'\r\n export const useUserStore = defineStore({\r\n   id: 'user', // id必填，且需要唯一\r\n   state: () => {\r\n     return {\r\n-      name: '张三'\r\n+      userInfo: {}\r\n     }\r\n   },\r\n   actions: {\r\n-    updateName(name: any) {\r\n-      this.name = name\r\n+    async getUserInfo() {\r\n+      const result = await get('/api/')\r\n     }\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1651391853018,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,14 @@\n       userInfo: {}\r\n     }\r\n   },\r\n   actions: {\r\n+    // 用户登录\r\n+    // 用户注册\r\n+    // 获取验证码\r\n+\r\n+    // 获取用户信息\r\n     async getUserInfo() {\r\n-      const result = await get('/api/')\r\n+      const result = await get('my/userinfo')\r\n     }\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1651391871336,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,11 +10,13 @@\n   actions: {\r\n     // 用户登录\r\n     // 用户注册\r\n     // 获取验证码\r\n-\r\n     // 获取用户信息\r\n     async getUserInfo() {\r\n       const result = await get('my/userinfo')\r\n     }\r\n+    // 修改姓名\r\n+    // 修改密码\r\n+\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1651391881413,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,7 +16,8 @@\n       const result = await get('my/userinfo')\r\n     }\r\n     // 修改姓名\r\n     // 修改密码\r\n-\r\n+    // 获取备份\r\n+    // \r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1651391888299,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,7 +17,8 @@\n     }\r\n     // 修改姓名\r\n     // 修改密码\r\n     // 获取备份\r\n-    // \r\n+    // 删除备份\r\n+\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1651391953321,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,11 @@\n     }\r\n   },\r\n   actions: {\r\n     // 用户登录\r\n+    async login(userInfo) {\r\n+      const result = await get()\r\n+    },\r\n     // 用户注册\r\n     // 获取验证码\r\n     // 获取用户信息\r\n     async getUserInfo() {\r\n@@ -18,7 +21,6 @@\n     // 修改姓名\r\n     // 修改密码\r\n     // 获取备份\r\n     // 删除备份\r\n-\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1651391965247,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n   },\r\n   actions: {\r\n     // 用户登录\r\n     async login(userInfo) {\r\n-      const result = await get()\r\n+      const result = await get('api/login', userInfo)\r\n     },\r\n     // 用户注册\r\n     // 获取验证码\r\n     // 获取用户信息\r\n"
+                },
+                {
+                    "date": 1651392026400,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n   actions: {\r\n     // 用户登录\r\n     async login(userInfo) {\r\n       const result = await get('api/login', userInfo)\r\n+\r\n     },\r\n     // 用户注册\r\n     // 获取验证码\r\n     // 获取用户信息\r\n"
+                },
+                {
+                    "date": 1651392063651,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n   actions: {\r\n     // 用户登录\r\n     async login(userInfo) {\r\n       const result = await get('api/login', userInfo)\r\n-\r\n+      if (result)\r\n     },\r\n     // 用户注册\r\n     // 获取验证码\r\n     // 获取用户信息\r\n"
+                },
+                {
+                    "date": 1651392096605,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,10 +9,10 @@\n   },\r\n   actions: {\r\n     // 用户登录\r\n     async login(userInfo) {\r\n-      const result = await get('api/login', userInfo)\r\n-      if (result)\r\n+      const result: any = await get('api/login', userInfo)\r\n+      if (result.status == '')\r\n     },\r\n     // 用户注册\r\n     // 获取验证码\r\n     // 获取用户信息\r\n"
+                },
+                {
+                    "date": 1651392114449,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,13 @@\n   actions: {\r\n     // 用户登录\r\n     async login(userInfo) {\r\n       const result: any = await get('api/login', userInfo)\r\n-      if (result.status == '')\r\n+      if (result.status == 0) {\r\n+\r\n+      } else {\r\n+\r\n+      }\r\n     },\r\n     // 用户注册\r\n     // 获取验证码\r\n     // 获取用户信息\r\n"
+                },
+                {
+                    "date": 1651392188405,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n import { defineStore } from 'pinia'\r\n import { get, post } from '../utils/axios'\r\n+import { ElMessage as $message } from 'element-plus'\r\n export const useUserStore = defineStore({\r\n   id: 'user', // id必填，且需要唯一\r\n   state: () => {\r\n     return {\r\n@@ -13,9 +14,9 @@\n       const result: any = await get('api/login', userInfo)\r\n       if (result.status == 0) {\r\n \r\n       } else {\r\n-\r\n+        $message('type', result.message)\r\n       }\r\n     },\r\n     // 用户注册\r\n     // 获取验证码\r\n"
+                },
+                {
+                    "date": 1651392217734,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n       const result: any = await get('api/login', userInfo)\r\n       if (result.status == 0) {\r\n \r\n       } else {\r\n-        $message('type', result.message)\r\n+        $message('type', 登录失败)\r\n       }\r\n     },\r\n     // 用户注册\r\n     // 获取验证码\r\n"
+                },
+                {
+                    "date": 1651392226232,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n       const result: any = await get('api/login', userInfo)\r\n       if (result.status == 0) {\r\n \r\n       } else {\r\n-        $message('type', 登录失败)\r\n+        $message('登录失败')\r\n       }\r\n     },\r\n     // 用户注册\r\n     // 获取验证码\r\n"
+                },
+                {
+                    "date": 1651392277670,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,17 +4,19 @@\n export const useUserStore = defineStore({\r\n   id: 'user', // id必填，且需要唯一\r\n   state: () => {\r\n     return {\r\n-      userInfo: {}\r\n+      userInfo: {},\r\n+      token: '',\r\n     }\r\n   },\r\n   actions: {\r\n     // 用户登录\r\n     async login(userInfo) {\r\n       const result: any = await get('api/login', userInfo)\r\n       if (result.status == 0) {\r\n-\r\n+        this.userInfo = userInfo\r\n+        this.token = result.token\r\n       } else {\r\n         $message('登录失败')\r\n       }\r\n     },\r\n"
+                },
+                {
+                    "date": 1651392313202,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,9 @@\n       const result: any = await get('api/login', userInfo)\r\n       if (result.status == 0) {\r\n         this.userInfo = userInfo\r\n         this.token = result.token\r\n+        window.localStorage.setItem('token', this.token)\r\n       } else {\r\n         $message('登录失败')\r\n       }\r\n     },\r\n"
+                },
+                {
+                    "date": 1651393169835,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n   },\r\n   actions: {\r\n     // 用户登录\r\n     async login(userInfo) {\r\n-      const result: any = await get('api/login', userInfo)\r\n+      const result: any = await get('login', userInfo)\r\n       if (result.status == 0) {\r\n         this.userInfo = userInfo\r\n         this.token = result.token\r\n         window.localStorage.setItem('token', this.token)\r\n"
+                },
+                {
+                    "date": 1651393267694,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n   },\r\n   actions: {\r\n     // 用户登录\r\n     async login(userInfo) {\r\n-      const result: any = await get('login', userInfo)\r\n+      const result: any = await get('api/login', userInfo)\r\n       if (result.status == 0) {\r\n         this.userInfo = userInfo\r\n         this.token = result.token\r\n         window.localStorage.setItem('token', this.token)\r\n"
+                },
+                {
+                    "date": 1651393354866,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n   },\r\n   actions: {\r\n     // 用户登录\r\n     async login(userInfo) {\r\n-      const result: any = await get('api/login', userInfo)\r\n+      const result: any = await post('api/login', userInfo)\r\n       if (result.status == 0) {\r\n         this.userInfo = userInfo\r\n         this.token = result.token\r\n         window.localStorage.setItem('token', this.token)\r\n"
+                },
+                {
+                    "date": 1651393458306,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,10 @@\n   },\r\n   actions: {\r\n     // 用户登录\r\n     async login(userInfo) {\r\n+      console.log(userInfo);\r\n+\r\n       const result: any = await post('api/login', userInfo)\r\n       if (result.status == 0) {\r\n         this.userInfo = userInfo\r\n         this.token = result.token\r\n"
+                },
+                {
+                    "date": 1651399033521,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import { defineStore } from 'pinia'\r\n import { get, post } from '../utils/axios'\r\n import { ElMessage as $message } from 'element-plus'\r\n+import qs from 'qs'\r\n export const useUserStore = defineStore({\r\n   id: 'user', // id必填，且需要唯一\r\n   state: () => {\r\n     return {\r\n@@ -13,9 +14,9 @@\n     // 用户登录\r\n     async login(userInfo) {\r\n       console.log(userInfo);\r\n \r\n-      const result: any = await post('api/login', userInfo)\r\n+      const result: any = await post('api/login', qs.str)\r\n       if (result.status == 0) {\r\n         this.userInfo = userInfo\r\n         this.token = result.token\r\n         window.localStorage.setItem('token', this.token)\r\n"
+                },
+                {
+                    "date": 1651399048465,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     // 用户登录\r\n     async login(userInfo) {\r\n       console.log(userInfo);\r\n \r\n-      const result: any = await post('api/login', qs.str)\r\n+      const result: any = await post('api/login', qs.stringify(userInfo))\r\n       if (result.status == 0) {\r\n         this.userInfo = userInfo\r\n         this.token = result.token\r\n         window.localStorage.setItem('token', this.token)\r\n"
+                },
+                {
+                    "date": 1651399068797,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n   },\r\n   actions: {\r\n     // 用户登录\r\n     async login(userInfo) {\r\n-      console.log(userInfo);\r\n+      console.log(qs.stringify(userInfo));\r\n \r\n       const result: any = await post('api/login', qs.stringify(userInfo))\r\n       if (result.status == 0) {\r\n         this.userInfo = userInfo\r\n"
+                },
+                {
+                    "date": 1651399125229,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     // 用户登录\r\n     async login(userInfo) {\r\n       console.log(qs.stringify(userInfo));\r\n \r\n-      const result: any = await post('api/login', qs.stringify(userInfo))\r\n+      const result: any = await post('api/login', userInfo)\r\n       if (result.status == 0) {\r\n         this.userInfo = userInfo\r\n         this.token = result.token\r\n         window.localStorage.setItem('token', this.token)\r\n"
+                },
+                {
+                    "date": 1651399163632,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { defineStore } from 'pinia'\r\n import { get, post } from '../utils/axios'\r\n import { ElMessage as $message } from 'element-plus'\r\n-import qs from 'qs'\r\n+// import qs from 'qs'\r\n export const useUserStore = defineStore({\r\n   id: 'user', // id必填，且需要唯一\r\n   state: () => {\r\n     return {\r\n@@ -12,9 +12,9 @@\n   },\r\n   actions: {\r\n     // 用户登录\r\n     async login(userInfo) {\r\n-      console.log(qs.stringify(userInfo));\r\n+      // console.log(qs.stringify(userInfo));\r\n \r\n       const result: any = await post('api/login', userInfo)\r\n       if (result.status == 0) {\r\n         this.userInfo = userInfo\r\n"
+                },
+                {
+                    "date": 1651399199882,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { defineStore } from 'pinia'\r\n import { get, post } from '../utils/axios'\r\n import { ElMessage as $message } from 'element-plus'\r\n-// import qs from 'qs'\r\n+import qs from 'qs'\r\n export const useUserStore = defineStore({\r\n   id: 'user', // id必填，且需要唯一\r\n   state: () => {\r\n     return {\r\n@@ -12,11 +12,11 @@\n   },\r\n   actions: {\r\n     // 用户登录\r\n     async login(userInfo) {\r\n-      // console.log(qs.stringify(userInfo));\r\n+      console.log(qs.stringify(userInfo));\r\n \r\n-      const result: any = await post('api/login', userInfo)\r\n+      const result: any = await post('api/login', qs.stringify(userInfo))\r\n       if (result.status == 0) {\r\n         this.userInfo = userInfo\r\n         this.token = result.token\r\n         window.localStorage.setItem('token', this.token)\r\n"
+                },
+                {
+                    "date": 1651408790144,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,10 +12,8 @@\n   },\r\n   actions: {\r\n     // 用户登录\r\n     async login(userInfo) {\r\n-      console.log(qs.stringify(userInfo));\r\n-\r\n       const result: any = await post('api/login', qs.stringify(userInfo))\r\n       if (result.status == 0) {\r\n         this.userInfo = userInfo\r\n         this.token = result.token\r\n"
+                },
+                {
+                    "date": 1651408830903,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,9 @@\n       if (result.status == 0) {\r\n         this.userInfo = userInfo\r\n         this.token = result.token\r\n         window.localStorage.setItem('token', this.token)\r\n+        return 'ok'\r\n       } else {\r\n         $message('登录失败')\r\n       }\r\n     },\r\n"
+                },
+                {
+                    "date": 1651409133421,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n       if (result.status == 0) {\r\n         this.userInfo = userInfo\r\n         this.token = result.token\r\n         window.localStorage.setItem('token', this.token)\r\n-        return 'ok'\r\n+\r\n       } else {\r\n         $message('登录失败')\r\n       }\r\n     },\r\n"
+                },
+                {
+                    "date": 1651409231542,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n       if (result.status == 0) {\r\n         this.userInfo = userInfo\r\n         this.token = result.token\r\n         window.localStorage.setItem('token', this.token)\r\n-\r\n+        return 'ok'\r\n       } else {\r\n         $message('登录失败')\r\n       }\r\n     },\r\n"
+                },
+                {
+                    "date": 1651409985599,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n export const useUserStore = defineStore({\r\n   id: 'user', // id必填，且需要唯一\r\n   state: () => {\r\n     return {\r\n-      userInfo: {},\r\n+      userInfo: any,\r\n       token: '',\r\n     }\r\n   },\r\n   actions: {\r\n"
+                },
+                {
+                    "date": 1651410002304,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n export const useUserStore = defineStore({\r\n   id: 'user', // id必填，且需要唯一\r\n   state: () => {\r\n     return {\r\n-      userInfo: any,\r\n+      userInfo: null,\r\n       token: '',\r\n     }\r\n   },\r\n   actions: {\r\n"
+                },
+                {
+                    "date": 1651410055184,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n export const useUserStore = defineStore({\r\n   id: 'user', // id必填，且需要唯一\r\n   state: () => {\r\n     return {\r\n-      userInfo: null,\r\n+      userInfo: {},\r\n       token: '',\r\n     }\r\n   },\r\n   actions: {\r\n"
+                },
+                {
+                    "date": 1651410162484,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     // 用户登录\r\n     async login(userInfo) {\r\n       const result: any = await post('api/login', qs.stringify(userInfo))\r\n       if (result.status == 0) {\r\n-        this.userInfo = userInfo\r\n+        this.userInfo = JSON.parse(userInfo)\r\n         this.token = result.token\r\n         window.localStorage.setItem('token', this.token)\r\n         return 'ok'\r\n       } else {\r\n"
+                },
+                {
+                    "date": 1651410354011,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,18 +5,17 @@\n export const useUserStore = defineStore({\r\n   id: 'user', // id必填，且需要唯一\r\n   state: () => {\r\n     return {\r\n-      userInfo: {},\r\n+      userInfo: null,\r\n       token: '',\r\n     }\r\n   },\r\n   actions: {\r\n     // 用户登录\r\n     async login(userInfo) {\r\n       const result: any = await post('api/login', qs.stringify(userInfo))\r\n       if (result.status == 0) {\r\n-        this.userInfo = JSON.parse(userInfo)\r\n         this.token = result.token\r\n         window.localStorage.setItem('token', this.token)\r\n         return 'ok'\r\n       } else {\r\n"
+                },
+                {
+                    "date": 1651410372447,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n export const useUserStore = defineStore({\r\n   id: 'user', // id必填，且需要唯一\r\n   state: () => {\r\n     return {\r\n-      userInfo: null,\r\n+      userInfo: { username: '', email: '' },\r\n       token: '',\r\n     }\r\n   },\r\n   actions: {\r\n"
+                },
+                {
+                    "date": 1651410669911,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,9 @@\n     async login(userInfo) {\r\n       const result: any = await post('api/login', qs.stringify(userInfo))\r\n       if (result.status == 0) {\r\n         this.token = result.token\r\n+        this.userInfo = result.data\r\n         window.localStorage.setItem('token', this.token)\r\n         return 'ok'\r\n       } else {\r\n         $message('登录失败')\r\n"
+                },
+                {
+                    "date": 1651410743528,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,10 @@\n       const result: any = await post('api/login', qs.stringify(userInfo))\r\n       if (result.status == 0) {\r\n         this.token = result.token\r\n         this.userInfo = result.data\r\n+        console.log(this.userInfo, result.data);\r\n+\r\n         window.localStorage.setItem('token', this.token)\r\n         return 'ok'\r\n       } else {\r\n         $message('登录失败')\r\n"
+                },
+                {
+                    "date": 1651410799431,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n export const useUserStore = defineStore({\r\n   id: 'user', // id必填，且需要唯一\r\n   state: () => {\r\n     return {\r\n-      userInfo: { username: '', email: '' },\r\n+      userInfo: { username: '', email: '', id: '' },\r\n       token: '',\r\n     }\r\n   },\r\n   actions: {\r\n"
+                },
+                {
+                    "date": 1651411622215,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,16 +10,17 @@\n       token: '',\r\n     }\r\n   },\r\n   actions: {\r\n+    // 退出登录\r\n+\r\n     // 用户登录\r\n     async login(userInfo) {\r\n       const result: any = await post('api/login', qs.stringify(userInfo))\r\n       if (result.status == 0) {\r\n         this.token = result.token\r\n         this.userInfo = result.data\r\n-        console.log(this.userInfo, result.data);\r\n-\r\n+        // console.log(this.userInfo, result.data);\r\n         window.localStorage.setItem('token', this.token)\r\n         return 'ok'\r\n       } else {\r\n         $message('登录失败')\r\n"
+                },
+                {
+                    "date": 1651411632832,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,11 @@\n     }\r\n   },\r\n   actions: {\r\n     // 退出登录\r\n+    loginOut() {\r\n \r\n+    },\r\n     // 用户登录\r\n     async login(userInfo) {\r\n       const result: any = await post('api/login', qs.stringify(userInfo))\r\n       if (result.status == 0) {\r\n"
+                },
+                {
+                    "date": 1651411649048,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n   },\r\n   actions: {\r\n     // 退出登录\r\n     loginOut() {\r\n-\r\n+      localStorage.removeItem(\"Authorization\");\r\n     },\r\n     // 用户登录\r\n     async login(userInfo) {\r\n       const result: any = await post('api/login', qs.stringify(userInfo))\r\n"
+                },
+                {
+                    "date": 1651411833447,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n     // 用户注册\r\n     // 获取验证码\r\n     // 获取用户信息\r\n     async getUserInfo() {\r\n-      const result = await get('my/userinfo')\r\n+      await get('my/userinfo')\r\n     }\r\n     // 修改姓名\r\n     // 修改密码\r\n     // 获取备份\r\n"
+                },
+                {
+                    "date": 1651411913974,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,12 @@\n     // 用户注册\r\n     // 获取验证码\r\n     // 获取用户信息\r\n     async getUserInfo() {\r\n-      await get('my/userinfo')\r\n+      const result: any = await get('my/userinfo')\r\n+      if (result.status == 0) {\r\n+        this.userInfo = result.data\r\n+      }\r\n     }\r\n     // 修改姓名\r\n     // 修改密码\r\n     // 获取备份\r\n"
+                },
+                {
+                    "date": 1651468990774,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n   id: 'user', // id必填，且需要唯一\r\n   state: () => {\r\n     return {\r\n       userInfo: { username: '', email: '', id: '' },\r\n-      token: '',\r\n+      token: window.localStorage.getItem('token'),\r\n     }\r\n   },\r\n   actions: {\r\n     // 退出登录\r\n"
+                },
+                {
+                    "date": 1651469333447,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,10 +35,13 @@\n       const result: any = await get('my/userinfo')\r\n       if (result.status == 0) {\r\n         this.userInfo = result.data\r\n       }\r\n+    },\r\n+    // 修改姓名\r\n+    async changeName() {\r\n+      const result: any = await post('')\r\n     }\r\n-    // 修改姓名\r\n     // 修改密码\r\n     // 获取备份\r\n     // 删除备份\r\n   }\r\n"
+                },
+                {
+                    "date": 1651469342365,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,9 @@\n       }\r\n     },\r\n     // 修改姓名\r\n     async changeName() {\r\n-      const result: any = await post('')\r\n+      const result: any = await post('my/user')\r\n     }\r\n     // 修改密码\r\n     // 获取备份\r\n     // 删除备份\r\n"
+                },
+                {
+                    "date": 1651469348443,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,9 @@\n       }\r\n     },\r\n     // 修改姓名\r\n     async changeName() {\r\n-      const result: any = await post('my/user')\r\n+      const result: any = await post('my/userinfo')\r\n     }\r\n     // 修改密码\r\n     // 获取备份\r\n     // 删除备份\r\n"
+                },
+                {
+                    "date": 1651469361230,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n         this.userInfo = result.data\r\n       }\r\n     },\r\n     // 修改姓名\r\n-    async changeName() {\r\n+    async changeName(name) {\r\n       const result: any = await post('my/userinfo')\r\n     }\r\n     // 修改密码\r\n     // 获取备份\r\n"
+                },
+                {
+                    "date": 1651469380207,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,10 +37,10 @@\n         this.userInfo = result.data\r\n       }\r\n     },\r\n     // 修改姓名\r\n-    async changeName(name) {\r\n-      const result: any = await post('my/userinfo')\r\n+    async changeName(username) {\r\n+      const result: any = await post('my/userinfo', qs.stringify(username))\r\n     }\r\n     // 修改密码\r\n     // 获取备份\r\n     // 删除备份\r\n"
+                },
+                {
+                    "date": 1651469425354,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,8 +39,14 @@\n     },\r\n     // 修改姓名\r\n     async changeName(username) {\r\n       const result: any = await post('my/userinfo', qs.stringify(username))\r\n+      if (result.status == 0) {\r\n+        this.userInfo.username = result.data\r\n+        return 'ok'\r\n+      } else {\r\n+        $message('修改失败')\r\n+      }\r\n     }\r\n     // 修改密码\r\n     // 获取备份\r\n     // 删除备份\r\n"
+                },
+                {
+                    "date": 1651469471107,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n     // 修改姓名\r\n     async changeName(username) {\r\n       const result: any = await post('my/userinfo', qs.stringify(username))\r\n       if (result.status == 0) {\r\n-        this.userInfo.username = result.data\r\n+        this.userInfo.username = username\r\n         return 'ok'\r\n       } else {\r\n         $message('修改失败')\r\n       }\r\n"
+                },
+                {
+                    "date": 1651469492575,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,8 +41,9 @@\n     async changeName(username) {\r\n       const result: any = await post('my/userinfo', qs.stringify(username))\r\n       if (result.status == 0) {\r\n         this.userInfo.username = username\r\n+        $message.success('修改失败')\r\n         return 'ok'\r\n       } else {\r\n         $message('修改失败')\r\n       }\r\n"
+                },
+                {
+                    "date": 1651469503071,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         // console.log(this.userInfo, result.data);\r\n         window.localStorage.setItem('token', this.token)\r\n         return 'ok'\r\n       } else {\r\n-        $message('登录失败')\r\n+        $message.error('登录失败')\r\n       }\r\n     },\r\n     // 用户注册\r\n     // 获取验证码\r\n@@ -44,9 +44,9 @@\n         this.userInfo.username = username\r\n         $message.success('修改失败')\r\n         return 'ok'\r\n       } else {\r\n-        $message('修改失败')\r\n+        $message.error('修改失败')\r\n       }\r\n     }\r\n     // 修改密码\r\n     // 获取备份\r\n"
+                },
+                {
+                    "date": 1651469621539,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,9 @@\n       }\r\n     },\r\n     // 修改姓名\r\n     async changeName(username) {\r\n-      const result: any = await post('my/userinfo', qs.stringify(username))\r\n+      const result: any = await post('my/userinfo', username)\r\n       if (result.status == 0) {\r\n         this.userInfo.username = username\r\n         $message.success('修改失败')\r\n         return 'ok'\r\n"
+                },
+                {
+                    "date": 1651469739432,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,8 +38,10 @@\n       }\r\n     },\r\n     // 修改姓名\r\n     async changeName(username) {\r\n+      console.log(username);\r\n+\r\n       const result: any = await post('my/userinfo', username)\r\n       if (result.status == 0) {\r\n         this.userInfo.username = username\r\n         $message.success('修改失败')\r\n"
+                },
+                {
+                    "date": 1651469782867,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n     // 修改姓名\r\n     async changeName(username) {\r\n       console.log(username);\r\n \r\n-      const result: any = await post('my/userinfo', username)\r\n+      const result: any = await post('my/userinfo', { username: username })\r\n       if (result.status == 0) {\r\n         this.userInfo.username = username\r\n         $message.success('修改失败')\r\n         return 'ok'\r\n"
+                },
+                {
+                    "date": 1651469803027,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n     // 修改姓名\r\n     async changeName(username) {\r\n       console.log(username);\r\n \r\n-      const result: any = await post('my/userinfo', { username: username })\r\n+      const result: any = await post('my/userinfo', { 'username': username })\r\n       if (result.status == 0) {\r\n         this.userInfo.username = username\r\n         $message.success('修改失败')\r\n         return 'ok'\r\n"
+                },
+                {
+                    "date": 1651469826205,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n     // 修改姓名\r\n     async changeName(username) {\r\n       console.log(username);\r\n \r\n-      const result: any = await post('my/userinfo', { 'username': username })\r\n+      const result: any = await post('my/userinfo', \"username\": username)\r\n       if (result.status == 0) {\r\n         this.userInfo.username = username\r\n         $message.success('修改失败')\r\n         return 'ok'\r\n"
+                },
+                {
+                    "date": 1651469853386,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,14 +37,14 @@\n         this.userInfo = result.data\r\n       }\r\n     },\r\n     // 修改姓名\r\n-    async changeName(username) {\r\n-      console.log(username);\r\n+    async changeName(name) {\r\n+      console.log(name);\r\n \r\n-      const result: any = await post('my/userinfo', \"username\": username)\r\n+      const result: any = await post('my/userinfo', { \"username\": name })\r\n       if (result.status == 0) {\r\n-        this.userInfo.username = username\r\n+        this.userInfo.username = name\r\n         $message.success('修改失败')\r\n         return 'ok'\r\n       } else {\r\n         $message.error('修改失败')\r\n"
+                },
+                {
+                    "date": 1651469929983,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n     // 修改姓名\r\n     async changeName(name) {\r\n       console.log(name);\r\n \r\n-      const result: any = await post('my/userinfo', { \"username\": name })\r\n+      const result: any = await post('my/userinfo', name)\r\n       if (result.status == 0) {\r\n         this.userInfo.username = name\r\n         $message.success('修改失败')\r\n         return 'ok'\r\n"
+                },
+                {
+                    "date": 1651469982251,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n     // 修改姓名\r\n     async changeName(name) {\r\n       console.log(name);\r\n \r\n-      const result: any = await post('my/userinfo', name)\r\n+      const result: any = await post('my/userinfo', qs.stringify(name))\r\n       if (result.status == 0) {\r\n         this.userInfo.username = name\r\n         $message.success('修改失败')\r\n         return 'ok'\r\n"
+                },
+                {
+                    "date": 1651470086277,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,9 @@\n       }\r\n     },\r\n     // 修改姓名\r\n     async changeName(name) {\r\n-      console.log(name);\r\n+      console.log(qs.stringify(name));\r\n \r\n       const result: any = await post('my/userinfo', qs.stringify(name))\r\n       if (result.status == 0) {\r\n         this.userInfo.username = name\r\n"
+                },
+                {
+                    "date": 1651470119105,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n       console.log(qs.stringify(name));\r\n \r\n       const result: any = await post('my/userinfo', qs.stringify(name))\r\n       if (result.status == 0) {\r\n-        this.userInfo.username = name\r\n+        this.userInfo.username = name.username\r\n         $message.success('修改失败')\r\n         return 'ok'\r\n       } else {\r\n         $message.error('修改失败')\r\n"
+                },
+                {
+                    "date": 1651470158063,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n \r\n       const result: any = await post('my/userinfo', qs.stringify(name))\r\n       if (result.status == 0) {\r\n         this.userInfo.username = name.username\r\n-        $message.success('修改失败')\r\n+        $message.success('修改成功')\r\n         return 'ok'\r\n       } else {\r\n         $message.error('修改失败')\r\n       }\r\n"
+                },
+                {
+                    "date": 1651470179876,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,9 @@\n         this.token = result.token\r\n         this.userInfo = result.data\r\n         // console.log(this.userInfo, result.data);\r\n         window.localStorage.setItem('token', this.token)\r\n+        $message.success('成功登录')\r\n         return 'ok'\r\n       } else {\r\n         $message.error('登录失败')\r\n       }\r\n"
+                },
+                {
+                    "date": 1651470189735,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,10 +39,8 @@\n       }\r\n     },\r\n     // 修改姓名\r\n     async changeName(name) {\r\n-      console.log(qs.stringify(name));\r\n-\r\n       const result: any = await post('my/userinfo', qs.stringify(name))\r\n       if (result.status == 0) {\r\n         this.userInfo.username = name.username\r\n         $message.success('修改成功')\r\n"
+                },
+                {
+                    "date": 1651470310865,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,10 +47,13 @@\n         return 'ok'\r\n       } else {\r\n         $message.error('修改失败')\r\n       }\r\n+    },\r\n+    // 修改密码\r\n+    async changePwd(data) {\r\n+      const result: any = await post('my/updatePwd')\r\n     }\r\n-    // 修改密码\r\n     // 获取备份\r\n     // 删除备份\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1651470319916,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n       }\r\n     },\r\n     // 修改密码\r\n     async changePwd(data) {\r\n-      const result: any = await post('my/updatePwd')\r\n+      const result: any = await post('my/updatepwd',)\r\n     }\r\n     // 获取备份\r\n     // 删除备份\r\n   }\r\n"
+                },
+                {
+                    "date": 1651470438155,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,14 @@\n       }\r\n     },\r\n     // 修改密码\r\n     async changePwd(data) {\r\n-      const result: any = await post('my/updatepwd',)\r\n+      const result: any = await post('my/updatepwd', qs.stringify(data))\r\n+      if (result.status == 0) {\r\n+        $message.success('修改成功')\r\n+      } else {\r\n+        $message.error('修改失败')\r\n+      }\r\n     }\r\n     // 获取备份\r\n     // 删除备份\r\n   }\r\n"
+                },
+                {
+                    "date": 1651470593554,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,9 +54,9 @@\n       const result: any = await post('my/updatepwd', qs.stringify(data))\r\n       if (result.status == 0) {\r\n         $message.success('修改成功')\r\n       } else {\r\n-        $message.error('修改失败')\r\n+        $message.error(result.message)\r\n       }\r\n     }\r\n     // 获取备份\r\n     // 删除备份\r\n"
+                },
+                {
+                    "date": 1651475151505,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,69 @@\n+import { defineStore } from 'pinia'\r\n+import { get, post } from '../utils/axios'\r\n+import { ElMessage as $message } from 'element-plus'\r\n+import qs from 'qs'\r\n+export const useUserStore = defineStore({\r\n+  id: 'user', // id必填，且需要唯一\r\n+  state: () => {\r\n+    return {\r\n+      userInfo: { username: '', email: '', id: '' },\r\n+      token: window.localStorage.getItem('token'),\r\n+    }\r\n+  },\r\n+  actions: {\r\n+    // 退出登录\r\n+    loginOut() {\r\n+      localStorage.removeItem(\"Authorization\");\r\n+    },\r\n+    // 用户登录\r\n+    async login(userInfo) {\r\n+      const result: any = await post('api/login', qs.stringify(userInfo))\r\n+      if (result.status == 0) {\r\n+        this.token = result.token\r\n+        this.userInfo = result.data\r\n+        // console.log(this.userInfo, result.data);\r\n+        window.localStorage.setItem('token', this.token)\r\n+        $message.success('成功登录')\r\n+        return 'ok'\r\n+      } else {\r\n+        $message.error('登录失败')\r\n+      }\r\n+    },\r\n+    // 用户注册\r\n+    // 获取验证码\r\n+    // 获取用户信息\r\n+    async getUserInfo() {\r\n+      const result: any = await get('my/userinfo')\r\n+      if (result.status == 0) {\r\n+        this.userInfo = result.data\r\n+      }\r\n+    },\r\n+    // 修改姓名\r\n+    async changeName(name) {\r\n+      const result: any = await post('my/userinfo', qs.stringify(name))\r\n+      if (result.status == 0) {\r\n+        this.userInfo.username = name.username\r\n+        $message.success('修改成功')\r\n+        return 'ok'\r\n+      } else {\r\n+        $message.error('修改失败')\r\n+      }\r\n+    },\r\n+    // 修改密码\r\n+    async changePwd(data) {\r\n+      const result: any = await post('my/updatepwd', qs.stringify(data))\r\n+      if (result.status == 0) {\r\n+        $message.success('修改成功')\r\n+      } else {\r\n+        $message.error(result.message)\r\n+      }\r\n+    },\r\n+    // 获取备份\r\n+    async getBackup() {\r\n+      const result: any = await get('')\r\n+    }\r\n+\r\n+    // 删除备份\r\n+    // 修改备份\r\n+  }\r\n+})\r\n"
+                },
+                {
+                    "date": 1651475189845,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n   state: () => {\r\n     return {\r\n       userInfo: { username: '', email: '', id: '' },\r\n       token: window.localStorage.getItem('token'),\r\n+      backup: {}\r\n     }\r\n   },\r\n   actions: {\r\n     // 退出登录\r\n@@ -59,75 +60,14 @@\n       }\r\n     },\r\n     // 获取备份\r\n     async getBackup() {\r\n-      const result: any = await get('')\r\n-    }\r\n-\r\n-    // 删除备份\r\n-    // 修改备份\r\n-  }\r\n-})\r\n-import { defineStore } from 'pinia'\r\n-import { get, post } from '../utils/axios'\r\n-import { ElMessage as $message } from 'element-plus'\r\n-import qs from 'qs'\r\n-export const useUserStore = defineStore({\r\n-  id: 'user', // id必填，且需要唯一\r\n-  state: () => {\r\n-    return {\r\n-      userInfo: { username: '', email: '', id: '' },\r\n-      token: window.localStorage.getItem('token'),\r\n-    }\r\n-  },\r\n-  actions: {\r\n-    // 退出登录\r\n-    loginOut() {\r\n-      localStorage.removeItem(\"Authorization\");\r\n-    },\r\n-    // 用户登录\r\n-    async login(userInfo) {\r\n-      const result: any = await post('api/login', qs.stringify(userInfo))\r\n+      const result: any = await get('my/backup')\r\n       if (result.status == 0) {\r\n-        this.token = result.token\r\n-        this.userInfo = result.data\r\n-        // console.log(this.userInfo, result.data);\r\n-        window.localStorage.setItem('token', this.token)\r\n-        $message.success('成功登录')\r\n-        return 'ok'\r\n-      } else {\r\n-        $message.error('登录失败')\r\n-      }\r\n-    },\r\n-    // 用户注册\r\n-    // 获取验证码\r\n-    // 获取用户信息\r\n-    async getUserInfo() {\r\n-      const result: any = await get('my/userinfo')\r\n-      if (result.status == 0) {\r\n-        this.userInfo = result.data\r\n-      }\r\n-    },\r\n-    // 修改姓名\r\n-    async changeName(name) {\r\n-      const result: any = await post('my/userinfo', qs.stringify(name))\r\n-      if (result.status == 0) {\r\n-        this.userInfo.username = name.username\r\n         $message.success('修改成功')\r\n-        return 'ok'\r\n-      } else {\r\n-        $message.error('修改失败')\r\n       }\r\n-    },\r\n-    // 修改密码\r\n-    async changePwd(data) {\r\n-      const result: any = await post('my/updatepwd', qs.stringify(data))\r\n-      if (result.status == 0) {\r\n-        $message.success('修改成功')\r\n-      } else {\r\n-        $message.error(result.message)\r\n-      }\r\n     }\r\n-    // 获取备份\r\n+\r\n     // 删除备份\r\n+    // 修改备份\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1651475223342,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n   state: () => {\r\n     return {\r\n       userInfo: { username: '', email: '', id: '' },\r\n       token: window.localStorage.getItem('token'),\r\n-      backup: {}\r\n+      backup: {},\r\n     }\r\n   },\r\n   actions: {\r\n     // 退出登录\r\n"
+                },
+                {
+                    "date": 1651475235464,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,9 +62,9 @@\n     // 获取备份\r\n     async getBackup() {\r\n       const result: any = await get('my/backup')\r\n       if (result.status == 0) {\r\n-        $message.success('修改成功')\r\n+        this.backup = result.data\r\n       }\r\n     }\r\n \r\n     // 删除备份\r\n"
+                },
+                {
+                    "date": 1651481587372,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -64,10 +64,13 @@\n       const result: any = await get('my/backup')\r\n       if (result.status == 0) {\r\n         this.backup = result.data\r\n       }\r\n-    }\r\n+    },\r\n \r\n     // 删除备份\r\n+    async delBackup(i) {\r\n+      const reuslt: any = await post('')\r\n+    }\r\n     // 修改备份\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1651481595860,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,9 +68,9 @@\n     },\r\n \r\n     // 删除备份\r\n     async delBackup(i) {\r\n-      const reuslt: any = await post('')\r\n+      const reuslt: any = await post('my/delBackup')\r\n     }\r\n     // 修改备份\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1651481678624,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,9 +68,14 @@\n     },\r\n \r\n     // 删除备份\r\n     async delBackup(i) {\r\n-      const reuslt: any = await post('my/delBackup')\r\n+      const result: any = await post('my/delBackup', i)\r\n+      if (result.status == 0) {\r\n+        $message.success('删除成功')\r\n+      } else {\r\n+        $message.error(result.message)\r\n+      }\r\n     }\r\n     // 修改备份\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1651481701677,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,8 +68,9 @@\n     },\r\n \r\n     // 删除备份\r\n     async delBackup(i) {\r\n+      const data = { \"backup\": \"backup\" }\r\n       const result: any = await post('my/delBackup', i)\r\n       if (result.status == 0) {\r\n         $message.success('删除成功')\r\n       } else {\r\n"
+                },
+                {
+                    "date": 1651481722555,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,12 +68,13 @@\n     },\r\n \r\n     // 删除备份\r\n     async delBackup(i) {\r\n-      const data = { \"backup\": \"backup\" }\r\n-      const result: any = await post('my/delBackup', i)\r\n+      const data = { \"backup\": \"backup\" + i }\r\n+      const result: any = await post('my/delBackup', qs.stringify(data))\r\n       if (result.status == 0) {\r\n         $message.success('删除成功')\r\n+        return 'ok'\r\n       } else {\r\n         $message.error(result.message)\r\n       }\r\n     }\r\n"
+                },
+                {
+                    "date": 1651481742191,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,8 +72,9 @@\n       const data = { \"backup\": \"backup\" + i }\r\n       const result: any = await post('my/delBackup', qs.stringify(data))\r\n       if (result.status == 0) {\r\n         $message.success('删除成功')\r\n+        this.backup[i] = \"\"\r\n         return 'ok'\r\n       } else {\r\n         $message.error(result.message)\r\n       }\r\n"
+                },
+                {
+                    "date": 1651482108018,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,9 +68,9 @@\n     },\r\n \r\n     // 删除备份\r\n     async delBackup(i) {\r\n-      const data = { \"backup\": \"backup\" + i }\r\n+      const data = { \"backup\": \"backup\" + i + 1 }\r\n       const result: any = await post('my/delBackup', qs.stringify(data))\r\n       if (result.status == 0) {\r\n         $message.success('删除成功')\r\n         this.backup[i] = \"\"\r\n"
+                },
+                {
+                    "date": 1651483734712,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,9 +68,9 @@\n     },\r\n \r\n     // 删除备份\r\n     async delBackup(i) {\r\n-      const data = { \"backup\": \"backup\" + i + 1 }\r\n+      const data = { \"backup\": \"backup\" + (1 + i) }\r\n       const result: any = await post('my/delBackup', qs.stringify(data))\r\n       if (result.status == 0) {\r\n         $message.success('删除成功')\r\n         this.backup[i] = \"\"\r\n"
+                },
+                {
+                    "date": 1651483794227,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,9 +72,9 @@\n       const data = { \"backup\": \"backup\" + (1 + i) }\r\n       const result: any = await post('my/delBackup', qs.stringify(data))\r\n       if (result.status == 0) {\r\n         $message.success('删除成功')\r\n-        this.backup[i] = \"\"\r\n+        this.backup['backup' + i] = \"\"\r\n         return 'ok'\r\n       } else {\r\n         $message.error(result.message)\r\n       }\r\n"
+                },
+                {
+                    "date": 1651483899202,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,9 +68,9 @@\n     },\r\n \r\n     // 删除备份\r\n     async delBackup(i) {\r\n-      const data = { \"backup\": \"backup\" + (1 + i) }\r\n+      const data = { \"backup\": \"backup\" + i }\r\n       const result: any = await post('my/delBackup', qs.stringify(data))\r\n       if (result.status == 0) {\r\n         $message.success('删除成功')\r\n         this.backup['backup' + i] = \"\"\r\n"
+                },
+                {
+                    "date": 1651491688730,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,8 +77,11 @@\n         return 'ok'\r\n       } else {\r\n         $message.error(result.message)\r\n       }\r\n+    },\r\n+    // 修改备份\r\n+    async updatedBackup(data) {\r\n+      const result: any = await post('my/updated')\r\n     }\r\n-    // 修改备份\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1651491701889,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,8 +80,8 @@\n       }\r\n     },\r\n     // 修改备份\r\n     async updatedBackup(data) {\r\n-      const result: any = await post('my/updated')\r\n+      const result: any = await post('my/updateBackup')\r\n     }\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1651491765305,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -79,9 +79,16 @@\n         $message.error(result.message)\r\n       }\r\n     },\r\n     // 修改备份\r\n-    async updatedBackup(data) {\r\n-      const result: any = await post('my/updateBackup')\r\n+    async updatedBackup(data, i) {\r\n+      const result: any = await post('my/updateBackup', qs.stringify(data))\r\n+      if (result.status == 0) {\r\n+        $message.success('修改成功')\r\n+        this.backup['backup' + i] = data.\r\n+          return 'ok'\r\n+      } else {\r\n+        $message.error(result.message)\r\n+      }\r\n     }\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1651491801638,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -83,10 +83,10 @@\n     async updatedBackup(data, i) {\r\n       const result: any = await post('my/updateBackup', qs.stringify(data))\r\n       if (result.status == 0) {\r\n         $message.success('修改成功')\r\n-        this.backup['backup' + i] = data.\r\n-          return 'ok'\r\n+        this.backup['backup' + i] = data['backup' + (i - 1)]\r\n+        return 'ok'\r\n       } else {\r\n         $message.error(result.message)\r\n       }\r\n     }\r\n"
+                },
+                {
+                    "date": 1651494312593,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,15 +80,18 @@\n       }\r\n     },\r\n     // 修改备份\r\n     async updatedBackup(data, i) {\r\n-      const result: any = await post('my/updateBackup', qs.stringify(data))\r\n-      if (result.status == 0) {\r\n-        $message.success('修改成功')\r\n-        this.backup['backup' + i] = data['backup' + (i - 1)]\r\n-        return 'ok'\r\n-      } else {\r\n-        $message.error(result.message)\r\n-      }\r\n+      this.backup['backup' + i] = data['backup' + (i - 1)]\r\n+      console.log(this.backup['backup' + i], data['backup' + (i - 1)]);\r\n+\r\n+      // const result: any = await post('my/updateBackup', qs.stringify(data))\r\n+      // if (result.status == 0) {\r\n+      //   $message.success('修改成功')\r\n+      //   this.backup['backup' + i] = data['backup' + (i - 1)]\r\n+      //   return 'ok'\r\n+      // } else {\r\n+      //   $message.error(result.message)\r\n+      // }\r\n     }\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1651494409203,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,10 +80,9 @@\n       }\r\n     },\r\n     // 修改备份\r\n     async updatedBackup(data, i) {\r\n-      this.backup['backup' + i] = data['backup' + (i - 1)]\r\n-      console.log(this.backup['backup' + i], data['backup' + (i - 1)]);\r\n+      console.log(this.backup, data['backup' + (i - 1)]);\r\n \r\n       // const result: any = await post('my/updateBackup', qs.stringify(data))\r\n       // if (result.status == 0) {\r\n       //   $message.success('修改成功')\r\n"
+                },
+                {
+                    "date": 1651494495775,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,17 +72,17 @@\n       const data = { \"backup\": \"backup\" + i }\r\n       const result: any = await post('my/delBackup', qs.stringify(data))\r\n       if (result.status == 0) {\r\n         $message.success('删除成功')\r\n-        this.backup['backup' + i] = \"\"\r\n+        this.backup['backup' + (i + 1)] = \"\"\r\n         return 'ok'\r\n       } else {\r\n         $message.error(result.message)\r\n       }\r\n     },\r\n     // 修改备份\r\n     async updatedBackup(data, i) {\r\n-      console.log(this.backup, data['backup' + (i - 1)]);\r\n+      console.log(this.backup['backup' + (i + 1)], data['backup' + (i - 1)]);\r\n \r\n       // const result: any = await post('my/updateBackup', qs.stringify(data))\r\n       // if (result.status == 0) {\r\n       //   $message.success('修改成功')\r\n"
+                },
+                {
+                    "date": 1651494503494,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,9 +72,9 @@\n       const data = { \"backup\": \"backup\" + i }\r\n       const result: any = await post('my/delBackup', qs.stringify(data))\r\n       if (result.status == 0) {\r\n         $message.success('删除成功')\r\n-        this.backup['backup' + (i + 1)] = \"\"\r\n+        this.backup['backup' + i] = \"\"\r\n         return 'ok'\r\n       } else {\r\n         $message.error(result.message)\r\n       }\r\n"
+                },
+                {
+                    "date": 1651494522452,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,9 +80,9 @@\n       }\r\n     },\r\n     // 修改备份\r\n     async updatedBackup(data, i) {\r\n-      console.log(this.backup['backup' + (i + 1)], data['backup' + (i - 1)]);\r\n+      console.log(this.backup['backup' + (i + 1)], data);\r\n \r\n       // const result: any = await post('my/updateBackup', qs.stringify(data))\r\n       // if (result.status == 0) {\r\n       //   $message.success('修改成功')\r\n"
+                },
+                {
+                    "date": 1651494555744,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,9 +80,9 @@\n       }\r\n     },\r\n     // 修改备份\r\n     async updatedBackup(data, i) {\r\n-      console.log(this.backup['backup' + (i + 1)], data);\r\n+      console.log(this.backup['backup' + (i + 1)], data['backup' + i]);\r\n \r\n       // const result: any = await post('my/updateBackup', qs.stringify(data))\r\n       // if (result.status == 0) {\r\n       //   $message.success('修改成功')\r\n"
+                },
+                {
+                    "date": 1651494585500,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,17 +80,17 @@\n       }\r\n     },\r\n     // 修改备份\r\n     async updatedBackup(data, i) {\r\n-      console.log(this.backup['backup' + (i + 1)], data['backup' + i]);\r\n+      // console.log(this.backup['backup' + (i + 1)], data['backup' + i]);\r\n \r\n-      // const result: any = await post('my/updateBackup', qs.stringify(data))\r\n-      // if (result.status == 0) {\r\n-      //   $message.success('修改成功')\r\n-      //   this.backup['backup' + i] = data['backup' + (i - 1)]\r\n-      //   return 'ok'\r\n-      // } else {\r\n-      //   $message.error(result.message)\r\n-      // }\r\n+      const result: any = await post('my/updateBackup', qs.stringify(data))\r\n+      if (result.status == 0) {\r\n+        $message.success('修改成功')\r\n+        this.backup['backup' + (i + 1)] = data['backup' + i]\r\n+        return 'ok'\r\n+      } else {\r\n+        $message.error(result.message)\r\n+      }\r\n     }\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1651494660102,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,17 +80,17 @@\n       }\r\n     },\r\n     // 修改备份\r\n     async updatedBackup(data, i) {\r\n-      // console.log(this.backup['backup' + (i + 1)], data['backup' + i]);\r\n+      console.log(this.backup['backup' + (i + 1)], data['backup' + i]);\r\n \r\n-      const result: any = await post('my/updateBackup', qs.stringify(data))\r\n-      if (result.status == 0) {\r\n-        $message.success('修改成功')\r\n-        this.backup['backup' + (i + 1)] = data['backup' + i]\r\n-        return 'ok'\r\n-      } else {\r\n-        $message.error(result.message)\r\n-      }\r\n+      //   const result: any = await post('my/updateBackup', qs.stringify(data))\r\n+      //   if (result.status == 0) {\r\n+      //     $message.success('修改成功')\r\n+      //     this.backup['backup' + (i + 1)] = data['backup' + i]\r\n+      //     return 'ok'\r\n+      //   } else {\r\n+      //     $message.error(result.message)\r\n+      //   }\r\n     }\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1651494701959,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,9 +80,9 @@\n       }\r\n     },\r\n     // 修改备份\r\n     async updatedBackup(data, i) {\r\n-      console.log(this.backup['backup' + (i + 1)], data['backup' + i]);\r\n+      console.log(this.backup['backup' + (i + 1)], data, i);\r\n \r\n       //   const result: any = await post('my/updateBackup', qs.stringify(data))\r\n       //   if (result.status == 0) {\r\n       //     $message.success('修改成功')\r\n"
+                },
+                {
+                    "date": 1651494726724,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,17 +80,17 @@\n       }\r\n     },\r\n     // 修改备份\r\n     async updatedBackup(data, i) {\r\n-      console.log(this.backup['backup' + (i + 1)], data, i);\r\n+      // console.log(this.backup['backup' + (i + 1)], data, i);\r\n \r\n-      //   const result: any = await post('my/updateBackup', qs.stringify(data))\r\n-      //   if (result.status == 0) {\r\n-      //     $message.success('修改成功')\r\n-      //     this.backup['backup' + (i + 1)] = data['backup' + i]\r\n-      //     return 'ok'\r\n-      //   } else {\r\n-      //     $message.error(result.message)\r\n-      //   }\r\n+      const result: any = await post('my/updateBackup', qs.stringify(data))\r\n+      if (result.status == 0) {\r\n+        $message.success('修改成功')\r\n+        this.backup['backup' + (i + 1)] = data['backup' + (i + 1)]\r\n+        return 'ok'\r\n+      } else {\r\n+        $message.error(result.message)\r\n+      }\r\n     }\r\n   }\r\n })\r\n"
+                },
+                {
+                    "date": 1651496192771,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,9 @@\n         this.userInfo = result.data\r\n         // console.log(this.userInfo, result.data);\r\n         window.localStorage.setItem('token', this.token)\r\n         $message.success('成功登录')\r\n+        this.getBackup()\r\n         return 'ok'\r\n       } else {\r\n         $message.error('登录失败')\r\n       }\r\n"
+                },
+                {
+                    "date": 1651496731950,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,8 @@\n   },\r\n   actions: {\r\n     // 退出登录\r\n     loginOut() {\r\n-      localStorage.removeItem(\"Authorization\");\r\n     },\r\n     // 用户登录\r\n     async login(userInfo) {\r\n       const result: any = await post('api/login', qs.stringify(userInfo))\r\n"
+                },
+                {
+                    "date": 1651496768314,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,11 +11,8 @@\n       backup: {},\r\n     }\r\n   },\r\n   actions: {\r\n-    // 退出登录\r\n-    loginOut() {\r\n-    },\r\n     // 用户登录\r\n     async login(userInfo) {\r\n       const result: any = await post('api/login', qs.stringify(userInfo))\r\n       if (result.status == 0) {\r\n"
                 }
             ],
             "date": 1649468847181,
