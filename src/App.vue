@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import Box from '@/components/Box/Box.vue'
-import { useUserStore } from './store/user';
-let userStore = useUserStore()
-if (window.localStorage.getItem('token')) {
-  userStore.getUserInfo()
-  userStore.getBackup()
-}
+
 </script>
 
 <template>

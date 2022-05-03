@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 102,
+            "activePatchIndex": 127,
             "patches": [
                 {
                     "date": 1649468847181,
@@ -416,6 +416,106 @@
                 {
                     "date": 1651496768314,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,11 +11,8 @@\n       backup: {},\r\n     }\r\n   },\r\n   actions: {\r\n-    // 退出登录\r\n-    loginOut() {\r\n-    },\r\n     // 用户登录\r\n     async login(userInfo) {\r\n       const result: any = await post('api/login', qs.stringify(userInfo))\r\n       if (result.status == 0) {\r\n"
+                },
+                {
+                    "date": 1651541887221,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,12 @@\n         $message.error('登录失败')\r\n       }\r\n     },\r\n     // 用户注册\r\n-    // 获取验证码\r\n+    // 发送验证码\r\n+    async sendCode() {\r\n+\r\n+    },\r\n     // 获取用户信息\r\n     async getUserInfo() {\r\n       const result: any = await get('my/userinfo')\r\n       if (result.status == 0) {\r\n"
+                },
+                {
+                    "date": 1651541929792,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,10 +28,10 @@\n       }\r\n     },\r\n     // 用户注册\r\n     // 发送验证码\r\n-    async sendCode() {\r\n-\r\n+    async sendCode(data) {\r\n+      const result: any = await \r\n     },\r\n     // 获取用户信息\r\n     async getUserInfo() {\r\n       const result: any = await get('my/userinfo')\r\n"
+                },
+                {
+                    "date": 1651541964680,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,15 @@\n     },\r\n     // 用户注册\r\n     // 发送验证码\r\n     async sendCode(data) {\r\n-      const result: any = await \r\n+      const result: any = await post('my/email', qs.stringify(data))\r\n+      if (result.status == 0) {\r\n+\r\n+        return 'ok'\r\n+      } else {\r\n+        $message.error('发送失败')\r\n+      }\r\n     },\r\n     // 获取用户信息\r\n     async getUserInfo() {\r\n       const result: any = await get('my/userinfo')\r\n"
+                },
+                {
+                    "date": 1651542001906,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,8 @@\n     // 发送验证码\r\n     async sendCode(data) {\r\n       const result: any = await post('my/email', qs.stringify(data))\r\n       if (result.status == 0) {\r\n-\r\n         return 'ok'\r\n       } else {\r\n         $message.error('发送失败')\r\n       }\r\n"
+                },
+                {
+                    "date": 1651546184869,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n     },\r\n     // 用户注册\r\n     // 发送验证码\r\n     async sendCode(data) {\r\n-      const result: any = await post('my/email', qs.stringify(data))\r\n+      const result: any = await post('api/email', qs.stringify(data))\r\n       if (result.status == 0) {\r\n         return 'ok'\r\n       } else {\r\n         $message.error('发送失败')\r\n"
+                },
+                {
+                    "date": 1651546275306,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,8 +29,10 @@\n     },\r\n     // 用户注册\r\n     // 发送验证码\r\n     async sendCode(data) {\r\n+      console.log(qs.stringify(data));\r\n+\r\n       const result: any = await post('api/email', qs.stringify(data))\r\n       if (result.status == 0) {\r\n         return 'ok'\r\n       } else {\r\n"
+                },
+                {
+                    "date": 1651546488764,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,9 @@\n       const result: any = await post('api/email', qs.stringify(data))\r\n       if (result.status == 0) {\r\n         return 'ok'\r\n       } else {\r\n-        $message.error('发送失败')\r\n+        $message.error(result.message)\r\n       }\r\n     },\r\n     // 获取用户信息\r\n     async getUserInfo() {\r\n"
+                },
+                {
+                    "date": 1651546572012,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,8 +33,9 @@\n       console.log(qs.stringify(data));\r\n \r\n       const result: any = await post('api/email', qs.stringify(data))\r\n       if (result.status == 0) {\r\n+        $message.error('发送成功')\r\n         return 'ok'\r\n       } else {\r\n         $message.error(result.message)\r\n       }\r\n"
+                },
+                {
+                    "date": 1651547054136,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,10 +29,8 @@\n     },\r\n     // 用户注册\r\n     // 发送验证码\r\n     async sendCode(data) {\r\n-      console.log(qs.stringify(data));\r\n-\r\n       const result: any = await post('api/email', qs.stringify(data))\r\n       if (result.status == 0) {\r\n         $message.error('发送成功')\r\n         return 'ok'\r\n"
+                },
+                {
+                    "date": 1651547102418,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n     // 发送验证码\r\n     async sendCode(data) {\r\n       const result: any = await post('api/email', qs.stringify(data))\r\n       if (result.status == 0) {\r\n-        $message.error('发送成功')\r\n+        $message.success('发送成功')\r\n         return 'ok'\r\n       } else {\r\n         $message.error(result.message)\r\n       }\r\n"
+                },
+                {
+                    "date": 1651551335126,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,8 +27,17 @@\n         $message.error('登录失败')\r\n       }\r\n     },\r\n     // 用户注册\r\n+    async register(data) {\r\n+      const result = await post('api/register', qs.stringify(data))\r\n+      if (result.status == 0) {\r\n+        $message.success('注册成功')\r\n+        return 'ok'\r\n+      } else {\r\n+        $message.error('注册失败')\r\n+      }\r\n+    },\r\n     // 发送验证码\r\n     async sendCode(data) {\r\n       const result: any = await post('api/email', qs.stringify(data))\r\n       if (result.status == 0) {\r\n"
+                },
+                {
+                    "date": 1651551342591,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n       }\r\n     },\r\n     // 用户注册\r\n     async register(data) {\r\n-      const result = await post('api/register', qs.stringify(data))\r\n+      const result: any = await post('api/register', qs.stringify(data))\r\n       if (result.status == 0) {\r\n         $message.success('注册成功')\r\n         return 'ok'\r\n       } else {\r\n"
+                },
+                {
+                    "date": 1651551358557,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n       }\r\n     },\r\n     // 用户注册\r\n     async register(data) {\r\n-      const result: any = await post('api/register', qs.stringify(data))\r\n+      const result: any = await post('api/reguser', qs.stringify(data))\r\n       if (result.status == 0) {\r\n         $message.success('注册成功')\r\n         return 'ok'\r\n       } else {\r\n"
+                },
+                {
+                    "date": 1651551748516,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,8 +29,10 @@\n     },\r\n     // 用户注册\r\n     async register(data) {\r\n       const result: any = await post('api/reguser', qs.stringify(data))\r\n+      console.log(result);\r\n+\r\n       if (result.status == 0) {\r\n         $message.success('注册成功')\r\n         return 'ok'\r\n       } else {\r\n"
+                },
+                {
+                    "date": 1651551834605,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,10 +28,10 @@\n       }\r\n     },\r\n     // 用户注册\r\n     async register(data) {\r\n+      console.log(qs.stringify(data));\r\n       const result: any = await post('api/reguser', qs.stringify(data))\r\n-      console.log(result);\r\n \r\n       if (result.status == 0) {\r\n         $message.success('注册成功')\r\n         return 'ok'\r\n"
+                },
+                {
+                    "date": 1651551915376,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,10 +28,10 @@\n       }\r\n     },\r\n     // 用户注册\r\n     async register(data) {\r\n-      console.log(qs.stringify(data));\r\n       const result: any = await post('api/reguser', qs.stringify(data))\r\n+      console.log(result);\r\n \r\n       if (result.status == 0) {\r\n         $message.success('注册成功')\r\n         return 'ok'\r\n"
+                },
+                {
+                    "date": 1651552083658,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,8 +30,9 @@\n     // 用户注册\r\n     async register(data) {\r\n       const result: any = await post('api/reguser', qs.stringify(data))\r\n       console.log(result);\r\n+      console.log(qs.stringify(data), data);\r\n \r\n       if (result.status == 0) {\r\n         $message.success('注册成功')\r\n         return 'ok'\r\n"
+                },
+                {
+                    "date": 1651557319055,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -81,8 +81,9 @@\n     async getBackup() {\r\n       const result: any = await get('my/backup')\r\n       if (result.status == 0) {\r\n         this.backup = result.data\r\n+        return 'ok'\r\n       }\r\n     },\r\n \r\n     // 删除备份\r\n"
+                },
+                {
+                    "date": 1651562618276,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,8 +54,9 @@\n     async getUserInfo() {\r\n       const result: any = await get('my/userinfo')\r\n       if (result.status == 0) {\r\n         this.userInfo = result.data\r\n+        return 'ok'\r\n       }\r\n     },\r\n     // 修改姓名\r\n     async changeName(name) {\r\n"
+                },
+                {
+                    "date": 1651564963911,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,9 +54,9 @@\n     async getUserInfo() {\r\n       const result: any = await get('my/userinfo')\r\n       if (result.status == 0) {\r\n         this.userInfo = result.data\r\n-        return 'ok'\r\n+        result('ok')\r\n       }\r\n     },\r\n     // 修改姓名\r\n     async changeName(name) {\r\n"
+                },
+                {
+                    "date": 1651564990407,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,9 +54,9 @@\n     async getUserInfo() {\r\n       const result: any = await get('my/userinfo')\r\n       if (result.status == 0) {\r\n         this.userInfo = result.data\r\n-        result('ok')\r\n+        return result('ok')\r\n       }\r\n     },\r\n     // 修改姓名\r\n     async changeName(name) {\r\n"
+                },
+                {
+                    "date": 1651565015276,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,9 +54,9 @@\n     async getUserInfo() {\r\n       const result: any = await get('my/userinfo')\r\n       if (result.status == 0) {\r\n         this.userInfo = result.data\r\n-        return result('ok')\r\n+        return Promise.resolve('ok')\r\n       }\r\n     },\r\n     // 修改姓名\r\n     async changeName(name) {\r\n"
+                },
+                {
+                    "date": 1651565266078,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,9 +54,9 @@\n     async getUserInfo() {\r\n       const result: any = await get('my/userinfo')\r\n       if (result.status == 0) {\r\n         this.userInfo = result.data\r\n-        return Promise.resolve('ok')\r\n+        return 'ok'\r\n       }\r\n     },\r\n     // 修改姓名\r\n     async changeName(name) {\r\n"
+                },
+                {
+                    "date": 1651565278248,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,8 +56,9 @@\n       if (result.status == 0) {\r\n         this.userInfo = result.data\r\n         return 'ok'\r\n       }\r\n+      return 'no'\r\n     },\r\n     // 修改姓名\r\n     async changeName(name) {\r\n       const result: any = await post('my/userinfo', qs.stringify(name))\r\n"
+                },
+                {
+                    "date": 1651565286146,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,9 +56,9 @@\n       if (result.status == 0) {\r\n         this.userInfo = result.data\r\n         return 'ok'\r\n       }\r\n-      return 'no'\r\n+\r\n     },\r\n     // 修改姓名\r\n     async changeName(name) {\r\n       const result: any = await post('my/userinfo', qs.stringify(name))\r\n"
                 }
             ],
             "date": 1649468847181,

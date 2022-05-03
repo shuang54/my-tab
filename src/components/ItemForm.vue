@@ -91,7 +91,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
     if (valid) {
       let { boxItem: boxItemData } = storeToRefs(boxStore)
       if (ruleForm.address.slice(0, 3) == 'www') {
-        ruleForm.address = 'https://' + ruleForm.address
+        ruleForm.address = ruleForm.address
       }
       // 通过计算获取 X Ｙ　坐标
       let { X, Y } = addTraversal(boxItemData.value)

@@ -28,13 +28,36 @@ export const useUserStore = defineStore({
       }
     },
     // 用户注册
-    // 获取验证码
+    async register(data) {
+      const result: any = await post('api/reguser', qs.stringify(data))
+      console.log(result);
+      console.log(qs.stringify(data), data);
+
+      if (result.status == 0) {
+        $message.success('注册成功')
+        return 'ok'
+      } else {
+        $message.error('注册失败')
+      }
+    },
+    // 发送验证码
+    async sendCode(data) {
+      const result: any = await post('api/email', qs.stringify(data))
+      if (result.status == 0) {
+        $message.success('发送成功')
+        return 'ok'
+      } else {
+        $message.error(result.message)
+      }
+    },
     // 获取用户信息
     async getUserInfo() {
       const result: any = await get('my/userinfo')
       if (result.status == 0) {
         this.userInfo = result.data
+        return 'ok'
       }
+
     },
     // 修改姓名
     async changeName(name) {
@@ -61,6 +84,7 @@ export const useUserStore = defineStore({
       const result: any = await get('my/backup')
       if (result.status == 0) {
         this.backup = result.data
+        return 'ok'
       }
     },
 

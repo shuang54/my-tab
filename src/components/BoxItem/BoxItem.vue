@@ -111,7 +111,18 @@ function onMouseUp(e) {
   // el.setCapture && el.setCapture() //释放全局捕获
 
   if (!isDrag) {
-    window.location.href = target.value
+    // window.open('http://www.baidu.com','_blank');
+    // window.open('http://www.baidu.com','_self');
+    if (target.value.slice(0, 3) == "www") {
+      console.log('http://' + target.value);
+
+      window.location.href = 'http://' + target.value
+    } else {
+      window.location.href = target.value
+
+    }
+
+
   }
   isDrag = false
 

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 29,
+            "activePatchIndex": 31,
             "patches": [
                 {
                     "date": 1649469160153,
@@ -124,6 +124,14 @@
                 {
                     "date": 1651411269199,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,10 +14,10 @@\n     'access-control-allow-origin': '*'\r\n   }\r\n })\r\n instance.interceptors.request.use((config: any) => {\r\n-  if (localStorage.getItem('Authorization')) {\r\n-    config.headers.Authorization = localStorage.getItem('Authorization');\r\n+  if (localStorage.getItem('token')) {\r\n+    config.headers.Authorization = localStorage.getItem('token');\r\n   }\r\n   return config;\r\n })\r\n // 使用后置拦截器，对获取的响应进行拦截：\r\n"
+                },
+                {
+                    "date": 1651585309538,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,16 +9,15 @@\n   timeout: TIME_OUT,\r\n   headers: {\r\n     // 'content-type': 'application/json',\r\n     'Content-Type': 'application/x-www-form-urlencoded',\r\n-\r\n     'access-control-allow-origin': '*'\r\n   }\r\n })\r\n instance.interceptors.request.use((config: any) => {\r\n-  if (localStorage.getItem('token')) {\r\n-    config.headers.Authorization = localStorage.getItem('token');\r\n-  }\r\n+  // if (localStorage.getItem('token')) {\r\n+  //   config.headers.Authorization = localStorage.getItem('token');\r\n+  // }\r\n   return config;\r\n })\r\n // 使用后置拦截器，对获取的响应进行拦截：\r\n instance.interceptors.response.use(\r\n"
+                },
+                {
+                    "date": 1651585422585,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,11 +13,11 @@\n     'access-control-allow-origin': '*'\r\n   }\r\n })\r\n instance.interceptors.request.use((config: any) => {\r\n-  // if (localStorage.getItem('token')) {\r\n-  //   config.headers.Authorization = localStorage.getItem('token');\r\n-  // }\r\n+  if (localStorage.getItem('token')) {\r\n+    config.headers.Authorization = localStorage.getItem('token');\r\n+  }\r\n   return config;\r\n })\r\n // 使用后置拦截器，对获取的响应进行拦截：\r\n instance.interceptors.response.use(\r\n"
                 }
             ],
             "date": 1649469160153,

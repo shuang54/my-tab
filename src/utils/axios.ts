@@ -10,7 +10,6 @@ const instance: any = Axios.create({
   headers: {
     // 'content-type': 'application/json',
     'Content-Type': 'application/x-www-form-urlencoded',
-
     'access-control-allow-origin': '*'
   }
 })

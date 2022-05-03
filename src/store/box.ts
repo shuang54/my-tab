@@ -7,9 +7,9 @@ export const useBox = defineStore({
   state: () => {
     return {
       zIndex: 1,
-      boxItem: JSON.parse(window.localStorage.getItem('boxItemData') || ''),
+      boxItem: JSON.parse(window.localStorage.getItem('boxItemData') || "[]"),
       boxContainer: { width: 0, height: 0 },
-      GlobalConfiguration: JSON.parse(window.localStorage.getItem('GlobalConfiguration') || ''),
+      GlobalConfiguration: JSON.parse(window.localStorage.getItem('GlobalConfiguration') || '[]'),
       globalPicture: '',
       cardPicture: '',
     }
@@ -35,9 +35,12 @@ export const useBox = defineStore({
     // },
     // 获取背景图片
     async updatedGlobalPicture() {
-      let result: any = await get("https://api.codelife.cc/wallpaper/random")
-      if (result.code == 200) {
-        this.globalPicture = result.data
+      let result: any = await get("http://www.foogeoo.ltd:9990/")
+      // { "code": "200", "imgurl": "https:\/\/tva3.sinaimg.cn\/large\/9bd9b167gy1g4lierq2y8j21hc0xce81.jpg", "width": "1920", "height": "1200" }
+      // let result: any = await get("https://api.codelife.cc/wallpaper/random")
+      // { "code": 200, "data": "https://p15.qhimg.com/bdr/__85/d/_open360/cy0120/1.jpg", "msg": "加载成功" }
+      if (result.code == '200') {
+        this.globalPicture = result.imgurl
       } else {
         $message.error('更新背景失败！')
       }

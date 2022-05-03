@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 33,
+            "activePatchIndex": 38,
             "patches": [
                 {
                     "date": 1649468462673,
@@ -140,6 +140,26 @@
                 {
                     "date": 1651395588474,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n       '/api': {\n         target: 'http://127.0.0.1:3007',\n         changeOrigin: true,\n         secure: true,\n-        // rewrite: (path: string) => path.replace(/^\\/api/, '')\n+        rewrite: (path: string) => path.replace(/^\\/api/, '')\n       }\n     },\n \n \n"
+                },
+                {
+                    "date": 1651584860467,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,10 @@\n         target: 'http://127.0.0.1:3007',\n         changeOrigin: true,\n         secure: true,\n         rewrite: (path: string) => path.replace(/^\\/api/, '')\n-      }\n+      },\n+      'apii': {}\n     },\n \n \n   },\n"
+                },
+                {
+                    "date": 1651584952411,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,15 @@\n         changeOrigin: true,\n         secure: true,\n         rewrite: (path: string) => path.replace(/^\\/api/, '')\n       },\n-      'apii': {}\n+      '/random': {\n+\n+        target: 'https://www.dmoe.cc/',\n+        changeOrigin: true,\n+        secure: true,\n+        rewrite: (path: string) => path.replace(/^\\/api/, '')\n+      }\n     },\n \n \n   },\n"
+                },
+                {
+                    "date": 1651584971110,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,13 +39,11 @@\n         secure: true,\n         rewrite: (path: string) => path.replace(/^\\/api/, '')\n       },\n       '/random': {\n-\n         target: 'https://www.dmoe.cc/',\n         changeOrigin: true,\n         secure: true,\n-        rewrite: (path: string) => path.replace(/^\\/api/, '')\n       }\n     },\n \n \n"
+                },
+                {
+                    "date": 1651584989740,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,9 @@\n         changeOrigin: true,\n         secure: true,\n         rewrite: (path: string) => path.replace(/^\\/api/, '')\n       },\n-      '/random': {\n+      '/random.php': {\n         target: 'https://www.dmoe.cc/',\n         changeOrigin: true,\n         secure: true,\n       }\n"
+                },
+                {
+                    "date": 1651585211902,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,13 +38,8 @@\n         changeOrigin: true,\n         secure: true,\n         rewrite: (path: string) => path.replace(/^\\/api/, '')\n       },\n-      '/random.php': {\n-        target: 'https://www.dmoe.cc/',\n-        changeOrigin: true,\n-        secure: true,\n-      }\n     },\n \n \n   },\n"
                 }
             ],
             "date": 1649468462673,

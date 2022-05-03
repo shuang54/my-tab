@@ -5,6 +5,7 @@ import { ElMessage } from 'element-plus'
 import { useUserStore } from '../store/user'
 import { useBox } from '../store/box'
 import { storeToRefs } from 'pinia';
+import { log } from 'console'
 let userStore = useUserStore()
 let boxStore = useBox()
 const ruleFormRef = ref<FormInstance>()
@@ -70,6 +71,14 @@ const mailRule = (rule: any, value: any, callback: any) => {
   callback(new Error("请输入合法的邮箱"));
 }
 const codeRule = (rule: any, value: any, callback: any) => {
+  const regCode = /^[0-9]*$/;
+  if (value === "") {
+    callback(new Error("请输入验证码"));
+  }
+  if (regCode.test(value)) {
+    return callback();
+  }
+  callback(new Error("验证码必须是数字"));
 }
 // 将规则与数据进行邦定
 const rules = reactive({
@@ -104,16 +113,16 @@ const registerClick = () => {
 const RegisterRuleFormRef = ref<FormInstance>()
 // 将规则与数据进行邦定
 const RegisterRules = reactive({
-  userName: [{ validator: userNameRule, trigger: 'blur' }],
+  username: [{ validator: userNameRule, trigger: 'blur' }],
   password: [{ validator: passwordRule, trigger: 'blur' }],
-  mail: [{ validator: mailRule, trigger: 'blur' }],
+  email: [{ validator: mailRule, trigger: 'blur' }],
   code: [{ validator: codeRule, trigger: 'blur' }],
 })
 // 定义表单数据
 const RegisterRuleForm = reactive({
-  userName: '',
+  username: '',
   password: '',
-  mail: '',
+  email: '',
   code: '',
 })
 // 重置按钮
@@ -250,7 +259,27 @@ const loginOut = () => {
 }
 // 获取验证码
 const getCode = () => {
+  const regEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if (RegisterRuleForm.email !== ""
+    && regEmail.test(RegisterRuleForm.email)) {
+    const data = {
+      "email": RegisterRuleForm.email
+    }
 
+    userStore.sendCode(data)
+  }
+}
+// 注册用户
+const registerForm = async (formEl: FormInstance | undefined) => {
+  if (!formEl) return
+  await formEl.validate(async (valid, fields) => {
+    if (valid) {
+      const result = await userStore.register({ ...RegisterRuleForm })
+      if (result == 'ok') {
+        isShow.value = 'login'
+      }
+    }
+  })
 }
 </script>
 <template>
@@ -272,21 +301,21 @@ const getCode = () => {
   </el-form>
   <el-form v-if="isShow == 'register'" ref="RegisterRuleFormRef" :model="RegisterRuleForm" status-icon
     :rules="RegisterRules" label-width="120px" class="demo-ruleForm">
-    <el-form-item prop="userName">
-      <el-input clearable v-model="RegisterRuleForm.userName" type="text" placeholder="请输入用户名" />
+    <el-form-item prop="username">
+      <el-input clearable v-model="RegisterRuleForm.username" type="text" placeholder="请输入用户名" />
     </el-form-item>
     <el-form-item prop="password">
       <el-input placeholder="请输入密码" show-password v-model="RegisterRuleForm.password" type="password" />
     </el-form-item>
-    <el-form-item prop="mail">
-      <el-input placeholder="请输入邮箱" v-model="RegisterRuleForm.mail" type="text" />
+    <el-form-item prop="email">
+      <el-input placeholder="请输入邮箱" v-model="RegisterRuleForm.email" type="text" />
       <el-button type="primary" @click="getCode">获取验证码</el-button>
     </el-form-item>
     <el-form-item prop="code">
-      <el-input placeholder="请输入验证码" v-model="RegisterRuleForm.code" type="text" />
+      <el-input placeholder="请输入验证码" maxlength="6" v-model="RegisterRuleForm.code" type="text" />
     </el-form-item>
     <el-form-item>
-      <el-button type="primary">注册用户</el-button>
+      <el-button type="primary" @click="registerForm(RegisterRuleFormRef)">注册用户</el-button>
     </el-form-item>
     <el-form-item class="sub">
       <el-button @click="resetForm(RegisterRuleFormRef)">重置信息</el-button>
@@ -317,7 +346,7 @@ const getCode = () => {
           <el-input clearable v-model="nameRuleForm.username" type="text" placeholder="请输入新的用户名" />
         </el-form-item>
       </el-form>
-      <el-divider />
+      <!-- <el-divider /> -->
       <el-button type="primary" @click="changePwd(pwdRuleFormRef)">修改密码</el-button>
       <el-form ref="pwdRuleFormRef" :model="pwdRuleForm" status-icon :rules="pwdRules" label-width="120px"
         class="demo-ruleForm change">
@@ -341,8 +370,8 @@ const getCode = () => {
         <div size="small" class="backup-item" v-for="(item, index) in describes" :key="index">
           <span>{{ item }}</span>
           <div>
-            <el-button type="primary" @click="useBackup(index)" size="small" :disabled="item == ''">使用</el-button>
-            <el-button type="info" @click="inportBackup(index)" size="small">导入</el-button>
+            <el-button type="info" @click="useBackup(index)" size="small" :disabled="item == ''">使用</el-button>
+            <el-button type="primary" @click="inportBackup(index)" size="small">导入</el-button>
             <el-button size="small" @click="changeDescribe(index)" :disabled="item == ''">修改</el-button>
             <el-button type="danger" size="small" @click="delBackup(index)" :disabled="item == ''">删除
             </el-button>
@@ -374,7 +403,6 @@ const getCode = () => {
   font-size: 14px;
 }
 
-.item {}
 
 .box-card {
   width: 90%;
@@ -389,7 +417,6 @@ const getCode = () => {
 }
 
 .change {
-  .el-button {}
 
   .el-input {
     margin-top: 10px;
@@ -410,6 +437,7 @@ const getCode = () => {
 
 .el-form-item {
   width: 68%;
+  margin-top: 10px;
 }
 
 .el-form-item__label {
@@ -417,7 +445,6 @@ const getCode = () => {
 }
 
 .backup {
-  .backup-body {}
 
   .el-card__body {
     padding: 10px !important;
