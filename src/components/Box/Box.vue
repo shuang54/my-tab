@@ -73,6 +73,7 @@ function saveData(data) {
   globalPicture.value = boxStore.GlobalConfiguration.globalPicture
   cardPicture.value = boxStore.GlobalConfiguration.cardPicture
 }
+// watch(() => { boxStore.GlobalConfiguration})
 //  //本地没有数据，使用默认数据
 function defaultData() {
   //本地没有数据，使用默认数据
@@ -115,7 +116,6 @@ onMounted(() => {
   boxStore.boxContainer.height = BoxOffsetHeight
 
 })
-
 // 默认排序
 function defaultSorting() {
   const interval = 100
@@ -140,10 +140,7 @@ let visible = ref(false)
 let top = ref(0)
 let left = ref(0)
 watch(visible, (value) => {
-  BoxOffsetHeight = box.value.offsetHeight
-  BoxOffsetWidth = box.value.offsetWidth
-  boxStore.boxContainer.width = BoxOffsetWidth
-  boxStore.boxContainer.height = BoxOffsetHeight
+
 
   if (value) {
     document.body.addEventListener('click', closeMenu)
@@ -152,6 +149,10 @@ watch(visible, (value) => {
   }
 })
 function openMenu(e) {
+  BoxOffsetHeight = box.value.offsetHeight
+  BoxOffsetWidth = box.value.offsetWidth
+  boxStore.boxContainer.width = BoxOffsetWidth
+  boxStore.boxContainer.height = BoxOffsetHeight
   closeMenu2()
   let x = e.pageX;
   let y = e.pageY;
@@ -209,6 +210,10 @@ watch(visible2, (value) => {
 
 // item上的右击事件
 const show = ($event, i) => {
+  BoxOffsetHeight = box.value.offsetHeight
+  BoxOffsetWidth = box.value.offsetWidth
+  boxStore.boxContainer.width = BoxOffsetWidth
+  boxStore.boxContainer.height = BoxOffsetHeight
   closeMenu()
   let x = $event.pageX;
   let y = $event.pageY;

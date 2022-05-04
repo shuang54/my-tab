@@ -1,16 +1,64 @@
-# Vue 3 + Typescript + Vite
+# 前言
+从决定参加本次活动到现在写下这篇介绍文件，历时一个月，在活动截止日期前终于完成了本次项目，由于经验的匮乏，导致项目代码可能有不合理的地方，还望见谅。
 
-This template should help get you started developing with Vue 3 and Typescript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+# 说明
+压缩包解压后有两个文件，a-soul-tab文件为`chrome浏览器`插件，可直接拖拽到浏览器拓展程序中安装，myTab文件为项目工程文件。
+## 项目的运行
 
-## Recommended IDE Setup
+- 项目运行前请确保系统安装了node.js环境
+- 项目开发时的版本为：v16.14.0
+```js
+//在项目根目录下
+npm i         //安装依赖包
+npm run dev  //运行项目
+//访问: http://localhost:8080/
+```
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+# 项目介绍
+本项目是一款个性化的浏览器起始页插件。成功安装好插件后，用户打开浏览器初始页，以及用户新建标签页时，都会打开为此插件的页面。
 
-## Type Support For `.vue` Imports in TS
+插件默认为a-soul 乃琳主题，用户也可以切换其他角色的主题。还可以通过修改配置的方法，修改图标的布局，以及默认的背景图片，达到自己想要的结果。也可以采用他人分享的配置，导入到自己的插件中。
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+由于插件的功能繁多，并且原生js不易维护，故采用Vue3技术栈开发。
+### 技术栈:
+```js
+Vue3 + Pinia +　Vite + axios + Elelemnt-plus
+```
+# 主要功能
+  1. 图标的跳转
+  2. 鼠标拖拽图标
+  3. 图标的删除
+  4. 自定义图标
+  5. 切换背景
+  6. 用户登录，注册
+  7. 个人配置的备份
+  8. 备份的导入导出
+  9. 图标的排序以及布局
+  10. 主题的选择
 
-1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+# 接口数据
+- 背景图片采用了第三方接口`https://imgapi.cn/api.php?zd=pci&gs=json&fl=dongman`
+- 用户以及备份接口为个人开发
 
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+# 总结
+用户通过安装此插件可以轻松管理图标，还可与他人分享自己的个人配置，或使用他人的配置。
+
+
+# 部分截图
+### 主页
+![主页](http://niu.foogeoo.ltd/public/%E9%A6%96%E9%A1%B5.png)
+### 右击
+![右击](http://niu.foogeoo.ltd/public%2F%E5%8F%B3%E5%87%BB.png)
+### 用户信息
+![用户信息](http://niu.foogeoo.ltd/public%2F%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF.png)
+### 布局
+![布局](http://niu.foogeoo.ltd/public/%E5%B8%83%E5%B1%80.png)
+### 主题
+![主题](http://niu.foogeoo.ltd/public/%E4%B8%BB%E9%A2%98.png)
+### 添加图标
+![添加图标](http://niu.foogeoo.ltd/public/%E6%B7%BB%E5%8A%A0%E5%9B%BE%E6%A0%87.png)
+### 配置文件
+![配置文件](http://niu.foogeoo.ltd/public/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png)
+
+
+~~~非常感谢能够看到最后的各位，通过此项目让我充分感到了写业务代码的痛苦，把重复的东西，重复再重复，真的非常无趣。可能从事这一行业的人每天都在作相同的事情，为了什么呢，可能再过几个月我就知道了吧。所幸这个项目并非都是那么的无趣，在释放图标时，不要让图标重叠，以及怎么才能让图标排序...还是挺有趣的。真的非常感谢能够看到最后的你，谢谢。~~~

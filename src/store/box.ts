@@ -33,6 +33,9 @@ export const useBox = defineStore({
     //     $message.error('更新背景失败！')
     //   }
     // },
+    async upImg(url) {
+      this.globalPicture = url
+    },
     // 获取背景图片
     async updatedGlobalPicture() {
       let result: any = await get("http://www.foogeoo.ltd:9990/")

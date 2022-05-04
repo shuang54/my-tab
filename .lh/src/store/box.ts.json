@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 117,
+            "activePatchIndex": 118,
             "patches": [
                 {
                     "date": 1649682507536,
@@ -476,6 +476,10 @@
                 {
                     "date": 1651586168243,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,14 +34,14 @@\n     //   }\r\n     // },\r\n     // 获取背景图片\r\n     async updatedGlobalPicture() {\r\n-      // let result: any = await get(\"https://imgapi.cn/api.php?zd=pci&gs=json&fl=dongman\")\r\n+      let result: any = await get(\"http://www.foogeoo.ltd:9990/\")\r\n       // { \"code\": \"200\", \"imgurl\": \"https:\\/\\/tva3.sinaimg.cn\\/large\\/9bd9b167gy1g4lierq2y8j21hc0xce81.jpg\", \"width\": \"1920\", \"height\": \"1200\" }\r\n-      let result: any = await get(\"https://api.codelife.cc/wallpaper/random\")\r\n+      // let result: any = await get(\"https://api.codelife.cc/wallpaper/random\")\r\n       // { \"code\": 200, \"data\": \"https://p15.qhimg.com/bdr/__85/d/_open360/cy0120/1.jpg\", \"msg\": \"加载成功\" }\r\n       if (result.code == '200') {\r\n-        this.globalPicture = result.data\r\n+        this.globalPicture = result.imgurl\r\n       } else {\r\n         $message.error('更新背景失败！')\r\n       }\r\n     },\r\n"
+                },
+                {
+                    "date": 1651641435445,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,8 +32,11 @@\n     //   } else {\r\n     //     $message.error('更新背景失败！')\r\n     //   }\r\n     // },\r\n+    async upImg(url) {\r\n+      this.globalPicture = url\r\n+    },\r\n     // 获取背景图片\r\n     async updatedGlobalPicture() {\r\n       let result: any = await get(\"http://www.foogeoo.ltd:9990/\")\r\n       // { \"code\": \"200\", \"imgurl\": \"https:\\/\\/tva3.sinaimg.cn\\/large\\/9bd9b167gy1g4lierq2y8j21hc0xce81.jpg\", \"width\": \"1920\", \"height\": \"1200\" }\r\n"
                 }
             ],
             "date": 1649682507536,

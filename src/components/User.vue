@@ -245,6 +245,8 @@ const inportBackup = (index) => {
 // 使用按钮
 const useBackup = (index) => {
   const data = JSON.parse(backup.value['backup' + (index + 1)])
+  boxStore.globalPicture = data[0].globalPicture
+  boxStore.cardPicture = data[0].cardPicture
 
   boxStore.GlobalConfiguration = data[0]
   boxStore.boxItem = data[1]
