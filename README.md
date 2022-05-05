@@ -1,5 +1,5 @@
 
-#说明
+# 说明
 此项目作为开发插件的工程文件，插件项目地址为：https://github.com/shuang54/new-tab
 
 ## 项目的运行
