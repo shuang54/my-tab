@@ -1,6 +1,7 @@
 
 # 说明
-此项目作为开发插件的工程文件，插件项目地址为：https://github.com/shuang54/new-tab
+此项目作为开发插件的工程文件，插件项目地址为：https://github.com/shuang54/new-tab  
+gitee地址：https://gitee.com/foochange/new-tab
 
 ## 项目的运行
 
